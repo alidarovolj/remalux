@@ -12,6 +12,9 @@ export default {
     extend: {
       colors: {
         mainColor: "#ad2725",
+      },
+      fontFamily: {
+        manrope: ['Manrope', 'sans-serif'],
       }
     },
   },

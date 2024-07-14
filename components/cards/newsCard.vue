@@ -1,28 +1,32 @@
 <script setup>
+const props = defineProps(['postData']);
 </script>
 
 <template>
   <div
-      class="w-full bg-white rounded-md"
-      style="box-shadow: 0px 0px 20px 0px #0000000D; ">
-    <div class="relative">
-      <img
-          class="w-full h-[330px] object-cover rounded-tr-md rounded-tl-md"
-          src="~/assets/img/mainPage/news.png"
-          alt="">
-      <img
-          class="h-8 absolute right-7 top-7"
-          src="~/assets/img/logos/mainLogo.svg"
-          alt="">
-      <div
-          class="w-full h-20 absolute bottom-0 left-0 z-10 rotate-180"
-          style="background: linear-gradient(0deg, rgba(217, 217, 217, 0.02) 0%, #AD2724 100%);">
+      v-if="postData"
+      class="w-full relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 text-start">
+    <img :src="postData.imageUrl" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover"/>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"/>
+    <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"/>
+
+    <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+      <time :datetime="postData.datetime" class="mr-8">{{ postData.date }}</time>
+      <div class="-ml-4 flex items-center gap-x-4">
+        <svg viewBox="0 0 2 2" class="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50">
+          <circle cx="1" cy="1" r="1"/>
+        </svg>
+        <div class="flex gap-x-2.5">
+          <img :src="postData.author.imageUrl" alt="" class="h-6 w-6 flex-none rounded-full bg-white/10"/>
+          {{ postData.author.name }}
+        </div>
       </div>
     </div>
-    <div class="p-5 text-start">
-      <p class="text-lg">
-        Как покрасить стену Colour Flow с помощью Remalux Color of the Year 2024
-      </p>
-    </div>
+    <h3 class="mt-3 text-lg font-semibold leading-6 text-white">
+      <a :href="postData.href">
+        <span class="absolute inset-0"/>
+        {{ postData.title }}
+      </a>
+    </h3>
   </div>
 </template>
