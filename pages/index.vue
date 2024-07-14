@@ -172,7 +172,7 @@ onUnmounted(() => {
       <div
           class="flex justify-between items-center pb-3"
           style="box-shadow: 0px 6px 6.4px -4px #00000026;">
-        <h2 class="text-3xl font-bold">
+        <h2 class="text-lg md:text-3xl font-bold">
           Популярные товары
         </h2>
         <NuxtLink
@@ -184,7 +184,7 @@ onUnmounted(() => {
           <ChevronRightIcon class="w-5 h-5"/>
         </NuxtLink>
       </div>
-      <div class="flex gap-5 h-full">
+      <div class="flex flex-col md:flex-row gap-5 h-full">
         <ProductCard />
         <ProductCard />
         <ProductCard />
