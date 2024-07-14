@@ -1,9 +1,12 @@
 <script setup>
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/vue/24/outline"
-import ProductCard from "~/components/products/productCard.vue";
+import ProductCard from "~/components/cards/productCard.vue";
+import IdeaCard from "~/components/cards/ideaCard.vue";
+import NewsCard from "~/components/cards/newsCard.vue";
 
 const leftPaneWidth = ref(200);
 const isDragging = ref(false);
+const artworkMainCarousel = ref(null);
 
 const startDragging = () => {
   isDragging.value = true;
@@ -28,6 +31,28 @@ onUnmounted(() => {
   window.removeEventListener('mousemove', onDrag);
   window.removeEventListener('mouseup', stopDragging);
 });
+
+const breakpoints = ref({
+  0: {
+    itemsToShow: 1,
+    snapAlign: "center"
+  },
+  700: {
+    itemsToShow: 3,
+    snapAlign: "start"
+  }
+})
+
+const newsBreakpoints = ref({
+  0: {
+    itemsToShow: 1,
+    snapAlign: "center"
+  },
+  700: {
+    itemsToShow: 2.25,
+    snapAlign: "start"
+  }
+})
 </script>
 
 <template>
@@ -168,7 +193,39 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-    <div class="container mx-auto px-4 lg:px-0">
+    <div class="container mx-auto px-4 lg:px-0 mb-32">
+      <div
+          class="flex justify-between items-center pb-3 mb-8"
+          style="box-shadow: 0px 6px 6.4px -4px #00000026;">
+        <h2 class="text-lg md:text-3xl font-bold">
+          Готовые решения для вашего дома
+        </h2>
+        <NuxtLink
+            to="/"
+            class="flex gap-2 items-center text-mainColor">
+          <p class="text-sm md:text-xl">
+            Больше идей
+          </p>
+          <ChevronRightIcon class="w-5 h-5"/>
+        </NuxtLink>
+      </div>
+      <my-carousel-carousel
+          :breakpoints="breakpoints"
+          :mouse-drag="true"
+          :touch-drag="true"
+      >
+        <my-carousel-slide
+            v-for="(item, index) of 10"
+            :key="index">
+          <IdeaCard class="mx-2"/>
+        </my-carousel-slide>
+        <template #addons>
+          <my-carousel-navigation/>
+          <my-carousel-pagination/>
+        </template>
+      </my-carousel-carousel>
+    </div>
+    <div class="container mx-auto px-4 lg:px-0 mb-36">
       <div
           class="flex justify-between items-center pb-3"
           style="box-shadow: 0px 6px 6.4px -4px #00000026;">
@@ -185,11 +242,96 @@ onUnmounted(() => {
         </NuxtLink>
       </div>
       <div class="flex flex-col md:flex-row gap-5 h-full">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
       </div>
+    </div>
+    <div class="container mx-auto px-4 lg:px-0 mb-36">
+      <div class="rounded-xl relative flex flex-col md:flex-row">
+        <img
+            class="w-full h-full absolute rounded-xl object-cover object-right-bottom"
+            src="~/assets/img/bg-app.jpg"
+            alt="">
+        <div
+            class="w-full md:w-1/2 py-14 px-4 md:px-9 rounded-xl relative z-10"
+            style="background: linear-gradient(90deg, #C37F7F 72.63%, rgba(115, 115, 115, 0) 100%);">
+          <h2 class="text-3xl font-bold text-white mb-5">
+            Remalux
+          </h2>
+          <p class="font-medium text-white mb-9">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et,
+            feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta
+            scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus
+            tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros.
+          </p>
+          <div class="flex gap-3 md:gap-7">
+            <img
+                class="w-auto h-12"
+                src="~/assets/img/apple.png"
+                alt="">
+            <img
+                class="w-auto h-12"
+                src="~/assets/img/android.png"
+                alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-36">
+      <div class="container mx-auto px-4 lg:px-0 mb-10">
+        <div
+            class="flex justify-between items-center pb-3"
+            style="box-shadow: 0px 6px 6.4px -4px #00000026;">
+          <h2 class="text-lg md:text-3xl font-bold">
+            Актуальные новости
+          </h2>
+          <NuxtLink
+              to="/"
+              class="flex gap-2 items-center text-mainColor">
+            <p class="text-sm md:text-xl">
+              Перейти в новости
+            </p>
+            <ChevronRightIcon class="w-5 h-5"/>
+          </NuxtLink>
+        </div>
+      </div>
+      <ClientOnly>
+        <my-carousel-carousel
+            :breakpoints="newsBreakpoints"
+            :mouse-drag="true"
+            :touch-drag="true"
+        >
+          <my-carousel-slide
+              ref="artworkMainCarousel"
+              v-for="(item, index) of 10"
+              :key="index">
+            <NewsCard class="mx-2"/>
+          </my-carousel-slide>
+          <template #addons="{ currentSlide, slidesCount }">
+            <div class="container mx-auto px-4 lg:px-0 mt-5">
+              <div class="flex justify-between gap-4 w-full overflow-x-auto">
+                <div
+                    v-for="(item, index) of 6"
+                    :key="index"
+                    class="bg-cardBg dark:bg-dElement cursor-pointer dark:text-dText rounded-md"
+                    @click="artworkMainCarousel.slideTo(index)"
+                >
+                  <img
+                      src="~/assets/img/mainPage/news.png"
+                      alt=""
+                      :class="{
+                      'border-2 border-mainColor': currentSlide === index,
+                    }"
+                      class="h-auto w-[200px] rounded-md"
+                  />
+                </div>
+              </div>
+            </div>
+          </template>
+        </my-carousel-carousel>
+      </ClientOnly>
     </div>
   </div>
 </template>
