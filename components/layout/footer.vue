@@ -161,7 +161,7 @@ const navigation = {
         <div class="flex flex-col-reverse gap-5 md:gap-0 md:flex-row justify-between items-center">
           <div class="w-full md:w-1/4">
             <p class="text-lg leading-5 text-black font-bold">Remalux © 2021</p>
-            <NuxtLink to="/privacy" class="text-xs leading-5 text-gray-500 hover:text-gray-900">Политика
+            <NuxtLink to="/" class="text-xs leading-5 text-gray-500 hover:text-gray-900">Политика
               конфиденциальности
             </NuxtLink>
           </div>
