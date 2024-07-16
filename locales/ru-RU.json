@@ -1,0 +1,88 @@
+{
+  "breadcrumbs": {
+    "home": "Главная",
+    "store": "Магазин"
+  },
+  "header_links": {
+    "store": "Магазин",
+    "choose_color": "Выберите цвет",
+    "ideas": "Идеи",
+    "calculator": "Калькулятор",
+    "about_us": "О нас",
+    "news": "Новости",
+    "contacts": "Контакты"
+  },
+  "footer_links": {
+    "about_text": "Компания ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – лидер в производстве лакокрасочных материалов, расположенный в Республике Казахстан.",
+    "remalux": {
+      "title": "Remalux",
+      "about_us": "О нас",
+      "news": "Новости",
+      "projects": "Проекты",
+      "contacts": "Контакты"
+    },
+    "store": {
+      "title": "Магазин",
+      "products": "Товары",
+      "payment_and_delivery": "Доставка и оплата",
+      "calculator": "Калькулятор",
+      "choose_color": "Выбрать цвет",
+      "public_offer": "Публичная оферта"
+    },
+    "contacts": {
+      "title": "Контакты",
+      "address": "Алматы, ул. Толе би, 300/2"
+    },
+    "privacy_policy": "Политика конфиденциальности"
+
+  },
+  "mainPage": {
+    "hero": {
+      "title": "Высокое евпропейское качество по доступной цене",
+      "choose_paint": "Выбрать краску",
+      "choose_color": "Выбрать цвет"
+    },
+    "choose_type": {
+      "paint": {
+        "title": "Фирменная краска",
+        "description": "Для любого типа поверхностей"
+      },
+      "coating": {
+        "title": "Покрытие",
+        "description": "Для любого типа поверхностей"
+      },
+      "dye": {
+        "title": "Краска",
+        "description": "Для любого типа поверхностей"
+      },
+      "varnish": {
+        "title": "Лак",
+        "description": "Для любого типа поверхностей"
+      },
+      "putty": {
+        "title": "Шпатлевка",
+        "description": "Для любого типа поверхностей"
+      }
+    },
+    "ideas": {
+      "title": "Готовые решения для вашего дома",
+      "link": "Больше идей"
+    },
+    "popular_products": {
+      "title": "Популярные товары",
+      "link": "Больше товаров"
+    },
+    "download_remalux": {
+      "title": "Remalux",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+    },
+    "news": {
+      "title": "Актуальные новости",
+      "link": "Все новости"
+    },
+    "about_us": {
+      "title": "О нас Remalux",
+      "description": "ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – высокое европейское качество по доступной цене. Компания ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – лидер в производстве лакокрасочных материалов, расположенный в Республике Казахстан. Мы предлагаем вниманию потребителей широкий ассортимент красок высшего качества, изготовленных по британской лицензии из сырья именитых французских, бельгийских, немецких, голландских и американских производителей."
+    }
+  }
+}

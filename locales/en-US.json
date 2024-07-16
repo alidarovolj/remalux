@@ -1,0 +1,83 @@
+{
+  "header_links": {
+    "store": "Store",
+    "choose_color": "Choose Color",
+    "ideas": "Ideas",
+    "calculator": "Calculator",
+    "about_us": "About Us",
+    "news": "News",
+    "contacts": "Contacts"
+  },
+  "footer_links": {
+    "about_text": "K-COLOR LLP with the brand name 'REMALUX' is a leader in the production of paints and varnishes, located in the Republic of Kazakhstan.",
+    "remalux": {
+      "title": "Remalux",
+      "about_us": "About Us",
+      "news": "News",
+      "projects": "Projects",
+      "contacts": "Contacts"
+    },
+    "store": {
+      "title": "Store",
+      "products": "Products",
+      "payment_and_delivery": "Payment and Delivery",
+      "calculator": "Calculator",
+      "choose_color": "Choose Color",
+      "public_offer": "Public Offer"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "address": "Almaty, Tole Bi St., 300/2"
+    },
+    "privacy_policy": "Privacy Policy"
+  },
+  "mainPage": {
+    "hero": {
+      "title": "High European Quality at an Affordable Price",
+      "choose_paint": "Choose Paint",
+      "choose_color": "Choose Color"
+    },
+    "choose_type": {
+      "paint": {
+        "title": "Brand Paint",
+        "description": "For any type of surface"
+      },
+      "coating": {
+        "title": "Coating",
+        "description": "For any type of surface"
+      },
+      "dye": {
+        "title": "Dye",
+        "description": "For any type of surface"
+      },
+      "varnish": {
+        "title": "Varnish",
+        "description": "For any type of surface"
+      },
+      "putty": {
+        "title": "Putty",
+        "description": "For any type of surface"
+      }
+    },
+    "ideas": {
+      "title": "Ready Solutions for Your Home",
+      "link": "More Ideas"
+    },
+    "popular_products": {
+      "title": "Popular Products",
+      "link": "More Products"
+    },
+    "download_remalux": {
+      "title": "Remalux",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+    },
+    "news": {
+      "title": "Latest News",
+      "link": "All News"
+    },
+    "about_us": {
+      "title": "About Us Remalux",
+      "description": "K-COLOR LLP with the brand name 'REMALUX' offers high European quality at an affordable price. K-COLOR LLP with the brand name 'REMALUX' is a leader in the production of paints and varnishes, located in the Republic of Kazakhstan. We offer consumers a wide range of top-quality paints, manufactured under a British license from raw materials from renowned French, Belgian, German, Dutch, and American producers."
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <script setup>
-
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -28,7 +28,7 @@
       <div class="w-full bg-[#E4E4E3] h-8"></div>
     </div>
     <NuxtLink
-        to="/"
+        :to="localePath('/')"
         class="block w-full py-4 text-center text-mainColor"
     >
       Подробнее

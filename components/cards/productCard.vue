@@ -1,5 +1,6 @@
 <script setup>
-
+const localePath = useLocalePath();
+const props = defineProps(['productData']);
 </script>
 
 <template>
@@ -8,14 +9,14 @@
       style="box-shadow: 7px 7px 20px 0px #0000000D"
   >
     <img
-        class="w-2/3 mx-auto -mt-20 mb-4"
-        src="../../assets/img/mainPage/paint.png"
+        class="w-2/3 h-[174px] object-contain mx-auto -mt-20 mb-4"
+        :src="productData.image_url"
         alt="">
     <p class="text-[#191919] mb-4">
-      Краска по металлу и дереву
+      {{ productData.title.ru }}
     </p>
     <p class="text-[10px] mb-4">
-      0553007
+      {{ productData.article }}
     </p>
     <div class="flex justify-between">
       <div>
@@ -27,7 +28,7 @@
         </p>
       </div>
       <NuxtLink
-          to="/"
+          :to="localePath('/')"
           class="bg-mainColor text-white px-3 rounded-md flex items-center"
       >
         В корзину

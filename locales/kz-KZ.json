@@ -1,0 +1,83 @@
+{
+  "header_links": {
+    "store": "Дүкен",
+    "choose_color": "Түс таңдау",
+    "ideas": "Идеялар",
+    "calculator": "Есептегіш",
+    "about_us": "Біз туралы",
+    "news": "Жаңалықтар",
+    "contacts": "Байланыстар"
+  },
+  "footer_links": {
+    "about_text": "«REMALUX» сауда маркасымен «K-COLOR» ЖШС – Қазақстан Республикасында орналасқан бояулар мен лактар өндірісінде көшбасшы.",
+    "remalux": {
+      "title": "Remalux",
+      "about_us": "Біз туралы",
+      "news": "Жаңалықтар",
+      "projects": "Жобалар",
+      "contacts": "Байланыстар"
+    },
+    "store": {
+      "title": "Дүкен",
+      "products": "Өнімдер",
+      "payment_and_delivery": "Төлем және жеткізу",
+      "calculator": "Есептегіш",
+      "choose_color": "Түс таңдау",
+      "public_offer": "Қоғамдық ұсыныс"
+    },
+    "contacts": {
+      "title": "Байланыстар",
+      "address": "Алматы, Төле би көшесі, 300/2"
+    },
+    "privacy_policy": "Құпиялық саясаты"
+  },
+  "mainPage": {
+    "hero": {
+      "title": "Қолжетімді бағамен жоғары еуропалық сапа",
+      "choose_paint": "Бояу таңдау",
+      "choose_color": "Түс таңдау"
+    },
+    "choose_type": {
+      "paint": {
+        "title": "Брендтік бояу",
+        "description": "Кез келген бетке арналған"
+      },
+      "coating": {
+        "title": "Жабын",
+        "description": "Кез келген бетке арналған"
+      },
+      "dye": {
+        "title": "Бояу",
+        "description": "Кез келген бетке арналған"
+      },
+      "varnish": {
+        "title": "Лак",
+        "description": "Кез келген бетке арналған"
+      },
+      "putty": {
+        "title": "Шпатлевка",
+        "description": "Кез келген бетке арналған"
+      }
+    },
+    "ideas": {
+      "title": "Үйіңізге дайын шешімдер",
+      "link": "Көбірек идеялар"
+    },
+    "popular_products": {
+      "title": "Танымал өнімдер",
+      "link": "Көбірек өнімдер"
+    },
+    "download_remalux": {
+      "title": "Remalux",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+    },
+    "news": {
+      "title": "Соңғы жаңалықтар",
+      "link": "Барлық жаңалықтар"
+    },
+    "about_us": {
+      "title": "Біз туралы Remalux",
+      "description": "«REMALUX» сауда маркасымен «K-COLOR» ЖШС қолжетімді бағамен жоғары еуропалық сапа ұсынады. «REMALUX» сауда маркасымен «K-COLOR» ЖШС – Қазақстан Республикасында орналасқан бояулар мен лактар өндірісінде көшбасшы. Біз тұтынушыларға жоғары сапалы бояулардың кең ассортиментін ұсынамыз, олар британдық лицензия бойынша танымал француз, бельгиялық, неміс, голланд және американдық өндірушілердің шикізатынан жасалған."
+    }
+  }
+}
