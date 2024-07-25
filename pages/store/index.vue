@@ -16,6 +16,7 @@ import {useProductsStore} from "~/stores/products.js";
 import Pagination from "~/components/general/pagination.vue";
 import {useCategoriesStore} from "~/stores/categories.js";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
+import NoResults from "~/components/general/noResults.vue";
 
 const filters = [
   {
@@ -104,7 +105,7 @@ onMounted(async () => {
             :key="index"
             class="w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9]">
           <div class="flex flex-col gap-5 w-2/3 pl-7">
-            <p class="text-xl font-bold">
+            <p class="text-sm font-bold">
               {{ category.title.ru }}
             </p>
 <!--            <p class="text-xs text-[#525252]">-->
@@ -298,14 +299,18 @@ onMounted(async () => {
               </p>
             </div>
             <div
-                v-if="products.productsList"
-                class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
+                v-if="products.productsList">
               <div
-                  v-for="(product, index) in products.productsList.data"
-                  :key="index"
-                  class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
-                <ProductCard :productData="product" />
+                  v-if="products.productsList.data.length > 0"
+                  class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
+                <div
+                    v-for="(product, index) in products.productsList.data"
+                    :key="index"
+                    class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
+                  <ProductCard :productData="product" />
+                </div>
               </div>
+              <NoResults v-else />
             </div>
             <div
                 v-else

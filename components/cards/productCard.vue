@@ -4,7 +4,8 @@ const props = defineProps(['productData']);
 </script>
 
 <template>
-  <div
+  <NuxtLink
+      :to="localePath('/store/' + productData.id)"
       class="w-full bg-white rounded-md mt-28 px-4 py-3"
       style="box-shadow: 7px 7px 20px 0px #0000000D"
   >
@@ -34,5 +35,5 @@ const props = defineProps(['productData']);
         В корзину
       </NuxtLink>
     </div>
-  </div>
+  </NuxtLink>
 </template>

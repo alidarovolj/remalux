@@ -1,5 +1,11 @@
 <script setup>
+import {useLanguagesStore} from "~/stores/languages.js";
+
 const localePath = useLocalePath()
+const languages = useLanguagesStore()
+const {cur_lang} = storeToRefs(languages)
+
+const props = defineProps(['data'])
 </script>
 
 <template>
@@ -8,7 +14,7 @@ const localePath = useLocalePath()
       style="box-shadow: 0px 0px 20px 0px #0000000D;">
     <img
         class="w-full h-[230px] object-cover rounded-tr-md rounded-tl-md"
-        src="~/assets/img/mainPage/ideaBlock.png"
+        :src="data.image_url"
         alt="">
     <div class="px-5 py-6 text-start">
       <p class="text-2xl font-semibold mb-5">
@@ -22,10 +28,7 @@ const localePath = useLocalePath()
       </p>
     </div>
     <div class="flex justify-between gap-5 mb-5">
-      <div class="w-full bg-[#BC8100] h-8"></div>
-      <div class="w-full bg-[#AF9A89] h-8"></div>
-      <div class="w-full bg-[#42616E] h-8"></div>
-      <div class="w-full bg-[#E4E4E3] h-8"></div>
+      <div class="w-full h-8" :style="`background: ${data.color_title.hex}`"></div>
     </div>
     <NuxtLink
         :to="localePath('/')"

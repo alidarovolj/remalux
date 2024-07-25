@@ -23,7 +23,7 @@ const mobileMenuOpen = ref(false)
 <template>
   <header class="bg-white container mx-auto">
     <nav
-        class="flex items-center justify-between p-6 lg:px-8"
+        class="flex items-center justify-between py-6 lg:px-0"
         aria-label="Global">
       <div class="flex lg:flex-1">
         <NuxtLink
@@ -71,7 +71,7 @@ const mobileMenuOpen = ref(false)
           <BellIcon class="w-5 h-5"/>
         </NuxtLink>
         <NuxtLink
-            :to="localePath('/')"
+            :to="localePath('/registration')"
             class="text-sm font-semibold leading-6 text-mainColor">
           <UserIcon class="w-5 h-5"/>
         </NuxtLink>

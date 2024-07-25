@@ -13,6 +13,14 @@ const breakpoints = ref({
     snapAlign: "start"
   }
 })
+
+const ideas = useIdeasStore()
+const { ideasList } = storeToRefs(ideas)
+
+onMounted(async () => {
+  await nextTick()
+  await ideas.getIdeas()
+})
 </script>
 
 <template>
@@ -32,20 +40,24 @@ const breakpoints = ref({
         <ChevronRightIcon class="w-5 h-5"/>
       </NuxtLink>
     </div>
-    <my-carousel-carousel
-        :breakpoints="breakpoints"
-        :mouse-drag="true"
-        :touch-drag="true"
-    >
-      <my-carousel-slide
-          v-for="(item, index) of 10"
-          :key="index">
-        <IdeaCard class="mx-2"/>
-      </my-carousel-slide>
-      <template #addons>
-        <my-carousel-navigation/>
-        <my-carousel-pagination/>
-      </template>
-    </my-carousel-carousel>
+    <div v-if="ideasList">
+      <client-only>
+        <my-carousel-carousel
+            :breakpoints="breakpoints"
+            :mouse-drag="true"
+            :touch-drag="true"
+        >
+          <my-carousel-slide
+              v-for="(item, index) of ideasList.data"
+              :key="index">
+            <IdeaCard :data="item" class="mx-2"/>
+          </my-carousel-slide>
+          <template #addons>
+            <my-carousel-navigation/>
+            <my-carousel-pagination/>
+          </template>
+        </my-carousel-carousel>
+      </client-only>
+    </div>
   </div>
 </template>

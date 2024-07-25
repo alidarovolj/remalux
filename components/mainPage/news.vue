@@ -65,6 +65,14 @@ const posts = ref([
     },
   }
 ])
+
+const news = useNewsStore()
+const { newsList } = storeToRefs(news)
+
+onMounted(async () => {
+  await nextTick()
+  await news.getNews()
+})
 </script>
 
 <template>
@@ -85,18 +93,22 @@ const posts = ref([
           <ChevronRightIcon class="w-5 h-5"/>
         </NuxtLink>
       </div>
-      <my-carousel-carousel
-          :breakpoints="newsBreakpoints"
-          :mouse-drag="true"
-          :touch-drag="true"
-      >
-        <my-carousel-slide
-            ref="artworkMainCarousel"
-            v-for="(post, index) of posts"
-            :key="index">
-          <NewsCard :postData="post" class="mx-2"/>
-        </my-carousel-slide>
-      </my-carousel-carousel>
+      <div v-if="newsList">
+        <client-only>
+          <my-carousel-carousel
+              :breakpoints="newsBreakpoints"
+              :mouse-drag="true"
+              :touch-drag="true"
+          >
+            <my-carousel-slide
+                ref="artworkMainCarousel"
+                v-for="(post, index) of newsList.data"
+                :key="index">
+              <NewsCard :postData="post" class="mx-2"/>
+            </my-carousel-slide>
+          </my-carousel-carousel>
+        </client-only>
+      </div>
     </div>
   </div>
 </template>

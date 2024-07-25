@@ -7,6 +7,17 @@ import ProductsPreloader from "~/components/general/productsPreloader.vue";
 const localePath = useLocalePath();
 const products = useProductsStore()
 
+const breakpoints = ref({
+  0: {
+    itemsToShow: 1,
+    snapAlign: "center"
+  },
+  700: {
+    itemsToShow: 3,
+    snapAlign: "start"
+  }
+})
+
 onMounted(async () => {
   await nextTick()
   await products.getProducts()
@@ -30,15 +41,24 @@ onMounted(async () => {
         <ChevronRightIcon class="w-5 h-5"/>
       </NuxtLink>
     </div>
-    <div
-        v-if="products.productsList"
-        class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
-      <div
-          v-for="(item, index) in products.productsList.data"
-          :key="index"
-          class="">
-        <ProductCard :product-data="item" />
-      </div>
+    <div v-if="products.productsList">
+      <client-only>
+        <my-carousel-carousel
+            :breakpoints="breakpoints"
+            :mouse-drag="true"
+            :touch-drag="true"
+        >
+          <my-carousel-slide
+              v-for="(item, index) of products.productsList.data"
+              :key="index">
+            <ProductCard :product-data="item" />
+          </my-carousel-slide>
+          <template #addons>
+            <my-carousel-navigation/>
+            <my-carousel-pagination/>
+          </template>
+        </my-carousel-carousel>
+      </client-only>
     </div>
     <ProductsPreloader v-else/>
   </div>
