@@ -1,19 +1,113 @@
 {
   "breadcrumbs": {
     "home": "Главная",
-    "store": "Магазин"
+    "store": "Магазин",
+    "ideas": "Идеи",
+    "news": "Новости"
+  },
+  "forms": {
+    "login": {
+      "title": "Добро пожаловать!",
+      "yet_account": "Ещё нет аккаунта?",
+      "please_register": "Пожалуйста, зарегистрируйтесь",
+      "button": "Войти"
+    },
+    "registration": {
+      "title": "Регистрация",
+      "already_have": "Уже есть аккаунт?",
+      "login": "Войти",
+      "button": "Зарегистрироваться",
+      "rules": {
+        "first": "Длина пароля должна быть не менее 8 символов.",
+        "second": "Заглавные латинские буквы.",
+        "third": "Строчные латинские буквы.",
+        "fourth": "Цифры от 0 до 9."
+      }
+    },
+    "forgot_password": {
+      "title": "Забыли пароль",
+      "description": "Введите свой номер телефона, мы отправим вам код подтверждения.",
+      "button": "Отправить код",
+      "code_button": "Подтвердить"
+    },
+    "code": {
+      "title": "Код",
+      "placeholder": "Введите код"
+    },
+    "forgot_pass": "Забыли пароль?",
+    "remember_me": "Запомнить меня",
+    "name": {
+      "title": "Имя Фамилия",
+      "placeholder": "Введите ваше имя"
+    },
+    "email": {
+      "title": "Электронная почта",
+      "placeholder": "Введите ваш email"
+    },
+    "phone_number": {
+      "title": "Номер телефона"
+    },
+    "password": {
+      "title": "Пароль"
+    },
+    "confirm_password": {
+      "title": "Подтвердите пароль"
+    }
   },
   "header_links": {
     "store": "Магазин",
-    "choose_color": "Выберите цвет",
+    "choose_color": "Выбрать цвет",
     "ideas": "Идеи",
     "calculator": "Калькулятор",
     "about_us": "О нас",
     "news": "Новости",
-    "contacts": "Контакты"
+    "contacts": "Контакты",
+    "login": "Войти",
+    "register": "Зарегистрироваться"
+  },
+  "cards": {
+    "more": "Подробнее"
+  },
+  "products": {
+    "title": "Фирменные продукты",
+    "sec_title": "магазин",
+    "products_title": "Краска",
+    "found_products": "найденные продукты",
+    "filters": "Фильтры",
+    "details": {
+      "article": "Артикул",
+      "weight": "Вес",
+      "kg": "кг",
+      "quantity": "Количество",
+      "paint_calculator": "Калькулятор краски",
+      "calculate": "Рассчитать",
+      "width": "Ширина",
+      "height": "Высота",
+      "layers": "Количество слоев",
+      "area": "Общая площадь",
+      "on": "На",
+      "layer": "слой",
+      "liters": "литры",
+      "add_to_cart": "Добавить в корзину",
+      "tabs": {
+        "description": "Описание",
+        "details": "Детали",
+        "certificates": "Сертификаты"
+      },
+      "also_bought": "Покупатели, купившие этот товар, также купили",
+      "similar_products": "Похожие продукты"
+    }
+  },
+  "pagination": {
+    "show_by": {
+      "text": "Показано только",
+      "items": "результатов"
+    },
+    "prev": "Предыдущий",
+    "next": "Следующий"
   },
   "footer_links": {
-    "about_text": "Компания ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – лидер в производстве лакокрасочных материалов, расположенный в Республике Казахстан.",
+    "about_text": "ТОО 'К-COLOR' с торговой маркой 'REMALUX' является лидером в производстве красок и покрытий, расположенным в Республике Казахстан.",
     "remalux": {
       "title": "Remalux",
       "about_us": "О нас",
@@ -23,45 +117,59 @@
     },
     "store": {
       "title": "Магазин",
-      "products": "Товары",
-      "payment_and_delivery": "Доставка и оплата",
+      "products": "Продукты",
+      "payment_and_delivery": "Оплата и доставка",
       "calculator": "Калькулятор",
       "choose_color": "Выбрать цвет",
       "public_offer": "Публичная оферта"
     },
     "contacts": {
       "title": "Контакты",
-      "address": "Алматы, ул. Толе би, 300/2"
+      "address": "г. Алматы, ул. Толе би, 300/2"
     },
     "privacy_policy": "Политика конфиденциальности"
-
+  },
+  "ideas": {
+    "page_title": {
+      "first": "От идеи до реальности",
+      "second": "с"
+    },
+    "direction": "Выберите направление идеи",
+    "select_room": "Выберите комнату"
+  },
+  "news": {
+    "page_title": {
+      "first": "Будьте в курсе",
+      "second": "всех новостей"
+    },
+    "read_more": "Читать далее"
   },
   "mainPage": {
     "hero": {
-      "title": "Высокое евпропейское качество по доступной цене",
+      "title": "Высокое европейское качество по доступной цене",
       "choose_paint": "Выбрать краску",
       "choose_color": "Выбрать цвет"
     },
     "choose_type": {
       "paint": {
         "title": "Фирменная краска",
-        "description": "Для любого типа поверхностей"
+        "description": "Для всех типов поверхностей"
       },
       "coating": {
         "title": "Покрытие",
-        "description": "Для любого типа поверхностей"
+        "description": "Для всех типов поверхностей"
       },
       "dye": {
-        "title": "Краска",
-        "description": "Для любого типа поверхностей"
+        "title": "Краситель",
+        "description": "Для всех типов поверхностей"
       },
       "varnish": {
         "title": "Лак",
-        "description": "Для любого типа поверхностей"
+        "description": "Для всех типов поверхностей"
       },
       "putty": {
         "title": "Шпатлевка",
-        "description": "Для любого типа поверхностей"
+        "description": "Для всех типов поверхностей"
       }
     },
     "ideas": {
@@ -69,20 +177,20 @@
       "link": "Больше идей"
     },
     "popular_products": {
-      "title": "Популярные товары",
-      "link": "Больше товаров"
+      "title": "Популярные продукты",
+      "link": "Больше продуктов"
     },
     "download_remalux": {
       "title": "Remalux",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
     },
     "news": {
-      "title": "Актуальные новости",
+      "title": "Последние новости",
       "link": "Все новости"
     },
     "about_us": {
       "title": "О нас Remalux",
-      "description": "ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – высокое европейское качество по доступной цене. Компания ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – лидер в производстве лакокрасочных материалов, расположенный в Республике Казахстан. Мы предлагаем вниманию потребителей широкий ассортимент красок высшего качества, изготовленных по британской лицензии из сырья именитых французских, бельгийских, немецких, голландских и американских производителей."
+      "description": "ТОО 'К-COLOR' с торговой маркой 'REMALUX' является лидером в производстве красок и покрытий, расположенным в Республике Казахстан. Мы предлагаем потребителям широкий ассортимент высококачественных красок, произведённых по британской лицензии из сырья известных французских, бельгийских, немецких, голландских и американских производителей."
     }
   }
 }

@@ -1,27 +1,66 @@
 <script setup>
-import {ref} from 'vue'
-import {Dialog, DialogPanel} from '@headlessui/vue'
-import {Bars3Icon, BellIcon, MagnifyingGlassIcon, ShoppingBagIcon, UserIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
+import {Bars3Icon, ChevronDownIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {useUserStore} from "~/stores/user.js";
 import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
+import {useNotificationStore} from "~/stores/notifications.js";
+import {useAuthStore} from "~/stores/auth.js";
 
+const loading = ref(false)
 const {t} = useI18n()
 const localePath = useLocalePath()
+const user = useUserStore()
+const notifications = useNotificationStore()
+const router = useRouter()
+const route = useRoute()
+const auth = useAuthStore()
 
 const navigation = computed(() => [
-  {name: t('header_links.store'), href: '/store'},
-  {name: t('header_links.choose_color'), href: '/'},
-  {name: t('header_links.ideas'), href: '/'},
-  {name: t('header_links.calculator'), href: '/'},
-  {name: t('header_links.about_us'), href: '/'},
-  {name: t('header_links.news'), href: '/'},
-  {name: t('header_links.contacts'), href: '/'},
+  {name: t('header_links.store'), href: localePath('/store')},
+  {name: t('header_links.choose_color'), href: localePath('/')},
+  {name: t('header_links.ideas'), href: localePath('/ideas')},
+  {name: t('header_links.calculator'), href: localePath('/')},
+  {name: t('header_links.about_us'), href: localePath('/')},
+  {name: t('header_links.news'), href: localePath('/news')},
+  {name: t('header_links.contacts'), href: localePath('/')},
 ])
+
+const logoutUser = async () => {
+  loading.value = true;
+
+  try {
+    const response = await api(`/api/auth/logout`, "POST", {}, route.query);
+
+    if (response.message === "Success !") {
+      auth.token = null;
+      await nextTick();
+      user.userProfile = false;
+      notifications.showNotification("success", "Успешно", "Вы успешно вышли из аккаунта");
+      loading.value = false;
+      await user.getProfile()
+      router.push(localePath('/'));
+    }
+  } catch (e) {
+    console.log(e)
+    if (e.response) {
+      if (e.response.status !== 500) {
+        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
+      } else {
+        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
+      }
+    } else {
+      console.error(e);
+      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
+    }
+  }
+  loading.value = false;
+}
 
 const mobileMenuOpen = ref(false)
 </script>
 
 <template>
-  <header class="bg-white container mx-auto">
+  <header class="bg-white container mx-auto px-4 md:px-0">
     <nav
         class="flex items-center justify-between py-6 lg:px-0"
         aria-label="Global">
@@ -55,26 +94,61 @@ const mobileMenuOpen = ref(false)
         </NuxtLink>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-3 items-center">
-        <NuxtLink
-            :to="localePath('/')"
-            class="text-sm font-semibold leading-6 text-mainColor">
-          <MagnifyingGlassIcon class="w-5 h-5"/>
-        </NuxtLink>
-        <NuxtLink
-            :to="localePath('/')"
-            class="text-sm font-semibold leading-6 text-mainColor">
-          <ShoppingBagIcon class="w-5 h-5"/>
-        </NuxtLink>
-        <NuxtLink
-            :to="localePath('/')"
-            class="text-sm font-semibold leading-6 text-mainColor">
-          <BellIcon class="w-5 h-5"/>
-        </NuxtLink>
-        <NuxtLink
-            :to="localePath('/registration')"
-            class="text-sm font-semibold leading-6 text-mainColor">
-          <UserIcon class="w-5 h-5"/>
-        </NuxtLink>
+        <div
+            v-if="user.userProfile === false"
+            class="flex items-center gap-3">
+          <NuxtLink
+              :to="localePath('/login')"
+              class="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7">
+            {{ $t('header_links.login') }}
+          </NuxtLink>
+          <NuxtLink
+              :to="localePath('/registration')"
+              class="block text-white bg-mainColor rounded-lg px-3 py-2.5 text-base font-semibold leading-7">
+            {{ $t('header_links.register') }}
+          </NuxtLink>
+        </div>
+        <div v-else-if="user.userProfile">
+          <Menu as="div" class="relative inline-block text-left">
+            <div>
+              <MenuButton
+                  class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                {{ user.userProfile.name }}
+                <ChevronDownIcon class="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true"/>
+              </MenuButton>
+            </div>
+
+            <transition
+                enter-active-class="transition ease-out duration-100"
+                enter-from-class="transform opacity-0 scale-95"
+                enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75"
+                leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95">
+              <MenuItems
+                  class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div class="py-1">
+                  <MenuItem v-slot="{ active }">
+                    <NuxtLink
+                        :to="localePath('/profile')"
+                        :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+                      Профиль
+                    </NuxtLink>
+                  </MenuItem>
+                  <MenuItem v-slot="{ active }">
+                    <div
+                        @click="logoutUser"
+                        class="text-red-500"
+                        :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']">
+                      Выйти
+                    </div>
+                  </MenuItem>
+                </div>
+              </MenuItems>
+            </transition>
+          </Menu>
+        </div>
+        <div v-else class="spinner"></div>
         <LocaleSwitcher/>
       </div>
     </nav>
@@ -117,26 +191,16 @@ const mobileMenuOpen = ref(false)
                 {{ item.name }}
               </NuxtLink>
             </div>
-            <div class="py-6 flex gap-3">
+            <div class="flex flex-col py-6 gap-3">
               <NuxtLink
-                  :to="localePath('/')"
-                  class="text-sm font-semibold leading-6 text-mainColor">
-                <MagnifyingGlassIcon class="w-5 h-5"/>
+                  :to="localePath('/login')"
+                  class="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7">
+                {{ $t('header_links.login') }}
               </NuxtLink>
               <NuxtLink
-                  :to="localePath('/')"
-                  class="text-sm font-semibold leading-6 text-mainColor">
-                <ShoppingBagIcon class="w-5 h-5"/>
-              </NuxtLink>
-              <NuxtLink
-                  :to="localePath('/')"
-                  class="text-sm font-semibold leading-6 text-mainColor">
-                <BellIcon class="w-5 h-5"/>
-              </NuxtLink>
-              <NuxtLink
-                  :to="localePath('/')"
-                  class="text-sm font-semibold leading-6 text-mainColor">
-                <UserIcon class="w-5 h-5"/>
+                  :to="localePath('/registration')"
+                  class="block text-white bg-mainColor rounded-lg px-3 py-2.5 text-base font-semibold leading-7">
+                {{ $t('header_links.register') }}
               </NuxtLink>
               <LocaleSwitcher/>
             </div>

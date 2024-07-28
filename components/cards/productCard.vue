@@ -1,6 +1,10 @@
 <script setup>
+import {useLanguagesStore} from "~/stores/languages.js";
+
 const localePath = useLocalePath();
 const props = defineProps(['productData']);
+const language = useLanguagesStore();
+const {cur_lang} = storeToRefs(language);
 </script>
 
 <template>
@@ -14,7 +18,7 @@ const props = defineProps(['productData']);
         :src="productData.image_url"
         alt="">
     <p class="text-[#191919] mb-4">
-      {{ productData.title.ru }}
+      {{ productData.title[cur_lang] }}
     </p>
     <p class="text-[10px] mb-4">
       {{ productData.article }}
@@ -32,7 +36,7 @@ const props = defineProps(['productData']);
           :to="localePath('/')"
           class="bg-mainColor text-white px-3 rounded-md flex items-center"
       >
-        В корзину
+        {{ $t('cards.more') }}
       </NuxtLink>
     </div>
   </NuxtLink>

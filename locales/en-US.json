@@ -1,4 +1,59 @@
 {
+  "breadcrumbs": {
+    "home": "Home",
+    "store": "Store",
+    "ideas": "Ideas",
+    "news": "News"
+  },
+  "forms": {
+    "login": {
+      "title": "Welcome!",
+      "yet_account": "Don't have an account yet?",
+      "please_register": "Please register",
+      "button": "Login"
+    },
+    "registration": {
+      "title": "Registration",
+      "already_have": "Already have an account?",
+      "login": "Login",
+      "button": "Register",
+      "rules": {
+        "first": "The password length must be at least 8 characters.",
+        "second": "Latin uppercase letters.",
+        "third": "Latin lowercase letters.",
+        "fourth": "Numbers 0-9."
+      }
+    },
+    "forgot_password": {
+      "title": "Forgot password",
+      "description": "Enter your phone number, we will send you a verification code.",
+      "button": "Send code",
+      "code_button": "Confirm"
+    },
+    "code": {
+      "title": "Code",
+      "placeholder": "Enter the code"
+    },
+    "forgot_pass": "Forgot password?",
+    "remember_me": "Remember me",
+    "name": {
+      "title": "Name Surname",
+      "placeholder": "Enter your name"
+    },
+    "email": {
+      "title": "Email",
+      "placeholder": "Enter your email"
+    },
+    "phone_number": {
+      "title": "Phone number"
+    },
+    "password": {
+      "title": "Password"
+    },
+    "confirm_password": {
+      "title": "Confirm password"
+    }
+  },
   "header_links": {
     "store": "Store",
     "choose_color": "Choose Color",
@@ -6,10 +61,53 @@
     "calculator": "Calculator",
     "about_us": "About Us",
     "news": "News",
-    "contacts": "Contacts"
+    "contacts": "Contacts",
+    "login": "Login",
+    "register": "Register"
+  },
+  "cards": {
+    "more": "More details"
+  },
+  "products": {
+    "title": "Branded products",
+    "sec_title": "store",
+    "products_title": "Paint",
+    "found_products": "found products",
+    "filters": "Filters",
+    "details": {
+      "article": "Article",
+      "weight": "Weight",
+      "kg": "kg",
+      "quantity": "Quantity",
+      "paint_calculator": "Paint Calculator",
+      "calculate": "Calculate",
+      "width": "Width",
+      "height": "Height",
+      "layers": "Number of layers",
+      "area": "Total area",
+      "on": "On",
+      "layer": "layer",
+      "liters": "liters",
+      "add_to_cart": "Add to cart",
+      "tabs": {
+        "description": "Description",
+        "details": "Details",
+        "certificates": "Certificates"
+      },
+      "also_bought": "Customers who bought this item also bought",
+      "similar_products": "Similar products"
+    }
+  },
+  "pagination": {
+    "show_by": {
+      "text": "Showing only",
+      "items": "results"
+    },
+    "prev": "Previous",
+    "next": "Next"
   },
   "footer_links": {
-    "about_text": "K-COLOR LLP with the brand name 'REMALUX' is a leader in the production of paints and varnishes, located in the Republic of Kazakhstan.",
+    "about_text": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
     "remalux": {
       "title": "Remalux",
       "about_us": "About Us",
@@ -27,9 +125,24 @@
     },
     "contacts": {
       "title": "Contacts",
-      "address": "Almaty, Tole Bi St., 300/2"
+      "address": "Almaty, Tole bi St., 300/2"
     },
     "privacy_policy": "Privacy Policy"
+  },
+  "ideas": {
+    "page_title": {
+      "first": "From idea to reality",
+      "second": "with"
+    },
+    "direction": "Choose the direction of the idea",
+    "select_room": "Select a room"
+  },
+  "news": {
+    "page_title": {
+      "first": "Stay up to date",
+      "second": "with all the news"
+    },
+    "read_more": "Read more"
   },
   "mainPage": {
     "hero": {
@@ -40,27 +153,27 @@
     "choose_type": {
       "paint": {
         "title": "Brand Paint",
-        "description": "For any type of surface"
+        "description": "For all types of surfaces"
       },
       "coating": {
         "title": "Coating",
-        "description": "For any type of surface"
+        "description": "For all types of surfaces"
       },
       "dye": {
         "title": "Dye",
-        "description": "For any type of surface"
+        "description": "For all types of surfaces"
       },
       "varnish": {
         "title": "Varnish",
-        "description": "For any type of surface"
+        "description": "For all types of surfaces"
       },
       "putty": {
         "title": "Putty",
-        "description": "For any type of surface"
+        "description": "For all types of surfaces"
       }
     },
     "ideas": {
-      "title": "Ready Solutions for Your Home",
+      "title": "Ready-made Solutions for Your Home",
       "link": "More Ideas"
     },
     "popular_products": {
@@ -77,7 +190,7 @@
     },
     "about_us": {
       "title": "About Us Remalux",
-      "description": "K-COLOR LLP with the brand name 'REMALUX' offers high European quality at an affordable price. K-COLOR LLP with the brand name 'REMALUX' is a leader in the production of paints and varnishes, located in the Republic of Kazakhstan. We offer consumers a wide range of top-quality paints, manufactured under a British license from raw materials from renowned French, Belgian, German, Dutch, and American producers."
+      "description": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, made under a British license from raw materials by renowned French, Belgian, German, Dutch, and American manufacturers."
     }
   }
 }

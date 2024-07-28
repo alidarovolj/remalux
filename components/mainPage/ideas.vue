@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import IdeaCard from "~/components/cards/ideaCard.vue";
 import {ChevronRightIcon} from "@heroicons/vue/24/outline";
+import ProductsPreloader from "~/components/general/productsPreloader.vue";
 
 const localePath = useLocalePath()
 const breakpoints = ref({
@@ -59,5 +60,6 @@ onMounted(async () => {
         </my-carousel-carousel>
       </client-only>
     </div>
+    <ProductsPreloader v-else/>
   </div>
 </template>

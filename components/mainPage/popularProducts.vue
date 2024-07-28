@@ -13,7 +13,7 @@ const breakpoints = ref({
     snapAlign: "center"
   },
   700: {
-    itemsToShow: 3,
+    itemsToShow: 4,
     snapAlign: "start"
   }
 })
@@ -50,7 +50,8 @@ onMounted(async () => {
         >
           <my-carousel-slide
               v-for="(item, index) of products.productsList.data"
-              :key="index">
+              :key="index"
+          class="px-2">
             <ProductCard :product-data="item" />
           </my-carousel-slide>
           <template #addons>

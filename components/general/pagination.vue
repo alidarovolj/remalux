@@ -44,7 +44,7 @@ const setPage = (page) => {
           @click.prevent="setPage(metaData.current_page - 1)"
           v-if="metaData.current_page > 1"
       >
-        Previous
+        {{ $t('pagination.prev') }}
       </a>
       <a
           href="#"
@@ -52,7 +52,7 @@ const setPage = (page) => {
           @click.prevent="setPage(metaData.current_page + 1)"
           v-if="metaData.current_page < metaData.last_page"
       >
-        Next
+        {{ $t('pagination.next') }}
       </a>
     </div>
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
@@ -73,11 +73,11 @@ const setPage = (page) => {
         </div>
         <div>
           <p class="text-sm text-gray-700">
-            Показывается всего
+            {{ $t('pagination.show_by.text') }}
             {{ ' ' }}
             <span class="font-medium">{{ metaData.total }}</span>
             {{ ' ' }}
-            результата
+            {{ $t('pagination.show_by.items') }}
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@ const setPage = (page) => {
               class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
               :disabled="metaData.current_page <= 1"
           >
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">{{ $t('pagination.prev') }}</span>
             <ChevronLeftIcon class="h-5 w-5" aria-hidden="true"/>
           </button>
           <p
@@ -105,7 +105,7 @@ const setPage = (page) => {
               class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
               :disabled="metaData.current_page >= metaData.last_page"
           >
-            <span class="sr-only">Next</span>
+            <span class="sr-only">{{ $t('pagination.next') }}</span>
             <ChevronRightIcon class="h-5 w-5" aria-hidden="true"/>
           </button>
         </nav>

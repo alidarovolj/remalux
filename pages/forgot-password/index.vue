@@ -3,28 +3,25 @@ import {vMaska} from "maska/vue"
 import {useVuelidate} from "@vuelidate/core"
 import {required} from "@vuelidate/validators"
 import {useNotificationStore} from "~/stores/notifications.js";
-import img1 from "assets/img/auth/slide1.jpg";
-import img2 from "assets/img/auth/slide2.jpg";
-import img3 from "assets/img/auth/slide3.jpg";
-import {useAuthStore} from "~/stores/auth.js";
-import {useUserStore} from "~/stores/user.js";
+import img1 from "@/assets/img/auth/slide1.jpg"
+import img2 from "@/assets/img/auth/slide2.jpg"
+import img3 from "@/assets/img/auth/slide3.jpg"
 
 const loading = ref(false);
+const code_sent = ref(false);
 const notifications = useNotificationStore()
 const route = useRoute()
+const router = useRouter()
 const localePath = useLocalePath()
-const auth = useAuthStore()
-const user = useUserStore()
 
 const form = ref({
   phone_number: '',
-  password: '',
 })
 
-const v$ = useVuelidate({
-  phone_number: {required, minLength: 11},
-  password: {required}
-}, form);
+const formCode = ref({
+  phone_number: '',
+  code: ''
+})
 
 const carousel = ref([
   img1, img2, img3
@@ -41,7 +38,11 @@ const breakpoints = ref({
   }
 })
 
-const loginUser = async () => {
+const v$ = useVuelidate({
+  phone_number: {required, minLength: 11}
+}, form);
+
+const codeRequest = async () => {
   loading.value = true;
   await v$.value.$validate();
 
@@ -52,15 +53,42 @@ const loginUser = async () => {
   }
 
   try {
-    const response = await api(`/api/auth/login`, "POST", {
+    const response = await api(`/api/auth/password-recovery/request-code`, "POST", {
       body: JSON.stringify(form.value)
     }, route.query);
+    code_sent.value = true
+    formCode.value.phone_number = form.value.phone_number
+    notifications.showNotification("success", "Код запрошен", "Проверьте ваш телефон и введите код подтверждения.");
+  } catch (e) {
+    if (e.response) {
+      if (e.response.status !== 500) {
+        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
+      } else {
+        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
+      }
+    } else {
+      console.error(e);
+      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
+    }
+  }
 
-    await auth.initCookieToken(response.access_token);
-    auth.token = response.access_token;
-    notifications.showNotification("success", "Успешно", "Вы успешно авторизовались");
-    await nextTick()
-    await user.getProfile()
+}
+
+const passwordRequest = async () => {
+  loading.value = true;
+  await v$.value.$validate();
+
+  if (v$.value.$error) {
+    notifications.showNotification("error", "Данные не заполнены", "Проверьте правильность введенных данных и попробуйте снова.");
+    loading.value = false;
+    return;
+  }
+
+  try {
+    const response = await api(`/api/auth/password-recovery/verify-code`, "POST", {
+      body: JSON.stringify(form.value)
+    }, route.query);
+    notifications.showNotification("success", "Смена пароля подтверждена", "Проверьте вашу почту, мы отправили вам новый пароль.");
     await router.push(localePath('/'))
   } catch (e) {
     if (e.response) {
@@ -85,23 +113,18 @@ const loginUser = async () => {
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
             <h2 class="text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              {{ $t('forms.login.title') }}
+              {{ $t('forms.forgot_password.title') }}
             </h2>
             <p class="mt-2 text-sm leading-6 text-gray-500">
-              {{ $t('forms.login.yet_account') }}
-              {{ ' ' }}
-              <NuxtLink
-                  :to="localePath('/registration')"
-                  class="font-semibold text-mainColor">
-                {{ $t('forms.login.please_register') }}
-              </NuxtLink>
+              {{ $t('forms.forgot_password.description') }}
             </p>
           </div>
 
-          <div class="mt-10">
+          <div class="mt-7">
             <div>
               <form
-                  @submit.prevent="loginUser"
+                  v-if="!code_sent"
+                  @submit.prevent="codeRequest"
                   action=""
                   class="space-y-6">
 
@@ -124,45 +147,39 @@ const loginUser = async () => {
                   />
                 </div>
 
+                <div>
+                  <button type="submit"
+                          class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
+                    {{ $t('forms.forgot_password.button') }}
+                  </button>
+                </div>
+              </form>
+              <form
+                  v-else
+                  @submit.prevent="passwordRequest"
+                  class="space-y-6"
+              >
                 <div
-                    :class="{ '!border !border-red-500': v$.password.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="password" class="block text-xs font-medium text-gray-900">
-                    {{ $t('forms.password.title') }}
+                  <label for="name" class="block text-xs font-medium text-gray-900">
+                    {{ $t('forms.code.title') }}
                   </label>
                   <input
-                      v-model="form.password"
-                      id="password"
-                      name="password"
-                      type="password"
-                      autocomplete="password"
-                      placeholder="********"
+                      v-model="formCode.code"
+                      id="code"
+                      name="code"
+                      type="text"
+                      autocomplete="code"
+                      :placeholder="$t('forms.code.placeholder')"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
 
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox"
-                           class="h-4 w-4 rounded border-gray-300 text-mainColor focus:ring-mainColor"/>
-                    <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-700">
-                      {{ $t('forms.remember_me') }}
-                    </label>
-                  </div>
-
-                  <div class="text-sm leading-6">
-                    <NuxtLink
-                        :to="localePath('/forgot-password')"
-                        class="font-semibold text-mainColor">
-                      {{ $t('forms.forgot_pass') }}
-                    </NuxtLink>
-                  </div>
-                </div>
-
                 <div>
-                  <button type="submit"
-                          class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
-                    {{ $t('forms.login.button') }}
+                  <button
+                      type="submit"
+                      class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
+                    {{ $t('forms.forgot_password.code_button') }}
                   </button>
                 </div>
               </form>

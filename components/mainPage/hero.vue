@@ -2,7 +2,7 @@
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/vue/24/outline/index.js";
 
 const localePath = useLocalePath();
-const leftPaneWidth = ref(200);
+const leftPaneWidth = ref(500);
 const isDragging = ref(false);
 
 const startDragging = () => {

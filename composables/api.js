@@ -1,10 +1,12 @@
-import {useNotificationStore} from "@/stores/notifications.js";
-import {useAuthStore} from "~/stores/auth.js";
+import { useNotificationStore } from "@/stores/notifications.js";
+import { useAuthStore } from "~/stores/auth.js";
+import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 
 export async function api(url, method, options = {}, query = {}) {
-    const auth = useAuthStore()
-    auth.initCookieToken()
-    const {token} = storeToRefs(auth)
+    const auth = useAuthStore();
+    auth.initCookieToken();
+    const { token } = storeToRefs(auth);
     const router = useRouter();
     const notifications = useNotificationStore();
 
@@ -36,14 +38,16 @@ export async function api(url, method, options = {}, query = {}) {
     const requestOptions = {
         method: method,
         headers: headers,
-        body: options.body ? JSON.stringify(options.body) : undefined,
+        body: options.body ? options.body : undefined,
     };
 
     try {
-        const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}${url}?${queryString}`, requestOptions);
+        const { data, pending, error } = await useFetch(`${import.meta.env.VITE_APP_BASE_URL}${url}?${queryString}`, {
+            ...requestOptions,
+        });
 
-        if (!response.ok) {
-            if (response.status === 401) {
+        if (error.value) {
+            if (error.value.status === 401) {
                 notifications.showNotification(
                     "error",
                     "Токен не получен или истек",
@@ -52,12 +56,11 @@ export async function api(url, method, options = {}, query = {}) {
                 localStorage.removeItem("token");
                 router.push('/login');
             } else {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Request failed');
+                throw new Error(error.value.message || 'Request failed');
             }
         }
 
-        return await response.json();
+        return data.value;
     } catch (error) {
         console.error(error);
         throw error;

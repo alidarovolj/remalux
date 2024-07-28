@@ -17,6 +17,7 @@ import Pagination from "~/components/general/pagination.vue";
 import {useCategoriesStore} from "~/stores/categories.js";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import NoResults from "~/components/general/noResults.vue";
+import {useLanguagesStore} from "~/stores/languages.js";
 
 const filters = [
   {
@@ -60,6 +61,8 @@ const products = useProductsStore()
 const categories = useCategoriesStore()
 const mobileFiltersOpen = ref(false)
 const filtersOpen = ref(false)
+const languages = useLanguagesStore()
+const {cur_lang} = storeToRefs(languages)
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -82,9 +85,9 @@ onMounted(async () => {
     <div class="bg-[#FF792A] relative py-16">
       <div class="container mx-auto">
         <div class="text-4xl text-white font-bold">
-          <p>Магазин фирменной</p>
+          <p>{{ $t('products.title') }}</p>
           <div class="flex items-center gap-2">
-            <p>продукции</p>
+            <p>{{ $t('products.sec_title') }}</p>
             <img
                 src="~/assets/img/logos/whiteLogo.png"
                 alt="">
@@ -106,11 +109,11 @@ onMounted(async () => {
             class="w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9]">
           <div class="flex flex-col gap-5 w-2/3 pl-7">
             <p class="text-sm font-bold">
-              {{ category.title.ru }}
+              {{ category.title[cur_lang] }}
             </p>
-<!--            <p class="text-xs text-[#525252]">-->
-<!--              {{ category.title.ru }}-->
-<!--            </p>-->
+            <!--            <p class="text-xs text-[#525252]">-->
+            <!--              {{ category.title.ru }}-->
+            <!--            </p>-->
           </div>
           <img
               class="w-1/3 h-full rounded-tr-xl rounded-br-xl object-cover object-right"
@@ -118,7 +121,7 @@ onMounted(async () => {
               alt="">
         </div>
       </div>
-      <ProductsPreloader v-else />
+      <ProductsPreloader v-else/>
     </div>
     <!-- Mobile filter dialog -->
     <TransitionRoot
@@ -151,7 +154,7 @@ onMounted(async () => {
                 class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl">
               <div class="flex items-center justify-between px-4">
                 <h2 class="text-lg font-medium text-gray-900">
-                  Фильтры
+                  {{ $t('products.filters') }}
                 </h2>
                 <button
                     type="button"
@@ -223,7 +226,7 @@ onMounted(async () => {
                 type="button"
                 class="inline-flex items-center lg:hidden"
                 @click="mobileFiltersOpen = true">
-              <span class="text-sm font-medium text-gray-700">Фильтры</span>
+              <span class="text-sm font-medium text-gray-700">{{ $t('products.filters') }}</span>
               <PlusIcon class="ml-1 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true"/>
             </button>
 
@@ -232,7 +235,7 @@ onMounted(async () => {
                 <div class="relative ml-auto flex h-full w-full flex-col overflow-y-auto rounded-md pt-4">
                   <div class="flex items-center justify-between px-4">
                     <h2 class="text-2xl font-medium text-gray-900">
-                      Фильтры
+                      {{ $t('products.filters') }}
                     </h2>
                   </div>
 
@@ -292,10 +295,11 @@ onMounted(async () => {
               class="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
             <div class="flex justify-between items-center mb-8 border-b border-[#F0DFDF]">
               <p class="text-3xl font-bold text-mainColor">
-                Краска
+                {{ $t('products.products_title') }}
               </p>
               <p>
-                <span class="font-semibold">{{ products.productsList?.meta?.total }}</span> найденных товаров
+                <span class="font-semibold">{{ products.productsList?.meta?.total }}</span>
+                {{ $t('products.found_products') }}
               </p>
             </div>
             <div
@@ -307,10 +311,10 @@ onMounted(async () => {
                     v-for="(product, index) in products.productsList.data"
                     :key="index"
                     class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
-                  <ProductCard :productData="product" />
+                  <ProductCard :productData="product"/>
                 </div>
               </div>
-              <NoResults v-else />
+              <NoResults v-else/>
             </div>
             <div
                 v-else
@@ -327,7 +331,7 @@ onMounted(async () => {
               </div>
             </div>
             <div v-if="products.productsList">
-              <Pagination :meta-data="products.productsList.meta" />
+              <Pagination :meta-data="products.productsList.meta"/>
             </div>
           </section>
         </div>
