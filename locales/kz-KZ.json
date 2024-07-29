@@ -3,31 +3,145 @@
     "home": "Басты бет",
     "store": "Дүкен",
     "ideas": "Идеялар",
-    "news": "Жаңалықтар"
+    "news": "Жаңалықтар",
+    "cart": "Себет",
+    "checkout": "Тапсырыс беру"
+  },
+  "no_results": {
+    "title": "Өкінішке орай, іздеу нәтиже бермеді"
+  },
+  "about": {
+    "hero_title": "Біз электрондық коммерцияның болашағын құру үшін әлемнің түкпір-түкпірінен жұмыс істейтін ынталы адамдар тобымыз.",
+    "hero_description": "Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо. Элит сунт амет fugiat венам occaecат fugiat аликуа. Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо.",
+    "timeline": [
+      {
+        "name": "Компанияның негізі қаланды",
+        "description": "Нихил аут нам. Дигниссимос а париатур эт квос омнис. Аспернатур аспериорес эт долорем долорем оптио волуптате репудиandae.",
+        "date": "Тамыз 2021",
+        "dateTime": "2021-08"
+      },
+      {
+        "name": "$65 млн инвестиция тартылды",
+        "description": "Провидент quia ut esse. Веро vel eos репудиandae аспернатур. Кумке минима impedit сапиенте a архитекто нихил.",
+        "date": "Желтоқсан 2021",
+        "dateTime": "2021-12"
+      },
+      {
+        "name": "Бета-нұсқа шығарылды",
+        "description": "Сунт перспициатис инцидунт. Нон necessитатибус аликуид. Консеквтурут officiis earum eum quia facilis. Хик деленити долорем quia et.",
+        "date": "Ақпан 2022",
+        "dateTime": "2022-02"
+      },
+      {
+        "name": "Өнімнің ғаламдық шығарылымы",
+        "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
+        "date": "Желтоқсан 2022",
+        "dateTime": "2022-12"
+      }
+    ],
+    "customers_love_us": "Біздің клиенттер бізді жақсы көреді",
+    "customers_love_us_description": "Аликуп reprehenderit incididunt aмет quis fugiat ut velit. Сит occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
+    "stats_title": "Біз жұмыс орнын өмірімізге қосатын және әлемге құндылық қосатын нәрсе ретінде қарастырамыз.",
+    "stats_description": "Диам нунк lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
+    "stat1": {
+      "value": "250k",
+      "title": "Платформадағы қолданушылар",
+      "description": "Vel labore deleniti veniam consequuntur sunt nobis."
+    },
+    "stat2": {
+      "value": "$8.9 миллиард",
+      "title": "Біз клиенттеріміздің жалпы табысы $8 миллиардтан асқанына мақтанамыз.",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
+    },
+    "stat3": {
+      "value": "401,093",
+      "title": "Биылғы жылы транзакциялар",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
+    },
+    "people_title": "Біздің адамдар",
+    "people_description1": "Quasi est quaerat. Сит molestiae et. Провидент ad dolorem occaecati eos iste. Солута rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
+    "people_description2": "Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо. Элит сунт амет fugiat венам occaecат fugiat. Quasi aperiam sit non sit neque reprehenderit.",
+    "join_us_title": "Біз әрдайым біздің командамызға қосылу үшін керемет адамдарды іздейміз",
+    "join_us_description": "Диам нунк lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
+    "view_all_openings": "Барлық бос орындарды көру"
+  },
+  "checkout": {
+    "title": "Тапсырыс беру",
+    "items": "Себеттегі тауарлар",
+    "del_type": "Жеткізу түрі",
+    "delivery_status": {
+      "pickup": "Өзіндік алып кету",
+      "delivery": "Жеткізу"
+    },
+    "to_pay": "Төлем сомасы",
+    "first": {
+      "title": "Алушы туралы ақпарат",
+      "physical": "Жеке тұлға",
+      "legal": "Заңды тұлға",
+      "name": "Сіздің атыңыз",
+      "phone": "Телефон нөмірі"
+    },
+    "second": {
+      "title": "Тапсырысты алу әдісі",
+      "pickup": "Өзіндік алып кету",
+      "delivery": "Жеткізу",
+      "address": "Жеткізу мекенжайы",
+      "add": "Жеткізу мекенжайын қосу",
+      "text": "Тапсырыс беру үшін жеткізу мекенжайын қосып, таңдау керек"
+    },
+    "third": {
+      "title": "Төлем",
+      "phys": "Қабылдау кезінде төлеу",
+      "agreement": "Қайтару және шағым шарттарымен келісу",
+      "online": "Онлайн төлем",
+      "to_pay": "Төлеу"
+    }
+  },
+  "cart": {
+    "title": "Себет",
+    "clear": "Себетті тазалау",
+    "table": {
+      "product": "Өнімнің атауы",
+      "color": "Түсі",
+      "weight": "Салмағы",
+      "total": "Барлығы",
+      "price": "Бағасы",
+      "quantity": "Саны"
+    },
+    "checkout": {
+      "title": "Тапсырыс туралы ақпарат",
+      "coupon_title": "Купондар және промокодтар",
+      "coupon_text": "Купон кодын себеттегі тиісті өріске енгізіп, «Қолдану» батырмасын басыңыз, сонда жеңілдік жалпы тапсырыс сомасына енгізіледі.",
+      "coupon_placeholder": "Купон кодын енгізіңіз",
+      "coupon_button": "Купонды қолдану",
+      "summary": "ЖИЫНТЫҚ",
+      "total": "Барлығы",
+      "checkout_button": "Тапсырыс беру"
+    }
   },
   "forms": {
     "login": {
       "title": "Қош келдіңіз!",
-      "yet_account": "Әлі аккаунтыңыз жоқ па?",
-      "please_register": "Тіркеліңіз",
+      "yet_account": "Әлі тіркелмегенсіз бе?",
+      "please_register": "Тіркелу",
       "button": "Кіру"
     },
     "registration": {
       "title": "Тіркелу",
-      "already_have": "Аккаунтыңыз бар ма?",
+      "already_have": "Тіркелгіңіз бар ма?",
       "login": "Кіру",
       "button": "Тіркелу",
       "rules": {
         "first": "Құпия сөздің ұзындығы кемінде 8 таңба болуы керек.",
-        "second": "Үлкен латын әріптері.",
-        "third": "Кіші латын әріптері.",
-        "fourth": "0-9 аралығындағы сандар."
+        "second": "Латын бас әріптері.",
+        "third": "Латын кіші әріптері.",
+        "fourth": "0-9 сандары."
       }
     },
     "forgot_password": {
       "title": "Құпия сөзді ұмыттыңыз ба",
-      "description": "Телефон нөміріңізді енгізіңіз, біз сізге тексеру кодын жібереміз.",
-      "button": "Кодты жіберу",
+      "description": "Телефон нөміріңізді енгізіңіз, біз сізге растау кодын жібереміз.",
+      "button": "Код жіберу",
       "code_button": "Растау"
     },
     "code": {
@@ -35,7 +149,7 @@
       "placeholder": "Кодты енгізіңіз"
     },
     "forgot_pass": "Құпия сөзді ұмыттыңыз ба?",
-    "remember_me": "Мені есте сақта",
+    "remember_me": "Мені есте сақтау",
     "name": {
       "title": "Аты-жөні",
       "placeholder": "Атыңызды енгізіңіз"
@@ -51,17 +165,17 @@
       "title": "Құпия сөз"
     },
     "confirm_password": {
-      "title": "Құпия сөзді растаңыз"
+      "title": "Құпия сөзді растау"
     }
   },
   "header_links": {
     "store": "Дүкен",
-    "choose_color": "Түсті таңдау",
+    "choose_color": "Түс таңдау",
     "ideas": "Идеялар",
-    "calculator": "Калькулятор",
+    "calculator": "Есептегіш",
     "about_us": "Біз туралы",
     "news": "Жаңалықтар",
-    "contacts": "Байланыс",
+    "contacts": "Байланыстар",
     "login": "Кіру",
     "register": "Тіркелу"
   },
@@ -73,116 +187,116 @@
     "sec_title": "дүкен",
     "products_title": "Бояу",
     "found_products": "табылған өнімдер",
-    "filters": "Сүзгілер",
+    "filters": "Фильтрлер",
     "details": {
       "article": "Мақала",
       "weight": "Салмақ",
       "kg": "кг",
       "quantity": "Саны",
-      "paint_calculator": "Бояу калькуляторы",
+      "paint_calculator": "Бояу есептегіші",
       "calculate": "Есептеу",
       "width": "Ені",
       "height": "Биіктігі",
       "layers": "Қабаттар саны",
-      "area": "Жалпы алаңы",
-      "on": "Бір",
+      "area": "Жалпы алаң",
+      "on": "Бойынша",
       "layer": "қабат",
       "liters": "литр",
       "add_to_cart": "Себетке қосу",
       "tabs": {
         "description": "Сипаттама",
-        "details": "Детальдар",
+        "details": "Мәліметтер",
         "certificates": "Сертификаттар"
       },
-      "also_bought": "Бұл затты сатып алған тұтынушылар сонымен қатар сатып алды",
+      "also_bought": "Бұл өнімді сатып алған клиенттер де сатып алды",
       "similar_products": "Ұқсас өнімдер"
     }
   },
   "pagination": {
     "show_by": {
-      "text": "Көрсетілген тек",
-      "items": "нәтижелер"
+      "text": "Тек",
+      "items": "нәтижелер көрсетілуде"
     },
     "prev": "Алдыңғы",
     "next": "Келесі"
   },
   "footer_links": {
-    "about_text": "REMALUX сауда белгісімен 'К-COLOR' ЖШС Қазақстан Республикасында орналасқан бояулар мен қаптамалардың өндірісінде көшбасшы болып табылады.",
+    "about_text": "«K-COLOR» ЖШС «REMALUX» сауда маркасымен Қазақстан Республикасында орналасқан бояулар мен жабындардың жетекші өндірушісі болып табылады.",
     "remalux": {
       "title": "Remalux",
       "about_us": "Біз туралы",
       "news": "Жаңалықтар",
       "projects": "Жобалар",
-      "contacts": "Байланыс"
+      "contacts": "Байланыстар"
     },
     "store": {
       "title": "Дүкен",
       "products": "Өнімдер",
       "payment_and_delivery": "Төлем және жеткізу",
-      "calculator": "Калькулятор",
-      "choose_color": "Түсті таңдау",
+      "calculator": "Есептегіш",
+      "choose_color": "Түс таңдау",
       "public_offer": "Қоғамдық ұсыныс"
     },
     "contacts": {
-      "title": "Байланыс",
-      "address": "Алматы, Төле би к-сі, 300/2"
+      "title": "Байланыстар",
+      "address": "Алматы, Төле би көшесі, 300/2"
     },
     "privacy_policy": "Құпиялық саясаты"
   },
   "ideas": {
     "page_title": {
       "first": "Идеядан шындыққа",
-      "second": "менен"
+      "second": "мен"
     },
-    "direction": "Идеяның бағытын таңдаңыз",
+    "direction": "Идея бағытын таңдаңыз",
     "select_room": "Бөлмені таңдаңыз"
   },
   "news": {
     "page_title": {
       "first": "Барлық жаңалықтардан хабардар болыңыз",
-      "second": "болыңыз"
+      "second": "мен"
     },
     "read_more": "Толығырақ оқу"
   },
   "mainPage": {
     "hero": {
-      "title": "Қол жетімді бағамен жоғары еуропалық сапа",
+      "title": "Қолжетімді бағадағы жоғары еуропалық сапа",
       "choose_paint": "Бояуды таңдау",
       "choose_color": "Түсті таңдау"
     },
     "choose_type": {
       "paint": {
-        "title": "Бренд бояуы",
-        "description": "Барлық беттерге арналған"
+        "title": "Брендтік бояу",
+        "description": "Барлық типтегі беттерге арналған"
       },
       "coating": {
-        "title": "Қаптама",
-        "description": "Барлық беттерге арналған"
+        "title": "Жабын",
+        "description": "Барлық типтегі беттерге арналған"
       },
       "dye": {
-        "title": "Бояғыш",
-        "description": "Барлық беттерге арналған"
+        "title": "Бояу",
+        "description": "Барлық типтегі беттерге арналған"
       },
       "varnish": {
         "title": "Лак",
-        "description": "Барлық беттерге арналған"
+        "description": "Барлық типтегі беттерге арналған"
       },
       "putty": {
         "title": "Шпатлевка",
-        "description": "Барлық беттерге арналған"
+        "description": "Барлық типтегі беттерге арналған"
       }
     },
     "ideas": {
-      "title": "Үйіңізге дайын шешімдер",
-      "link": "Көптеген идеялар"
+      "title": "Сіздің үйіңізге дайын шешімдер",
+      "link": "Көп идеялар"
     },
     "popular_products": {
       "title": "Танымал өнімдер",
-      "link": "Көптеген өнімдер"
+      "link": "Көп өнімдер"
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Аликуам lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
     },
     "news": {
       "title": "Соңғы жаңалықтар",
@@ -190,7 +304,7 @@
     },
     "about_us": {
       "title": "Біз туралы Remalux",
-      "description": "REMALUX сауда белгісімен 'К-COLOR' ЖШС Қазақстан Республикасында орналасқан бояулар мен қаптамалардың өндірісінде көшбасшы болып табылады. Біз тұтынушыларға британдық лицензия бойынша өндірілген, әйгілі француз, бельгия, неміс, голланд және американдық өндірушілердің шикізатынан жасалған жоғары сапалы бояулардың кең ассортиментін ұсынамыз."
+      "description": "«K-COLOR» ЖШС «REMALUX» сауда маркасымен Қазақстан Республикасында орналасқан бояулар мен жабындардың жетекші өндірушісі болып табылады. Біз тұтынушыларға жоғары сапалы бояулардың кең ассортиментін ұсынамыз, олар британдық лицензия бойынша француздық, бельгиялық, неміс, голландиялық және американдық өндірушілердің шикізатынан жасалған."
     }
   }
 }

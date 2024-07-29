@@ -6,8 +6,16 @@ import ProductCard from "~/components/cards/productCard.vue";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import {storeToRefs} from "pinia";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
+import {useVuelidate} from "@vuelidate/core";
+import {email, required} from "@vuelidate/validators";
+import {useNotificationStore} from "~/stores/notifications.js";
+import {useCartStore} from "~/stores/cart.js";
 
 const products = useProductsStore();
+const cart = useCartStore()
+const loading = ref(false);
+const notifications = useNotificationStore()
+const prod_var = ref(null);
 const {detailProduct, sameProducts, productsList} = storeToRefs(products);
 const route = useRoute();
 const language = useLanguagesStore();
@@ -25,6 +33,16 @@ const form = ref({
   height: 10,
   layers: 2,
 });
+
+const addToCart = ref({
+  product_variant_id: null,
+  quantity: 1,
+})
+
+const v$ = useVuelidate({
+  product_variant_id: {required},
+  quantity: {required},
+}, addToCart);
 
 const breakpoints = ref({
   0: {
@@ -57,6 +75,40 @@ const totalArea = computed(() => {
 const paintNeeded = computed(() => {
   return (totalArea.value * form.value.layers) / 3.5; // 3.5 - условный расход краски на м2
 });
+
+const addToCartLocal = async () => {
+  loading.value = true;
+  await v$.value.$validate();
+
+  if (v$.value.$error) {
+    notifications.showNotification("error", "Данные не заполнены", "Проверьте правильность введенных данных и попробуйте снова.");
+    loading.value = false;
+    return;
+  }
+
+  try {
+    const response = await api(`/api/carts/add`, "POST", {
+      body: JSON.stringify(addToCart.value)
+    }, route.query);
+
+    notifications.showNotification("success", "Успешно", "Вы успешно добавили товар в корзину");
+
+    await nextTick()
+    await cart.getCart()
+  } catch (e) {
+    if (e.response) {
+      if (e.response.status !== 500) {
+        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
+      } else {
+        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
+      }
+    } else {
+      console.error(e);
+      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
+    }
+  }
+
+}
 </script>
 
 <template>
@@ -81,15 +133,25 @@ const paintNeeded = computed(() => {
             <p class="text-sm text-[#7B7B7B]">
               {{ $t('products.details.article') }}: {{ detailProduct.article }}
             </p>
+            <p
+                v-if="!prod_var"
+                class="text-4xl text-mainColor">
+              {{ detailProduct.price_range }}
+            </p>
+            <p
+                v-else
+                class="text-4xl text-mainColor">
+              {{ prod_var }}₸
+            </p>
             <div>
               <p class="mb-4">
                 {{ $t('products.details.weight') }}
               </p>
               <div class="flex gap-3">
                 <button
-                    @click="form.variant = item.id"
+                    @click="form.variant = item.id; prod_var = item.price; addToCart.product_variant_id = item.id"
                     v-for="(item, index) of detailProduct.product_variants"
-                    :class="{ 'bg-mainColor text-white': form.variant === item.id }"
+                    :class="[{ 'bg-mainColor text-white': form.variant === item.id }, { '!border !border-red-500': v$.product_variant_id.$error }]"
                     :key="index"
                     class="transition-all font-normal w-full text-center text-2xl border border-[#7B7B7B] border-opacity-25 py-2 text-[#7B7B7B] rounded-lg"
                 >
@@ -104,16 +166,16 @@ const paintNeeded = computed(() => {
                 </p>
                 <div class=" flex border-[#F0DFDF] border px-5 py-3 rounded-lg justify-between">
                   <button
-                      @click="form.quantity = form.quantity - 1"
+                      @click="addToCart.quantity = addToCart.quantity - 1"
                       class="text-[#7B7B7B]"
                   >
                     <MinusIcon class="w-5 h-5"/>
                   </button>
                   <p class="text-[#7B7B7B] text-xl">
-                    {{ form.quantity }}
+                    {{ addToCart.quantity }}
                   </p>
                   <button
-                      @click="form.quantity = form.quantity + 1"
+                      @click="addToCart.quantity = addToCart.quantity + 1"
                       class="text-[#7B7B7B]"
                   >
                     <PlusIcon class="w-5 h-5"/>
@@ -187,7 +249,9 @@ const paintNeeded = computed(() => {
                 </p>
               </div>
             </div>
-            <button class="bg-mainColor text-white rounded-xl w-full py-4">
+            <button
+                @click="addToCartLocal"
+                class="bg-mainColor text-white rounded-xl w-full py-4">
               {{ $t('products.details.add_to_cart') }}
             </button>
           </div>

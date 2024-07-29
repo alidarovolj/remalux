@@ -1,5 +1,6 @@
 <script setup>
 import Notifications from "~/components/general/notifications.vue";
+import ModalDialog from "~/components/general/modalDialog.vue";
 </script>
 
 <template>
@@ -8,5 +9,6 @@ import Notifications from "~/components/general/notifications.vue";
       <NuxtPage />
     </NuxtLayout>
     <Notifications />
+    <ModalDialog />
   </div>
 </template>

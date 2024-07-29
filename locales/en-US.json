@@ -3,7 +3,121 @@
     "home": "Home",
     "store": "Store",
     "ideas": "Ideas",
-    "news": "News"
+    "news": "News",
+    "cart": "Cart",
+    "checkout": "Checkout"
+  },
+  "no_results": {
+    "title": "Unfortunately, your search returned no results"
+  },
+  "about": {
+    "hero_title": "We’re a passionate group of people working from around the world to build the future of ecommerce.",
+    "hero_description": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+    "timeline": [
+      {
+        "name": "Founded company",
+        "description": "Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.",
+        "date": "Aug 2021",
+        "dateTime": "2021-08"
+      },
+      {
+        "name": "Secured $65m in funding",
+        "description": "Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.",
+        "date": "Dec 2021",
+        "dateTime": "2021-12"
+      },
+      {
+        "name": "Released beta",
+        "description": "Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.",
+        "date": "Feb 2022",
+        "dateTime": "2022-02"
+      },
+      {
+        "name": "Global launch of product",
+        "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
+        "date": "Dec 2022",
+        "dateTime": "2022-12"
+      }
+    ],
+    "customers_love_us": "Our customers love us",
+    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
+    "stats_title": "We approach the workplace as something that adds to our lives and adds value to world.",
+    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
+    "stat1": {
+      "value": "250k",
+      "title": "Users on the platform",
+      "description": "Vel labore deleniti veniam consequuntur sunt nobis."
+    },
+    "stat2": {
+      "value": "$8.9 billion",
+      "title": "We’re proud that our customers have made over $8 billion in total revenue.",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
+    },
+    "stat3": {
+      "value": "401,093",
+      "title": "Transactions this year",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
+    },
+    "people_title": "Our people",
+    "people_description1": "Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
+    "people_description2": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat. Quasi aperiam sit non sit neque reprehenderit.",
+    "join_us_title": "We’re always looking for awesome people to join us",
+    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
+    "view_all_openings": "View all openings"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "items": "Items in cart",
+    "del_type": "Type of delivery",
+    "delivery_status": {
+      "pickup": "Pickup",
+      "delivery": "Delivery"
+    },
+    "to_pay": "Amount to be paid",
+    "first": {
+      "title": "Recipient Information",
+      "physical": "Individual",
+      "legal": "Legal Entity",
+      "name": "Your Name",
+      "phone": "Phone Number"
+    },
+    "second": {
+      "title": "Order Collection Method",
+      "pickup": "Pickup",
+      "delivery": "Delivery",
+      "address": "Delivery Address",
+      "add": "Add Delivery Address",
+      "text": "To place an order, you need to add and select a delivery address"
+    },
+    "third": {
+      "title": "Payment",
+      "phys": "Payment upon receipt",
+      "agreement": "Agree with return and claim conditions",
+      "online": "Online Payment",
+      "to_pay": "To Pay"
+    }
+  },
+  "cart": {
+    "title": "Shopping basket",
+    "clear": "Clear cart",
+    "table": {
+      "product": "Product name",
+      "color": "Color",
+      "weight": "Weight",
+      "total": "Total",
+      "price": "Price",
+      "quantity": "Quantity"
+    },
+    "checkout": {
+      "title": "Information about order",
+      "coupon_title": "Coupons and promo codes",
+      "coupon_text": "Enter the coupon code in the cart in the appropriate field and click \"Apply\" to have the discount reflected in the total order amount.",
+      "coupon_placeholder": "Enter the coupon code",
+      "coupon_button": "Apply coupon",
+      "summary": "SUMMARY",
+      "total": "Total",
+      "checkout_button": "Checkout"
+    }
   },
   "forms": {
     "login": {

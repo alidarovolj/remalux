@@ -1,6 +1,6 @@
 <script setup>
 import {Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
-import {Bars3Icon, ChevronDownIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {Bars3Icon, ChevronDownIcon, ShoppingBagIcon, XMarkIcon} from '@heroicons/vue/24/outline'
 import {useUserStore} from "~/stores/user.js";
 import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
@@ -14,15 +14,16 @@ const notifications = useNotificationStore()
 const router = useRouter()
 const route = useRoute()
 const auth = useAuthStore()
+const cart = useCartStore()
 
 const navigation = computed(() => [
   {name: t('header_links.store'), href: localePath('/store')},
   {name: t('header_links.choose_color'), href: localePath('/')},
   {name: t('header_links.ideas'), href: localePath('/ideas')},
   {name: t('header_links.calculator'), href: localePath('/')},
-  {name: t('header_links.about_us'), href: localePath('/')},
+  {name: t('header_links.about_us'), href: localePath('/about')},
   {name: t('header_links.news'), href: localePath('/news')},
-  {name: t('header_links.contacts'), href: localePath('/')},
+  {name: t('header_links.contacts'), href: localePath('/contacts')},
 ])
 
 const logoutUser = async () => {
@@ -57,6 +58,11 @@ const logoutUser = async () => {
 }
 
 const mobileMenuOpen = ref(false)
+
+onMounted(async () => {
+  await nextTick()
+  await cart.getCart()
+})
 </script>
 
 <template>
@@ -64,7 +70,7 @@ const mobileMenuOpen = ref(false)
     <nav
         class="flex items-center justify-between py-6 lg:px-0"
         aria-label="Global">
-      <div class="flex lg:flex-1">
+      <div class="flex gap-6 items-center">
         <NuxtLink
             :to="localePath('/')"
             class="-m-1.5 p-1.5">
@@ -74,6 +80,16 @@ const mobileMenuOpen = ref(false)
               alt=""
           />
         </NuxtLink>
+        <div class="hidden lg:flex lg:gap-x-5 uppercase">
+          <NuxtLink
+              v-for="item in navigation"
+              :key="item.name"
+              :to="localePath(item.href)"
+              :class="{ 'text-mainColor': $route.path === item.href }"
+              class="text-sm font-semibold leading-6 text-gray-900">
+            {{ item.name }}
+          </NuxtLink>
+        </div>
       </div>
       <div class="flex lg:hidden">
         <button
@@ -82,16 +98,6 @@ const mobileMenuOpen = ref(false)
             @click="mobileMenuOpen = true">
           <Bars3Icon class="h-6 w-6" aria-hidden="true"/>
         </button>
-      </div>
-      <div class="hidden lg:flex lg:gap-x-6 uppercase">
-        <NuxtLink
-            v-for="item in navigation"
-            :key="item.name"
-            :to="localePath(item.href)"
-            :class="{ 'text-mainColor': $route.path === item.href }"
-            class="text-sm font-semibold leading-6 text-gray-900">
-          {{ item.name }}
-        </NuxtLink>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-3 items-center">
         <div
@@ -108,7 +114,21 @@ const mobileMenuOpen = ref(false)
             {{ $t('header_links.register') }}
           </NuxtLink>
         </div>
-        <div v-else-if="user.userProfile">
+        <div
+            v-else-if="user.userProfile"
+            class="flex items-center gap-3">
+          <div v-if="cart.cartList">
+            <NuxtLink
+                class="relative"
+                :to="localePath('/cart')">
+              <div
+                  v-if="cart.cartList.data.length > 0"
+                  class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                {{ cart.cartList.data.length }}
+              </div>
+              <ShoppingBagIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+            </NuxtLink>
+          </div>
           <Menu as="div" class="relative inline-block text-left">
             <div>
               <MenuButton

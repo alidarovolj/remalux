@@ -3,12 +3,126 @@
     "home": "Главная",
     "store": "Магазин",
     "ideas": "Идеи",
-    "news": "Новости"
+    "news": "Новости",
+    "cart": "Корзина",
+    "checkout": "Оформление заказа"
+  },
+  "no_results": {
+    "title": "К сожалению, ваш поиск не дал результатов"
+  },
+  "about": {
+    "hero_title": "Мы — увлеченная команда людей, работающих по всему миру, чтобы создать будущее электронной коммерции.",
+    "hero_description": "Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо. Элит сунт амет fugiat венам occaecat fugiat аликуа. Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо.",
+    "timeline": [
+      {
+        "name": "Основание компании",
+        "description": "Нихил аут нам. Дигниссимос а париатур эт квос омнис. Аспернатур аспериорес эт долорем долорем оптио волуптате репудиandae.",
+        "date": "Август 2021",
+        "dateTime": "2021-08"
+      },
+      {
+        "name": "Привлечено $65 млн инвестиций",
+        "description": "Провидент quia ut esse. Веро vel eos репудиandae аспернатур. Кумке минима impedit сапиенте a архитекто нихил.",
+        "date": "Декабрь 2021",
+        "dateTime": "2021-12"
+      },
+      {
+        "name": "Выпущена бета-версия",
+        "description": "Сунт перспициатис инцидунт. Нон necessитатибус аликуид. Консеквтурут officiis earum eum quia facilis. Хик деленити долорем quia et.",
+        "date": "Февраль 2022",
+        "dateTime": "2022-02"
+      },
+      {
+        "name": "Глобальный запуск продукта",
+        "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
+        "date": "Декабрь 2022",
+        "dateTime": "2022-12"
+      }
+    ],
+    "customers_love_us": "Наши клиенты нас любят",
+    "customers_love_us_description": "Аликуп reprehenderit incididunt aмет quis fugiat ut velit. Сит occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
+    "stats_title": "Мы рассматриваем рабочее место как что-то, что добавляет ценность в нашу жизнь и в мир.",
+    "stats_description": "Диам нунк lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
+    "stat1": {
+      "value": "250k",
+      "title": "Пользователи на платформе",
+      "description": "Vel labore deleniti veniam consequuntur sunt nobis."
+    },
+    "stat2": {
+      "value": "$8.9 billion",
+      "title": "Мы гордимся тем, что наши клиенты заработали более $8 миллиардов общего дохода.",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
+    },
+    "stat3": {
+      "value": "401,093",
+      "title": "Транзакции в этом году",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
+    },
+    "people_title": "Наши люди",
+    "people_description1": "Quasi est quaerat. Сит molestiae et. Провидент ad dolorem occaecati eos iste. Солута rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
+    "people_description2": "Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо. Элит сунт амет fugiat венам occaecат fugiat. Quasi aperiam sit non sit neque reprehenderit.",
+    "join_us_title": "Мы всегда ищем замечательных людей, чтобы присоединиться к нам",
+    "join_us_description": "Диам нунк lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
+    "view_all_openings": "Посмотреть все вакансии"
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "items": "Товары в корзине",
+    "del_type": "Тип доставки",
+    "delivery_status": {
+      "pickup": "Самовывоз",
+      "delivery": "Доставка"
+    },
+    "to_pay": "Сумма к оплате",
+    "first": {
+      "title": "Информация о получателе",
+      "physical": "Физическое лицо",
+      "legal": "Юридическое лицо",
+      "name": "Ваше имя",
+      "phone": "Номер телефона"
+    },
+    "second": {
+      "title": "Метод получения заказа",
+      "pickup": "Самовывоз",
+      "delivery": "Доставка",
+      "address": "Адрес доставки",
+      "add": "Добавить адрес доставки",
+      "text": "Для оформления заказа необходимо добавить и выбрать адрес доставки"
+    },
+    "third": {
+      "title": "Оплата",
+      "phys": "Оплата при получении",
+      "agreement": "Согласие с условиями возврата и претензий",
+      "online": "Онлайн оплата",
+      "to_pay": "К оплате"
+    }
+  },
+  "cart": {
+    "title": "Корзина",
+    "clear": "Очистить корзину",
+    "table": {
+      "product": "Название продукта",
+      "color": "Цвет",
+      "weight": "Вес",
+      "total": "Всего",
+      "price": "Цена",
+      "quantity": "Количество"
+    },
+    "checkout": {
+      "title": "Информация о заказе",
+      "coupon_title": "Купоны и промокоды",
+      "coupon_text": "Введите код купона в корзину в соответствующее поле и нажмите «Применить», чтобы скидка отразилась в общей сумме заказа.",
+      "coupon_placeholder": "Введите код купона",
+      "coupon_button": "Применить купон",
+      "summary": "ИТОГО",
+      "total": "Всего",
+      "checkout_button": "Оформить заказ"
+    }
   },
   "forms": {
     "login": {
       "title": "Добро пожаловать!",
-      "yet_account": "Ещё нет аккаунта?",
+      "yet_account": "Еще нет аккаунта?",
       "please_register": "Пожалуйста, зарегистрируйтесь",
       "button": "Войти"
     },
@@ -19,9 +133,9 @@
       "button": "Зарегистрироваться",
       "rules": {
         "first": "Длина пароля должна быть не менее 8 символов.",
-        "second": "Заглавные латинские буквы.",
-        "third": "Строчные латинские буквы.",
-        "fourth": "Цифры от 0 до 9."
+        "second": "Латинские прописные буквы.",
+        "third": "Латинские строчные буквы.",
+        "fourth": "Цифры 0-9."
       }
     },
     "forgot_password": {
@@ -63,13 +177,13 @@
     "news": "Новости",
     "contacts": "Контакты",
     "login": "Войти",
-    "register": "Зарегистрироваться"
+    "register": "Регистрация"
   },
   "cards": {
     "more": "Подробнее"
   },
   "products": {
-    "title": "Фирменные продукты",
+    "title": "Брендовые продукты",
     "sec_title": "магазин",
     "products_title": "Краска",
     "found_products": "найденные продукты",
@@ -87,7 +201,7 @@
       "area": "Общая площадь",
       "on": "На",
       "layer": "слой",
-      "liters": "литры",
+      "liters": "литров",
       "add_to_cart": "Добавить в корзину",
       "tabs": {
         "description": "Описание",
@@ -107,7 +221,7 @@
     "next": "Следующий"
   },
   "footer_links": {
-    "about_text": "ТОО 'К-COLOR' с торговой маркой 'REMALUX' является лидером в производстве красок и покрытий, расположенным в Республике Казахстан.",
+    "about_text": "ТОО 'K-COLOR' с торговой маркой 'REMALUX' является лидером по производству красок и покрытий, расположенным в Республике Казахстан.",
     "remalux": {
       "title": "Remalux",
       "about_us": "О нас",
@@ -152,7 +266,7 @@
     },
     "choose_type": {
       "paint": {
-        "title": "Фирменная краска",
+        "title": "Брендовая краска",
         "description": "Для всех типов поверхностей"
       },
       "coating": {
@@ -160,7 +274,7 @@
         "description": "Для всех типов поверхностей"
       },
       "dye": {
-        "title": "Краситель",
+        "title": "Краска",
         "description": "Для всех типов поверхностей"
       },
       "varnish": {
@@ -168,7 +282,7 @@
         "description": "Для всех типов поверхностей"
       },
       "putty": {
-        "title": "Шпатлевка",
+        "title": "Шпаклевка",
         "description": "Для всех типов поверхностей"
       }
     },
@@ -182,7 +296,7 @@
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Аликуам lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
     },
     "news": {
       "title": "Последние новости",
@@ -190,7 +304,7 @@
     },
     "about_us": {
       "title": "О нас Remalux",
-      "description": "ТОО 'К-COLOR' с торговой маркой 'REMALUX' является лидером в производстве красок и покрытий, расположенным в Республике Казахстан. Мы предлагаем потребителям широкий ассортимент высококачественных красок, произведённых по британской лицензии из сырья известных французских, бельгийских, немецких, голландских и американских производителей."
+      "description": "ТОО 'K-COLOR' с торговой маркой 'REMALUX' является лидером по производству красок и покрытий, расположенным в Республике Казахстан. Мы предлагаем потребителям широкий ассортимент высококачественных красок, произведенных по британской лицензии из сырья известных французских, бельгийских, немецких, голландских и американских производителей."
     }
   }
 }

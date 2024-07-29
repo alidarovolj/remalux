@@ -7,7 +7,7 @@
         src="@/assets/img/search.png"
         alt="">
     <p class="text-sm md:text-xl">
-      К сожалению, по вашему запросу ничего не найдено
+      {{ $t('no_results.title') }}
     </p>
   </div>
 </template>
