@@ -53,12 +53,12 @@ onMounted(async () => {
             v-for="(news, index) in newsList.data"
             :key="news.id"
             :class="{ 'flex-row-reverse' : index % 2 === 0 }"
-            class="bg-white rounded-lg shadow-md flex flex-row items-center">
+            class="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center">
           <img
-              class="w-1/2 min-w-[50%] h-[414px] object-cover rounded-t-lg"
+              class="w-full md:w-1/2 min-w-[50%] h-[414px] object-cover rounded-t-lg"
               :src="news.image_url"
               alt="">
-          <div class="p-14">
+          <div class="p-5 md:p-14">
             <h2 class="text-xl font-semibold mb-4">
               {{ news.title[cur_lang] }}
             </h2>

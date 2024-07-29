@@ -12,6 +12,7 @@ import {useUserStore} from "~/stores/user.js";
 const loading = ref(false);
 const notifications = useNotificationStore()
 const route = useRoute()
+const router = useRouter()
 const localePath = useLocalePath()
 const auth = useAuthStore()
 const user = useUserStore()
