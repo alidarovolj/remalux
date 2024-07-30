@@ -82,8 +82,8 @@ onMounted(async () => {
 <template>
   <div>
     <Breadcrumbs :links="links"/>
-    <div class="bg-[#FF792A] relative py-16">
-      <div class="container mx-auto">
+    <div class="relative py-16 bg-[#ff7828]">
+      <div class="container mx-auto relative z-10 px-4 md:px-0">
         <div class="text-4xl text-white font-bold">
           <p>{{ $t('products.title') }}</p>
           <div class="flex items-center gap-2">
@@ -95,7 +95,7 @@ onMounted(async () => {
         </div>
       </div>
       <img
-          class="absolute right-0 top-0 h-full w-auto"
+          class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
           src="~/assets/img/products/main.png"
           alt="">
     </div>

@@ -5,52 +5,85 @@
     "ideas": "Идеи",
     "news": "Новости",
     "cart": "Корзина",
-    "checkout": "Оформление заказа"
+    "checkout": "Оформление заказа",
+    "profile": "Профиль",
+    "addresses": "Адреса",
+    "recipients": "Получатели",
+    "orders": "Заказы",
+    "favourites": "Избранное"
+  },
+  "profile": {
+    "phone": "Номер телефона",
+    "logout": "Выйти",
+    "profile": "Профиль",
+    "recipients": "Получатели",
+    "no_recipients": "К сожалению, у вас нет сохраненных получателей, пожалуйста, добавьте их.",
+    "add_recipient": "Добавить получателя",
+    "no_addresses": "К сожалению, у вас нет сохраненных адресов, пожалуйста, добавьте их.",
+    "add_address": "Добавить адрес",
+    "my_addresses": "Мои адреса"
+  },
+  "addresses": {
+    "create": {
+      "title": "Добавить адрес доставки",
+      "provide_address": "Пожалуйста, укажите адрес",
+      "address_placeholder": "Введите адрес",
+      "city": "Город",
+      "city_placeholder": "Выберите город",
+      "address": "Адрес",
+      "entrance": "Подъезд",
+      "entrance_placeholder": "Введите подъезд",
+      "floor": "Этаж",
+      "floor_placeholder": "Введите этаж",
+      "apartment": "Квартира",
+      "apartment_placeholder": "Введите квартиру",
+      "button": "Сохранить"
+    }
   },
   "no_results": {
     "title": "К сожалению, ваш поиск не дал результатов"
   },
   "about": {
-    "hero_title": "Мы — увлеченная команда людей, работающих по всему миру, чтобы создать будущее электронной коммерции.",
-    "hero_description": "Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо. Элит сунт амет fugiat венам occaecat fugiat аликуа. Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо.",
+    "hero_title": "Мы – группа увлеченных людей со всего мира, работающих над созданием будущего электронной коммерции.",
+    "hero_description": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
     "timeline": [
       {
         "name": "Основание компании",
-        "description": "Нихил аут нам. Дигниссимос а париатур эт квос омнис. Аспернатур аспериорес эт долорем долорем оптио волуптате репудиandae.",
-        "date": "Август 2021",
+        "description": "Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.",
+        "date": "Авг 2021",
         "dateTime": "2021-08"
       },
       {
         "name": "Привлечено $65 млн инвестиций",
-        "description": "Провидент quia ut esse. Веро vel eos репудиandae аспернатур. Кумке минима impedit сапиенте a архитекто нихил.",
-        "date": "Декабрь 2021",
+        "description": "Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.",
+        "date": "Дек 2021",
         "dateTime": "2021-12"
       },
       {
-        "name": "Выпущена бета-версия",
-        "description": "Сунт перспициатис инцидунт. Нон necessитатибус аликуид. Консеквтурут officiis earum eum quia facilis. Хик деленити долорем quia et.",
-        "date": "Февраль 2022",
+        "name": "Запуск бета-версии",
+        "description": "Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.",
+        "date": "Фев 2022",
         "dateTime": "2022-02"
       },
       {
         "name": "Глобальный запуск продукта",
         "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
-        "date": "Декабрь 2022",
+        "date": "Дек 2022",
         "dateTime": "2022-12"
       }
     ],
     "customers_love_us": "Наши клиенты нас любят",
-    "customers_love_us_description": "Аликуп reprehenderit incididunt aмет quis fugiat ut velit. Сит occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
-    "stats_title": "Мы рассматриваем рабочее место как что-то, что добавляет ценность в нашу жизнь и в мир.",
-    "stats_description": "Диам нунк lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
+    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
+    "stats_title": "Мы рассматриваем рабочее место как что-то, что добавляет ценность нашим жизням и миру.",
+    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
     "stat1": {
       "value": "250k",
-      "title": "Пользователи на платформе",
+      "title": "Пользователей на платформе",
       "description": "Vel labore deleniti veniam consequuntur sunt nobis."
     },
     "stat2": {
-      "value": "$8.9 billion",
-      "title": "Мы гордимся тем, что наши клиенты заработали более $8 миллиардов общего дохода.",
+      "value": "$8.9 миллиардов",
+      "title": "Мы гордимся тем, что наши клиенты заработали более $8 миллиардов.",
       "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
     },
     "stat3": {
@@ -59,11 +92,11 @@
       "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
     },
     "people_title": "Наши люди",
-    "people_description1": "Quasi est quaerat. Сит molestiae et. Провидент ad dolorem occaecati eos iste. Солута rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
-    "people_description2": "Аним ауте ид магна аликуа ад ад нон десерунт сунт. Кви ируре кви лорем купидатат коммодо. Элит сунт амет fugiat венам occaecат fugiat. Quasi aperiam sit non sit neque reprehenderit.",
-    "join_us_title": "Мы всегда ищем замечательных людей, чтобы присоединиться к нам",
-    "join_us_description": "Диам нунк lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
-    "view_all_openings": "Посмотреть все вакансии"
+    "people_description1": "Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
+    "people_description2": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat. Quasi aperiam sit non sit neque reprehenderit.",
+    "join_us_title": "Мы всегда ищем талантливых людей, чтобы присоединиться к нашей команде",
+    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
+    "view_all_openings": "Просмотреть все вакансии"
   },
   "checkout": {
     "title": "Оформление заказа",
@@ -76,18 +109,21 @@
     "to_pay": "Сумма к оплате",
     "first": {
       "title": "Информация о получателе",
+      "text": "Чтобы оформить заказ, необходимо добавить и выбрать получателя",
+      "placeholder": "Поиск получателя",
       "physical": "Физическое лицо",
       "legal": "Юридическое лицо",
       "name": "Ваше имя",
       "phone": "Номер телефона"
     },
     "second": {
-      "title": "Метод получения заказа",
+      "title": "Способ получения заказа",
       "pickup": "Самовывоз",
       "delivery": "Доставка",
       "address": "Адрес доставки",
+      "placeholder": "Поиск адреса",
       "add": "Добавить адрес доставки",
-      "text": "Для оформления заказа необходимо добавить и выбрать адрес доставки"
+      "text": "Чтобы оформить заказ, необходимо добавить и выбрать адрес доставки"
     },
     "third": {
       "title": "Оплата",
@@ -98,10 +134,10 @@
     }
   },
   "cart": {
-    "title": "Корзина",
+    "title": "Корзина покупок",
     "clear": "Очистить корзину",
     "table": {
-      "product": "Название продукта",
+      "product": "Наименование товара",
       "color": "Цвет",
       "weight": "Вес",
       "total": "Всего",
@@ -111,10 +147,10 @@
     "checkout": {
       "title": "Информация о заказе",
       "coupon_title": "Купоны и промокоды",
-      "coupon_text": "Введите код купона в корзину в соответствующее поле и нажмите «Применить», чтобы скидка отразилась в общей сумме заказа.",
+      "coupon_text": "Введите код купона в корзину в соответствующее поле и нажмите \"Применить\", чтобы скидка отразилась в общей сумме заказа.",
       "coupon_placeholder": "Введите код купона",
       "coupon_button": "Применить купон",
-      "summary": "ИТОГО",
+      "summary": "ИТОГИ",
       "total": "Всего",
       "checkout_button": "Оформить заказ"
     }
@@ -140,7 +176,7 @@
     },
     "forgot_password": {
       "title": "Забыли пароль",
-      "description": "Введите свой номер телефона, мы отправим вам код подтверждения.",
+      "description": "Введите ваш номер телефона, мы вышлем вам код подтверждения.",
       "button": "Отправить код",
       "code_button": "Подтвердить"
     },
@@ -177,16 +213,16 @@
     "news": "Новости",
     "contacts": "Контакты",
     "login": "Войти",
-    "register": "Регистрация"
+    "register": "Зарегистрироваться"
   },
   "cards": {
     "more": "Подробнее"
   },
   "products": {
-    "title": "Брендовые продукты",
+    "title": "Фирменные продукты",
     "sec_title": "магазин",
     "products_title": "Краска",
-    "found_products": "найденные продукты",
+    "found_products": "найдено продуктов",
     "filters": "Фильтры",
     "details": {
       "article": "Артикул",
@@ -208,20 +244,20 @@
         "details": "Детали",
         "certificates": "Сертификаты"
       },
-      "also_bought": "Покупатели, купившие этот товар, также купили",
+      "also_bought": "Покупатели, которые купили этот товар, также купили",
       "similar_products": "Похожие продукты"
     }
   },
   "pagination": {
     "show_by": {
-      "text": "Показано только",
+      "text": "Показывать по",
       "items": "результатов"
     },
     "prev": "Предыдущий",
     "next": "Следующий"
   },
   "footer_links": {
-    "about_text": "ТОО 'K-COLOR' с торговой маркой 'REMALUX' является лидером по производству красок и покрытий, расположенным в Республике Казахстан.",
+    "about_text": "ТОО 'К-ЦВЕТ' с торговой маркой 'REMALUX' является лидером по производству красок и покрытий, расположенным в Республике Казахстан.",
     "remalux": {
       "title": "Remalux",
       "about_us": "О нас",
@@ -239,7 +275,7 @@
     },
     "contacts": {
       "title": "Контакты",
-      "address": "г. Алматы, ул. Толе би, 300/2"
+      "address": "Алматы, ул. Толе би, 300/2"
     },
     "privacy_policy": "Политика конфиденциальности"
   },
@@ -266,7 +302,7 @@
     },
     "choose_type": {
       "paint": {
-        "title": "Брендовая краска",
+        "title": "Фирменная краска",
         "description": "Для всех типов поверхностей"
       },
       "coating": {
@@ -296,7 +332,7 @@
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Аликуам lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
     },
     "news": {
       "title": "Последние новости",
@@ -304,7 +340,7 @@
     },
     "about_us": {
       "title": "О нас Remalux",
-      "description": "ТОО 'K-COLOR' с торговой маркой 'REMALUX' является лидером по производству красок и покрытий, расположенным в Республике Казахстан. Мы предлагаем потребителям широкий ассортимент высококачественных красок, произведенных по британской лицензии из сырья известных французских, бельгийских, немецких, голландских и американских производителей."
+      "description": "ТОО 'К-ЦВЕТ' с торговой маркой 'REMALUX' является лидером по производству красок и покрытий, расположенным в Республике Казахстан. Мы предлагаем потребителям широкий ассортимент высококачественных красок, произведенных по британской лицензии из сырья известных французских, бельгийских, немецких, голландских и американских производителей."
     }
   }
 }

@@ -8,28 +8,30 @@ const user = useUserStore()
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
-  {title: 'Профиль', link: localePath('/store')},
+  {title: t('breadcrumbs.profile'), link: localePath('/profile')}
 ]);
 </script>
 
 <template>
   <div>
-    <Breadcrumbs :links="links" />
+    <Breadcrumbs :links="links"/>
     <NuxtLayout name="profile">
       <div class="bg-white p-6 rounded-2xl set_shadow">
         <div class="flex items-center gap-8 border-b border-[#F0DFDF] pb-3 mb-4">
           <img
               class="w-[100px] h-[100px] rounded-full object-cover"
               src="@/assets/img/bg-app.jpg"
-               alt="">
-          <p v-if="user.userProfile" class="text-3xl font-semibold">
+              alt="">
+          <p
+              v-if="user.userProfile"
+              class="text-3xl font-semibold">
             {{ user.userProfile.name }}
           </p>
           <div v-else class="skeleton h-5 w-1/2"></div>
         </div>
         <div class="flex flex-col gap-4">
           <div class="flex items-center">
-            <p class="w-1/2 md:w-1/6 text-lg text-[#7B7B7B]">Телефон:</p>
+            <p class="w-1/2 md:w-1/6 text-lg text-[#7B7B7B]">{{ $t('profile.phone') }}:</p>
             <p v-if="user.userProfile">{{ user.userProfile.phone_number }}</p>
             <div v-else class="skeleton h-5 w-1/3"></div>
           </div>

@@ -26,12 +26,10 @@ onMounted(async () => {
 <template>
   <div class="pb-16">
     <Breadcrumbs :links="links"/>
-    <div class="bg-[#F0DFDF] relative py-16 mb-24">
-      <div class="container mx-auto">
+    <div class="relative py-16 bg-[#F0DFDF] mb-10">
+      <div class="container mx-auto relative z-10 px-4 md:px-0">
         <div class="text-4xl text-mainColor font-bold">
-          <p>
-            {{ $t('news.page_title.first') }}
-          </p>
+          <p>{{ $t('news.page_title.first') }}</p>
           <div class="flex items-center gap-2">
             <p>{{ $t('news.page_title.second') }}</p>
             <img
@@ -41,8 +39,8 @@ onMounted(async () => {
         </div>
       </div>
       <img
-          class="absolute right-0 top-0 h-full w-auto"
-          src="~/assets/img/products/main.png"
+          class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
+          src="~/assets/img/news/bg.png"
           alt="">
     </div>
     <div
@@ -52,7 +50,7 @@ onMounted(async () => {
         <div
             v-for="(news, index) in newsList.data"
             :key="news.id"
-            :class="{ 'flex-row-reverse' : index % 2 === 0 }"
+            :class="{ 'flex-col md:!flex-row-reverse' : index % 2 === 0 }"
             class="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center">
           <img
               class="w-full md:w-1/2 min-w-[50%] h-[414px] object-cover rounded-t-lg"
@@ -74,7 +72,7 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <Pagination :meta-data="newsList.meta" />
+      <Pagination :meta-data="newsList.meta"/>
     </div>
   </div>
 </template>

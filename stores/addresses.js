@@ -1,46 +1,21 @@
 import {defineStore} from "pinia";
 import {useNotificationStore} from "~/stores/notifications.js";
 
-export const useCartStore = defineStore("cart", () => {
-    const cartList = ref(null);
-    const removedItem = ref(null);
-    const editedItem = ref(null);
-    const removedCart = ref(null);
-    const cartPrice = ref(0);
+export const useAddressesStore = defineStore("addresses", () => {
+    const addressesList = ref(null);
+    const citiesList = ref(null);
+    const removedAddress = ref(null);
     const route = useRoute()
     const notifications = useNotificationStore()
 
     return {
-        cartList,
-        removedItem,
-        editedItem,
-        removedCart,
-        cartPrice,
-        async getCart() {
+        addressesList,
+        citiesList,
+        removedAddress,
+        async getAddresses() {
             try {
-                const response = await api(`/api/carts/`, "GET", {}, route.query);
-                cartList.value = response;
-                response.data.forEach((item) => {
-                    cartPrice.value += parseInt(item.price);
-                });
-            } catch (e) {
-                if (e.response) {
-                    if (e.response.status !== 500) {
-
-                    } else {
-
-                    }
-                } else {
-                    console.error(e);
-
-                }
-            }
-        },
-        async removeItem(id) {
-            try {
-                const response = await api(`/api/carts/${id}`, "DELETE", {}, route.query);
-                removedItem.value = response;
-                notifications.showNotification("success", "Продукт успешно удален", "Продукт успешно удален из корзины");
+                const response = await api(`/api/users/addresses/list`, "GET", {}, route.query);
+                addressesList.value = response;
             } catch (e) {
                 if (e.response) {
                     if (e.response.status !== 500) {
@@ -54,13 +29,10 @@ export const useCartStore = defineStore("cart", () => {
                 }
             }
         },
-        async editItem(id, form) {
+        async getCities() {
             try {
-                const response = await api(`/api/carts/${id}`, "PUT", {
-                    body: JSON.stringify(form)
-                }, route.query);
-                editedItem.value = response;
-                // notifications.showNotification("success", "Продукт успешно отредактирован", "Продукт успешно отредактирован");
+                const response = await api(`/api/cities`, "GET", {}, route.query);
+                citiesList.value = response;
             } catch (e) {
                 if (e.response) {
                     if (e.response.status !== 500) {
@@ -74,10 +46,10 @@ export const useCartStore = defineStore("cart", () => {
                 }
             }
         },
-        async removeCart() {
+        async removeAddress(id) {
             try {
-                const response = await api(`/api/carts/clear`, "POST", {}, route.query);
-                removedCart.value = response;
+                const response = await api(`/api/users/addresses/${id}`, "DELETE", {}, route.query);
+                removedAddress.value = response;
             } catch (e) {
                 if (e.response) {
                     if (e.response.status !== 500) {
@@ -90,6 +62,6 @@ export const useCartStore = defineStore("cart", () => {
                     notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
                 }
             }
-        },
+        }
     };
 });

@@ -32,15 +32,13 @@ const logoutUser = async () => {
   try {
     const response = await api(`/api/auth/logout`, "POST", {}, route.query);
 
-    if (response.message === "Success !") {
-      auth.token = null;
-      await nextTick();
-      user.userProfile = false;
-      notifications.showNotification("success", "Успешно", "Вы успешно вышли из аккаунта");
-      loading.value = false;
-      await user.getProfile()
-      router.push(localePath('/'));
-    }
+    auth.token = null;
+    await nextTick();
+    user.userProfile = false;
+    notifications.showNotification("success", "Успешно", "Вы успешно вышли из аккаунта");
+    loading.value = false;
+    await user.getProfile()
+    router.push(localePath('/'));
   } catch (e) {
     console.log(e)
     if (e.response) {
@@ -153,7 +151,7 @@ onMounted(async () => {
                     <NuxtLink
                         :to="localePath('/profile')"
                         :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
-                      Профиль
+                      {{ $t('profile.profile') }}
                     </NuxtLink>
                   </MenuItem>
                   <MenuItem v-slot="{ active }">
@@ -161,7 +159,7 @@ onMounted(async () => {
                         @click="logoutUser"
                         class="text-red-500"
                         :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']">
-                      Выйти
+                      {{ $t('profile.logout') }}
                     </div>
                   </MenuItem>
                 </div>
@@ -269,7 +267,7 @@ onMounted(async () => {
                           <NuxtLink
                               :to="localePath('/profile')"
                               :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
-                            Профиль
+                            {{ $t('profile.profile') }}
                           </NuxtLink>
                         </MenuItem>
                         <MenuItem v-slot="{ active }">
@@ -277,7 +275,7 @@ onMounted(async () => {
                               @click="logoutUser"
                               class="text-red-500"
                               :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']">
-                            Выйти
+                            {{ $t('profile.logout') }}
                           </div>
                         </MenuItem>
                       </div>

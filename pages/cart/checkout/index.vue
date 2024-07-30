@@ -1,25 +1,33 @@
 <script setup>
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
-import {HomeModernIcon, TruckIcon, CreditCardIcon, CircleStackIcon} from "@heroicons/vue/24/outline"
+import {CircleStackIcon, CreditCardIcon, HomeModernIcon, TruckIcon} from "@heroicons/vue/24/outline"
 import {useCartStore} from "~/stores/cart.js";
 import {MinusIcon, PlusIcon} from "@heroicons/vue/24/outline/index.js";
 import NoResults from "~/components/general/noResults.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useLanguagesStore} from "~/stores/languages.js";
+import {useAddressesStore} from "~/stores/addresses.js";
+import {useRecipientsStore} from "~/stores/recipients.js";
 
 const {t} = useI18n()
 const localePath = useLocalePath()
 const activeType = ref(1)
 const deliveryType = ref(1)
 const cart = useCartStore()
-const {cartList} = storeToRefs(cart)
+const {cartList, cartPrice} = storeToRefs(cart)
 const notifications = useNotificationStore()
 const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
 const modals = useModalsStore()
+const addresses = useAddressesStore()
+const recipients = useRecipientsStore()
 
 const editForm = ref({
   quantity: null
+})
+
+const form = ref({
+  payment_id: null,
 })
 
 const editQuantity = async (id, quantity) => {
@@ -39,6 +47,12 @@ const links = computed(() => [
   {title: t('breadcrumbs.cart'), link: localePath('/cart')},
   {title: t('breadcrumbs.checkout'), link: localePath('/cart/checkout')},
 ]);
+
+onMounted(async () => {
+  await nextTick()
+  await addresses.getAddresses()
+  await recipients.getRecipients()
+})
 </script>
 
 <template>
@@ -47,30 +61,52 @@ const links = computed(() => [
     <div class="container mx-auto px-4 md:px-0">
       <div class="pt-12 pb-32">
 
-        <h1 class="text-3xl font-semibold mb-12">
+        <h1 class="text-xl md:text-3xl font-semibold mb-12">
           {{ $t('checkout.title') }}
         </h1>
 
-        <div class="flex flex-col md:flex-row items-start gap-5">
+        <div class="flex flex-col-reverse md:flex-row items-start gap-5">
           <div class="w-full md:w-2/3 flex flex-col gap-12">
             <div class="w-full">
-              <div class="flex gap-6 mb-4 border-b border-[#F0DFDF] pb-3">
+              <div class="flex gap-6 mb-4 border-b border-[#F0DFDF] pb-3 items-center">
                 <div
                     class="w-8 h-8 rounded-full bg-mainColor flex items-center justify-center text-white text-xl font-semibold">
                   1
                 </div>
-                <p class="text-2xl font-semibold">
+                <p class="text-base md:text-2xl font-semibold">
                   {{ $t('checkout.first.title') }}
                 </p>
               </div>
-              <div class="flex gap-5 mb-6">
+
+              <div class="mb-7">
+                <p
+                    class="text-[#7B7B7B]">
+                  {{ $t('checkout.first.text') }}
+                </p>
+                <div v-if="recipients.recipientList">
+                  <select
+                      name=""
+                      id=""
+                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
+                    <option :value="null">{{ $t('checkout.first.placeholder') }}</option>
+                    <option
+                        v-for="(item, index) of recipients.recipientList.data"
+                        :key="index"
+                        value="">
+                      {{ item }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex flex-col md:flex-row gap-5 mb-6">
                 <label class="w-full flex gap-3 items-center" for="type">
                   <input
                       type="radio"
                       class="w-6 h-6"
                       name="type"
                       id="type">
-                  <p class="text-xl">
+                  <p class="text-sm md:text-xl">
                     {{ $t('checkout.first.physical') }}
                   </p>
                 </label>
@@ -80,7 +116,7 @@ const links = computed(() => [
                       class="w-6 h-6"
                       name="type"
                       id="type">
-                  <p class="text-xl">
+                  <p class="text-sm md:text-xl">
                     {{ $t('checkout.first.legal') }}
                   </p>
                 </label>
@@ -101,16 +137,16 @@ const links = computed(() => [
               </div>
             </div>
             <div class="w-full">
-              <div class="flex gap-6 mb-4 border-b border-[#F0DFDF] pb-3">
+              <div class="flex items-center gap-6 mb-4 border-b border-[#F0DFDF] pb-3">
                 <div
                     class="w-8 h-8 rounded-full bg-mainColor flex items-center justify-center text-white text-xl font-semibold">
                   2
                 </div>
-                <p class="text-2xl font-semibold">
+                <p class="text-base md:text-2xl font-semibold">
                   {{ $t('checkout.second.title') }}
                 </p>
               </div>
-              <div class="flex gap-5 mb-6">
+              <div class="flex flex-col md:flex-row gap-5 mb-6">
                 <div
                     @click="activeType = 1"
                     :class="{ 'bg-[#F0DFDF]' : activeType === 1 }"
@@ -126,8 +162,8 @@ const links = computed(() => [
                   <p>{{ $t('checkout.second.pickup') }}</p>
                 </div>
               </div>
-              <div>
-                <div class="flex justify-between mb-6">
+              <div v-if="activeType === 1">
+                <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
                     {{ $t('checkout.second.address') }}
                   </p>
@@ -137,22 +173,47 @@ const links = computed(() => [
                     + {{ $t('checkout.second.add') }}
                   </p>
                 </div>
-                <p class="text-[#7B7B7B]">
-                  {{ $t('checkout.second.text') }}
-                </p>
+                <div v-if="addresses.addressesList">
+                  <select
+                      v-if="addresses.addressesList.data.length > 0"
+                      name=""
+                      id=""
+                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
+                    <option :value="null">
+                      {{ $t('checkout.second.placeholder') }}
+                    </option>
+                    <option
+                        v-for="(item, index) of addresses.addressesList.data"
+                        :key="index"
+                        value="">
+                      {{ item.country.title }}, {{ item.address }}, {{ item.entrance }} подъезд, этаж {{ item.floor }},
+                      кв. {{ item.float }}
+                    </option>
+                  </select>
+                  <p
+                      v-else
+                      class="text-[#7B7B7B]">
+                    {{ $t('checkout.second.text') }}
+                  </p>
+                </div>
               </div>
+              <p
+                  v-else
+                  class="text-black">
+                {{ $t('checkout.address_delivery') }}: <span class="font-semibold">г. Алматы, ул. Абая 123</span>
+              </p>
             </div>
             <div class="w-full">
-              <div class="flex gap-6 mb-4 border-b border-[#F0DFDF] pb-3">
+              <div class="flex items-center gap-6 mb-4 border-b border-[#F0DFDF] pb-3">
                 <div
                     class="w-8 h-8 rounded-full bg-mainColor flex items-center justify-center text-white text-xl font-semibold">
                   3
                 </div>
-                <p class="text-2xl font-semibold">
+                <p class="text-base md:text-2xl font-semibold">
                   {{ $t('checkout.third.title') }}
                 </p>
               </div>
-              <div class="flex gap-5 mb-6">
+              <div class="flex flex-col md:flex-row gap-5 mb-6">
                 <div
                     @click="deliveryType = 1"
                     :class="{ 'bg-[#F0DFDF]' : deliveryType === 1 }"
@@ -168,21 +229,66 @@ const links = computed(() => [
                   <p>{{ $t('checkout.third.phys') }}</p>
                 </div>
               </div>
-              <label class="mb-6 w-full flex gap-3 items-center" for="type">
+              <div class="mb-6">
+                <div
+                    v-if="deliveryType === 1"
+                    class="flex flex-col gap-4"
+                >
+                  <label
+                      for="payment"
+                      class="flex items-center gap-5 cursor-pointer">
+                    <input
+                        v-model="form.payment_id"
+                        value="1"
+                        id="payment"
+                        name="payment"
+                        type="radio"
+                        class="w-6 h-6">
+                    <div class="flex items-center gap-3">
+                      <img
+                          class="w-10 h-10 object-contain"
+                          src="@/assets/img/payments/kaspi.png"
+                          alt="">
+                      <p class="text-lg font-semibold">Kaspi</p>
+                    </div>
+                  </label>
+                  <label
+                      for="payment-2"
+                      class="flex items-center gap-5 cursor-pointer">
+                    <input
+                        v-model="form.payment_id"
+                        value="2"
+                        id="payment-2"
+                        name="payment-2"
+                        type="radio"
+                        class="w-6 h-6">
+                    <div class="flex items-center gap-3">
+                      <img
+                          class="w-10 h-10 object-contain"
+                          src="@/assets/img/payments/halyk.png"
+                          alt="">
+                      <p class="text-lg font-semibold">Halyk</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <label
+                  class="mb-6 w-full flex gap-3 items-center cursor-pointer"
+                  for="agreement">
                 <input
                     type="checkbox"
                     class="w-6 h-6"
-                    name="type"
-                    id="type">
+                    name="agreement"
+                    id="agreement">
                 <p class="text-sm">
                   {{ $t('checkout.third.agreement') }}
                 </p>
               </label>
               <p class="font-bold mb-4">
-                {{ $t('checkout.third.to_pay') }}: 25 200 ₸
+                {{ $t('checkout.third.to_pay') }}: {{ cartPrice }} ₸
               </p>
               <p
-                  class="w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center">
+                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center">
                 {{ $t('cart.checkout.checkout_button') }}
               </p>
             </div>
@@ -298,7 +404,7 @@ const links = computed(() => [
                 </div>
                 <div class="flex items-center justify-between pt-3">
                   <p>{{ $t('checkout.to_pay') }}:</p>
-                  <p>25 200 ₸</p>
+                  <p>{{ cartPrice }} ₸</p>
                 </div>
               </div>
             </div>

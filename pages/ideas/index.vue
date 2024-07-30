@@ -28,14 +28,13 @@ onMounted(async () => {
 <template>
   <div>
     <Breadcrumbs :links="links"/>
-    <div class="bg-white relative py-16 mb-10">
-      <div class="container mx-auto relative z-10">
+
+    <div class="relative py-16 bg-white mb-10">
+      <div class="container mx-auto relative z-10 px-4 md:px-0">
         <div class="text-4xl text-mainColor font-bold">
           <p>{{ $t('ideas.page_title.first') }}</p>
           <div class="flex items-center gap-2">
-            <p>
-              {{ $t('ideas.page_title.second') }}
-            </p>
+            <p>{{ $t('ideas.page_title.second') }}</p>
             <img
                 src="~/assets/img/logos/mainLogo.svg"
                 alt="">
@@ -43,10 +42,11 @@ onMounted(async () => {
         </div>
       </div>
       <img
-          class="absolute right-0 top-0 h-full w-auto"
+          class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
           src="~/assets/img/ideas/bg.png"
           alt="">
     </div>
+
     <div class="container mx-auto px-4 lg:px-0">
       <main class="mx-auto">
         <div class="pb-24">

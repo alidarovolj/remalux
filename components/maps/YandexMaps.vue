@@ -1,15 +1,15 @@
 <template>
   <div class="my-5">
     <div class="mb-4">
-      <p class="text-sm  text-[#6E6B7B] mb-1 ">
-        Укажите адрес
+      <p class="text-sm text-[#6E6B7B] mb-1">
+        {{ $t('addresses.create.provide_address') }}
       </p>
       <div class="relative">
         <div class="flex">
           <input
               v-model="searchQuery"
-              class="py-2 px-4 border rounded-md w-full bg-white "
-              placeholder="Введите адрес"
+              class="py-2 px-4 border rounded-md w-full bg-white"
+              :placeholder="$t('addresses.create.address_placeholder')"
               type="text"
               @input="updateSuggestions"
           />
@@ -28,9 +28,7 @@
         </ul>
       </div>
     </div>
-    <div
-        id="map"
-        class="mb-3"></div>
+    <div id="map" class="mb-3"></div>
   </div>
 </template>
 
@@ -132,15 +130,21 @@ export default {
     },
     updateSuggestions() {
       if (this.searchQuery) {
-        ymaps
-            .suggest(this.searchQuery, {
-              boundedBy: this.map.getBounds()
-            })
-            .then((suggestions) => {
-              this.suggestions = suggestions;
+        console.log('Updating suggestions for:', this.searchQuery);
+        ymaps.geocode(this.searchQuery, {
+          boundedBy: this.map.getBounds()
+        })
+            .then((res) => {
+              const geoObjects = res.geoObjects.toArray();
+              console.log('GeoObjects received:', geoObjects);
+              this.suggestions = geoObjects.map(obj => ({
+                displayName: obj.getAddressLine(),
+                coords: obj.geometry.getCoordinates()
+              }));
               this.showSuggestions = true;
-            });
-        this.searchAddress();
+            }).catch(error => {
+          console.error('Error fetching suggestions:', error);
+        });
       } else {
         this.showSuggestions = false;
       }
@@ -148,13 +152,9 @@ export default {
     selectSuggestion(suggestion) {
       this.searchQuery = suggestion.displayName;
       this.showSuggestions = false;
-      ymaps.geocode(suggestion.displayName).then((res) => {
-        const firstGeoObject = res.geoObjects.get(0);
-        const coords = firstGeoObject.geometry.getCoordinates();
-        this.addPlacemark(coords, suggestion.displayName);
-        this.map.setCenter(coords);
-        this.map.setZoom(15);
-      });
+      this.addPlacemark(suggestion.coords, suggestion.displayName);
+      this.map.setCenter(suggestion.coords);
+      this.map.setZoom(15);
     },
     addPlacemark(coords, displayName) {
       this.map.geoObjects.removeAll();
@@ -168,26 +168,6 @@ export default {
         coordinates: this.mapCoordinates,
         address: this.address
       });
-    },
-    searchAddress() {
-      if (this.searchQuery) {
-        ymaps
-            .geocode(this.searchQuery, {
-              boundedBy: this.map.getBounds()
-            })
-            .then((res) => {
-              const firstGeoObject = res.geoObjects.get(0);
-              const coords = firstGeoObject.geometry.getCoordinates();
-              this.map.setCenter(coords);
-              this.map.setZoom(15);
-              this.mapCoordinates = coords;
-              this.getAddress(coords);
-              this.$emit('send_data', {
-                coordinates: this.mapCoordinates,
-                address: this.address
-              });
-            });
-      }
     }
   }
 };

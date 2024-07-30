@@ -5,7 +5,40 @@
     "ideas": "Ideas",
     "news": "News",
     "cart": "Cart",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "profile": "Profile",
+    "addresses": "Addresses",
+    "recipients": "Recipients",
+    "orders": "Orders",
+    "favourites": "Favourites"
+  },
+  "profile": {
+    "phone": "Phone number",
+    "logout": "Logout",
+    "profile": "Profile",
+    "recipients": "Recipients",
+    "no_recipients": "Unfortunately, you have no saved recipients, please add them.",
+    "add_recipient": "Add recipient",
+    "no_addresses": "Unfortunately, you have no saved addresses, please add them.",
+    "add_address": "Add address",
+    "my_addresses": "My addresses"
+  },
+  "addresses": {
+    "create": {
+      "title": "Add shipping address",
+      "provide_address": "Please provide the address",
+      "address_placeholder": "Enter the address",
+      "city": "City",
+      "city_placeholder": "Choose city",
+      "address": "Address",
+      "entrance": "Entrance",
+      "entrance_placeholder": "Enter the entrance",
+      "floor": "Floor",
+      "floor_placeholder": "Enter the floor",
+      "apartment": "Apartment",
+      "apartment_placeholder": "Enter the apartment",
+      "button": "Save"
+    }
   },
   "no_results": {
     "title": "Unfortunately, your search returned no results"
@@ -74,8 +107,11 @@
       "delivery": "Delivery"
     },
     "to_pay": "Amount to be paid",
+    "address_delivery": "You can pick up your order at the address",
     "first": {
       "title": "Recipient Information",
+      "text": "To place an order, you need to add and select a recipient",
+      "placeholder": "Search for a recipient",
       "physical": "Individual",
       "legal": "Legal Entity",
       "name": "Your Name",
@@ -86,6 +122,7 @@
       "pickup": "Pickup",
       "delivery": "Delivery",
       "address": "Delivery Address",
+      "placeholder": "Search for an address",
       "add": "Add Delivery Address",
       "text": "To place an order, you need to add and select a delivery address"
     },
