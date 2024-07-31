@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useNotificationStore } from "@/stores/notifications.js";
 import { useAuthStore } from "~/stores/auth.js";
 import { useRouter } from 'vue-router';
@@ -35,34 +36,27 @@ export async function api(url, method, options = {}, query = {}) {
         })
         .join('&');
 
-    const requestOptions = {
-        method: method,
-        headers: headers,
-        body: options.body ? options.body : undefined,
-    };
-
     try {
-        const { data, pending, error } = await useFetch(`${import.meta.env.VITE_APP_BASE_URL}${url}?${queryString}`, {
-            ...requestOptions,
+        const response = await axios({
+            url: `${import.meta.env.VITE_APP_BASE_URL}${url}?${queryString}`,
+            method: method,
+            headers: headers,
+            data: options.body ? options.body : undefined,
         });
 
-        if (error.value) {
-            if (error.value.status === 401) {
-                notifications.showNotification(
-                    "error",
-                    "Токен не получен или истек",
-                    "Пожалуйста, авторизуйтесь снова"
-                );
-                localStorage.removeItem("token");
-                router.push('/login');
-            } else {
-                throw new Error(error.value.message || 'Request failed');
-            }
-        }
-
-        return data.value;
+        return response.data;
     } catch (error) {
-        console.error(error);
-        throw error;
+        if (error.response && error.response.status === 401) {
+            notifications.showNotification(
+                "error",
+                "Токен не получен или истек",
+                "Пожалуйста, авторизуйтесь снова"
+            );
+            localStorage.removeItem("token");
+            router.push('/login');
+        } else {
+            console.error(error);
+            throw new Error(error.response?.data?.message || 'Request failed');
+        }
     }
 }

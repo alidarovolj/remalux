@@ -6,17 +6,21 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import img1 from "assets/img/auth/slide1.jpg";
 import img2 from "assets/img/auth/slide2.jpg";
 import img3 from "assets/img/auth/slide3.jpg";
+import {useAddressesStore} from "~/stores/addresses.js";
 
 const loading = ref(false);
 const notifications = useNotificationStore()
 const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
+const addresses = useAddressesStore()
+const {citiesList} = storeToRefs(addresses)
 
 const form = ref({
   name: '',
   phone_number: '',
   email: '',
+  city_id: null,
   password: '',
   password_confirmation: ''
 })
@@ -25,6 +29,7 @@ const v$ = useVuelidate({
   name: {required},
   phone_number: {required, minLength: 11},
   email: {required, email},
+  city_id: {required},
   password: {required},
   password_confirmation: {required}
 }, form);
@@ -60,29 +65,26 @@ const registerUser = async () => {
         body: JSON.stringify(form.value)
       }, route.query);
 
-      if(response.message === "Success !") {
+      console.log(response)
+
+      if (response.message === "Success !") {
         notifications.showNotification("success", "Успешно", "Вы успешно зарегистрировались!");
         loading.value = false;
         router.push(localePath('/login'));
       }
     } catch (e) {
-      console.log(e)
-      if (e.response) {
-        if (e.response.status !== 500) {
-          notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-        } else {
-          notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-        }
-      } else {
-        console.error(e);
-        notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
-      }
+      notifications.showNotification("error", "Произошла ошибка", e);
     }
   } else {
     notifications.showNotification("error", "Пароли не совпадают", "Проверьте правильность введенных данных и попробуйте снова.");
   }
   loading.value = false;
 }
+
+onMounted(async () => {
+  await nextTick()
+  await addresses.getCities()
+})
 </script>
 
 <template>
@@ -115,8 +117,8 @@ const registerUser = async () => {
                 <div
                     :class="{ '!border !border-red-500' : v$.name.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="email" class="block text-xs font-medium text-gray-900">
-                     {{ $t('forms.name.title') }}
+                  <label for="name" class="block text-xs font-medium text-gray-900">
+                    {{ $t('forms.name.title') }}
                   </label>
                   <input
                       v-model="form.name"
@@ -132,7 +134,7 @@ const registerUser = async () => {
                 <div
                     :class="{ '!border !border-red-500' : v$.phone_number.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="name" class="block text-xs font-medium text-gray-900">
+                  <label for="phone_number" class="block text-xs font-medium text-gray-900">
                     {{ $t('forms.phone_number.title') }}
                   </label>
                   <input
@@ -166,7 +168,32 @@ const registerUser = async () => {
                 </div>
 
                 <div
-                    :class="{ '!border !border-red-500' : v$.password_confirmation.$error }"
+                    v-if="citiesList"
+                    :class="{ '!border !border-red-500' : v$.city_id.$error }"
+                    class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                  <label
+                      for="city"
+                      class="block text-xs font-medium text-gray-900">
+                    {{ $t('addresses.create.city') }}
+                  </label>
+                  <select
+                      v-model="form.city_id"
+                      :class="{ 'border-red-500' : v$.city_id.$error }"
+                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      name="city"
+                      id="city">
+                    <option :value="null">{{ $t('addresses.create.city_placeholder') }}</option>
+                    <option
+                        v-for="(city, index) of addresses.citiesList"
+                        :key="index"
+                        :value="city.id">
+                      {{ city.title }}
+                    </option>
+                  </select>
+                </div>
+
+                <div
+                    :class="{ '!border !border-red-500' : v$.password.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
                   <label for="password" class="block text-xs font-medium text-gray-900">
                     {{ $t('forms.password.title') }}

@@ -14,6 +14,8 @@ const notifications = useNotificationStore()
 const router = useRouter()
 const route = useRoute()
 const auth = useAuthStore()
+auth.initCookieToken()
+const {token} = storeToRefs(auth)
 const cart = useCartStore()
 
 const navigation = computed(() => [
@@ -37,19 +39,14 @@ const logoutUser = async () => {
     user.userProfile = false;
     notifications.showNotification("success", "Успешно", "Вы успешно вышли из аккаунта");
     loading.value = false;
-    await user.getProfile()
-    router.push(localePath('/'));
+    if (token.value) {
+      await user.getProfile()
+    }
+    await router.push(localePath('/'));
   } catch (e) {
     console.log(e)
     if (e.response) {
-      if (e.response.status !== 500) {
-        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-      } else {
-        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-      }
-    } else {
-      console.error(e);
-      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
+      notifications.showNotification("error", "Произошла ошибка", e);
     }
   }
   loading.value = false;
@@ -59,7 +56,9 @@ const mobileMenuOpen = ref(false)
 
 onMounted(async () => {
   await nextTick()
-  await cart.getCart()
+  if(token.value) {
+    await cart.getCart()
+  }
 })
 </script>
 
@@ -85,7 +84,7 @@ onMounted(async () => {
               :key="item.name"
               :to="localePath(item.href)"
               :class="{ 'text-mainColor': $route.path === item.href }"
-              class="text-sm font-semibold leading-6 text-gray-900">
+              class="text-xs font-semibold leading-6 text-gray-900">
             {{ item.name }}
           </NuxtLink>
         </div>
@@ -101,15 +100,15 @@ onMounted(async () => {
       <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-3 items-center">
         <div
             v-if="user.userProfile === false"
-            class="flex items-center gap-3">
+            class="flex items-center gap-3 text-sm">
           <NuxtLink
               :to="localePath('/login')"
-              class="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7">
+              class="block rounded-lg px-3 py-2.5 font-semibold leading-7">
             {{ $t('header_links.login') }}
           </NuxtLink>
           <NuxtLink
               :to="localePath('/registration')"
-              class="block text-white bg-mainColor rounded-lg px-3 py-2.5 text-base font-semibold leading-7">
+              class="block text-white bg-mainColor rounded-lg px-3 py-2.5 font-semibold leading-7">
             {{ $t('header_links.register') }}
           </NuxtLink>
         </div>

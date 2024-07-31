@@ -12,7 +12,7 @@ const {t} = useI18n();
 const localePath = useLocalePath();
 const notifications = useNotificationStore()
 const cart = useCartStore()
-const {cartList} = storeToRefs(cart);
+const {cartList, cartPrice} = storeToRefs(cart);
 const language = useLanguagesStore()
 const {cur_lang} = storeToRefs(language);
 
@@ -236,11 +236,11 @@ onMounted(async () => {
               <div class="w-full md:w-1/3 flex flex-col justify-between">
                 <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">
                   <p>{{ $t('cart.checkout.summary') }}</p>
-                  <p>42 000 ₸</p>
+                  <p>{{ cartPrice }} ₸</p>
                 </div>
                 <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">
                   <p>{{ $t('cart.checkout.total') }}</p>
-                  <p class="text-xl font-bold">42 000 ₸</p>
+                  <p class="text-xl font-bold">{{ cartPrice }} ₸</p>
                 </div>
                 <NuxtLink
                     :to="localePath('/cart/checkout')"

@@ -6,6 +6,7 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import img1 from "@/assets/img/auth/slide1.jpg"
 import img2 from "@/assets/img/auth/slide2.jpg"
 import img3 from "@/assets/img/auth/slide3.jpg"
+import {useUserStore} from "~/stores/user.js";
 
 const loading = ref(false);
 const code_sent = ref(false);
@@ -13,6 +14,8 @@ const notifications = useNotificationStore()
 const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
+const auth = useAuthStore()
+const user = useUserStore()
 
 const form = ref({
   phone_number: '',
@@ -60,16 +63,7 @@ const codeRequest = async () => {
     formCode.value.phone_number = form.value.phone_number
     notifications.showNotification("success", "Код запрошен", "Проверьте ваш телефон и введите код подтверждения.");
   } catch (e) {
-    if (e.response) {
-      if (e.response.status !== 500) {
-        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-      } else {
-        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-      }
-    } else {
-      console.error(e);
-      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
-    }
+    notifications.showNotification("error", "Произошла ошибка", e);
   }
 
 }
@@ -86,21 +80,16 @@ const passwordRequest = async () => {
 
   try {
     const response = await api(`/api/auth/password-recovery/verify-code`, "POST", {
-      body: JSON.stringify(form.value)
+      body: JSON.stringify(formCode.value)
     }, route.query);
+    await auth.initCookieToken();
+    auth.token = response.access_token;
+    await nextTick()
+    await user.getProfile()
     notifications.showNotification("success", "Смена пароля подтверждена", "Проверьте вашу почту, мы отправили вам новый пароль.");
     await router.push(localePath('/'))
   } catch (e) {
-    if (e.response) {
-      if (e.response.status !== 500) {
-        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-      } else {
-        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-      }
-    } else {
-      console.error(e);
-      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
-    }
+    notifications.showNotification("error", "Произошла ошибка", e);
   }
 
 }

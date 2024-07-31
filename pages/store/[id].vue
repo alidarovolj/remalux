@@ -7,17 +7,22 @@ import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import {storeToRefs} from "pinia";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import {useVuelidate} from "@vuelidate/core";
-import {email, required} from "@vuelidate/validators";
+import {required} from "@vuelidate/validators";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useCartStore} from "~/stores/cart.js";
+import {useAuthStore} from "~/stores/auth.js";
 
 const products = useProductsStore();
 const cart = useCartStore()
+const auth = useAuthStore()
+auth.initCookieToken()
+const {token} = storeToRefs(auth)
 const loading = ref(false);
 const notifications = useNotificationStore()
 const prod_var = ref(null);
 const {detailProduct, sameProducts, productsList} = storeToRefs(products);
 const route = useRoute();
+const router = useRouter()
 const language = useLanguagesStore();
 const {cur_lang} = storeToRefs(language);
 const activeTab = ref(1);
@@ -73,7 +78,7 @@ const totalArea = computed(() => {
 });
 
 const paintNeeded = computed(() => {
-  return (totalArea.value * form.value.layers) / 3.5; // 3.5 - условный расход краски на м2
+  return (totalArea.value * form.value.layers) / 3.5;
 });
 
 const addToCartLocal = async () => {
@@ -86,25 +91,23 @@ const addToCartLocal = async () => {
     return;
   }
 
-  try {
-    const response = await api(`/api/carts/add`, "POST", {
-      body: JSON.stringify(addToCart.value)
-    }, route.query);
+  if (!token.value) {
+    notifications.showNotification("error", "Ошибка", "Для добавления товара в корзину необходимо авторизоваться.");
+    loading.value = false;
+    await router.push(localePath('/login'));
+    return;
+  } else {
+    try {
+      const response = await api(`/api/carts/add`, "POST", {
+        body: JSON.stringify(addToCart.value)
+      }, route.query);
 
-    notifications.showNotification("success", "Успешно", "Вы успешно добавили товар в корзину");
+      notifications.showNotification("success", "Успешно", "Вы успешно добавили товар в корзину");
 
-    await nextTick()
-    await cart.getCart()
-  } catch (e) {
-    if (e.response) {
-      if (e.response.status !== 500) {
-        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-      } else {
-        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-      }
-    } else {
-      console.error(e);
-      notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
+      await nextTick()
+      await cart.getCart()
+    } catch (e) {
+      notifications.showNotification("error", "Произошла ошибка", e);
     }
   }
 

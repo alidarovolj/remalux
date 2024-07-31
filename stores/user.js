@@ -13,16 +13,8 @@ export const useUserStore = defineStore("user", () => {
                 const response = await api(`/api/auth/me`, "GET", {}, route.query);
                 userProfile.value = response;
             } catch (e) {
-                if (e.response) {
-                    if (e.response.status !== 500) {
-                        userProfile.value = false;
-                    } else {
-                        userProfile.value = false;
-                    }
-                } else {
-                    console.error(e);
-                    userProfile.value = false;
-                }
+                notifications.showNotification("error", "Произошла ошибка", e);
+                userProfile.value = false;
             }
         },
     };

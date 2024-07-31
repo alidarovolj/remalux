@@ -20,20 +20,14 @@ export const useCartStore = defineStore("cart", () => {
             try {
                 const response = await api(`/api/carts/`, "GET", {}, route.query);
                 cartList.value = response;
-                response.data.forEach((item) => {
-                    cartPrice.value += parseInt(item.price);
-                });
-            } catch (e) {
-                if (e.response) {
-                    if (e.response.status !== 500) {
-
-                    } else {
-
-                    }
-                } else {
-                    console.error(e);
-
+                if (response && response.data) {
+                    cartPrice.value = 0;
+                    response.data.forEach((item) => {
+                        cartPrice.value += parseInt(item.price);
+                    });
                 }
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
             }
         },
         async removeItem(id) {
@@ -42,16 +36,7 @@ export const useCartStore = defineStore("cart", () => {
                 removedItem.value = response;
                 notifications.showNotification("success", "Продукт успешно удален", "Продукт успешно удален из корзины");
             } catch (e) {
-                if (e.response) {
-                    if (e.response.status !== 500) {
-                        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-                    } else {
-                        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-                    }
-                } else {
-                    console.error(e);
-                    notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
-                }
+                notifications.showNotification("error", "Произошла ошибка", e);
             }
         },
         async editItem(id, form) {
@@ -62,16 +47,7 @@ export const useCartStore = defineStore("cart", () => {
                 editedItem.value = response;
                 // notifications.showNotification("success", "Продукт успешно отредактирован", "Продукт успешно отредактирован");
             } catch (e) {
-                if (e.response) {
-                    if (e.response.status !== 500) {
-                        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-                    } else {
-                        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-                    }
-                } else {
-                    console.error(e);
-                    notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
-                }
+                notifications.showNotification("error", "Произошла ошибка", e);
             }
         },
         async removeCart() {
@@ -79,16 +55,7 @@ export const useCartStore = defineStore("cart", () => {
                 const response = await api(`/api/carts/clear`, "POST", {}, route.query);
                 removedCart.value = response;
             } catch (e) {
-                if (e.response) {
-                    if (e.response.status !== 500) {
-                        notifications.showNotification("error", "Произошла ошибка", e.response.data.message);
-                    } else {
-                        notifications.showNotification("error", "Ошибка сервера!", "Попробуйте позже.");
-                    }
-                } else {
-                    console.error(e);
-                    notifications.showNotification("error", "Произошла ошибка", "Неизвестная ошибка");
-                }
+                notifications.showNotification("error", "Произошла ошибка", e);
             }
         },
     };
