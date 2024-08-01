@@ -18,51 +18,15 @@ import {useCategoriesStore} from "~/stores/categories.js";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import NoResults from "~/components/general/noResults.vue";
 import {useLanguagesStore} from "~/stores/languages.js";
-
-const filters = [
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      {value: 'white', label: 'White'},
-      {value: 'beige', label: 'Beige'},
-      {value: 'blue', label: 'Blue'},
-      {value: 'brown', label: 'Brown'},
-      {value: 'green', label: 'Green'},
-      {value: 'purple', label: 'Purple'},
-    ],
-  },
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      {value: 'new-arrivals', label: 'All New Arrivals'},
-      {value: 'tees', label: 'Tees'},
-      {value: 'crewnecks', label: 'Crewnecks'},
-      {value: 'sweatshirts', label: 'Sweatshirts'},
-      {value: 'pants-shorts', label: 'Pants & Shorts'},
-    ],
-  },
-  {
-    id: 'sizes',
-    name: 'Sizes',
-    options: [
-      {value: 'xs', label: 'XS'},
-      {value: 's', label: 'S'},
-      {value: 'm', label: 'M'},
-      {value: 'l', label: 'L'},
-      {value: 'xl', label: 'XL'},
-      {value: '2xl', label: '2XL'},
-    ],
-  },
-]
+import {useFiltersStore} from "~/stores/filters.js";
 
 const products = useProductsStore()
 const categories = useCategoriesStore()
 const mobileFiltersOpen = ref(false)
-const filtersOpen = ref(false)
 const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
+const filtersStore = useFiltersStore()
+const route = useRoute()
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -72,10 +36,65 @@ const links = computed(() => [
   {title: t('breadcrumbs.store'), link: localePath('/store')},
 ]);
 
+const router = useRouter();
+
+const updateCategoryFilter = async (categoryId) => {
+  if (parseInt(route.query['filters[category_id]']) === categoryId) {
+    delete route.query['filters[category_id]']
+    await router.push({
+      query: {
+        ...route.query,
+        page: 1,
+        perPage: 10
+      }
+    });
+  } else {
+    await router.push({
+      query: {
+        ...route.query,
+        'filters[category_id]': categoryId,
+        page: 1,
+        perPage: 10
+      }
+    });
+  }
+  await products.getProducts()
+};
+
+const updateFilter = async (filterId, optionId) => {
+  const filterKey = `filters[productFilters.filterValue.filter_id]`;
+  const newQuery = { ...route.query };
+
+  // Initialize the filter array if it doesn't exist
+  if (!newQuery[filterKey]) {
+    newQuery[filterKey] = [];
+  } else if (typeof newQuery[filterKey] === 'string') {
+    // Convert to array if it's a single value
+    newQuery[filterKey] = [newQuery[filterKey]];
+  }
+
+  // Add or remove the optionId from the filter array
+  const index = newQuery[filterKey].indexOf(optionId.toString());
+  if (index > -1) {
+    newQuery[filterKey].splice(index, 1);
+  } else {
+    newQuery[filterKey].push(optionId.toString());
+  }
+
+  // Remove the filter key if the array is empty
+  if (newQuery[filterKey].length === 0) {
+    delete newQuery[filterKey];
+  }
+
+  await router.push({ query: newQuery });
+  await products.getProducts()
+};
+
 onMounted(async () => {
   await nextTick()
   await products.getProducts()
   await categories.getCategories()
+  await filtersStore.getFilters()
 })
 </script>
 
@@ -106,14 +125,13 @@ onMounted(async () => {
         <div
             v-for="(category, index) in categories.categoriesList.data"
             :key="index"
-            class="w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9]">
+            :class="{ '!bg-mainColor text-white' : parseInt(route.query['filters[category_id]']) === category.id }"
+            class="w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] hover:bg-gray-100 transition-all cursor-pointer"
+            @click="updateCategoryFilter(category.id)">
           <div class="flex flex-col gap-5 w-2/3 pl-7">
             <p class="text-sm font-bold">
               {{ category.title[cur_lang] }}
             </p>
-            <!--            <p class="text-xs text-[#525252]">-->
-            <!--              {{ category.title.ru }}-->
-            <!--            </p>-->
           </div>
           <img
               class="w-1/3 h-full rounded-tr-xl rounded-br-xl object-cover object-right"
@@ -169,8 +187,8 @@ onMounted(async () => {
               <form class="mt-4">
                 <Disclosure
                     as="div"
-                    v-for="section in filters"
-                    :key="section.name"
+                    v-for="section in filtersStore.filtersList.data"
+                    :key="section.id"
                     class="border-t border-gray-200 pb-4 pt-4"
                     v-slot="{ open }">
                   <fieldset>
@@ -178,7 +196,7 @@ onMounted(async () => {
                       <DisclosureButton
                           class="flex w-full items-center justify-between p-2 text-gray-400 hover:text-gray-500">
                         <span class="text-sm font-medium text-gray-900">
-                          {{ section.name }}
+                          {{ section.title[cur_lang] }}
                         </span>
                         <span class="ml-6 flex h-7 items-center">
                             <ChevronDownIcon
@@ -191,19 +209,22 @@ onMounted(async () => {
                     <DisclosurePanel class="px-4 pb-2 pt-4">
                       <div class="space-y-4">
                         <div
-                            v-for="(option, optionIdx) in section.options"
-                            :key="option.value"
+                            v-for="(option, optionIdx) in section.values"
+                            :key="option.id"
                             class="flex items-center">
                           <input
                               :id="`${section.id}-${optionIdx}-mobile`"
                               :name="`${section.id}[]`"
-                              :value="option.value"
+                              :value="option.id"
                               type="checkbox"
-                              class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+                              class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              @change="updateFilter(section.id, option.id)"
+                              :checked="route.query[`filters[productFilters.filterValue.${section.id}]`]?.includes(option.id.toString())"
+                          />
                           <label
                               :for="`${section.id}-${optionIdx}-mobile`"
                               class="ml-3 text-sm text-gray-500">
-                            {{ option.label }}
+                            {{ option.values[cur_lang] }}
                           </label>
                         </div>
                       </div>
@@ -240,51 +261,60 @@ onMounted(async () => {
                   </div>
 
                   <!-- Filters -->
-                  <form class="mt-4">
-                    <Disclosure
-                        as="div"
-                        v-for="section in filters"
-                        :key="section.name"
-                        class="border-t border-[#F0DFDF]"
-                        v-slot="{ open }">
-                      <fieldset>
-                        <legend class="w-full">
-                          <DisclosureButton
-                              class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]">
-                        <span class="text-xl font-medium text-gray-900">
-                          {{ section.name }}
-                        </span>
-                            <span class="ml-6 flex h-7 items-center">
-                            <ChevronDownIcon
-                                :class="[open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform']"
-                                aria-hidden="true"
-                            />
-                          </span>
-                          </DisclosureButton>
-                        </legend>
-                        <DisclosurePanel>
-                          <div class="space-y-4 bg-[#F9F9F9] px-4 py-4">
-                            <div
-                                v-for="(option, optionIdx) in section.options"
-                                :key="option.value"
-                                class="flex items-center">
-                              <input
-                                  :id="`${section.id}-${optionIdx}-mobile`"
-                                  :name="`${section.id}[]`"
-                                  :value="option.value"
-                                  type="checkbox"
-                                  class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-                              <label
-                                  :for="`${section.id}-${optionIdx}-mobile`"
-                                  class="ml-3 text-sm text-gray-500">
-                                {{ option.label }}
-                              </label>
+                  <client-only>
+                    <form v-if="filtersStore.filtersList" class="mt-4">
+                      <Disclosure
+                          as="div"
+                          v-for="section in filtersStore.filtersList.data"
+                          :key="section.name"
+                          class="border-t border-[#F0DFDF]"
+                          v-slot="{ open }"
+                      >
+                        <fieldset>
+                          <legend class="w-full">
+                            <DisclosureButton
+                                class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]"
+                            >
+              <span class="text-xl font-medium text-gray-900">
+                {{ section.title[cur_lang] }}
+              </span>
+                              <span class="ml-6 flex h-7 items-center">
+                <ChevronDownIcon
+                    :class="[open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform']"
+                    aria-hidden="true"
+                />
+              </span>
+                            </DisclosureButton>
+                          </legend>
+                          <DisclosurePanel>
+                            <div class="space-y-4 bg-[#F9F9F9] px-4 py-4">
+                              <div
+                                  v-for="(option, optionIdx) in section.values"
+                                  :key="option.id"
+                                  class="flex items-center"
+                              >
+                                <input
+                                    :id="`${section.id}-${optionIdx}-mobile`"
+                                    :name="`${section.id}[]`"
+                                    :value="option.id"
+                                    type="checkbox"
+                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    @change="updateFilter(section.id, option.id)"
+                                    :checked="route.query[`filters[productFilters.filterValue.${section.id}]`]?.includes(option.id.toString())"
+                                />
+                                <label
+                                    :for="`${section.id}-${optionIdx}-mobile`"
+                                    class="ml-3 text-sm text-gray-500"
+                                >
+                                  {{ option.values[cur_lang] }}
+                                </label>
+                              </div>
                             </div>
-                          </div>
-                        </DisclosurePanel>
-                      </fieldset>
-                    </Disclosure>
-                  </form>
+                          </DisclosurePanel>
+                        </fieldset>
+                      </Disclosure>
+                    </form>
+                  </client-only>
                 </div>
               </div>
             </div>
@@ -331,7 +361,9 @@ onMounted(async () => {
               </div>
             </div>
             <div v-if="products.productsList">
-              <Pagination :meta-data="products.productsList.meta"/>
+              <Pagination
+                  @updatePage="products.getProducts"
+                  :meta-data="products.productsList.meta"/>
             </div>
           </section>
         </div>

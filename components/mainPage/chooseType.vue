@@ -1,9 +1,14 @@
-<script setup></script>
+<script setup>
+const localePath = useLocalePath()
+const router = useRouter()
+</script>
 
 <template>
   <div class="container mx-auto px-4 lg:px-0 mt-40 mb-32">
     <div class="flex flex-col md:flex-row gap-5">
-      <div class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white">
+      <div
+          @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })"
+          class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
         <div class="flex flex-col gap-5 w-2/3 pl-7">
           <p class="text-2xl md:text-4xl font-bold">
             {{ $t('mainPage.choose_type.paint.title') }}
@@ -17,9 +22,12 @@
             src="~/assets/img/mainPage/paint.png"
             alt="">
       </div>
-      <div class="w-full md:w-1/2 grid grid-cols-1 gap-y-4 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
+      <div
+          @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '18' } })"
+          class="w-full md:w-1/2 grid grid-cols-1 gap-y-4 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
         <div class="h-full flex flex-col md:flex-row gap-5">
-          <div class="w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white">
+          <div
+              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.coating.title') }}
@@ -33,7 +41,9 @@
                 src="~/assets/img/mainPage/surface.png"
                 alt="">
           </div>
-          <div class="w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white">
+          <div
+              @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '15' } })"
+              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.varnish.title') }}
@@ -49,7 +59,9 @@
           </div>
         </div>
         <div class="h-full flex flex-col md:flex-row gap-5">
-          <div class="w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white">
+          <div
+              @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })"
+              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.dye.title') }}
@@ -63,7 +75,9 @@
                 src="~/assets/img/mainPage/paintbrush.png"
                 alt="">
           </div>
-          <div class="w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white">
+          <div
+              @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '16' } })"
+              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.putty.title') }}
