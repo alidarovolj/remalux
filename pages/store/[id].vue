@@ -64,6 +64,7 @@ onMounted(async () => {
   await nextTick();
   await products.getDetailProduct(route.params.id);
   await products.getSameProducts(route.params.id);
+  await products.getRelatedProducts(route.params.id);
   await products.getProducts();
 });
 
@@ -324,7 +325,7 @@ const addToCartLocal = async () => {
               {{ $t('products.details.similar_products') }}
             </h2>
           </div>
-          <div v-if="products.productsList">
+          <div v-if="sameProducts">
             <client-only>
               <my-carousel-carousel
                   :breakpoints="breakpoints"
@@ -332,7 +333,7 @@ const addToCartLocal = async () => {
                   :touch-drag="true"
               >
                 <my-carousel-slide
-                    v-for="(item, index) of products.productsList.data"
+                    v-for="(item, index) of sameProducts.data"
                     :key="index"
                 >
                   <ProductCard :product-data="item"/>
