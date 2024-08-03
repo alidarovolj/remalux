@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import {defineStore} from "pinia";
 import {useNotificationStore} from "~/stores/notifications.js";
 
 export const useProductsStore = defineStore("products", () => {

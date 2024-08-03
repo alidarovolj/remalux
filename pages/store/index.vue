@@ -62,33 +62,21 @@ const updateCategoryFilter = async (categoryId) => {
 };
 
 const updateFilter = async (filterId, optionId) => {
-  const filterKey = `filters[productFilters.filterValue.filter_id]`;
+  const filterKeyPrefix = `filter_ids[${optionId.toString()}]`;
   const newQuery = { ...route.query };
 
-  // Initialize the filter array if it doesn't exist
-  if (!newQuery[filterKey]) {
-    newQuery[filterKey] = [];
-  } else if (typeof newQuery[filterKey] === 'string') {
-    // Convert to array if it's a single value
-    newQuery[filterKey] = [newQuery[filterKey]];
-  }
-
   // Add or remove the optionId from the filter array
-  const index = newQuery[filterKey].indexOf(optionId.toString());
-  if (index > -1) {
-    newQuery[filterKey].splice(index, 1);
+  if (newQuery[filterKeyPrefix] === optionId.toString()) {
+    delete newQuery[filterKeyPrefix];
   } else {
-    newQuery[filterKey].push(optionId.toString());
+    newQuery[filterKeyPrefix] = optionId.toString();
   }
 
-  // Remove the filter key if the array is empty
-  if (newQuery[filterKey].length === 0) {
-    delete newQuery[filterKey];
-  }
-
-  await router.push({ query: newQuery });
-  await products.getProducts()
+  // Make sure to keep all existing query parameters
+  await router.push({ query: { ...newQuery } });
+  await products.getProducts();
 };
+
 
 onMounted(async () => {
   await nextTick()
@@ -300,7 +288,7 @@ onMounted(async () => {
                                     type="checkbox"
                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     @change="updateFilter(section.id, option.id)"
-                                    :checked="route.query[`filters[productFilters.filterValue.${section.id}]`]?.includes(option.id.toString())"
+                                    :checked="route.query[`filter_ids[${optionIdx}]`]?.includes(option.id.toString())"
                                 />
                                 <label
                                     :for="`${section.id}-${optionIdx}-mobile`"
