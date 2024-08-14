@@ -61,15 +61,29 @@ const updateCategoryFilter = async (categoryId) => {
   await products.getProducts()
 };
 
-const updateFilter = async (filterId, optionId) => {
-  const filterKeyPrefix = `filter_ids[${optionId.toString()}]`;
+const updateFilter = async (sectionId, optionId) => {
+  const filterKey = `filter_ids[${optionId}]`;
   const newQuery = { ...route.query };
 
-  // Add or remove the optionId from the filter array
-  if (newQuery[filterKeyPrefix] === optionId.toString()) {
-    delete newQuery[filterKeyPrefix];
+  // Initialize the filter array if it doesn't exist
+  if (!newQuery[filterKey]) {
+    newQuery[filterKey] = [];
   } else {
-    newQuery[filterKeyPrefix] = optionId.toString();
+    newQuery[filterKey] = Array.isArray(newQuery[filterKey])
+        ? newQuery[filterKey]
+        : [newQuery[filterKey]];
+  }
+
+  // Add or remove the optionId from the filter array
+  if (newQuery[filterKey].includes(optionId.toString())) {
+    newQuery[filterKey] = newQuery[filterKey].filter(id => id !== optionId.toString());
+  } else {
+    newQuery[filterKey].push(optionId.toString());
+  }
+
+  // Clean up the query if the array is empty
+  if (newQuery[filterKey].length === 0) {
+    delete newQuery[filterKey];
   }
 
   // Make sure to keep all existing query parameters
@@ -77,6 +91,16 @@ const updateFilter = async (filterId, optionId) => {
   await products.getProducts();
 };
 
+const removeAllFilters = async () => {
+  const newQuery = { ...route.query };
+  for (const key in newQuery) {
+    if (key.includes('filter_ids')) {
+      delete newQuery[key];
+    }
+  }
+  await router.push({ query: { ...newQuery } });
+  await products.getProducts();
+};
 
 onMounted(async () => {
   await nextTick()
@@ -207,7 +231,7 @@ onMounted(async () => {
                               type="checkbox"
                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                               @change="updateFilter(section.id, option.id)"
-                              :checked="route.query[`filters[productFilters.filterValue.${section.id}]`]?.includes(option.id.toString())"
+                              :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                           />
                           <label
                               :for="`${section.id}-${optionIdx}-mobile`"
@@ -231,13 +255,20 @@ onMounted(async () => {
         <div class="pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
           <aside>
 
-            <button
-                type="button"
-                class="inline-flex items-center lg:hidden"
-                @click="mobileFiltersOpen = true">
-              <span class="text-sm font-medium text-gray-700">{{ $t('products.filters') }}</span>
-              <PlusIcon class="ml-1 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true"/>
-            </button>
+            <div class="flex items-center justify-between lg:hidden">
+              <button
+                  type="button"
+                  class="inline-flex items-center"
+                  @click="mobileFiltersOpen = true">
+                <span class="text-base font-medium text-gray-700">{{ $t('products.filters') }}</span>
+                <PlusIcon class="ml-1 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true"/>
+              </button>
+              <p
+                  @click="removeAllFilters"
+                  class="text-mainColor">
+                Сбросить
+              </p>
+            </div>
 
             <div class="hidden lg:block border border-[#F0DFDF] rounded-md">
               <div class="flex">
@@ -246,6 +277,11 @@ onMounted(async () => {
                     <h2 class="text-2xl font-medium text-gray-900">
                       {{ $t('products.filters') }}
                     </h2>
+                    <p
+                        @click="removeAllFilters"
+                        class="text-mainColor">
+                      Сбросить
+                    </p>
                   </div>
 
                   <!-- Filters -->
@@ -263,7 +299,7 @@ onMounted(async () => {
                             <DisclosureButton
                                 class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]"
                             >
-              <span class="text-xl font-medium text-gray-900">
+              <span class="text-lg font-medium text-gray-900">
                 {{ section.title[cur_lang] }}
               </span>
                               <span class="ml-6 flex h-7 items-center">
@@ -288,7 +324,7 @@ onMounted(async () => {
                                     type="checkbox"
                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     @change="updateFilter(section.id, option.id)"
-                                    :checked="route.query[`filter_ids[${optionIdx}]`]?.includes(option.id.toString())"
+                                    :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                                 />
                                 <label
                                     :for="`${section.id}-${optionIdx}-mobile`"

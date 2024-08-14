@@ -68,79 +68,10 @@ onMounted(async () => {
         <div class="flex flex-col-reverse md:flex-row items-start gap-5">
           <div class="w-full md:w-2/3 flex flex-col gap-12">
             <div class="w-full">
-              <div class="flex gap-6 mb-4 border-b border-[#F0DFDF] pb-3 items-center">
-                <div
-                    class="w-8 h-8 rounded-full bg-mainColor flex items-center justify-center text-white text-xl font-semibold">
-                  1
-                </div>
-                <p class="text-base md:text-2xl font-semibold">
-                  {{ $t('checkout.first.title') }}
-                </p>
-              </div>
-
-              <div class="mb-7">
-                <p
-                    class="text-[#7B7B7B]">
-                  {{ $t('checkout.first.text') }}
-                </p>
-                <div v-if="recipients.recipientList">
-                  <select
-                      name=""
-                      id=""
-                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
-                    <option :value="null">{{ $t('checkout.first.placeholder') }}</option>
-                    <option
-                        v-for="(item, index) of recipients.recipientList.data"
-                        :key="index"
-                        value="">
-                      {{ item }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="flex flex-col md:flex-row gap-5 mb-6">
-                <label class="w-full flex gap-3 items-center" for="type">
-                  <input
-                      type="radio"
-                      class="w-6 h-6"
-                      name="type"
-                      id="type">
-                  <p class="text-sm md:text-xl">
-                    {{ $t('checkout.first.physical') }}
-                  </p>
-                </label>
-                <label class="w-full flex gap-3 items-center" for="type">
-                  <input
-                      type="radio"
-                      class="w-6 h-6"
-                      name="type"
-                      id="type">
-                  <p class="text-sm md:text-xl">
-                    {{ $t('checkout.first.legal') }}
-                  </p>
-                </label>
-              </div>
-              <div class="flex flex-col gap-4">
-                <div>
-                  <input
-                      type="text"
-                      :placeholder="$t('checkout.first.name')"
-                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
-                </div>
-                <div>
-                  <input
-                      type="text"
-                      :placeholder="$t('checkout.first.phone')"
-                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
-                </div>
-              </div>
-            </div>
-            <div class="w-full">
               <div class="flex items-center gap-6 mb-4 border-b border-[#F0DFDF] pb-3">
                 <div
                     class="w-8 h-8 rounded-full bg-mainColor flex items-center justify-center text-white text-xl font-semibold">
-                  2
+                  1
                 </div>
                 <p class="text-base md:text-2xl font-semibold">
                   {{ $t('checkout.second.title') }}
@@ -192,7 +123,7 @@ onMounted(async () => {
                   </select>
                   <p
                       v-else
-                      class="text-[#7B7B7B]">
+                      class="text-red-500 font-semibold p-3 border-b border-[#F0DFDF]">
                     {{ $t('checkout.second.text') }}
                   </p>
                 </div>
@@ -200,8 +131,61 @@ onMounted(async () => {
               <p
                   v-else
                   class="text-black">
-                {{ $t('checkout.address_delivery') }}: <span class="font-semibold">г. Алматы, ул. Абая 123</span>
+                {{ $t('checkout.second.address') }}: <span class="font-semibold">г. Алматы, ул. Абая 123</span>
               </p>
+            </div>
+            <div class="w-full">
+              <div class="flex justify-between items-center mb-4 border-b border-[#F0DFDF] pb-3">
+                <div class="flex gap-6 items-center">
+                  <div
+                      class="w-8 h-8 rounded-full bg-mainColor flex items-center justify-center text-white text-xl font-semibold">
+                    2
+                  </div>
+                  <p class="text-base md:text-2xl font-semibold">
+                    {{ $t('checkout.first.title') }}
+                  </p>
+                </div>
+                <p
+                    @click="modals.showModal('createAddress')"
+                    class="text-mainColor cursor-pointer">
+                  + {{ $t('checkout.first.add') }}
+                </p>
+              </div>
+
+              <div
+                  v-if="recipients.recipientList"
+                  class="mb-7">
+                <div v-if="recipients.recipientList.data.length > 0">
+                  <select
+                      name=""
+                      id=""
+                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
+                    <option :value="null">{{ $t('checkout.first.placeholder') }}</option>
+                    <option
+                        v-for="(item, index) of recipients.recipientList.data"
+                        :key="index"
+                        value="">
+                      {{ item }}
+                    </option>
+                  </select>
+                </div>
+                <p
+                    v-else
+                    class="text-red-500 font-semibold p-3 border-b border-[#F0DFDF]">
+                  {{ $t('checkout.first.text') }}
+                </p>
+              </div>
+
+              <div>
+                <p class="text-xs text-[#7B7B7B]">
+                  Комментарии к заказу
+                </p>
+                <textarea
+                    rows="4"
+                    class="border border-[#F0DFDF] w-full p-4 rounded-lg"
+                    placeholder="Введите свой комментарий"
+                />
+              </div>
             </div>
             <div class="w-full">
               <div class="flex items-center gap-6 mb-4 border-b border-[#F0DFDF] pb-3">

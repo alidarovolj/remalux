@@ -59,16 +59,15 @@ onMounted(async () => {
     <div class="container mx-auto px-4 md:px-0">
       <div class="pt-12 pb-32">
         <div class="flex justify-between">
-          <h1 class="text-3xl mb-8 font-semibold">
+          <h1 class="text-3xl font-semibold">
             {{ t('cart.title') }}: <span v-if="cartList">{{ cartList.data.length }}</span>
           </h1>
           <div v-if="cartList">
             <div
                 v-if="cartList.data.length > 0"
                 @click="removeCartLocal"
-                class="flex items-center text-mainColor gap-2">
-              <TrashIcon class="w-7 h-7"/>
-              <p class="font-semibold">
+                class="flex items-center gap-2">
+              <p class="font-medium text-red-500">
                 {{ t('cart.clear') }}
               </p>
             </div>

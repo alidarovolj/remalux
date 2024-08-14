@@ -80,10 +80,11 @@ input:focus-visible {
 }
 
 .auth .carousel__track {
-    height: 500px;
+    height: 100%;
 }
 
-.auth img {
+.auth img,
+.auth.carousel__slide{
     border-radius: 20px;
 }
 

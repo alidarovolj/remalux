@@ -6,6 +6,7 @@ import ProductsPreloader from "~/components/general/productsPreloader.vue";
 
 const localePath = useLocalePath();
 const products = useProductsStore()
+const router = useRouter()
 
 const breakpoints = ref({
   0: {
@@ -20,6 +21,7 @@ const breakpoints = ref({
 
 onMounted(async () => {
   await nextTick()
+  await router.push({ query: {} });
   await products.getProducts()
 })
 </script>
@@ -47,6 +49,8 @@ onMounted(async () => {
             :breakpoints="breakpoints"
             :mouse-drag="true"
             :touch-drag="true"
+            :wrap-around="true"
+            autoplay="4000"
         >
           <my-carousel-slide
               v-for="(item, index) of products.productsList.data"

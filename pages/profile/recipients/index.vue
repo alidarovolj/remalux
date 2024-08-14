@@ -6,7 +6,7 @@ import {useRecipientsStore} from "~/stores/recipients.js";
 const {t} = useI18n()
 const localePath = useLocalePath()
 const recipients = useRecipientsStore()
-const { recipientList } = useRecipientsStore()
+const { recipientList } = storeToRefs(recipients)
 const modals = useModalsStore()
 
 const links = computed(() => [
@@ -42,10 +42,11 @@ onMounted(async () => {
                 v-for="(item, index) of recipientList.data"
                 :key="index"
                 class="p-4 border border-[#F0DFDF] rounded-lg flex items-center justify-between">
-<!--              <p>{{ item.country.title }}, {{ item.address }}, {{ item.entrance }} подъезд, этаж {{ item.floor }},-->
-<!--                кв. {{ item.float }}</p>-->
+              <div class="flex gap-5">
+                <p>{{ item.name }} / {{ item.phone_number }}</p>
+              </div>
               <TrashIcon
-                  @click="modals.showModal('removeAddress', item)"
+                  @click="modals.showModal('removeRecipient', item)"
                   class="w-5 h-5 text-red-500"/>
             </div>
           </div>
@@ -55,8 +56,9 @@ onMounted(async () => {
             </p>
           </div>
         </div>
+        <div v-else class="spinner p-3"></div>
         <div
-            @click="modals.showModal('createAddress')"
+            @click="modals.showModal('createRecipient')"
             class="cursor-pointer flex items-center justify-center py-4 border rounded-lg border-dashed border-mainColor text-mainColor text-center text-xl gap-3 mt-5">
           <PlusIcon class="w-7 h-7"/>
           <p>{{ $t('profile.add_recipient') }}</p>

@@ -55,6 +55,7 @@ onMounted(async () => {
             </p>
           </div>
         </div>
+        <div v-else class="spinner p-3"></div>
         <div
             @click="modals.showModal('createAddress')"
             class="cursor-pointer flex items-center justify-center py-4 border rounded-lg border-dashed border-mainColor text-mainColor text-center text-xl gap-3 mt-5">

@@ -26,21 +26,21 @@ onMounted(async () => {
 <template>
   <div>
     <p class="text-xl font-semibold mb-6">
-      Удаление адреса
+      {{ $t('addresses.remove.title') }}
     </p>
     <p>
-      Вы уверены, что хотите удалить адрес?
+      {{ $t('addresses.remove.confirmation') }}
     </p>
     <div class="flex justify-end gap-3 mt-6">
       <button
           @click="modals.showModal('removeAddress', false)"
           class="px-6 py-2 text-mainColor border border-mainColor rounded-lg">
-        Отмена
+        {{ $t('addresses.remove.cancel') }}
       </button>
       <button
           @click="removeAddressLocal"
           class="px-6 py-2 bg-red-500 text-white rounded-lg">
-        Удалить
+        {{ $t('addresses.remove.delete') }}
       </button>
     </div>
   </div>

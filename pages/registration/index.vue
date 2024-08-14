@@ -6,7 +6,10 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import img1 from "assets/img/auth/slide1.jpg";
 import img2 from "assets/img/auth/slide2.jpg";
 import img3 from "assets/img/auth/slide3.jpg";
+import img4 from "assets/img/auth/slide4.jpg";
+import img5 from "assets/img/auth/slide5.jpg";
 import {useAddressesStore} from "~/stores/addresses.js";
+import {useUserStore} from "~/stores/user.js";
 
 const loading = ref(false);
 const notifications = useNotificationStore()
@@ -15,6 +18,7 @@ const router = useRouter()
 const localePath = useLocalePath()
 const addresses = useAddressesStore()
 const {citiesList} = storeToRefs(addresses)
+const user = useUserStore()
 
 const form = ref({
   name: '',
@@ -35,7 +39,7 @@ const v$ = useVuelidate({
 }, form);
 
 const carousel = ref([
-  img1, img2, img3
+  img1, img2, img3, img4, img5
 ])
 
 const breakpoints = ref({
@@ -49,6 +53,18 @@ const breakpoints = ref({
   }
 })
 
+const checkPhone = async (e) => {
+  if (e.target.value.length === 18) {
+    await user.checkPhone(e.target.value)
+  }
+}
+
+const checkEmail = async (e) => {
+  if (e.target.value.includes('@')) {
+    await user.checkEmail(e.target.value)
+  }
+}
+
 const registerUser = async () => {
   loading.value = true;
   await v$.value.$validate();
@@ -59,24 +75,32 @@ const registerUser = async () => {
     return;
   }
 
-  if (form.value.password === form.value.password_confirmation) {
-    try {
-      const response = await api(`/api/auth/registration`, "POST", {
-        body: JSON.stringify(form.value)
-      }, route.query);
+  if(user.userCheckedEmail) {
+    if(user.userCheckedPhone) {
+      if (form.value.password === form.value.password_confirmation) {
+        try {
+          const response = await api(`/api/auth/registration`, "POST", {
+            body: JSON.stringify(form.value)
+          }, route.query);
 
-      console.log(response)
+          console.log(response)
 
-      if (response.message === "Success !") {
-        notifications.showNotification("success", "Успешно", "Вы успешно зарегистрировались!");
-        loading.value = false;
-        router.push(localePath('/login'));
+          if (response.message === "Success !") {
+            notifications.showNotification("success", "Успешно", "Вы успешно зарегистрировались!");
+            loading.value = false;
+            router.push(localePath('/login'));
+          }
+        } catch (e) {
+          notifications.showNotification("error", "Произошла ошибка", e);
+        }
+      } else {
+        notifications.showNotification("error", "Пароли не совпадают", "Проверьте правильность введенных данных и попробуйте снова.");
       }
-    } catch (e) {
-      notifications.showNotification("error", "Произошла ошибка", e);
+    } else {
+      notifications.showNotification("error", "Данный номер телефона уже зарегистрирован", "Проверьте правильность введенных данных и попробуйте снова.");
     }
   } else {
-    notifications.showNotification("error", "Пароли не совпадают", "Проверьте правильность введенных данных и попробуйте снова.");
+    notifications.showNotification("error", "Данный email уже зарегистрирован", "Проверьте правильность введенных данных и попробуйте снова.");
   }
   loading.value = false;
 }
@@ -131,40 +155,78 @@ onMounted(async () => {
                   />
                 </div>
 
-                <div
-                    :class="{ '!border !border-red-500' : v$.phone_number.$error }"
-                    class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="phone_number" class="block text-xs font-medium text-gray-900">
-                    {{ $t('forms.phone_number.title') }}
-                  </label>
-                  <input
-                      v-model="form.phone_number"
-                      id="phone_number"
-                      name="phone_number"
-                      type="text"
-                      autocomplete="phone_number"
-                      v-maska
-                      data-maska="+7 (###) ###-##-##"
-                      placeholder="+7 (___) ___-__-__"
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  />
+                <div>
+                  <div
+                      :class="{ '!border !border-red-500' : v$.phone_number.$error }"
+                      class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                    <label for="phone_number" class="block text-xs font-medium text-gray-900">
+                      {{ $t('forms.phone_number.title') }}
+                    </label>
+                    <input
+                        v-model="form.phone_number"
+                        @change="checkPhone"
+                        id="phone_number"
+                        name="phone_number"
+                        type="text"
+                        autocomplete="phone_number"
+                        v-maska
+                        data-maska="+7 (###) ###-##-##"
+                        placeholder="+7 (___) ___-__-__"
+                        class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                  <div v-if="form.phone_number.length === 18">
+                    <div class="text-xs mt-1">
+                      <p
+                          v-if="!user.userCheckedPhone"
+                          class="text-red-500"
+                      >
+                        Данный номер телефона уже зарегистрирован
+                      </p>
+                      <p
+                          v-else
+                          class="text-green-500"
+                      >
+                        Данный номер телефон свободен
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div
-                    :class="{ '!border !border-red-500' : v$.email.$error }"
-                    class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="email" class="block text-xs font-medium text-gray-900">
-                    {{ $t('forms.email.title') }}
-                  </label>
-                  <input
-                      v-model="form.email"
-                      id="email"
-                      name="email"
-                      type="text"
-                      autocomplete="email"
-                      :placeholder="$t('forms.email.placeholder')"
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  />
+                <div>
+                  <div
+                      :class="{ '!border !border-red-500' : v$.email.$error }"
+                      class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                    <label for="email" class="block text-xs font-medium text-gray-900">
+                      {{ $t('forms.email.title') }}
+                    </label>
+                    <input
+                        v-model="form.email"
+                        @change="checkEmail"
+                        id="email"
+                        name="email"
+                        type="text"
+                        autocomplete="email"
+                        :placeholder="$t('forms.email.placeholder')"
+                        class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                  <div>
+                    <div v-if="user.userCheckedEmail !== null" class="text-xs mt-1">
+                      <p
+                          v-if="!user.userCheckedEmail"
+                          class="text-red-500"
+                      >
+                        Данный email уже зарегистрирован
+                      </p>
+                      <p
+                          v-else
+                          class="text-green-500"
+                      >
+                        Данный email свободен
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div
@@ -270,12 +332,14 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <div class="relative hidden w-full md:block auth">
+      <div class="relative hidden w-full md:block auth h-screen">
         <client-only>
           <my-carousel-carousel
               :breakpoints="breakpoints"
               :mouse-drag="true"
               :touch-drag="true"
+              :wrap-around="true"
+              autoplay="4000"
           >
             <my-carousel-slide
                 v-for="(item, index) of carousel"
@@ -284,7 +348,7 @@ onMounted(async () => {
             >
               <img
                   :src="item"
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-contain"
                   alt=""
               />
             </my-carousel-slide>

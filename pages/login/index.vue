@@ -16,6 +16,7 @@ const router = useRouter()
 const localePath = useLocalePath()
 const auth = useAuthStore()
 const user = useUserStore()
+const cart = useCartStore()
 
 const form = ref({
   phone_number: '',
@@ -62,6 +63,7 @@ const loginUser = async () => {
     notifications.showNotification("success", "Успешно", "Вы успешно авторизовались");
     await nextTick()
     await user.getProfile()
+    await cart.getCart()
     await router.push(localePath('/'))
   } catch (e) {
     notifications.showNotification("error", "Произошла ошибка", e);
@@ -168,6 +170,8 @@ const loginUser = async () => {
               :breakpoints="breakpoints"
               :mouse-drag="true"
               :touch-drag="true"
+              :wrap-around="true"
+              autoplay="4000"
           >
             <my-carousel-slide
                 v-for="(item, index) of carousel"

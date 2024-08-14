@@ -11,6 +11,11 @@ import {required} from "@vuelidate/validators";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useCartStore} from "~/stores/cart.js";
 import {useAuthStore} from "~/stores/auth.js";
+import img1 from "~/assets/img/store/1.png";
+import img2 from "~/assets/img/store/2.png";
+import img3 from "~/assets/img/store/3.png";
+import img4 from "~/assets/img/store/4.png";
+import img5 from "~/assets/img/store/5.png";
 
 const products = useProductsStore();
 const cart = useCartStore()
@@ -29,6 +34,10 @@ const activeTab = ref(1);
 const localePath = useLocalePath();
 const calculatorActive = ref(false);
 const {t} = useI18n();
+
+const images = ref([
+  img1, img2, img3, img4, img5
+])
 
 const form = ref({
   product_id: null,
@@ -53,10 +62,6 @@ const breakpoints = ref({
   0: {
     itemsToShow: 1,
     snapAlign: "center",
-  },
-  700: {
-    itemsToShow: 3,
-    snapAlign: "start",
   },
 });
 
@@ -122,12 +127,31 @@ const addToCartLocal = async () => {
       <div v-if="detailProduct && sameProducts && productsList">
         <div class="flex flex-col md:flex-row items-start gap-7 mb-16">
           <div class="h-auto md:h-[420px] w-full md:w-1/2 rounded-xl border-2 border-mainColor border-dashed relative">
-            <div class="w-[210px] h-[210px] absolute left-0 bottom-0">
+            <div class="w-[150px] h-[150px] absolute left-0 bottom-0 z-20 bg-white rounded-tr-lg">
               <img
                   :src="detailProduct.image_url"
                   alt="product"
                   class="w-full h-full object-contain rounded-xl"
               />
+            </div>
+            <div class="w-full h-full product-carousel">
+              <client-only>
+                <my-carousel-carousel
+                    class="w-full h-full"
+                    :breakpoints="breakpoints"
+                    autoplay="4000"
+                    :mouse-drag="true"
+                    :touch-drag="true"
+                    :wrap-around="true"
+                >
+                  <my-carousel-slide
+                      v-for="(item, index) of images"
+                      :key="index">
+                    <div class="bg-green-500 w-full h-full absolute left-0 top-0"></div>
+                    <img class="w-full h-full absolute left-0 top-0 z-10" :src="item" alt="">
+                  </my-carousel-slide>
+                </my-carousel-carousel>
+              </client-only>
             </div>
           </div>
           <div class="w-full md:w-1/2 shadow-xl flex flex-col gap-8 p-7 rounded-xl">
@@ -351,3 +375,17 @@ const addToCartLocal = async () => {
     </div>
   </div>
 </template>
+
+<style>
+.product-carousel .carousel__viewport,
+.product-carousel .carousel__track {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important
+}
+
+.product-carousel .carousel__slide img {
+  height: 100%;
+  object-fit: cover;
+}
+</style>

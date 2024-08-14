@@ -22,7 +22,6 @@ const navigation = computed(() => [
   {name: t('header_links.store'), href: localePath('/store')},
   {name: t('header_links.choose_color'), href: localePath('/')},
   {name: t('header_links.ideas'), href: localePath('/ideas')},
-  {name: t('header_links.calculator'), href: localePath('/')},
   {name: t('header_links.about_us'), href: localePath('/about')},
   {name: t('header_links.news'), href: localePath('/news')},
   {name: t('header_links.contacts'), href: localePath('/contacts')},
