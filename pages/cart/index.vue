@@ -7,6 +7,7 @@ import {useLanguagesStore} from "~/stores/languages.js";
 import {MinusIcon, TrashIcon} from "@heroicons/vue/24/outline/index.js";
 import NoResults from "~/components/general/noResults.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
+import {useCartCookieStore} from "~/stores/cartCookie.js";
 
 const {t} = useI18n();
 const localePath = useLocalePath();
@@ -15,6 +16,12 @@ const cart = useCartStore()
 const {cartList, cartPrice} = storeToRefs(cart);
 const language = useLanguagesStore()
 const {cur_lang} = storeToRefs(language);
+const cartData = useCartCookieStore()
+const { cartCookie, cartTotalPrice } = storeToRefs(cartData)
+
+const isItemChecked = (item) => {
+  return cartCookie.value && cartCookie.value.some(cartItem => cartItem.id === item.id && cartItem.price === item.price);
+}
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
@@ -34,12 +41,17 @@ const editQuantity = async (id, quantity) => {
   }
   await cart.editItem(id, editForm.value)
   await cart.getCart()
+  await cartData.checkChangedCart()
   editForm.value.quantity = null
 }
 
 const removeLocal = async (id) => {
+  let item = cartList.value.data.find(item => item.id === id)
+  await nextTick()
+  await cartData.addOrRemoveItemCart(item)
   await cart.removeItem(id)
   await cart.getCart()
+  await cartData.checkChangedCart()
 }
 
 const removeCartLocal = async () => {
@@ -47,9 +59,15 @@ const removeCartLocal = async () => {
   await cart.getCart()
 }
 
+const checkedCartCookie = computed(() =>
+    cartCookie.value && cartList.value && cartList.value.data.length > 0 && cartList.value.data.length === cartCookie.value.length
+);
+
 onMounted(async () => {
   await nextTick()
+  await cartData.initCookieCart()
   await cart.getCart()
+  await cartData.cartGetItems()
 })
 </script>
 
@@ -75,7 +93,7 @@ onMounted(async () => {
         </div>
         <div class="mt-8 flow-root">
           <div
-              v-if="cartList"
+              v-if="cartList && cartCookie"
               class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div
                 v-if="cartList.data.length > 0"
@@ -84,6 +102,13 @@ onMounted(async () => {
                   class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-[#FAFAFA]">
                 <tr>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900">
+                    <input
+                        class="w-5 h-5"
+                        type="checkbox"
+                        :checked="checkedCartCookie"
+                        @input="cartData.addAllItemsCart(cartList)">
+                  </th>
                   <th scope="col" class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900">
                     {{ t('cart.table.product') }}
                   </th>
@@ -110,6 +135,13 @@ onMounted(async () => {
                 <tr
                     v-for="(item, index) in cartList.data"
                     :key="index">
+                  <td class="whitespace-nowrap py-5 pl-4 pr-3">
+                    <input
+                        class="w-5 h-5"
+                        type="checkbox"
+                        :checked="isItemChecked(item)"
+                        @input="cartData.addOrRemoveItemCart(item)">
+                  </td>
                   <td class="whitespace-nowrap py-5 pl-4 pr-3  sm:pl-0">
                     <div class="flex items-center">
                       <div class="h-24 w-24 flex-shrink-0">
@@ -235,11 +267,11 @@ onMounted(async () => {
               <div class="w-full md:w-1/3 flex flex-col justify-between">
                 <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">
                   <p>{{ $t('cart.checkout.summary') }}</p>
-                  <p>{{ cartPrice }} ₸</p>
+                  <p>{{ cartTotalPrice }} ₸</p>
                 </div>
                 <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">
                   <p>{{ $t('cart.checkout.total') }}</p>
-                  <p class="text-xl font-bold">{{ cartPrice }} ₸</p>
+                  <p class="text-xl font-bold">{{ cartTotalPrice }} ₸</p>
                 </div>
                 <NuxtLink
                     :to="localePath('/cart/checkout')"

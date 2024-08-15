@@ -8,11 +8,13 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import {useLanguagesStore} from "~/stores/languages.js";
 import {useAddressesStore} from "~/stores/addresses.js";
 import {useRecipientsStore} from "~/stores/recipients.js";
+import {useCartCookieStore} from "~/stores/cartCookie.js";
+import {storeToRefs} from "pinia";
+import {useVuelidate} from "@vuelidate/core";
+import {required} from "@vuelidate/validators";
 
 const {t} = useI18n()
 const localePath = useLocalePath()
-const activeType = ref(1)
-const deliveryType = ref(1)
 const cart = useCartStore()
 const {cartList, cartPrice} = storeToRefs(cart)
 const notifications = useNotificationStore()
@@ -21,14 +23,30 @@ const {cur_lang} = storeToRefs(languages)
 const modals = useModalsStore()
 const addresses = useAddressesStore()
 const recipients = useRecipientsStore()
+const cartData = useCartCookieStore()
+const {cartTotalPrice} = storeToRefs(cartData)
+const loading = ref(false)
+const router = useRouter()
 
 const editForm = ref({
   quantity: null
 })
 
 const form = ref({
-  payment_id: null,
+  address_id: null,
+  recipient_id: null,
+  note: null,
+  delivery_type: 1,
+  payment_type: 1,
+  agreement: false
 })
+
+const v$ = useVuelidate({
+  address_id: {required},
+  recipient_id: {required},
+  note: {required},
+  agreement: {required}
+}, form);
 
 const editQuantity = async (id, quantity) => {
   editForm.value.quantity = quantity
@@ -39,6 +57,7 @@ const editQuantity = async (id, quantity) => {
   }
   await cart.editItem(id, editForm.value)
   await cart.getCart()
+  await cartData.checkChangedCart()
   editForm.value.quantity = null
 }
 
@@ -48,10 +67,36 @@ const links = computed(() => [
   {title: t('breadcrumbs.checkout'), link: localePath('/cart/checkout')},
 ]);
 
+const makeOrder = async () => {
+  loading.value = true;
+  await v$.value.$validate();
+
+  if (v$.value.$error) {
+    notifications.showNotification("error", "Данные не заполнены", "Проверьте правильность введенных данных и попробуйте снова.");
+    loading.value = false;
+    return;
+  }
+
+  try {
+    const response = await api(`/api/carts/order`, "POST", {
+      body: JSON.stringify(form.value)
+    }, route.query);
+
+    await nextTick()
+    await cart.getCart()
+    await router.push(localePath('/payment-success'))
+  } catch (e) {
+    notifications.showNotification("error", "Произошла ошибка", e);
+  }
+
+}
+
 onMounted(async () => {
   await nextTick()
   await addresses.getAddresses()
   await recipients.getRecipients()
+  await cartData.initCookieCart()
+  await cartData.cartGetItems()
 })
 </script>
 
@@ -79,21 +124,21 @@ onMounted(async () => {
               </div>
               <div class="flex flex-col md:flex-row gap-5 mb-6">
                 <div
-                    @click="activeType = 1"
-                    :class="{ 'bg-[#F0DFDF]' : activeType === 1 }"
+                    @click="form.delivery_type = 1"
+                    :class="{ 'bg-[#F0DFDF]' : form.delivery_type === 1 }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
                   <TruckIcon class="w-5 h-5"/>
                   <p>{{ $t('checkout.second.delivery') }}</p>
                 </div>
                 <div
-                    @click="activeType = 2"
-                    :class="{ 'bg-[#F0DFDF]' : activeType === 2 }"
+                    @click="form.delivery_type = 2"
+                    :class="{ 'bg-[#F0DFDF]' : form.delivery_type === 2 }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
                   <HomeModernIcon class="w-5 h-5"/>
                   <p>{{ $t('checkout.second.pickup') }}</p>
                 </div>
               </div>
-              <div v-if="activeType === 1">
+              <div v-if="form.delivery_type === 1">
                 <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
                     {{ $t('checkout.second.address') }}
@@ -107,6 +152,8 @@ onMounted(async () => {
                 <div v-if="addresses.addressesList">
                   <select
                       v-if="addresses.addressesList.data.length > 0"
+                      v-model="form.address_id"
+                      :class="{ '!border !border-red-500 rounded-md': v$.address_id.$error }"
                       name=""
                       id=""
                       class="w-full px-4 border-b border-[#F0DFDF] py-3">
@@ -127,6 +174,7 @@ onMounted(async () => {
                     {{ $t('checkout.second.text') }}
                   </p>
                 </div>
+                <div v-else class="spinner"></div>
               </div>
               <p
                   v-else
@@ -157,6 +205,8 @@ onMounted(async () => {
                   class="mb-7">
                 <div v-if="recipients.recipientList.data.length > 0">
                   <select
+                      v-model="form.recipient_id"
+                      :class="{ '!border !border-red-500 rounded-md': v$.recipient_id.$error }"
                       name=""
                       id=""
                       class="w-full px-4 border-b border-[#F0DFDF] py-3">
@@ -165,7 +215,7 @@ onMounted(async () => {
                         v-for="(item, index) of recipients.recipientList.data"
                         :key="index"
                         value="">
-                      {{ item }}
+                      {{ item.name }} / {{ item.phone_number }}
                     </option>
                   </select>
                 </div>
@@ -175,12 +225,15 @@ onMounted(async () => {
                   {{ $t('checkout.first.text') }}
                 </p>
               </div>
+              <div v-else class="spinner"></div>
 
               <div>
                 <p class="text-xs text-[#7B7B7B]">
                   Комментарии к заказу
                 </p>
                 <textarea
+                    v-model="form.note"
+                    :class="{ '!border !border-red-500': v$.note.$error }"
                     rows="4"
                     class="border border-[#F0DFDF] w-full p-4 rounded-lg"
                     placeholder="Введите свой комментарий"
@@ -199,61 +252,18 @@ onMounted(async () => {
               </div>
               <div class="flex flex-col md:flex-row gap-5 mb-6">
                 <div
-                    @click="deliveryType = 1"
-                    :class="{ 'bg-[#F0DFDF]' : deliveryType === 1 }"
+                    @click="form.payment_type = 1"
+                    :class="{ 'bg-[#F0DFDF]' : form.payment_type === 1 }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
                   <CreditCardIcon class="w-5 h-5"/>
                   <p>{{ $t('checkout.third.online') }}</p>
                 </div>
                 <div
-                    @click="deliveryType = 2"
-                    :class="{ 'bg-[#F0DFDF]' : deliveryType === 2 }"
+                    @click="form.payment_type = 2"
+                    :class="{ 'bg-[#F0DFDF]' : form.payment_type === 2 }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
                   <CircleStackIcon class="w-5 h-5"/>
                   <p>{{ $t('checkout.third.phys') }}</p>
-                </div>
-              </div>
-              <div class="mb-6">
-                <div
-                    v-if="deliveryType === 1"
-                    class="flex flex-col gap-4"
-                >
-                  <label
-                      for="payment"
-                      class="flex items-center gap-5 cursor-pointer">
-                    <input
-                        v-model="form.payment_id"
-                        value="1"
-                        id="payment"
-                        name="payment"
-                        type="radio"
-                        class="w-6 h-6">
-                    <div class="flex items-center gap-3">
-                      <img
-                          class="w-10 h-10 object-contain"
-                          src="@/assets/img/payments/kaspi.png"
-                          alt="">
-                      <p class="text-lg font-semibold">Kaspi</p>
-                    </div>
-                  </label>
-                  <label
-                      for="payment-2"
-                      class="flex items-center gap-5 cursor-pointer">
-                    <input
-                        v-model="form.payment_id"
-                        value="2"
-                        id="payment-2"
-                        name="payment-2"
-                        type="radio"
-                        class="w-6 h-6">
-                    <div class="flex items-center gap-3">
-                      <img
-                          class="w-10 h-10 object-contain"
-                          src="@/assets/img/payments/halyk.png"
-                          alt="">
-                      <p class="text-lg font-semibold">Halyk</p>
-                    </div>
-                  </label>
                 </div>
               </div>
               <label
@@ -261,19 +271,33 @@ onMounted(async () => {
                   for="agreement">
                 <input
                     type="checkbox"
+                    v-model="form.agreement"
+                    :class="{ '!border !border-red-500': v$.agreement.$error }"
                     class="w-6 h-6"
                     name="agreement"
                     id="agreement">
                 <p class="text-sm">
-                  {{ $t('checkout.third.agreement') }}
+                  {{ $t('checkout.third.agreement.text') }}
+                  <NuxtLink
+                      class="text-blue-500 underline"
+                      :to="localePath('/')">
+                    {{ $t('checkout.third.agreement.link') }}
+                  </NuxtLink>
                 </p>
               </label>
               <p class="font-bold mb-4">
                 {{ $t('checkout.third.to_pay') }}: {{ cartPrice }} ₸
               </p>
               <p
+                  v-if="!loading"
+                  @click="makeOrder"
                   class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center">
                 {{ $t('cart.checkout.checkout_button') }}
+              </p>
+              <p
+                  v-else
+                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center">
+                <span class="spinner"></span>
               </p>
             </div>
           </div>
@@ -286,7 +310,7 @@ onMounted(async () => {
 
             <div class="flow-root">
               <div
-                  v-if="cartList"
+                  v-if="cartList && cartData.cartItems"
                   class="-mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div
                     v-if="cartList.data.length > 0"
@@ -308,7 +332,7 @@ onMounted(async () => {
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                     <tr
-                        v-for="(item, index) in cartList.data"
+                        v-for="(item, index) in cartData.cartItems"
                         :key="index">
                       <td class="whitespace-nowrap py-5 pl-4 pr-3  sm:pl-0">
                         <div class="flex flex-col">
@@ -388,7 +412,7 @@ onMounted(async () => {
                 </div>
                 <div class="flex items-center justify-between pt-3">
                   <p>{{ $t('checkout.to_pay') }}:</p>
-                  <p>{{ cartPrice }} ₸</p>
+                  <p>{{ cartTotalPrice }} ₸</p>
                 </div>
               </div>
             </div>
