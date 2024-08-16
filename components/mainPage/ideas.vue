@@ -48,7 +48,7 @@ onMounted(async () => {
             :mouse-drag="true"
             :touch-drag="true"
             :wrap-around="true"
-            autoplay="4000"
+            :autoplay="4000"
         >
           <my-carousel-slide
               v-for="(item, index) of ideasList.data"

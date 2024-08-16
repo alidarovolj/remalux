@@ -19,16 +19,18 @@ const localePath = useLocalePath();
                 class="text-[#7B7B7B]">
               /
             </p>
-            <NuxtLink
-                :to="localePath(item.link)"
-                class="ml-4 text-sm text-[#7B7B7B]"
-                :class="[
+            <ClientOnly>
+              <NuxtLink
+                  :to="localePath(item.link)"
+                  class="ml-4 text-sm text-[#7B7B7B]"
+                  :class="[
                     { '!ml-0' : index === 0 },
                     { '!text-mainColor' : route.fullPath === localePath(item.link) }
                  ]"
-                :aria-current="route.fullPath === localePath(item.link) ? 'page' : undefined">
-              {{ item.title }}
-            </NuxtLink>
+                  :aria-current="route.fullPath === localePath(item.link) ? 'page' : undefined">
+                {{ item.title }}
+              </NuxtLink>
+            </ClientOnly>
           </div>
         </li>
       </ol>

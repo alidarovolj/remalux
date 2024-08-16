@@ -11,7 +11,25 @@
     "recipients": "Получатели",
     "orders": "Заказы",
     "favourites": "Избранное",
-    "payment_success": "Успешная оплата"
+    "payment_success": "Успешная оплата",
+    "contacts": "Контакты"
+  },
+  "contacts": {
+    "title": "Наши филиалы",
+    "address": "Адрес",
+    "contacts": "Контакты",
+    "email": "Почта",
+    "work_time": "График работы",
+    "work_info": {
+      "first": {
+        "from": "Понедельник - Пятница с",
+        "to": "до"
+      },
+      "second": {
+        "from": "Выходные с",
+        "to": "до"
+      }
+    }
   },
   "payment_success": {
     "title": "Ваш заказ успешно оформлен!",

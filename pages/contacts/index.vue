@@ -1,144 +1,138 @@
+<script setup>
+import {useContactsStore} from '~/stores/contacts.js';
+import {storeToRefs} from 'pinia';
+import Breadcrumbs from '~/components/general/breadcrumbs.vue';
+import MapsYandexMapsWithPlacemarks from '~/components/maps/YandexMapsWithPlacemarks.vue';
+import {useLanguagesStore} from '~/stores/languages.js';
+
+const contacts = useContactsStore();
+const {contactsList} = storeToRefs(contacts);
+const languages = useLanguagesStore();
+const {cur_lang} = storeToRefs(languages);
+
+const localePath = useLocalePath();
+const {t} = useI18n();
+
+const activeContact = ref(null);
+
+const links = computed(() => [
+  {title: t('breadcrumbs.home'), link: localePath('/')},
+  {title: t('breadcrumbs.contacts'), link: localePath('/contacts')}
+]);
+
+onMounted(async () => {
+  await nextTick();
+  await contacts.getContacts();
+
+  // Set the initial active contact if the contacts list is not empty
+  if (contactsList.value.data && contactsList.value.data.length > 0) {
+    activeContact.value = contactsList.value.data[0];
+  }
+});
+</script>
+
+
 <template>
+  <Breadcrumbs :links="links"/>
   <div class="pt-12 pb-32">
-    <div class="container mx-auto px-4 md:px-0">
+    <div
+        v-if="contactsList && activeContact"
+        class="container mx-auto px-4 md:px-0">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900">Our offices</h2>
-        <p class="my-6 leading-8 text-gray-600">
-          Varius facilisi mauris sed sit. Non sed et duis dui leo,
-          vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.
-        </p>
-      </div>
-      <div class="flex flex-col md:flex-row gap-10">
-        <form action="#" method="POST" class="w-full lg:flex-auto">
-          <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div>
-              <label
-                  for="first-name"
-                  class="block text-sm font-semibold leading-6 text-gray-900">
-                First name
-              </label>
-              <div class="mt-2.5">
-                <input
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autocomplete="given-name"
-                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainColor sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                  for="last-name"
-                  class="block text-sm font-semibold leading-6 text-gray-900">
-                Last name
-              </label>
-              <div class="mt-2.5">
-                <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autocomplete="family-name"
-                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainColor sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                  for="budget"
-                  class="block text-sm font-semibold leading-6 text-gray-900">
-                Budget
-              </label>
-              <div class="mt-2.5">
-                <input
-                    id="budget"
-                    name="budget"
-                    type="text"
-                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainColor sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                  for="website"
-                  class="block text-sm font-semibold leading-6 text-gray-900">
-                Website
-              </label>
-              <div class="mt-2.5">
-                <input
-                    type="url"
-                    name="website"
-                    id="website"
-                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainColor sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div class="sm:col-span-2">
-              <label
-                  for="message"
-                  class="block text-sm font-semibold leading-6 text-gray-900">
-                Message
-              </label>
-              <div class="mt-2.5">
-                <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainColor sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="mt-10">
-            <button type="submit"
-                    class="block w-full rounded-md bg-mainColor px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
-              Let’s talk
-            </button>
-          </div>
-          <p class="mt-4 text-sm leading-6 text-gray-500">By submitting this form, I agree to the <a href="#"
-                                                                                                     class="font-semibold text-mainColor">privacy&nbsp;policy</a>.
-          </p>
-        </form>
-        <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A2658017259bf7f7cce1b93f48b8d155cbfd28d7197af5a8f15c55167e592f3ee&amp;source=constructor"
-            width="100%"
-            height="461"
-            frameborder="0">
-        </iframe>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+          {{ $t('contacts.title') }}
+        </h2>
       </div>
       <div
-          class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-        <div>
-          <h3 class="border-l border-mainColor pl-6 font-semibold text-gray-900">Los Angeles</h3>
-          <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
-            <p>4556 Brendan Ferry</p>
-            <p>Los Angeles, CA 90210</p>
-          </address>
-        </div>
-        <div>
-          <h3 class="border-l border-mainColor pl-6 font-semibold text-gray-900">New York</h3>
-          <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
-            <p>886 Walter Street</p>
-            <p>New York, NY 12345</p>
-          </address>
-        </div>
-        <div>
-          <h3 class="border-l border-mainColor pl-6 font-semibold text-gray-900">Toronto</h3>
-          <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
-            <p>7363 Cynthia Pass</p>
-            <p>Toronto, ON N3Y 4H8</p>
-          </address>
-        </div>
-        <div>
-          <h3 class="border-l border-mainColor pl-6 font-semibold text-gray-900">London</h3>
-          <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
-            <p>114 Cobble Lane</p>
-            <p>London N1 2EF</p>
+          class="mx-auto mt-6 mb-12 flex flex-col md:flex-row gap-5">
+        <div
+            v-for="(item, index) of contactsList.data"
+            :key="index"
+            @click="activeContact = item"
+            :class="{ '!border-mainColor !text-black bg-[#F0DFDF] border-l-[6px]' : activeContact.id === item.id }"
+            class="w-full pl-5 border-l-2 cursor-pointer border-[#B0B0B0] text-[#B0B0B0] rounded-r-lg py-2 hover:border-mainColor hover:text-black hover:bg-[#F0DFDF] hover:border-l-[6px] transition-all">
+          <h3 class="font-semibold">
+            {{ item.city.title[cur_lang] }}
+          </h3>
+          <address class="mt-3 text-xs not-italic">
+            <p>{{ item.address }}</p>
           </address>
         </div>
       </div>
+      <div class="flex flex-col md:flex-row gap-5">
+        <div class="w-full md:w-1/2">
+          <p class="text-2xl font-semibold mb-6">
+            {{ activeContact.city.title.ru }}
+          </p>
+
+          <div class="flex flex-col gap-5">
+            <div class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+              <p class="w-1/4 text-mainColor">{{ $t('contacts.address') }}</p>
+              <p class="w-3/4 ml-2 font-semibold">{{ activeContact.address }}</p>
+            </div>
+            <div class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+              <p class="w-1/4 text-mainColor">{{ $t('contacts.contacts') }}</p>
+              <div class="w-3/4 ml-2 font-semibold flex gap-8 flex-wrap">
+                <a
+                    :href="`tel:${ activeContact.main_phone }`"
+                    class="text-mainColor"
+                >
+                  {{ activeContact.main_phone }}
+                </a>
+                <a
+                    v-for="(item, index) of activeContact.contact_items.phone"
+                    :key="index"
+                    :href="`tel:${ item.value }`"
+                    class="text-mainColor"
+                >
+                  {{ item.value }}
+                </a>
+              </div>
+            </div>
+            <div class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+              <p class="w-1/4 text-mainColor">{{ $t('contacts.email') }}</p>
+              <div class="w-3/4 ml-2 font-semibold flex gap-8 flex-wrap">
+                <a
+                    :href="`mailto:${ activeContact.main_email }`"
+                    class="text-mainColor"
+                >
+                  {{ activeContact.main_email }}
+                </a>
+                <a
+                    v-for="(item, index) of activeContact.contact_items.email"
+                    :key="index"
+                    :href="`mailto:${item.value}`"
+                    class="text-mainColor"
+                >
+                  {{ item.value }}
+                </a>
+              </div>
+            </div>
+            <div class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+              <p class="w-1/4 text-mainColor">{{ $t('contacts.work_time') }}</p>
+              <div class="w-3/4 ml-2 font-semibold flex flex-col">
+                <p>{{ $t('contacts.work_info.first.from') }} {{ activeContact.work_time.weekdays[0] }} {{ $t('contacts.work_info.first.to') }}
+                  {{ activeContact.work_time.weekdays[1] }}</p>
+                <p>{{ $t('contacts.work_info.second.from') }} {{ activeContact.work_time.weekends[0] }} {{ $t('contacts.work_info.second.to') }}
+                  {{ activeContact.work_time.weekends[1] }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+            v-if="activeContact"
+            class="w-full md:w-1/2">
+          <client-only>
+            <MapsYandexMapsWithPlacemarks :location="{
+              latitude: activeContact.latitude,
+              longitude: activeContact.longitude
+            }"/>
+          </client-only>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </template>
-<script setup lang="ts">
-</script>

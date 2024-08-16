@@ -139,7 +139,7 @@ const addToCartLocal = async () => {
                 <my-carousel-carousel
                     class="w-full h-full"
                     :breakpoints="breakpoints"
-                    autoplay="4000"
+                    :autoplay="4000"
                     :mouse-drag="true"
                     :touch-drag="true"
                     :wrap-around="true"

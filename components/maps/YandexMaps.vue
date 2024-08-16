@@ -13,14 +13,20 @@ export default {
       searchControl: null,
     };
   },
+  props: {
+    location: {
+      type: Object,
+      required: true,
+    },
+  },
   mounted() {
-    this.initMap();
+    this.initMap(ymaps);
   },
   methods: {
-    initMap() {
+    initMap(ymaps) {
       ymaps.ready(() => {
         this.map = new ymaps.Map('map', {
-          center: [43.273564, 76.914851],
+          center: this.$props.location ? [this.$props.location.longitude, this.$props.location.latitude] : [43.273564, 76.914851],
           zoom: 10,
           controls: ['zoomControl', 'searchControl'],
         });
@@ -31,7 +37,10 @@ export default {
           const index = e.get('index');
           this.searchControl.getResult(index).then((result) => {
             const address = result.properties.get('text');
-            this.$emit('send_data', {address});
+            const coordinates = result.geometry.getCoordinates();
+            const longitude = coordinates[0];
+            const latitude = coordinates[1];
+            this.$emit('send_data', {address, longitude, latitude});
           }).catch((error) => {
             console.error('Error retrieving search result:', error);
           });
