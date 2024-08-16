@@ -6,6 +6,8 @@ export const useCartStore = defineStore("cart", () => {
     const removedItem = ref(null);
     const editedItem = ref(null);
     const removedCart = ref(null);
+    const payment_methods = ref(null);
+    const delivery_types = ref(null);
     const cartPrice = ref(0);
     const route = useRoute()
     const notifications = useNotificationStore()
@@ -16,6 +18,8 @@ export const useCartStore = defineStore("cart", () => {
         editedItem,
         removedCart,
         cartPrice,
+        payment_methods,
+        delivery_types,
         async getCart() {
             try {
                 const response = await api(`/api/carts/`, "GET", {}, route.query);
@@ -26,6 +30,22 @@ export const useCartStore = defineStore("cart", () => {
                         cartPrice.value += parseInt(item.price);
                     });
                 }
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async getPaymentMethods() {
+            try {
+                const response = await api(`/api/payment-methods`, "GET", {}, route.query);
+                payment_methods.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async getDeliveryTypes() {
+            try {
+                const response = await api(`/api/delivery-types`, "GET", {}, route.query);
+                delivery_types.value = response;
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }

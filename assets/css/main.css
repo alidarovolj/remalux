@@ -79,8 +79,12 @@ input:focus-visible {
     transform: translateX(-50%);
 }
 
+/*.auth .carousel {*/
+/*    width: 500px*/
+/*}*/
+
 .auth .carousel__track {
-    height: 100%;
+    width: 100%;
 }
 
 .auth img,

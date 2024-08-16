@@ -33,18 +33,21 @@ const editForm = ref({
 })
 
 const form = ref({
+  product_variants: [],
   address_id: null,
   recipient_id: null,
   note: null,
-  delivery_type: 1,
-  payment_type: 1,
-  agreement: false
+  delivery_type_id: null,
+  payment_method_id: null,
+  total_amount: null
 })
 
 const v$ = useVuelidate({
   address_id: {required},
   recipient_id: {required},
   note: {required},
+  delivery_type_id: {required},
+  payment_method_id: {required},
   agreement: {required}
 }, form);
 
@@ -91,12 +94,27 @@ const makeOrder = async () => {
 
 }
 
+const makeDataForOrder = async () => {
+  await nextTick()
+  form.value.product_variants = cartData.cartItems.map(item => {
+    return {
+      product_variant_id: item.product_variant.id,
+      quantity: item.quantity,
+      price: item.price,
+      color_id: item.color_id
+    }
+  })
+}
+
 onMounted(async () => {
   await nextTick()
+  await cart.getDeliveryTypes()
+  await cart.getPaymentMethods()
   await addresses.getAddresses()
   await recipients.getRecipients()
   await cartData.initCookieCart()
   await cartData.cartGetItems()
+  await makeDataForOrder()
 })
 </script>
 
@@ -122,23 +140,20 @@ onMounted(async () => {
                   {{ $t('checkout.second.title') }}
                 </p>
               </div>
-              <div class="flex flex-col md:flex-row gap-5 mb-6">
+              <div
+                  v-if="cart.delivery_types"
+                  class="flex flex-col md:flex-row gap-5 mb-6">
                 <div
-                    @click="form.delivery_type = 1"
-                    :class="{ 'bg-[#F0DFDF]' : form.delivery_type === 1 }"
+                    v-for="(item, index) of cart.delivery_types"
+                    :key="index"
+                    @click="form.delivery_type_id = item.id"
+                    :class="{ 'bg-[#F0DFDF]' : form.delivery_type_id === item.id }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
                   <TruckIcon class="w-5 h-5"/>
                   <p>{{ $t('checkout.second.delivery') }}</p>
                 </div>
-                <div
-                    @click="form.delivery_type = 2"
-                    :class="{ 'bg-[#F0DFDF]' : form.delivery_type === 2 }"
-                    class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
-                  <HomeModernIcon class="w-5 h-5"/>
-                  <p>{{ $t('checkout.second.pickup') }}</p>
-                </div>
               </div>
-              <div v-if="form.delivery_type === 1">
+              <div v-if="!form.delivery_type_id">
                 <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
                     {{ $t('checkout.second.address') }}
@@ -214,7 +229,7 @@ onMounted(async () => {
                     <option
                         v-for="(item, index) of recipients.recipientList.data"
                         :key="index"
-                        value="">
+                        :value="item.id">
                       {{ item.name }} / {{ item.phone_number }}
                     </option>
                   </select>
@@ -250,20 +265,16 @@ onMounted(async () => {
                   {{ $t('checkout.third.title') }}
                 </p>
               </div>
-              <div class="flex flex-col md:flex-row gap-5 mb-6">
+              <div
+                  v-if="cart.payment_methods"
+                  class="flex flex-col md:flex-row gap-5 mb-6">
                 <div
-                    @click="form.payment_type = 1"
-                    :class="{ 'bg-[#F0DFDF]' : form.payment_type === 1 }"
-                    class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
-                  <CreditCardIcon class="w-5 h-5"/>
-                  <p>{{ $t('checkout.third.online') }}</p>
-                </div>
-                <div
-                    @click="form.payment_type = 2"
-                    :class="{ 'bg-[#F0DFDF]' : form.payment_type === 2 }"
-                    class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
-                  <CircleStackIcon class="w-5 h-5"/>
-                  <p>{{ $t('checkout.third.phys') }}</p>
+                    v-for="(item, index) of cart.payment_methods"
+                    @click="form.payment_method_id = item.id"
+                    :key="index"
+                    :class="[{ 'bg-[#F0DFDF]' : form.payment_method_id === item.id }, { '!border !border-red-500 rounded-md': v$.payment_method_id.$error }]"
+                    class="transition-all hover:bg-[#F0DFDF] cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
+                  <p>{{ item.title }}</p>
                 </div>
               </div>
               <label
@@ -291,12 +302,12 @@ onMounted(async () => {
               <p
                   v-if="!loading"
                   @click="makeOrder"
-                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center">
+                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center cursor-pointer">
                 {{ $t('cart.checkout.checkout_button') }}
               </p>
               <p
                   v-else
-                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center">
+                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center cursor-pointer">
                 <span class="spinner"></span>
               </p>
             </div>
