@@ -6,6 +6,7 @@ import PopularProducts from "~/components/mainPage/popularProducts.vue";
 import DownloadRemalux from "~/components/mainPage/downloadRemalux.vue";
 import News from "~/components/mainPage/news.vue";
 import AboutBlock from "~/components/mainPage/aboutBlock.vue";
+import BecomePartner from "~/components/mainPage/becomePartner.vue";
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import AboutBlock from "~/components/mainPage/aboutBlock.vue";
     <Hero/>
     <ChooseType/>
     <Ideas/>
+    <BecomePartner />
     <PopularProducts />
     <DownloadRemalux />
     <News />

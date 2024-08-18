@@ -29,7 +29,7 @@ export default defineNuxtConfig({
                 code: "kz-KZ",
                 iso: "kz-KZ",
                 name: "Қазақ",
-                sh_name: "kk",
+                sh_name: "kz",
                 file: "kz-KZ.json",
             },
             {

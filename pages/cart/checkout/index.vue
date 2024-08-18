@@ -10,7 +10,7 @@ import {useRecipientsStore} from "~/stores/recipients.js";
 import {useCartCookieStore} from "~/stores/cartCookie.js";
 import {storeToRefs} from "pinia";
 import {useVuelidate} from "@vuelidate/core";
-import {required} from "@vuelidate/validators";
+import {required, helpers, requiredIf, sameAs} from "@vuelidate/validators";
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -41,15 +41,26 @@ const form = ref({
   note: null,
   delivery_type_id: 1,
   payment_method_id: null,
-  total_amount: null
+  total_amount: null,
+  agreement: false,
+  delivery_date: null,
 })
 
 const v$ = useVuelidate({
-  delivery_address_id: {required},
-  recipient_id: {required},
-  delivery_type_id: {required},
-  payment_method_id: {required},
-  agreement: {required}
+  delivery_address_id: {
+    required: requiredIf(function () {
+      return form.value.delivery_type_id === 1;
+    }),
+  },
+  recipient_id: { required },
+  delivery_type_id: { required },
+  payment_method_id: { required },
+  agreement: { sameAs: sameAs(true) },
+  delivery_date: {
+    required: requiredIf(function () {
+      return form.value.delivery_type_id === 1;
+    }),
+  },
 }, form);
 
 const editQuantity = async (id, quantity) => {
@@ -149,13 +160,19 @@ onMounted(async () => {
                 <div
                     v-for="(item, index) of cart.delivery_types"
                     :key="index"
-                    @click="form.delivery_type_id = item.id"
+                    @click="form.delivery_type_id = item.id; form.delivery_address_id = null; form.delivery_date = null"
                     :class="{ 'bg-[#F0DFDF]' : form.delivery_type_id === item.id }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
                   <p>{{ item.title[cur_lang] }}</p>
                 </div>
               </div>
               <div v-if="form.delivery_type_id === 1">
+                <label
+                    class="mb-6 block border-b border-[#F0DFDF] w-full"
+                    for="">
+                  <p class="text-xs text-[#7B7B7B]">{{ $t('checkout.second.time') }}</p>
+                  <input type="datetime-local" class="text-sm p-4" :class="{ '!border border-red-500 rounded-lg' : v$.delivery_date.$error }">
+                </label>
                 <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
                     {{ $t('checkout.second.address') }}
@@ -266,8 +283,8 @@ onMounted(async () => {
                 </p>
                 <textarea
                     v-model="form.note"
-                    rows="4"
-                    class="border border-[#F0DFDF] w-full p-4 rounded-lg"
+                    rows="1"
+                    class="border-b border-[#F0DFDF] w-full p-4"
                     placeholder="Введите свой комментарий"
                 />
               </div>

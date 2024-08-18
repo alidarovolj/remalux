@@ -176,7 +176,7 @@ const passwordRequest = async () => {
           </div>
         </div>
       </div>
-      <div class="relative hidden w-full md:block auth">
+      <div class="relative hidden w-full md:block auth h-full">
         <client-only>
           <my-carousel-carousel
               :breakpoints="breakpoints"

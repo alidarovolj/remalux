@@ -1,7 +1,7 @@
 <script setup>
 import {vMaska} from "maska/vue"
 import {useVuelidate} from "@vuelidate/core"
-import {email, required} from "@vuelidate/validators"
+import {email, required, sameAs} from "@vuelidate/validators"
 import {useNotificationStore} from "~/stores/notifications.js";
 import img1 from "assets/img/auth/slide1.jpg";
 import img2 from "assets/img/auth/slide2.jpg";
@@ -26,7 +26,8 @@ const form = ref({
   email: '',
   city_id: null,
   password: '',
-  password_confirmation: ''
+  password_confirmation: '',
+  agreement: false
 })
 
 const v$ = useVuelidate({
@@ -35,7 +36,8 @@ const v$ = useVuelidate({
   email: {required, email},
   city_id: {required},
   password: {required},
-  password_confirmation: {required}
+  password_confirmation: {required},
+  agreement: {sameAs: sameAs(true)}
 }, form);
 
 const carousel = ref([
@@ -75,8 +77,8 @@ const registerUser = async () => {
     return;
   }
 
-  if(user.userCheckedEmail) {
-    if(user.userCheckedPhone) {
+  if (user.userCheckedEmail) {
+    if (user.userCheckedPhone) {
       if (form.value.password === form.value.password_confirmation) {
         try {
           const response = await api(`/api/auth/registration`, "POST", {
@@ -164,7 +166,7 @@ onMounted(async () => {
                     </label>
                     <input
                         v-model="form.phone_number"
-                        @change="checkPhone"
+                        @input="checkPhone"
                         id="phone_number"
                         name="phone_number"
                         type="text"
@@ -181,13 +183,13 @@ onMounted(async () => {
                           v-if="!user.userCheckedPhone"
                           class="text-red-500"
                       >
-                        Данный номер телефона уже зарегистрирован
+                        {{ $t('forms.registration.phone_yes') }}
                       </p>
                       <p
                           v-else
                           class="text-green-500"
                       >
-                        Данный номер телефон свободен
+                        {{ $t('forms.registration.phone_no') }}
                       </p>
                     </div>
                   </div>
@@ -202,7 +204,7 @@ onMounted(async () => {
                     </label>
                     <input
                         v-model="form.email"
-                        @change="checkEmail"
+                        @input="checkEmail"
                         id="email"
                         name="email"
                         type="text"
@@ -217,13 +219,13 @@ onMounted(async () => {
                           v-if="!user.userCheckedEmail"
                           class="text-red-500"
                       >
-                        Данный email уже зарегистрирован
+                        {{ $t('forms.registration.email_yes') }}
                       </p>
                       <p
                           v-else
                           class="text-green-500"
                       >
-                        Данный email свободен
+                        {{ $t('forms.registration.email_no') }}
                       </p>
                     </div>
                   </div>
@@ -303,14 +305,26 @@ onMounted(async () => {
                   />
                 </div>
 
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox"
-                           class="h-4 w-4 rounded border-gray-300 text-mainColor focus:ring-mainColor"/>
-                    <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-700">
-                      {{ $t('forms.remember_me') }}
-                    </label>
-                  </div>
+                <div class="flex flex-col justify-between">
+                  <label
+                      class="mb-6 w-full flex gap-3 items-center cursor-pointer"
+                      for="agreement">
+                    <input
+                        type="checkbox"
+                        v-model="form.agreement"
+                        class="w-6 h-6"
+                        name="agreement"
+                        id="agreement">
+                    <p class="text-sm" :class="{ '!text-red-500 underline': v$.agreement.$error }">
+                      {{ $t('checkout.third.agreement.text') }}
+                      <NuxtLink
+                          :class="{ '!text-red-500 underline': v$.agreement.$error }"
+                          class="text-blue-500 underline"
+                          :to="localePath('/')">
+                        {{ $t('checkout.third.agreement.link') }}
+                      </NuxtLink>
+                    </p>
+                  </label>
 
                   <div class="text-sm leading-6">
                     <NuxtLink
@@ -332,7 +346,7 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <div class="relative hidden w-full md:block auth h-screen">
+      <div class="relative hidden w-full md:block auth h-full">
         <client-only>
           <my-carousel-carousel
               :breakpoints="breakpoints"
@@ -344,7 +358,7 @@ onMounted(async () => {
             <my-carousel-slide
                 v-for="(item, index) of carousel"
                 :key="index"
-                class="h-full"
+                class="w-full h-auto"
             >
               <img
                   :src="item"

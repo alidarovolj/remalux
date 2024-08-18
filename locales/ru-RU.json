@@ -1,4 +1,14 @@
 {
+  "partners": {
+    "title": "Стать партнером",
+    "text": "Ищете надежного партнера в сфере продажи краски? Присоединяйтесь к нам! Мы предлагаем высококачественные\n            продукты, выгодные условия сотрудничества и поддержку на всех этапах. Будьте частью успешного бизнеса и\n            вместе с нами достигайте новых высот! Свяжитесь с нами, чтобы обсудить все детали партнерства.",
+    "stats": {
+      "first": "Филиалов",
+      "second": "Продукции",
+      "third": "Проектов",
+      "fourth": "Партнеров"
+    }
+  },
   "about_page": {
     "hero_section": {
       "title": "ТОО «К-КОЛОР» «K-COLOR» с торговой маркой «REMALUX» – высокое европейское качество по доступной цене.",
@@ -134,10 +144,10 @@
       "button": "Сохранить"
     },
     "remove": {
-        "title": "Удаление адреса",
-        "confirmation": "Вы уверены, что хотите удалить адрес?",
-        "cancel": "Отмена",
-        "delete": "Удалить"
+      "title": "Удаление адреса",
+      "confirmation": "Вы уверены, что хотите удалить адрес?",
+      "cancel": "Отмена",
+      "delete": "Удалить"
     }
   },
   "recipients": {
@@ -155,7 +165,7 @@
       "title": "Удаление получателя",
       "confirmation": "Вы уверены, что хотите удалить получателя?",
       "cancel": "Отмена",
-        "delete": "Удалить"
+      "delete": "Удалить"
     }
   },
   "no_results": {
@@ -243,6 +253,7 @@
       "address": "Адрес доставки",
       "placeholder": "Поиск адреса",
       "add": "Добавить адрес доставки",
+      "time": "Желаемое время доставки",
       "text": "*Для оформления заказа необходимо добавить и выбрать адрес доставки"
     },
     "third": {
@@ -290,6 +301,10 @@
       "already_have": "Уже есть аккаунт?",
       "login": "Войти",
       "button": "Зарегистрироваться",
+      "phone_yes": "Данный номер телефона уже зарегистрирован",
+      "phone_no": "Данный номер телефон свободен",
+      "email_yes": "Данный email уже зарегистрирован",
+      "email_no": "Данный email свободен",
       "rules": {
         "first": "Длина пароля должна быть не менее 8 символов.",
         "second": "Латинские прописные буквы.",
@@ -455,7 +470,7 @@
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros."
+      "description": "Визуализируйте свою идею с помощью нашего приложения! Просто наведите камеру на стену и выберите цвет, и увидьте, как она оживает в реальном времени. Прекрасный способ подобрать идеальный оттенок и представить, как будет выглядеть ваш интерьер!"
     },
     "news": {
       "title": "Последние новости",

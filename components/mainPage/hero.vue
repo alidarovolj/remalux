@@ -1,32 +1,49 @@
 <script setup>
-import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/vue/24/outline/index.js";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 
 const localePath = useLocalePath();
-const leftPaneWidth = ref(500);
+const leftPaneWidthPercent = ref(30); // Start with 50% as the initial width
 const isDragging = ref(false);
 
-const startDragging = () => {
+const startDragging = (event) => {
   isDragging.value = true;
+  event.preventDefault(); // Prevent default behavior to avoid issues with touch events
 };
 
 const onDrag = (event) => {
   if (isDragging.value) {
-    leftPaneWidth.value = event.clientX;
+    let clientX;
+    if (event.type === 'mousemove') {
+      clientX = event.clientX;
+    } else if (event.type === 'touchmove') {
+      clientX = event.touches[0].clientX;
+    }
+    if (clientX !== undefined) {
+      const newWidthPercent = (clientX / window.innerWidth) * 100;
+      leftPaneWidthPercent.value = Math.min(Math.max(newWidthPercent, 0), 100); // Ensure it stays between 0% and 100%
+    }
   }
 };
 
-const stopDragging = () => {
+const stopDragging = (event) => {
   isDragging.value = false;
+  event.preventDefault();
 };
 
 onMounted(() => {
   window.addEventListener('mousemove', onDrag);
+  window.addEventListener('touchmove', onDrag);
   window.addEventListener('mouseup', stopDragging);
+  window.addEventListener('touchend', stopDragging);
+  window.addEventListener('touchcancel', stopDragging); // Handle touch cancel events
 });
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', onDrag);
+  window.removeEventListener('touchmove', onDrag);
   window.removeEventListener('mouseup', stopDragging);
+  window.removeEventListener('touchend', stopDragging);
+  window.removeEventListener('touchcancel', stopDragging);
 });
 </script>
 
@@ -34,21 +51,24 @@ onUnmounted(() => {
   <div class="flex w-full h-[500px] relative">
     <div
         class="h-full absolute bg-[#5B7986]"
-        :style="{ width: leftPaneWidth + 'px' }">
+        :style="{ width: leftPaneWidthPercent + '%' }">
     </div>
     <div
-        class="h-full w-[10px] bg-[#5B7986] absolute bg-none flex justify-center"
-        :style="{ left: leftPaneWidth + 'px' }">
-      <div
-          class="w-[50px] h-[50px] rounded-full cursor-ew-resize flex items-center gap-2 relative z-10 bg-white mt-8"
-          @mousedown="startDragging">
-        <ChevronLeftIcon class="w-5 h-5"/>
-        <ChevronRightIcon class="w-5 h-5"/>
+        class="h-full w-[10px] bg-[#5B7986] absolute z-10 bg-none flex justify-center"
+        :style="{ left: leftPaneWidthPercent + '%' }">
+      <div class="relative w-full">
+        <div
+            class="w-[40px] h-[40px] rounded-full cursor-ew-resize flex items-center justify-center gap-2 absolute z-10 bg-white mt-8 right-0 translate-x-1/2"
+            @mousedown="startDragging"
+            @touchstart="startDragging"> <!-- Added touchstart for mobile -->
+          <div class="rounded triangle-left" :style="`color: #8E9D74`"></div>
+          <div class="rounded triangle-right" :style="`color: #5B7986`"></div>
+        </div>
       </div>
     </div>
     <div
         class="h-full absolute bg-[#8E9D74]"
-        :style="{ left: leftPaneWidth + 10 + 'px', width: 'calc(100% - ' + (leftPaneWidth + 10) + 'px)' }">
+        :style="{ left: `calc(${leftPaneWidthPercent}% + 10px)`, width: `calc(100% - ${leftPaneWidthPercent}% - 10px)` }">
     </div>
     <div
         class="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 relative px-4 md:px-0">
@@ -88,3 +108,21 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-left: 13px solid #5B7986;
+  border-bottom: 8px solid transparent;
+}
+
+.triangle-left {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-right: 13px solid #8E9D74;
+  border-bottom: 8px solid transparent;
+}
+</style>

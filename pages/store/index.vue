@@ -19,6 +19,7 @@ import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import NoResults from "~/components/general/noResults.vue";
 import {useLanguagesStore} from "~/stores/languages.js";
 import {useFiltersStore} from "~/stores/filters.js";
+import {useNotificationStore} from "~/stores/notifications.js";
 
 const products = useProductsStore()
 const categories = useCategoriesStore()
@@ -27,6 +28,7 @@ const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
 const filtersStore = useFiltersStore()
 const route = useRoute()
+const notifications = useNotificationStore()
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -100,6 +102,7 @@ const removeAllFilters = async () => {
   }
   await router.push({ query: { ...newQuery } });
   await products.getProducts();
+  await notifications.showNotification('success', 'Успешно', 'Фильтры успешно сброшены')
 };
 
 onMounted(async () => {
@@ -265,7 +268,7 @@ onMounted(async () => {
               </button>
               <p
                   @click="removeAllFilters"
-                  class="text-mainColor">
+                  class="text-mainColor cursor-pointer">
                 Сбросить
               </p>
             </div>
@@ -279,7 +282,7 @@ onMounted(async () => {
                     </h2>
                     <p
                         @click="removeAllFilters"
-                        class="text-mainColor">
+                        class="text-mainColor cursor-pointer">
                       Сбросить
                     </p>
                   </div>
