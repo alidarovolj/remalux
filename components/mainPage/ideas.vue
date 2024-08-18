@@ -22,6 +22,10 @@ onMounted(async () => {
   await nextTick()
   await ideas.getIdeas()
 })
+
+const preventAnchorNavigation = (event: MouseEvent) => {
+  event.preventDefault()
+}
 </script>
 
 <template>
@@ -34,7 +38,8 @@ onMounted(async () => {
       </h2>
       <NuxtLink
           :to="localePath('/')"
-          class="flex gap-2 items-center text-mainColor">
+          class="flex gap-2 items-center text-mainColor"
+          @mousedown="preventAnchorNavigation">
         <p class="text-sm md:text-xl">
           {{ $t('mainPage.ideas.link') }}
         </p>
@@ -49,6 +54,7 @@ onMounted(async () => {
             :touch-drag="true"
             :wrap-around="true"
             :autoplay="4000"
+            @mousedown="preventAnchorNavigation"
         >
           <my-carousel-slide
               v-for="(item, index) of ideasList.data"

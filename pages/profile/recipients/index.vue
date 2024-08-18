@@ -47,7 +47,7 @@ onMounted(async () => {
               </div>
               <TrashIcon
                   @click="modals.showModal('removeRecipient', item)"
-                  class="w-5 h-5 text-red-500"/>
+                  class="w-5 h-5 text-red-500 cursor-pointer"/>
             </div>
           </div>
           <div v-else>

@@ -1,8 +1,7 @@
 <script setup>
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
-import {CircleStackIcon, CreditCardIcon, HomeModernIcon, TruckIcon} from "@heroicons/vue/24/outline"
 import {useCartStore} from "~/stores/cart.js";
-import {MinusIcon, PlusIcon} from "@heroicons/vue/24/outline/index.js";
+import {MinusIcon, PlusIcon, TrashIcon} from "@heroicons/vue/24/outline/index.js";
 import NoResults from "~/components/general/noResults.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useLanguagesStore} from "~/stores/languages.js";
@@ -27,25 +26,27 @@ const cartData = useCartCookieStore()
 const {cartTotalPrice} = storeToRefs(cartData)
 const loading = ref(false)
 const router = useRouter()
+const route = useRoute()
 
 const editForm = ref({
   quantity: null
 })
 
+const localPayment = ref(1)
+
 const form = ref({
   product_variants: [],
-  address_id: null,
+  delivery_address_id: null,
   recipient_id: null,
   note: null,
-  delivery_type_id: null,
+  delivery_type_id: 1,
   payment_method_id: null,
   total_amount: null
 })
 
 const v$ = useVuelidate({
-  address_id: {required},
+  delivery_address_id: {required},
   recipient_id: {required},
-  note: {required},
   delivery_type_id: {required},
   payment_method_id: {required},
   agreement: {required}
@@ -71,6 +72,7 @@ const links = computed(() => [
 ]);
 
 const makeOrder = async () => {
+  form.value.total_amount = cartTotalPrice.value
   loading.value = true;
   await v$.value.$validate();
 
@@ -81,12 +83,13 @@ const makeOrder = async () => {
   }
 
   try {
-    const response = await api(`/api/carts/order`, "POST", {
+    const response = await api(`/api/orders`, "POST", {
       body: JSON.stringify(form.value)
     }, route.query);
 
     await nextTick()
     await cart.getCart()
+    await cartData.clearCart()
     await router.push(localePath('/payment-success'))
   } catch (e) {
     notifications.showNotification("error", "Произошла ошибка", e);
@@ -149,11 +152,10 @@ onMounted(async () => {
                     @click="form.delivery_type_id = item.id"
                     :class="{ 'bg-[#F0DFDF]' : form.delivery_type_id === item.id }"
                     class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
-                  <TruckIcon class="w-5 h-5"/>
-                  <p>{{ $t('checkout.second.delivery') }}</p>
+                  <p>{{ item.title[cur_lang] }}</p>
                 </div>
               </div>
-              <div v-if="!form.delivery_type_id">
+              <div v-if="form.delivery_type_id === 1">
                 <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
                     {{ $t('checkout.second.address') }}
@@ -165,24 +167,38 @@ onMounted(async () => {
                   </p>
                 </div>
                 <div v-if="addresses.addressesList">
-                  <select
-                      v-if="addresses.addressesList.data.length > 0"
-                      v-model="form.address_id"
-                      :class="{ '!border !border-red-500 rounded-md': v$.address_id.$error }"
-                      name=""
-                      id=""
-                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
-                    <option :value="null">
-                      {{ $t('checkout.second.placeholder') }}
-                    </option>
-                    <option
-                        v-for="(item, index) of addresses.addressesList.data"
-                        :key="index"
-                        value="">
-                      {{ item.country.title }}, {{ item.address }}, {{ item.entrance }} подъезд, этаж {{ item.floor }},
-                      кв. {{ item.float }}
-                    </option>
-                  </select>
+                  <div v-if="addresses.addressesList">
+                    <div
+                        v-if="addresses.addressesList.data.length > 0"
+                        class="flex flex-col gap-5">
+                      <label
+                          v-for="(item, index) of addresses.addressesList.data"
+                          :key="index"
+                          :class="['p-4 border border-[#F0DFDF] transition-all cursor-pointer rounded-lg flex items-center justify-between', { 'bg-[#F0DFDF]': form.delivery_address_id === item.id }, { 'border-red-500' : v$.delivery_address_id.$error }]">
+                        <div class="flex items-center gap-3">
+                          <input
+                              type="radio"
+                              name="addresses"
+                              :value="item.id"
+                              v-model="form.delivery_address_id"
+                              class="w-6 h-6">
+                          <p>{{ item.country.title }}, {{ item.address }}, {{ item.entrance }} подъезд, этаж {{
+                              item.floor
+                            }},
+                            кв. {{ item.float }}</p>
+                        </div>
+                        <TrashIcon
+                            @click.stop="modals.showModal('removeAddress', item)"
+                            class="w-5 h-5 text-red-500 cursor-pointer"/>
+                      </label>
+                    </div>
+                    <div v-else>
+                      <p class="text-gray-500 py-3">
+                        {{ t('profile.no_addresses') }}
+                      </p>
+                    </div>
+                  </div>
+                  <div v-else class="spinner p-3"></div>
                   <p
                       v-else
                       class="text-red-500 font-semibold p-3 border-b border-[#F0DFDF]">
@@ -215,32 +231,34 @@ onMounted(async () => {
                 </p>
               </div>
 
-              <div
-                  v-if="recipients.recipientList"
-                  class="mb-7">
-                <div v-if="recipients.recipientList.data.length > 0">
-                  <select
-                      v-model="form.recipient_id"
-                      :class="{ '!border !border-red-500 rounded-md': v$.recipient_id.$error }"
-                      name=""
-                      id=""
-                      class="w-full px-4 border-b border-[#F0DFDF] py-3">
-                    <option :value="null">{{ $t('checkout.first.placeholder') }}</option>
-                    <option
-                        v-for="(item, index) of recipients.recipientList.data"
-                        :key="index"
-                        :value="item.id">
-                      {{ item.name }} / {{ item.phone_number }}
-                    </option>
-                  </select>
+              <div class="mb-5" v-if="recipients.recipientList">
+                <div
+                    v-if="recipients.recipientList.data.length > 0"
+                    class="flex flex-col gap-5">
+                  <label
+                      v-for="(item, index) of recipients.recipientList.data"
+                      :key="index"
+                      :class="['p-4 border border-[#F0DFDF] transition-all cursor-pointer rounded-lg flex items-center justify-between', { 'bg-[#F0DFDF]': form.recipient_id === item.id }, { 'border-red-500' : v$.recipient_id.$error }]">
+                    <div class="flex gap-3 items-center w-full">
+                      <input
+                          type="radio"
+                          name="recipients"
+                          :value="item.id"
+                          v-model="form.recipient_id"
+                          class="w-6 h-6">
+                      <p>{{ item.name }} / {{ item.phone_number }}</p>
+                    </div>
+                    <TrashIcon
+                        @click.stop="modals.showModal('removeRecipient', item)"
+                        class="w-5 h-5 text-red-500 cursor-pointer"/>
+                  </label>
                 </div>
-                <p
-                    v-else
-                    class="text-red-500 font-semibold p-3 border-b border-[#F0DFDF]">
-                  {{ $t('checkout.first.text') }}
-                </p>
+                <div v-else>
+                  <p class="text-gray-500 py-3">
+                    {{ $t('profile.no_recipients') }}
+                  </p>
+                </div>
               </div>
-              <div v-else class="spinner"></div>
 
               <div>
                 <p class="text-xs text-[#7B7B7B]">
@@ -248,7 +266,6 @@ onMounted(async () => {
                 </p>
                 <textarea
                     v-model="form.note"
-                    :class="{ '!border !border-red-500': v$.note.$error }"
                     rows="4"
                     class="border border-[#F0DFDF] w-full p-4 rounded-lg"
                     placeholder="Введите свой комментарий"
@@ -267,14 +284,35 @@ onMounted(async () => {
               </div>
               <div
                   v-if="cart.payment_methods"
-                  class="flex flex-col md:flex-row gap-5 mb-6">
+                  class="flex flex-col gap-3 mb-4"
+              >
                 <div
-                    v-for="(item, index) of cart.payment_methods"
-                    @click="form.payment_method_id = item.id"
-                    :key="index"
-                    :class="[{ 'bg-[#F0DFDF]' : form.payment_method_id === item.id }, { '!border !border-red-500 rounded-md': v$.payment_method_id.$error }]"
-                    class="transition-all hover:bg-[#F0DFDF] cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
-                  <p>{{ item.title }}</p>
+                    class="flex flex-col md:flex-row gap-5">
+                  <div
+                      :class="{ 'bg-[#F0DFDF]' : localPayment === 1 }"
+                      @click="localPayment = 1"
+                      class="transition-all hover:bg-[#F0DFDF] cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
+                    <p>{{ $t('checkout.third.online') }}</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex flex-col gap-5">
+                    <label
+                        v-for="(item, index) of cart.payment_methods.online"
+                        @click="form.payment_method_id = item.id"
+                        :key="index"
+                        :class="['p-4 border cursor-pointer border-[#F0DFDF] transition-all rounded-lg flex items-center gap-3', { 'bg-[#F0DFDF]': form.payment_method_id === item.id }, { 'border-red-500' : v$.payment_method_id.$error }]">
+                      <input
+                          type="radio"
+                          name="payment_methods"
+                          :value="item.id"
+                          v-model="form.payment_method_id"
+                          class="w-6 h-6">
+                      <div class="flex gap-5">
+                        <p>{{ item.title[cur_lang] }}</p>
+                      </div>
+                    </label>
+                  </div>
                 </div>
               </div>
               <label
@@ -283,13 +321,13 @@ onMounted(async () => {
                 <input
                     type="checkbox"
                     v-model="form.agreement"
-                    :class="{ '!border !border-red-500': v$.agreement.$error }"
                     class="w-6 h-6"
                     name="agreement"
                     id="agreement">
-                <p class="text-sm">
+                <p class="text-sm" :class="{ '!text-red-500 underline': v$.agreement.$error }">
                   {{ $t('checkout.third.agreement.text') }}
                   <NuxtLink
+                      :class="{ '!text-red-500 underline': v$.agreement.$error }"
                       class="text-blue-500 underline"
                       :to="localePath('/')">
                     {{ $t('checkout.third.agreement.link') }}
@@ -297,7 +335,7 @@ onMounted(async () => {
                 </p>
               </label>
               <p class="font-bold mb-4">
-                {{ $t('checkout.third.to_pay') }}: {{ cartPrice }} ₸
+                {{ $t('checkout.third.to_pay') }}: {{ cartTotalPrice }} ₸
               </p>
               <p
                   v-if="!loading"

@@ -46,7 +46,7 @@ onMounted(async () => {
                 кв. {{ item.float }}</p>
               <TrashIcon
                   @click="modals.showModal('removeAddress', item)"
-                  class="w-5 h-5 text-red-500"/>
+                  class="w-5 h-5 text-red-500 cursor-pointer"/>
             </div>
           </div>
           <div v-else>

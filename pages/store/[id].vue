@@ -16,6 +16,7 @@ import img2 from "~/assets/img/store/2.png";
 import img3 from "~/assets/img/store/3.png";
 import img4 from "~/assets/img/store/4.png";
 import img5 from "~/assets/img/store/5.png";
+import {useModalsStore} from "~/stores/modals.js";
 
 const products = useProductsStore();
 const cart = useCartStore()
@@ -34,6 +35,7 @@ const activeTab = ref(1);
 const localePath = useLocalePath();
 const calculatorActive = ref(false);
 const {t} = useI18n();
+const modals = useModalsStore()
 
 const images = ref([
   img1, img2, img3, img4, img5
@@ -112,6 +114,7 @@ const addToCartLocal = async () => {
 
       await nextTick()
       await cart.getCart()
+      await modals.showModal('shopOrCart', detailProduct.value)
     } catch (e) {
       notifications.showNotification("error", "Произошла ошибка", e);
     }

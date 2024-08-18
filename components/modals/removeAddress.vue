@@ -33,7 +33,7 @@ onMounted(async () => {
     </p>
     <div class="flex justify-end gap-3 mt-6">
       <button
-          @click="modals.showModal('removeAddress', false)"
+          @click="modals.modal.show = false"
           class="px-6 py-2 text-mainColor border border-mainColor rounded-lg">
         {{ $t('addresses.remove.cancel') }}
       </button>

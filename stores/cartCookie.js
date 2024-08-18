@@ -106,6 +106,10 @@ export const useCartCookieStore = defineStore("cartCookie", () => {
                 }));
             }
             updateCartTotalPrice();
+        },
+        clearCart() {
+            cartCookie.value = [];
+            updateCartTotalPrice();
         }
     };
 });

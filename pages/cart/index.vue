@@ -274,10 +274,17 @@ onMounted(async () => {
                   <p class="text-xl font-bold">{{ cartTotalPrice }} ₸</p>
                 </div>
                 <NuxtLink
+                    v-if="cartData.cartItems.length > 0"
                     :to="localePath('/cart/checkout')"
                     class="w-full bg-mainColor text-white px-6 py-2 rounded-lg text-lg font-semibold text-center">
                   {{ $t('cart.checkout.checkout_button') }}
                 </NuxtLink>
+                <p
+                    v-else
+                    @click="notifications.showNotification('error', 'Ошибка', 'Корзина пуста, пожалуйста добавьте товары')"
+                    class="w-full bg-mainColor cursor-pointer text-white px-6 py-2 rounded-lg text-lg font-semibold text-center">
+                  {{ $t('cart.checkout.checkout_button') }}
+                </p>
               </div>
             </div>
           </div>
