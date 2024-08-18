@@ -1,4 +1,66 @@
 {
+  "about_page": {
+    "hero_section": {
+      "title": "LLP 'K-COLOR' with the trademark 'REMALUX' – high European quality at an affordable price.",
+      "description": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, manufactured under a British license from raw materials by renowned French, Belgian, German, Dutch, and American manufacturers."
+    },
+    "why_choose_us": {
+      "title": "Why do customers choose our products?",
+      "description": "Our paints are trusted for their high quality, innovative solutions, and economical consumption. Add to this affordable prices and a wide range of products, and you'll understand why customers keep choosing us.",
+      "quality": {
+        "title": "High Quality",
+        "description": "Our paints undergo strict quality control, ensuring excellent coverage and durability on any surface."
+      },
+      "innovation": {
+        "title": "Innovative Manufacturing Technologies",
+        "description": "We use advanced technologies to create paints that are easy to apply, quick to dry, and provide rich colors."
+      },
+      "economy": {
+        "title": "Economical Material Consumption",
+        "description": "Our paints provide high opacity, which helps reduce consumption and lower costs."
+      },
+      "price": {
+        "title": "Competitive Prices",
+        "description": "We offer excellent value for money, so you can get a professional product at an affordable price."
+      },
+      "service": {
+        "title": "Professional Service",
+        "description": "Professional service."
+      },
+      "assortment": {
+        "title": "Wide Product Range",
+        "description": "In our assortment, you will find paints for all needs – from interior to industrial coatings, in a variety of colors and textures."
+      }
+    },
+    "for_whom": {
+      "title": "Who is our company's product for?",
+      "description": "Our products are designed to easily meet the needs of the most demanding, highly qualified professionals for use on prestigious, high-level projects. They are also perfect for ordinary people who choose materials for home use and DIY cosmetic repairs."
+    },
+    "remalux_section": {
+      "title": "REMALUX: Everything you need for a perfect result",
+      "description": "REMALUX offers high-quality paints and coatings with modern technologies and excellent service. All products are safe and meet European standards.",
+      "innovation": {
+        "title": "Innovative Technologies and Modern Production Methods",
+        "description": "The production of paints and coatings at REMALUX is based on modern technologies and achievements in chemical science, ensuring high quality and safety of products at competitive prices."
+      },
+      "service": {
+        "title": "Service",
+        "description": "We provide pre-sale and after-sale services, meeting customer requirements with high-quality products and excellent service."
+      },
+      "assortment": {
+        "title": "Wide Range of Products",
+        "description": "REMALUX offers textured coatings, water-based paints, varnishes, acrylic glue, and other materials. We will help you choose the right shade and guarantee high quality at affordable prices."
+      },
+      "safety": {
+        "title": "Safety and Comfort in Use",
+        "description": "Water-based products are non-toxic and odorless, providing comfortable use for both professionals and DIY enthusiasts. Our paints are safe for people and pets."
+      }
+    },
+    "our_fleet": {
+      "title": "Our Fleet: Fast and Reliable Delivery",
+      "description": "Our products are designed to easily meet the needs of the most demanding, highly qualified professionals for use on prestigious, high-level projects. They are also perfect for ordinary people who choose materials for home use and DIY cosmetic repairs."
+    }
+  },
   "breadcrumbs": {
     "home": "Home",
     "store": "Store",
@@ -10,8 +72,32 @@
     "addresses": "Addresses",
     "recipients": "Recipients",
     "orders": "Orders",
-    "favourites": "Favorites",
-    "payment_success": "Payment Success"
+    "favourites": "Favourites",
+    "payment_success": "Payment Success",
+    "contacts": "Contacts"
+  },
+  "shopOrCart": {
+    "title": "Thank you for your choice!",
+    "text": "Please choose one of the options below to continue shopping or proceed to the cart.",
+    "button": "Continue Shopping",
+    "checkout": "Checkout"
+  },
+  "contacts": {
+    "title": "Our Branches",
+    "address": "Address",
+    "contacts": "Contacts",
+    "email": "Email",
+    "work_time": "Working Hours",
+    "work_info": {
+      "first": {
+        "from": "Monday - Friday from",
+        "to": "to"
+      },
+      "second": {
+        "from": "Weekend from",
+        "to": "to"
+      }
+    }
   },
   "payment_success": {
     "title": "Your order has been successfully placed!",
@@ -21,12 +107,12 @@
   },
   "profile": {
     "phone": "Phone Number",
-    "logout": "Logout",
+    "logout": "Log Out",
     "profile": "Profile",
     "recipients": "Recipients",
-    "no_recipients": "Unfortunately, you don't have any saved recipients. Please add them.",
+    "no_recipients": "Unfortunately, you have no saved recipients, please add them.",
     "add_recipient": "Add Recipient",
-    "no_addresses": "Unfortunately, you don't have any saved addresses. Please add them.",
+    "no_addresses": "Unfortunately, you have no saved addresses, please add them.",
     "add_address": "Add Address",
     "my_addresses": "My Addresses"
   },
@@ -37,7 +123,7 @@
       "provide_address": "Please provide an address",
       "address_placeholder": "Enter address",
       "city": "City",
-      "city_placeholder": "Select city",
+      "city_placeholder": "Choose city",
       "address": "Address",
       "entrance": "Entrance",
       "entrance_placeholder": "Enter entrance",
@@ -48,8 +134,8 @@
       "button": "Save"
     },
     "remove": {
-      "title": "Remove Address",
-      "confirmation": "Are you sure you want to delete this address?",
+      "title": "Delete Address",
+      "confirmation": "Are you sure you want to delete the address?",
       "cancel": "Cancel",
       "delete": "Delete"
     }
@@ -66,48 +152,48 @@
       "button": "Save"
     },
     "remove": {
-      "title": "Remove Recipient",
-      "confirmation": "Are you sure you want to delete this recipient?",
+      "title": "Delete Recipient",
+      "confirmation": "Are you sure you want to delete the recipient?",
       "cancel": "Cancel",
       "delete": "Delete"
     }
   },
   "no_results": {
-    "title": "Unfortunately, your search did not return any results",
-    "not_required": "optional"
+    "title": "Unfortunately, your search yielded no results",
+    "not_required": "not required"
   },
   "about": {
     "hero_title": "We are a group of passionate people from around the world working on the future of e-commerce.",
     "hero_description": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
     "timeline": [
       {
-        "name": "Company Foundation",
+        "name": "Company Founded",
         "description": "Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.",
         "date": "Aug 2021",
         "dateTime": "2021-08"
       },
       {
-        "name": "Raised $65 million in investments",
+        "name": "$65M Raised",
         "description": "Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.",
         "date": "Dec 2021",
         "dateTime": "2021-12"
       },
       {
-        "name": "Beta Version Launch",
+        "name": "Beta Launched",
         "description": "Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.",
         "date": "Feb 2022",
         "dateTime": "2022-02"
       },
       {
-        "name": "Global Product Launch",
+        "name": "Product Launched Globally",
         "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
         "date": "Dec 2022",
         "dateTime": "2022-12"
       }
     ],
-    "customers_love_us": "Our customers love us",
+    "customers_love_us": "Our Customers Love Us",
     "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
-    "stats_title": "We view the workplace as something that adds value to our lives and the world.",
+    "stats_title": "We see the workplace as something that adds value to our lives and the world.",
     "stats_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
     "stat1": {
       "value": "250k",
@@ -139,9 +225,9 @@
       "pickup": "Pickup",
       "delivery": "Delivery"
     },
-    "to_pay": "Total Amount",
+    "to_pay": "Total to Pay",
     "first": {
-      "title": "Recipient Details",
+      "title": "Recipient Information",
       "add": "Add Recipient",
       "text": "* To place an order, you need to add and select a recipient",
       "placeholder": "Search for recipient",
@@ -161,13 +247,13 @@
     },
     "third": {
       "title": "Payment",
-      "phys": "Cash on Delivery",
+      "phys": "Payment Upon Receipt",
       "agreement": {
         "text": "I agree with the ",
-        "link": "terms of return and claims"
+        "link": "terms of returns and complaints"
       },
       "online": "Online Payment",
-      "to_pay": "Total"
+      "to_pay": "To Pay"
     }
   },
   "cart": {
@@ -184,7 +270,7 @@
     "checkout": {
       "title": "Order Information",
       "coupon_title": "Coupons and Promo Codes",
-      "coupon_text": "Enter the coupon code in the cart in the appropriate field and click 'Apply' to see the discount reflected in the total order amount.",
+      "coupon_text": "Enter the coupon code into the corresponding field in the cart and click 'Apply' to see the discount reflected in the total order amount.",
       "coupon_placeholder": "Enter coupon code",
       "coupon_button": "Apply Coupon",
       "summary": "SUMMARY",
@@ -197,25 +283,25 @@
       "title": "Welcome!",
       "yet_account": "Don't have an account yet?",
       "please_register": "Please register",
-      "button": "Login"
+      "button": "Log In"
     },
     "registration": {
       "title": "Registration",
       "already_have": "Already have an account?",
-      "login": "Login",
+      "login": "Log In",
       "button": "Register",
       "rules": {
-        "first": "Password must be at least 8 characters long.",
-        "second": "Uppercase Latin letters.",
-        "third": "Lowercase Latin letters.",
-        "fourth": "Digits 0-9."
+        "first": "The password must be at least 8 characters long.",
+        "second": "Latin uppercase letters.",
+        "third": "Latin lowercase letters.",
+        "fourth": "Numbers 0-9."
       }
     },
     "forgot_password": {
       "title": "Forgot Password",
-      "description": "Enter your phone number, we will send you a confirmation code.",
+      "description": "Enter your phone number, we will send you a verification code.",
       "button": "Send Code",
-      "code_button": "Confirm"
+      "code_button": "Verify"
     },
     "code": {
       "title": "Code",
@@ -224,7 +310,7 @@
     "forgot_pass": "Forgot Password?",
     "remember_me": "Remember Me",
     "name": {
-      "title": "First and Last Name",
+      "title": "Name and Surname",
       "placeholder": "Enter your name"
     },
     "email": {
@@ -249,20 +335,20 @@
     "about_us": "About Us",
     "news": "News",
     "contacts": "Contacts",
-    "login": "Login",
+    "login": "Log In",
     "register": "Register"
   },
   "cards": {
-    "more": "More Details"
+    "more": "Learn More"
   },
   "products": {
     "title": "Branded Products",
-    "sec_title": "Store",
+    "sec_title": "store",
     "products_title": "Paint",
     "found_products": "products found",
     "filters": "Filters",
     "details": {
-      "article": "SKU",
+      "article": "Article",
       "weight": "Weight",
       "kg": "kg",
       "quantity": "Quantity",
@@ -272,7 +358,7 @@
       "height": "Height",
       "layers": "Number of Layers",
       "area": "Total Area",
-      "on": "For",
+      "on": "Per",
       "layer": "layer",
       "liters": "liters",
       "add_to_cart": "Add to Cart",
@@ -294,7 +380,7 @@
     "next": "Next"
   },
   "footer_links": {
-    "about_text": "LLP 'K-COLOR' under the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
+    "about_text": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
     "remalux": {
       "title": "Remalux",
       "about_us": "About Us",
@@ -312,7 +398,7 @@
     },
     "contacts": {
       "title": "Contacts",
-      "address": "Almaty, Tole Bi St., 300/2"
+      "address": "Almaty, Tole bi St, 300/2"
     },
     "privacy_policy": "Privacy Policy"
   },
@@ -321,12 +407,12 @@
       "first": "From Idea to Reality",
       "second": "with"
     },
-    "direction": "Select Idea Direction",
-    "select_room": "Select Room"
+    "direction": "Choose the direction of the idea",
+    "select_room": "Select a Room"
   },
   "news": {
     "page_title": {
-      "first": "Stay Informed",
+      "first": "Stay Updated",
       "second": "with all the news"
     },
     "read_more": "Read More"
@@ -347,7 +433,7 @@
         "description": "For all types of surfaces"
       },
       "dye": {
-        "title": "Dye",
+        "title": "Paint",
         "description": "For all types of surfaces"
       },
       "varnish": {
@@ -376,8 +462,8 @@
       "link": "All News"
     },
     "about_us": {
-      "title": "About Remalux",
-      "description": "LLP 'K-COLOR' under the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, produced under British license from raw materials of well-known French, Belgian, German, Dutch, and American manufacturers."
+      "title": "About Us Remalux",
+      "description": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, manufactured under a British license from raw materials by renowned French, Belgian, German, Dutch, and American manufacturers."
     }
   }
 }
