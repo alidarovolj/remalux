@@ -19,7 +19,7 @@ const localePath = useLocalePath()
           <h2 class="text-xl md:text-4xl font-bold text-white font-montserrat">
             {{ $t('mainPage.hero.title') }}
           </h2>
-          <div class="flex gap-6">
+          <div class="flex gap-6 font-montserrat">
             <NuxtLink
                 :to="localePath('/')"
                 class="w-full bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-3 text-center text-base md:text-xl font-bold border-2 border-white"

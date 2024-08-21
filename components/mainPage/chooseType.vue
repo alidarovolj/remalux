@@ -12,7 +12,7 @@ const router = useRouter()
           @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })"
           class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
         <div class="flex flex-col gap-5 w-2/3 pl-7">
-          <p class="text-2xl md:text-4xl font-bold">
+          <p class="text-2xl md:text-4xl font-bold font-montserrat">
             {{ $t('mainPage.choose_type.paint.title') }}
           </p>
           <p class="text-[#525252] text-xs md:text-base">
@@ -31,7 +31,7 @@ const router = useRouter()
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
-              <p class="text-2xl font-bold">
+              <p class="text-2xl font-bold font-montserrat">
                 {{ $t('mainPage.choose_type.coating.title') }}
               </p>
               <p class="text-xs text-[#525252]">
@@ -47,7 +47,7 @@ const router = useRouter()
               @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '15' } })"
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
-              <p class="text-2xl font-bold">
+              <p class="text-2xl font-bold font-montserrat">
                 {{ $t('mainPage.choose_type.varnish.title') }}
               </p>
               <p class="text-xs text-[#525252]">
@@ -65,7 +65,7 @@ const router = useRouter()
               @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })"
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
-              <p class="text-2xl font-bold">
+              <p class="text-2xl font-bold font-montserrat">
                 {{ $t('mainPage.choose_type.dye.title') }}
               </p>
               <p class="text-xs text-[#525252]">
@@ -81,7 +81,7 @@ const router = useRouter()
               @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '16' } })"
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
-              <p class="text-2xl font-bold">
+              <p class="text-2xl font-bold font-montserrat">
                 {{ $t('mainPage.choose_type.putty.title') }}
               </p>
               <p class="text-xs text-[#525252]">

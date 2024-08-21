@@ -13,11 +13,11 @@ import HeroNew from "~/components/mainPage/heroNew.vue";
   <div>
     <HeroNew/>
     <ChooseType/>
-    <Ideas/>
+    <News/>
 <!--    <BecomePartner/>-->
     <PopularProducts/>
     <DownloadRemalux/>
-    <News/>
+    <Ideas/>
     <AboutBlock/>
   </div>
 </template>
