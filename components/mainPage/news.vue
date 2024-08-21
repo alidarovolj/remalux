@@ -37,7 +37,7 @@ onMounted(async () => {
         </h2>
         <NuxtLink
             :to="localePath('/news')"
-            class="flex gap-2 items-center text-mainColor">
+            class="flex gap-2 items-center text-mainColor hover:border-b hover:border-mainColor transition-all">
           <p class="text-sm md:text-xl">
             {{ $t('mainPage.news.link') }}
           </p>
@@ -57,7 +57,7 @@ onMounted(async () => {
                 ref="artworkMainCarousel"
                 v-for="(post, index) of newsList.data"
                 :key="index">
-              <NewsCard :postData="post" class="mx-2"/>
+              <NewsCard :postData="post" :item-index="index" class="mx-2"/>
             </my-carousel-slide>
           </my-carousel-carousel>
         </client-only>

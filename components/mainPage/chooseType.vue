@@ -4,11 +4,13 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="container mx-auto px-4 lg:px-0 mt-40 mb-32">
+  <div
+      data-aos="fade-up"
+      class="container mx-auto px-4 lg:px-0 mt-40 mb-32">
     <div class="flex flex-col md:flex-row gap-5">
       <div
           @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })"
-          class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
+          class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
         <div class="flex flex-col gap-5 w-2/3 pl-7">
           <p class="text-2xl md:text-4xl font-bold">
             {{ $t('mainPage.choose_type.paint.title') }}
@@ -18,7 +20,7 @@ const router = useRouter()
           </p>
         </div>
         <img
-            class="w-1/3 h-[155px] md:h-full object-contain"
+            class="w-1/3 h-[155px] md:h-full object-contain transition-all"
             src="~/assets/img/mainPage/paint.png"
             alt="">
       </div>
@@ -27,7 +29,7 @@ const router = useRouter()
           class="w-full md:w-1/2 grid grid-cols-1 gap-y-4 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
         <div class="h-full flex flex-col md:flex-row gap-5">
           <div
-              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
+              class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.coating.title') }}
@@ -43,7 +45,7 @@ const router = useRouter()
           </div>
           <div
               @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '15' } })"
-              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
+              class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.varnish.title') }}
@@ -61,7 +63,7 @@ const router = useRouter()
         <div class="h-full flex flex-col md:flex-row gap-5">
           <div
               @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })"
-              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
+              class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.dye.title') }}
@@ -77,7 +79,7 @@ const router = useRouter()
           </div>
           <div
               @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '16' } })"
-              class=" w-full h-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white hover:bg-gray-100 transition-all cursor-pointer">
+              class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="text-2xl font-bold">
                 {{ $t('mainPage.choose_type.putty.title') }}
@@ -100,5 +102,17 @@ const router = useRouter()
 <style>
 .set_shadow {
   box-shadow: 7px 7px 20px 0px #0000000D;
+}
+
+.hov_element:hover img {
+  transform: scale(1.1);
+}
+
+.hov_element:hover div p:first-child {
+  color: #ad2725;
+}
+
+.hov_element:hover div p {
+  transition: all 0.2s;
 }
 </style>

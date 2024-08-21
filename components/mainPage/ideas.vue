@@ -38,7 +38,7 @@ const preventAnchorNavigation = (event: MouseEvent) => {
       </h2>
       <NuxtLink
           :to="localePath('/')"
-          class="flex gap-2 items-center text-mainColor"
+          class="flex gap-2 items-center text-mainColor hover:border-b hover:border-mainColor transition-all"
           @mousedown="preventAnchorNavigation">
         <p class="text-sm md:text-xl">
           {{ $t('mainPage.ideas.link') }}

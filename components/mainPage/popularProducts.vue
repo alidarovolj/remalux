@@ -36,7 +36,7 @@ onMounted(async () => {
       </h2>
       <NuxtLink
           :to="localePath('/')"
-          class="flex gap-2 items-center text-mainColor">
+          class="flex gap-2 items-center text-mainColor hover:border-b hover:border-mainColor transition-all">
         <p class="text-sm md:text-xl">
           {{ $t('mainPage.popular_products.link') }}
         </p>
@@ -56,7 +56,7 @@ onMounted(async () => {
               v-for="(item, index) of products.productsList.data"
               :key="index"
           class="px-2">
-            <ProductCard :product-data="item" />
+            <ProductCard :product-data="item" :itemIndex="index" />
           </my-carousel-slide>
           <template #addons>
             <my-carousel-navigation/>

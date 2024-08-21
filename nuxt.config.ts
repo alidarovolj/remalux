@@ -10,7 +10,10 @@ export default defineNuxtConfig({
         },
     },
     devtools: {enabled: true},
-    css: ['~/assets/css/main.css'],
+    css: [
+        '~/assets/css/main.css',
+        '~/assets/css/fonts.css'
+    ],
 
     i18n: {
         lazy: true,
@@ -62,11 +65,7 @@ export default defineNuxtConfig({
         ],
     },
 
-    modules: [
-        "vue3-carousel-nuxt",
-        "@nuxtjs/i18n",
-        "@pinia/nuxt"
-    ],
+    modules: ["vue3-carousel-nuxt", "@nuxtjs/i18n", "@pinia/nuxt", "nuxt-aos"],
     carousel: {
         prefix: 'my-carousel',
     }

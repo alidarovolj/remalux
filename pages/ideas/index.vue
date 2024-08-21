@@ -88,6 +88,8 @@ onMounted(async () => {
                   v-if="ideasList.data.length > 0"
                   class="grid grid-cols-1 gap-y-5 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-10 xl:grid-cols-3">
                 <NuxtLink
+                    data-aos="fade-up"
+                    v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}"
                     v-for="(idea, index) in ideasList.data"
                     :key="index"
                     :to="localePath(`/ideas/${idea.id}`)"

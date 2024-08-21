@@ -26,7 +26,9 @@ onMounted(async () => {
 <template>
   <div class="pb-16">
     <Breadcrumbs :links="links"/>
-    <div class="relative py-16 bg-[#F0DFDF] mb-10">
+    <div
+        data-aos="fade-up"
+        class="relative py-16 bg-[#F0DFDF] mb-10">
       <div class="container mx-auto relative z-10 px-4 md:px-0">
         <div class="text-4xl text-mainColor font-bold">
           <p>{{ $t('news.page_title.first') }}</p>
@@ -48,6 +50,8 @@ onMounted(async () => {
         class="container mx-auto px-4 lg:px-0">
       <div class="flex flex-col gap-10">
         <div
+            data-aos="fade-up"
+            :data-aos-duration="index * 500"
             v-for="(news, index) in newsList.data"
             :key="news.id"
             :class="{ 'flex-col md:!flex-row-reverse' : index % 2 === 0 }"

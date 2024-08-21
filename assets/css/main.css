@@ -2,16 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html, body, p {
     overflow-x: hidden;
 }
 
-html {
-    font-family: "Inter", sans-serif;
+* {
+    font-family: "Open Sans", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Manrope", sans-serif;
+.carousel__pagination {
+    background: #AD27241A;
+    width: max-content;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.carousel__pagination .carousel__pagination-button::after {
+    background: #fff !important;
+}
+
+.carousel__pagination .carousel__pagination-button--active::after {
+    background: #ad2725 !important;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.truncate-2-lines p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.truncate-2-lines p span {
+    background: none !important;
+    color: #fff !important;
+}
+
+.product-hover:hover img {
+    scale: 1.2;
+}
+
+.product-hover:hover a {
+    background: #ad2725;
+    color: #fff;
+}
+
+.navigation a {
+    position: relative;
+    transition: all 0.3s;
+}
+
+.navigation a:hover {
+    color: #ad2725;
+}
+
+.navigation a:after {
+    content: '';
+    transition: all 0.2s;
+}
+
+.navigation a.router-link-active {
+    color: #ad2725;
+}
+
+.navigation a.router-link-active:after {
+    content: '';
+    border-bottom: 3px solid #ad2725;
+    position: absolute;
+    width: 100%;
+    bottom: -85%;
+    left: 0;
+}
+
+.navigation a:hover:after {
+    content: '';
+    border-bottom: 3px solid #ad2725;
+    position: absolute;
+    width: 100%;
+    bottom: -85%;
+    left: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 input:focus-visible {

@@ -36,14 +36,14 @@ const handleClick = () => {
           leave-from-class="transform opacity-100 scale-100"
           leave-to-class="transform opacity-0 scale-95">
         <MenuItems
-            class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            class="absolute right-0 z-[1000] mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div class="py-1">
             <MenuItem
                 v-for="(lang, index) in locales"
                 :key="index"
                 v-slot="{ active }"
                 @click="setLocaleLocal(lang)">
-              <p :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+              <p :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm cursor-pointer']">
                 {{ lang.name }}
               </p>
             </MenuItem>

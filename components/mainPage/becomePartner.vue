@@ -10,7 +10,9 @@ const stats = computed(() => [
 </script>
 
 <template>
-  <div class="container mx-auto px-4 md:px-0 mb-16">
+  <div
+      data-aos="fade-up"
+      class="container mx-auto px-4 md:px-0 mb-16">
     <client-only>
       <div class="relative isolate overflow-hidden bg-gray-900 px-6 md:px-14 py-6 md:py-12 rounded-3xl">
         <img

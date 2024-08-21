@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const boundRef = ref(null);
 const videoRef = ref(null);
+let scrollAnimationFrame;
 
 const scrollVideo = () => {
   if (videoRef.value && videoRef.value.duration && boundRef.value) {
@@ -10,31 +11,38 @@ const scrollVideo = () => {
     const windowHeight = window.innerHeight;
 
     if (boundRect.top < windowHeight && boundRect.bottom > 0) {
-      // Calculate the scroll position relative to the entire scrollable area
       const totalScrollableHeight = windowHeight + boundRect.height;
       const scrolledAmount = windowHeight - boundRect.bottom;
-
-      // Calculate the percentage of the video that should be played
       const percentScrolled = scrolledAmount / (totalScrollableHeight - windowHeight);
       const clampedPercentScrolled = Math.min(Math.max(percentScrolled, 0), 1);
-
-      // Update the video currentTime
       videoRef.value.currentTime = videoRef.value.duration * clampedPercentScrolled;
     }
   }
 };
 
+const handleScroll = () => {
+  if (scrollAnimationFrame) {
+    cancelAnimationFrame(scrollAnimationFrame);
+  }
+  scrollAnimationFrame = requestAnimationFrame(scrollVideo);
+};
+
 onMounted(() => {
-  window.addEventListener('scroll', scrollVideo);
+  window.addEventListener('scroll', handleScroll);
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', scrollVideo);
+  window.removeEventListener('scroll', handleScroll);
+  if (scrollAnimationFrame) {
+    cancelAnimationFrame(scrollAnimationFrame);
+  }
 });
 </script>
 
 <template>
-  <div class="container mx-auto px-4 lg:px-0 mb-36">
+  <div
+      data-aos="fade-up"
+      class="container mx-auto px-4 lg:px-0 mb-36">
     <div class="rounded-xl relative flex md:hidden flex-col md:flex-row">
       <img
           class="w-full h-full absolute rounded-xl object-cover object-right-bottom"

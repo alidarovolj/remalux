@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 export default {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -20,8 +21,11 @@ export default {
         fifth: "19%",
         half: "49%",
       },
+      boxShadow: {
+        hovShadow: "0px 0px 20px 0px #9D181840"
+      },
       fontFamily: {
-        manrope: ['Manrope', 'sans-serif'],
+        montserrat: ['Montserrat Alternates', ...defaultTheme.fontFamily.sans],
       }
     },
   },

@@ -18,6 +18,7 @@
     "axios": "^1.7.2",
     "maska": "^3.0.0-beta4",
     "nuxt": "^3.12.3",
+    "nuxt-aos": "latest",
     "pinia": "^2.1.7",
     "vue": "latest",
     "vue3-carousel-nuxt": "latest"

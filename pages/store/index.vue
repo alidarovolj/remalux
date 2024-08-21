@@ -138,6 +138,8 @@ onMounted(async () => {
           v-if="categories.categoriesList"
           class="flex flex-col md:flex-row gap-5">
         <div
+            v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}"
+            data-aos="fade-up"
             v-for="(category, index) in categories.categoriesList.data"
             :key="index"
             :class="{ '!bg-mainColor text-white' : parseInt(route.query['filters[category_id]']) === category.id }"
@@ -184,6 +186,8 @@ onMounted(async () => {
               leave-from="translate-x-0"
               leave-to="translate-x-full">
             <DialogPanel
+                data-aos="fade-up"
+                data-aos-duration="500"
                 class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl">
               <div class="flex items-center justify-between px-4">
                 <h2 class="text-lg font-medium text-gray-900">
@@ -368,7 +372,7 @@ onMounted(async () => {
                     v-for="(product, index) in products.productsList.data"
                     :key="index"
                     class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
-                  <ProductCard :productData="product"/>
+                  <ProductCard :productData="product" :item-index="index" />
                 </div>
               </div>
               <NoResults v-else/>

@@ -52,7 +52,6 @@ export async function api(url, method, options = {}, query = {}) {
                 "Пожалуйста, авторизуйтесь снова"
             );
             localStorage.removeItem("token");
-            router.push('/login');
         } else {
             console.error(error);
             throw new Error(error.response?.data?.message || 'Request failed');
