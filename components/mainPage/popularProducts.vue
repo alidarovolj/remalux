@@ -29,7 +29,7 @@ onMounted(async () => {
 <template>
   <div class="container mx-auto px-4 lg:px-0 mb-36">
     <div
-        class="flex justify-between items-center pb-3"
+        class="flex justify-between items-center pb-3 gap-5"
         style="box-shadow: 0px 6px 6.4px -4px #00000026;">
       <h2 class=" font-montserrat text-lg md:text-3xl font-bold">
         {{ $t('mainPage.popular_products.title') }}

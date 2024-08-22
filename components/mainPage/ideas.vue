@@ -31,7 +31,7 @@ const preventAnchorNavigation = (event: MouseEvent) => {
 <template>
   <div class="container mx-auto px-4 lg:px-0 mb-10">
     <div
-        class="flex justify-between items-center pb-3 mb-8"
+        class="flex justify-between items-center pb-3 mb-8 gap-5"
         style="box-shadow: 0px 6px 6.4px -4px #00000026;">
       <h2 class="text-lg md:text-3xl font-bold font-montserrat">
         {{ $t('mainPage.ideas.title') }}
