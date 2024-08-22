@@ -77,7 +77,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="bg-white fixed top-0 z-[10000] w-full">
+  <header
+      style="box-shadow: 0px 0px 10px 0px #00000026;"
+      class="bg-white fixed top-0 z-[10000] w-full">
     <div class="container mx-auto px-4 md:px-0">
       <nav
           ref="navRef"
@@ -108,7 +110,7 @@ onUnmounted(() => {
               v-for="item in navigation"
               :key="item.name"
               :to="localePath(item.href)"
-              class="text-xs font-semibold leading-6 text-gray-900">
+              class="text-xs font-bold leading-6 text-gray-900">
             {{ item.name }}
           </NuxtLink>
         </div>

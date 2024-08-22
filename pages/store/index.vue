@@ -2,7 +2,7 @@
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import ProductCard from "~/components/cards/productCard.vue";
 import {ChevronDownIcon, PlusIcon} from '@heroicons/vue/20/solid'
-import {XMarkIcon} from '@heroicons/vue/24/outline'
+import {XMarkIcon, MagnifyingGlassIcon, BarsArrowDownIcon} from '@heroicons/vue/24/outline'
 import {
   Dialog,
   DialogPanel,
@@ -11,6 +11,10 @@ import {
   DisclosurePanel,
   TransitionChild,
   TransitionRoot,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems
 } from '@headlessui/vue'
 import {useProductsStore} from "~/stores/products.js";
 import Pagination from "~/components/general/pagination.vue";
@@ -29,6 +33,7 @@ const {cur_lang} = storeToRefs(languages)
 const filtersStore = useFiltersStore()
 const route = useRoute()
 const notifications = useNotificationStore()
+const filtersList = ref([])
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -105,6 +110,31 @@ const removeAllFilters = async () => {
   await notifications.showNotification('success', 'Успешно', 'Фильтры успешно сброшены')
 };
 
+const filterIds = computed(() => {
+  const query = route.query;
+  return Object.keys(query)
+      .filter(key => key.startsWith('filter_ids'))
+      .map(key => query[key]);
+});
+
+const filterElements = computed(() => {
+  const ids = filterIds.value.flat();
+  const elements = [];
+
+  if (filtersStore.filtersList && Array.isArray(filtersStore.filtersList.data)) {
+    filtersStore.filtersList.data.forEach(filter => {
+      filter.values.forEach(value => {
+        if (ids.includes(value.id.toString())) {
+          elements.push(value);
+        }
+      });
+    });
+  }
+
+  return elements;
+});
+
+
 onMounted(async () => {
   await nextTick()
   await products.getProducts()
@@ -116,37 +146,37 @@ onMounted(async () => {
 <template>
   <div>
     <Breadcrumbs :links="links"/>
-    <div class="relative py-16 bg-[#ff7828]">
-      <div class="container mx-auto relative z-10 px-4 md:px-0">
-        <div class="text-4xl text-white font-bold">
-          <p>{{ $t('products.title') }}</p>
-          <div class="flex items-center gap-2">
-            <p>{{ $t('products.sec_title') }}</p>
-            <img
-                src="~/assets/img/logos/whiteLogo.png"
-                alt="">
+    <client-only>
+      <div class="relative py-16 bg-white">
+        <div class="container mx-auto relative z-10 px-4 md:px-0">
+          <div class="text-4xl text-mainColor font-bold">
+            <p>{{ $t('products.title') }}</p>
+            <div class="flex items-center gap-2">
+              <p>{{ $t('products.sec_title') }}</p>
+              <img
+                  src="~/assets/img/logos/mainLogo.svg"
+                  alt="">
+            </div>
           </div>
         </div>
+        <img
+            class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
+            src="~/assets/img/products/main.png"
+            alt="">
       </div>
-      <img
-          class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
-          src="~/assets/img/products/main.png"
-          alt="">
-    </div>
+    </client-only>
     <div class="container mx-auto px-4 lg:px-0 pt-10 pb-16">
       <div
           v-if="categories.categoriesList"
           class="flex flex-col md:flex-row gap-5">
         <div
-            v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}"
-            data-aos="fade-up"
             v-for="(category, index) in categories.categoriesList.data"
             :key="index"
-            :class="{ '!bg-mainColor text-white' : parseInt(route.query['filters[category_id]']) === category.id }"
-            class="w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] hover:bg-gray-100 transition-all cursor-pointer"
+            :class="{ '!border-[#F0DFDF] for_gradient text-mainColor' : parseInt(route.query['filters[category_id]']) === category.id }"
+            class="relative w-full set_shadow rounded-xl border border-white flex items-center bg-[#F9F9F9] hover:bg-gray-100 transition-all cursor-pointer"
             @click="updateCategoryFilter(category.id)">
           <div class="flex flex-col gap-5 w-2/3 pl-7">
-            <p class="text-sm font-bold">
+            <p class="font-bold">
               {{ category.title[cur_lang] }}
             </p>
           </div>
@@ -163,7 +193,7 @@ onMounted(async () => {
         as="template"
         :show="mobileFiltersOpen">
       <Dialog
-          class="relative z-40 lg:hidden"
+          class="relative z-[1000000000000000] lg:hidden"
           @close="mobileFiltersOpen = false">
         <TransitionChild
             as="template"
@@ -188,9 +218,9 @@ onMounted(async () => {
             <DialogPanel
                 data-aos="fade-up"
                 data-aos-duration="500"
-                class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl">
+                class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl font-manrope">
               <div class="flex items-center justify-between px-4">
-                <h2 class="text-lg font-medium text-gray-900">
+                <h2 class="text-2xl font-bold text-gray-900">
                   {{ $t('products.filters') }}
                 </h2>
                 <button
@@ -214,7 +244,7 @@ onMounted(async () => {
                     <legend class="w-full px-2">
                       <DisclosureButton
                           class="flex w-full items-center justify-between p-2 text-gray-400 hover:text-gray-500">
-                        <span class="text-sm font-medium text-gray-900">
+                        <span class="text-lg font-semibold text-gray-900">
                           {{ section.title[cur_lang] }}
                         </span>
                         <span class="ml-6 flex h-7 items-center">
@@ -242,7 +272,7 @@ onMounted(async () => {
                           />
                           <label
                               :for="`${section.id}-${optionIdx}-mobile`"
-                              class="ml-3 text-sm text-gray-500">
+                              class="ml-3 text-base">
                             {{ option.values[cur_lang] }}
                           </label>
                         </div>
@@ -259,16 +289,19 @@ onMounted(async () => {
     <div class="container mx-auto px-4 lg:px-0">
       <main class="mx-auto">
 
-        <div class="pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+        <div class="pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4 font-manrope">
           <aside>
-
+            <div class="mb-5 relative">
+              <MagnifyingGlassIcon class="w-6 h-6 text-mainColor absolute left-4 top-1/2 -translate-y-1/2" />
+              <input class="w-full p-4 pl-14 border-b border-[#F0DFDF]" type="text" :placeholder="$t('search.placeholder')">
+            </div>
             <div class="flex items-center justify-between lg:hidden">
               <button
                   type="button"
                   class="inline-flex items-center"
                   @click="mobileFiltersOpen = true">
-                <span class="text-base font-medium text-gray-700">{{ $t('products.filters') }}</span>
-                <PlusIcon class="ml-1 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true"/>
+                <span class="text-xl font-bold">{{ $t('products.filters') }}</span>
+                <PlusIcon class="ml-1 h-5 w-5 flex-shrink-0" aria-hidden="true"/>
               </button>
               <p
                   @click="removeAllFilters"
@@ -281,7 +314,7 @@ onMounted(async () => {
               <div class="flex">
                 <div class="relative ml-auto flex h-full w-full flex-col overflow-y-auto rounded-md pt-4">
                   <div class="flex items-center justify-between px-4">
-                    <h2 class="text-2xl font-medium text-gray-900">
+                    <h2 class="text-2xl font-bold text-gray-900">
                       {{ $t('products.filters') }}
                     </h2>
                     <p
@@ -306,7 +339,7 @@ onMounted(async () => {
                             <DisclosureButton
                                 class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]"
                             >
-              <span class="text-lg font-medium text-gray-900">
+              <span class="text-xl font-semibold text-gray-900">
                 {{ section.title[cur_lang] }}
               </span>
                               <span class="ml-6 flex h-7 items-center">
@@ -329,13 +362,13 @@ onMounted(async () => {
                                     :name="`${section.id}[]`"
                                     :value="option.id"
                                     type="checkbox"
-                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    class="h-4 w-4 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
                                     @change="updateFilter(section.id, option.id)"
                                     :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                                 />
                                 <label
                                     :for="`${section.id}-${optionIdx}-mobile`"
-                                    class="ml-3 text-sm text-gray-500"
+                                    class="ml-3 text-base"
                                 >
                                   {{ option.values[cur_lang] }}
                                 </label>
@@ -362,6 +395,50 @@ onMounted(async () => {
                 <span class="font-semibold">{{ products.productsList?.meta?.total }}</span>
                 {{ $t('products.found_products') }}
               </p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+              <div class="w-full text-[#7B7B7B] flex items-center gap-3">
+                <p>Выбранные фильтры:</p>
+                <div class="flex gap-3 flex-wrap">
+                  <div
+                      v-for="(filter, filterInd) of filterElements"
+                      :key="filterInd"
+                      class="bg-[#C3808040] px-3 py-2 rounded-full flex gap-2 items-center"
+                  >
+                    {{ filter.values[cur_lang] }} <XMarkIcon class="h-4 w-4 cursor-pointer" @click="updateFilter(null, filter.id)"/>
+                  </div>
+                </div>
+              </div>
+              <Menu as="div" class="relative inline-block text-left">
+                <div>
+                  <MenuButton class="flex items-center gap-2 text-sm">
+                    <BarsArrowDownIcon class="h-5 w-5" aria-hidden="true" />
+                    <p>Сортировка</p>
+                    <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                  </MenuButton>
+                </div>
+
+                <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+                  <MenuItems class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div class="py-1">
+                      <MenuItem v-slot="{ active }">
+                        <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Account settings</a>
+                      </MenuItem>
+                      <MenuItem v-slot="{ active }">
+                        <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Support</a>
+                      </MenuItem>
+                      <MenuItem v-slot="{ active }">
+                        <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">License</a>
+                      </MenuItem>
+                      <form method="POST" action="#">
+                        <MenuItem v-slot="{ active }">
+                          <button type="submit" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']">Sign out</button>
+                        </MenuItem>
+                      </form>
+                    </div>
+                  </MenuItems>
+                </transition>
+              </Menu>
             </div>
             <div
                 v-if="products.productsList">

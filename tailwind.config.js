@@ -26,6 +26,7 @@ export default {
       },
       fontFamily: {
         montserrat: ['Montserrat Alternates', ...defaultTheme.fontFamily.sans],
+        manrope: ['Manrope', ...defaultTheme.fontFamily.sans],
       }
     },
   },

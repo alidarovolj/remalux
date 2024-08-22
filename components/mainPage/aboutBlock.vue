@@ -45,7 +45,7 @@ const social = ref([
           alt="">
       <div
           class="w-full md:w-1/2 py-14 px-4 md:px-9 rounded-xl relative z-10"
-          style="background: linear-gradient(90deg, #C37F7F 72.63%, rgba(115, 115, 115, 0) 100%);">
+          style="background: linear-gradient(90deg, #ad2725 72.63%, rgba(115, 115, 115, 0) 100%);">
         <h2 class="text-3xl font-bold text-white mb-5 font-montserrat">
           {{ $t('mainPage.about_us.title') }}
         </h2>

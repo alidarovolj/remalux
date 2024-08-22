@@ -2,12 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, p {
+html, body {
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: "Open Sans", sans-serif;
 }
 
-* {
-    font-family: "Open Sans", sans-serif;
+.for_gradient {
+    position: relative;
+    overflow: hidden;
+}
+
+.for_gradient:after {
+    content: '';
+    position: absolute;
+    width: 81.48px;
+    height: 81.48px;
+    top: 70%;
+    background: #AD2724;
+    border-radius: 100%;
+    left: -40.74px;
+    gap: 0;
+    opacity: 0.5;
+    box-shadow: 0 0 80px 30px #AD2724; /* Spread effect */
+    filter: blur(10px); /* Blur effect */
 }
 
 .carousel__pagination {

@@ -39,7 +39,6 @@ onMounted(async () => {
         v-if="contactsList && activeContact"
         class="container mx-auto px-4 md:px-0">
       <div
-          data-aos="fade-up"
           class="mx-auto max-w-2xl lg:mx-0">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900">
           {{ $t('contacts.title') }}
@@ -48,8 +47,6 @@ onMounted(async () => {
       <div
           class="mx-auto mt-6 mb-12 flex flex-col md:flex-row gap-5">
         <div
-            data-aos="fade-up"
-            :data-aos-duration="index * 500"
             v-for="(item, index) of contactsList.data"
             :key="index"
             @click="activeContact = item"

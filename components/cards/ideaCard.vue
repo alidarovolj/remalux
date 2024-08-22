@@ -15,7 +15,7 @@ const props = defineProps(['data', 'itemIndex'])
       :data-aos-duration="itemIndex * 300"
       class="group relative flex flex-col overflow-hidden rounded-lg bg-white set_shadow w-full">
     <img class="h-[230px] min-h-[230px] object-cover" :src="data.image_url" alt="">
-    <p class="flex items-center text-base font-semibold px-5 py-6 min-h-[100px]">
+    <p class="flex font-montserrat items-center text-base font-semibold px-5 py-6 min-h-[100px]">
       {{ data.title[cur_lang] }}
     </p>
   </NuxtLink>

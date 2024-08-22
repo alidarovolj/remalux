@@ -4,8 +4,8 @@ import Ideas from "~/components/mainPage/ideas.vue";
 import PopularProducts from "~/components/mainPage/popularProducts.vue";
 import DownloadRemalux from "~/components/mainPage/downloadRemalux.vue";
 import News from "~/components/mainPage/news.vue";
+import BecomePartner from "~/components/mainPage/becomePartner.vue";
 import AboutBlock from "~/components/mainPage/aboutBlock.vue";
-// import BecomePartner from "~/components/mainPage/becomePartner.vue";
 import HeroNew from "~/components/mainPage/heroNew.vue";
 </script>
 
@@ -14,10 +14,10 @@ import HeroNew from "~/components/mainPage/heroNew.vue";
     <HeroNew/>
     <ChooseType/>
     <News/>
-<!--    <BecomePartner/>-->
     <PopularProducts/>
     <DownloadRemalux/>
     <Ideas/>
     <AboutBlock/>
+    <BecomePartner/>
   </div>
 </template>

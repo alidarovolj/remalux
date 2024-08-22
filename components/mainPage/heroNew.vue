@@ -4,13 +4,8 @@ const localePath = useLocalePath()
 
 <template>
   <div class="flex w-full h-[500px] relative">
-    <div class="absolute left-0 top-0 w-full h-full flex">
-      <div class="h-full bg-[#AD2724] w-3/4">
-      </div>
-      <div class="h-full bg-[#F0E6CD] w-1/4"></div>
-    </div>
     <img
-        class="absolute left-0 top-0 w-full h-full z-10 opacity-30"
+        class="absolute left-0 top-0 w-full h-full z-10"
         src="@/assets/img/hero/1.png"
         alt="">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 relative">
@@ -35,21 +30,22 @@ const localePath = useLocalePath()
           </div>
         </div>
       </div>
-      <div class="w-full md:w-2/3 relative h-full hidden md:block">
-        <img
-            class="w-[25%] mx-auto md:mx-0 absolute right-[30%] translate-x-1/2 top-1/3 -translate-y-1/2 z-50"
-            src="~/assets/img/hero/pinpng.com-wall-art-png-2436294%203.png"
-            alt="">
-        <img
-            class="w-full md:w-[60%] absolute right-[10%] -bottom-1/3 -translate-y-1/2 lg:-translate-y-1/3 z-40"
-            src="~/assets/img/mainPage/tableSofa.png"
-            alt="">
-        <img
-            class="w-full md:w-[60%] absolute right-[10%] -bottom-[30%] -translate-y-1/2 lg:-translate-y-1/3 z-30"
-            src="~/assets/img/hero/shadow.png"
-            alt="">
-      </div>
-      <div class="w-full relative h-full block md:hidden">
+<!--      <div class="w-full md:w-2/3 relative h-full hidden md:block">-->
+<!--        <img-->
+<!--            class="w-[25%] mx-auto md:mx-0 absolute right-[30%] translate-x-1/2 top-1/3 -translate-y-1/2 z-50"-->
+<!--            src="~/assets/img/hero/pinpng.com-wall-art-png-2436294%203.png"-->
+<!--            alt="">-->
+<!--        <img-->
+<!--            class="w-full md:w-[60%] absolute right-[10%] -bottom-1/3 -translate-y-1/2 lg:-translate-y-1/3 z-40"-->
+<!--            src="~/assets/img/mainPage/tableSofa.png"-->
+<!--            alt="">-->
+<!--        <img-->
+<!--            class="w-full md:w-[60%] absolute right-[10%] -bottom-[30%] -translate-y-1/2 lg:-translate-y-1/3 z-30"-->
+<!--            src="~/assets/img/hero/shadow.png"-->
+<!--            alt="">-->
+<!--      </div>-->
+      
+      <div class="w-full relative h-full block md:hidden z-20">
         <img
             class="w-1/2 mx-auto absolute -top-14 left-1/2 -translate-x-1/2"
             src="~/assets/img/hero/pinpng.com-wall-art-png-2436294%203.png"
@@ -74,9 +70,14 @@ const localePath = useLocalePath()
         </div>
       </div>
     </div>
-    <img
-        class="w-full md:w-[15%] absolute hidden md:block right-0 -bottom-[30%] -translate-y-1/2 lg:-translate-y-[10%] z-50"
-        src="~/assets/img/hero/lamp.png"
-        alt="">
+<!--    <img-->
+<!--        class="w-full md:w-[15%] absolute hidden md:block right-0 -bottom-[30%] -translate-y-1/2 lg:-translate-y-[10%] z-50"-->
+<!--        src="~/assets/img/hero/lamp.png"-->
+<!--        alt="">-->
+    <div class="w-full md:w-1/2 absolute right-0 bottom-0 h-auto hidden md:block z-20">
+      <img
+          class="w-full h-full object-contain translate-y-1/4"
+          src="@/assets/img/hero/elements.png" alt="">
+    </div>
   </div>
 </template>

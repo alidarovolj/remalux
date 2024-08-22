@@ -20,7 +20,7 @@ onMounted(async () => {
 <template>
   <div>
     <Header/>
-    <div class="pt-[85px]">
+    <div class="pt-[70px] md:pt-[85px]">
       <NuxtPage/>
     </div>
     <Footer/>

@@ -13,9 +13,19 @@ const {cur_lang} = storeToRefs(language);
       :to="localePath('/store/' + productData.id)"
       data-aos="fade-up"
       v-bind="itemIndex !== undefined ? { 'data-aos-duration': itemIndex * 200 } : {}"
-      class="w-full bg-white rounded-md mt-28 py-3 text-left transition-all product-hover"
+      class="w-full bg-white rounded-md mt-28 py-3 text-left transition-all product-hover relative"
       style="box-shadow: 7px 7px 20px 0px #0000000D"
   >
+    <div class="absolute right-3 -top-1/3 w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
+      <img
+          class="w-5 h-5"
+          v-if="!productData.is_colorable"
+          src="@/assets/img/products/empty.png" alt="">
+      <img
+          class="w-5 h-5"
+          v-else
+          src="@/assets/img/products/full.png" alt="">
+    </div>
     <img
         class="w-[90%] h-[174px] object-contain mx-auto -mt-20 mb-4 transition-all"
         :src="productData.image_url"
