@@ -15,7 +15,7 @@ import HeroNew from "~/components/mainPage/heroNew.vue";
     <ChooseType/>
     <News/>
     <PopularProducts/>
-    <DownloadRemalux class="hidden md:block"/>
+    <DownloadRemalux/>
     <Ideas/>
     <!--    <AboutBlock/>-->
     <BecomePartner/>

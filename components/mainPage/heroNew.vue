@@ -3,7 +3,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <div class="flex w-full h-[500px] relative">
+  <div class="flex w-full h-[500px] relative mb-20">
     <img
         alt=""
         class="absolute left-0 top-0 w-full h-full z-10"

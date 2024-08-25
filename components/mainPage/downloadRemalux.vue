@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
   <div
       class="container mx-auto px-4 lg:px-0"
       data-aos="fade-up">
-    <div class="rounded-xl relative flex flex-col md:flex-row">
+    <div class="rounded-xl relative flex flex-col md:flex-row block md:hidden">
       <img
           alt=""
           class="w-full h-full absolute rounded-xl object-cover object-right-bottom"
