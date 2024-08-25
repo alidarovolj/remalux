@@ -15,6 +15,7 @@ import img3 from "~/assets/img/store/3.png";
 import img4 from "~/assets/img/store/4.png";
 import img5 from "~/assets/img/store/5.png";
 import {useModalsStore} from "~/stores/modals.js";
+import {useColorCookieStore} from "~/stores/colorCookie.js";
 
 const products = useProductsStore();
 const cart = useCartStore()
@@ -29,7 +30,8 @@ const route = useRoute();
 const router = useRouter()
 const language = useLanguagesStore();
 const {cur_lang} = storeToRefs(language);
-const activeTab = ref(1);
+const savedColor = useColorCookieStore()
+const {colorCookie} = storeToRefs(savedColor)
 const localePath = useLocalePath();
 const calculatorActive = ref(false);
 const {t} = useI18n();
@@ -160,7 +162,9 @@ const addToCartLocal = async () => {
                         :key="index">
                       <div
                           :class="[{ 'bg-white' : !products.detailProduct.is_colorable }]"
-                          class="w-full h-full absolute left-0 top-0"></div>
+                          class="w-full h-full absolute left-0 top-0"
+                          :style="`background: ${colorCookie.hex}`"
+                      ></div>
                       <img :src="item" alt="" class="w-full h-full absolute left-0 top-0 z-10">
                     </my-carousel-slide>
                     <template #addons="{ currentSlide, slidesCount }">
@@ -256,7 +260,7 @@ const addToCartLocal = async () => {
                 {{ prod_var }}₸
               </p>
               <NuxtLink
-                  v-if="products.detailProduct.is_colorable"
+                  v-if="products.detailProduct.is_colorable && !colorCookie"
                   :to="localePath('/colors')"
                   class="border border-[#7B7B7B40] border-dashed py-6 rounded flex items-center gap-4 justify-center mb-8 cursor-pointer">
                 <div class="rounded-full flex items-center justify-center">
@@ -265,6 +269,34 @@ const addToCartLocal = async () => {
                 <p class="text-xl text-mainColor">
                   {{ $t('products.details.choose_color') }}
                 </p>
+              </NuxtLink>
+              <NuxtLink
+                  v-else
+                  :to="localePath('/colors')"
+                  :style="`background: ${colorCookie.hex}`"
+                  class="border border-[#7B7B7B40] border-dashed rounded mb-8 cursor-pointer p-3">
+                <div class="flex items-center gap-2 mb-3">
+                  <div
+                      class="w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
+                    <svg
+                        class="size-5 w-5 h-5 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          clip-rule="evenodd"
+                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                          fill-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="invert">{{ colorCookie.title[cur_lang] }}</p>
+                  </div>
+                </div>
+                <div class="flex justify-end">
+                  <p class="text-sm invert">{{ $t('products.colors_link') }}</p>
+                </div>
               </NuxtLink>
               <div class="mb-8">
                 <p class="mb-4">

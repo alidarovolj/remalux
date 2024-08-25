@@ -5,6 +5,7 @@ import NoResults from "~/components/general/noResults.vue";
 import {useLanguagesStore} from "~/stores/languages.js";
 import IdeaCard from "~/components/cards/ideaCard.vue";
 import Banner from "~/components/general/banner.vue";
+import AOS from 'aos';
 
 const ideas = useIdeasStore()
 const {ideasList, ideaColorsList, ideaRoomsList} = storeToRefs(ideas)
@@ -25,6 +26,14 @@ onMounted(async () => {
   await ideas.getIdeaColors()
   await ideas.getIdeaRooms()
 })
+
+watch(
+    () => ideasList,
+    async () => {
+      await nextTick();
+      AOS.refresh();
+    }
+);
 </script>
 
 <template>
@@ -69,6 +78,8 @@ onMounted(async () => {
                   v-for="(item, index) of ideaColorsList.data"
                   :key="index"
                   :style="`background: ${item.hex}`"
+                  :data-aos="'fade-up'"
+                  :data-aos-delay="index * 100"
                   class="w-full h-20 rounded-md p-3">
                 <input class="rounded-full w-5 h-5 bg-none" type="checkbox">
               </label>

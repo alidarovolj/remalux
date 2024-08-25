@@ -1,8 +1,10 @@
-<script lang="ts" setup>
+<script setup>
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import Banner from "~/components/general/banner.vue";
 import NoResults from "~/components/general/noResults.vue";
 import Pagination from "~/components/general/pagination.vue";
+import AOS from 'aos';
+import {useColorCookieStore} from "~/stores/colorCookie";
 
 const colors = useColorsStore()
 const {colorsList, mainColorsList} = storeToRefs(colors)
@@ -10,6 +12,9 @@ const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
 const localePath = useLocalePath()
 const {t} = useI18n()
+const router = useRouter()
+const savedColor = useColorCookieStore()
+const { colorCookie } = storeToRefs(savedColor)
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
@@ -21,6 +26,19 @@ onMounted(async () => {
   await colors.getColors()
   await colors.getMainColors()
 })
+
+const saveColor = async (color) => {
+  await savedColor.saveCookie(color)
+  await router.push(localePath(`/store`))
+}
+
+watch(
+    () => colorsList,
+    async () => {
+      await nextTick();
+      AOS.refresh();
+    }
+);
 </script>
 
 <template>
@@ -46,7 +64,9 @@ onMounted(async () => {
                 v-for="(item, index) of mainColorsList"
                 :key="index"
                 :style="`background: ${item.hex}`"
-                class="w-full h-20 rounded-md p-3">
+                class="w-full h-20 rounded-md p-3"
+                :data-aos="'fade-up'"
+                :data-aos-delay="index * 100">
               <input class="rounded-full w-4 h-4 bg-none" type="checkbox">
             </label>
           </div>
@@ -65,8 +85,11 @@ onMounted(async () => {
           <div
               v-for="(item, index) of colorsList.data"
               :key="index"
-              class="bg-white rounded-2xl p-4 text-sm pb-8"
+              class="bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer"
+              @click="saveColor(item)"
               style="box-shadow: 0px 0px 20px 0px #0000000D;"
+              :data-aos="'fade-up'"
+              :data-aos-delay="index * 100"
           >
             <div
                 :style="`background: ${item.hex}`"
@@ -74,7 +97,7 @@ onMounted(async () => {
             >
               <div class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
                 <svg
-                    v-if="item.id"
+                    v-if="colorCookie?.id === item.id"
                     class="size-5 w-5 h-5 text-mainColor"
                     fill="currentColor"
                     viewBox="0 0 24 24"
@@ -87,7 +110,7 @@ onMounted(async () => {
                 </svg>
                 <svg
                     v-else
-                    class="size-5 w-5 h-5 text-white"
+                    class="size-5 w-5 h-5 text-[#E8E8E5]"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">

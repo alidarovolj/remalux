@@ -12,18 +12,22 @@ const localePath = useLocalePath()
         class="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 relative">
       <div class="w-full md:w-1/2 h-full md:h-auto mt-10 md:mt-0 px-4 md:px-0">
         <div class="relative z-20 flex flex-col gap-7">
-          <h2 class="text-xl md:text-[40px] font-medium leading-8 md:leading-[60px] text-white font-montserrat">
+          <h2
+              data-aos="fade-right"
+              class="text-xl md:text-[40px] font-medium leading-8 md:leading-[60px] text-white font-montserrat">
             {{ $t('mainPage.hero.title') }}
           </h2>
           <div class="flex gap-6 font-montserrat">
             <NuxtLink
                 :to="localePath('/')"
+                data-aos="fade-right"
                 class="w-full md:w-max px-0 md:px-9 bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-4 text-center text-base md:text-xl font-semibold border-2 border-white"
             >
               {{ $t('mainPage.hero.choose_paint') }}
             </NuxtLink>
             <NuxtLink
                 :to="localePath('/')"
+                data-aos="fade-right"
                 class="w-full md:w-max px-0 md:px-9 bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-4 text-center text-base md:text-xl font-semibold border-2 border-white"
             >
               {{ $t('mainPage.hero.choose_color') }}
@@ -59,8 +63,10 @@ const localePath = useLocalePath()
     </div>
     <div class="w-full md:w-1/2 absolute right-0 bottom-0 h-auto hidden md:block z-20">
       <img
+          data-aos="fade-left"
           alt=""
-          class="w-full h-full object-contain translate-y-1/4" src="@/assets/img/hero/elements.png">
+          class="w-full h-full object-contain -mb-20"
+          src="@/assets/img/hero/elements.png">
     </div>
   </div>
 </template>

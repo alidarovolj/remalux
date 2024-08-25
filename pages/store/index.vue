@@ -1,6 +1,6 @@
 <script setup>
 import {ChevronDownIcon, PlusIcon} from '@heroicons/vue/20/solid'
-import {BarsArrowDownIcon, MagnifyingGlassIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {BarsArrowDownIcon, MagnifyingGlassIcon, XMarkIcon, ChevronRightIcon} from '@heroicons/vue/24/outline'
 import {
   Dialog,
   DialogPanel,
@@ -14,6 +14,7 @@ import {
   TransitionChild,
   TransitionRoot
 } from '@headlessui/vue'
+import AOS from 'aos';
 import {useProductsStore} from "~/stores/products.js";
 import {useCategoriesStore} from "~/stores/categories.js";
 import {useLanguagesStore} from "~/stores/languages.js";
@@ -25,6 +26,7 @@ import Pagination from "~/components/general/pagination.vue";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import ProductCard from "~/components/cards/productCard.vue";
 import Banner from "~/components/general/banner.vue";
+import {useColorCookieStore} from "~/stores/colorCookie.js";
 
 const products = useProductsStore()
 const categories = useCategoriesStore()
@@ -34,6 +36,8 @@ const {cur_lang} = storeToRefs(languages)
 const filtersStore = useFiltersStore()
 const route = useRoute()
 const notifications = useNotificationStore()
+const savedColor = useColorCookieStore()
+const { colorCookie } = storeToRefs(savedColor)
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -141,6 +145,14 @@ onMounted(async () => {
   await categories.getCategories()
   await filtersStore.getFilters()
 })
+
+watch(
+    () => products.productsList,
+    async () => {
+      await nextTick();
+      AOS.refresh();
+    }
+);
 </script>
 
 <template>
@@ -148,11 +160,58 @@ onMounted(async () => {
     <div>
       <Breadcrumbs :links="links"/>
       <Banner
+          v-if="!colorCookie"
           :sec_title="$t('products.sec_title')"
           :title="$t('products.title')"
           image="products"
           text_color="white"
       />
+      <div v-else>
+        <div class="container mx-auto px-4 md:px-0">
+          <div class="my-8">
+            <div
+                class="bg-white rounded-2xl p-4 text-sm pb-8 cursor-pointer"
+                style="box-shadow: 0px 0px 20px 0px #0000000D;"
+                :data-aos="'fade-up'"
+            >
+              <div class="flex items-center gap-6 mb-4">
+                <div class="flex gap-2 items-center">
+                  <p class="text-2xl font-medium whitespace-nowrap">{{ colorCookie.title[cur_lang] }}</p>
+                  <ChevronRightIcon class="w-6 h-6" />
+                </div>
+                <div class="border-t h-[1px] w-full border-[#F0DFDF]"></div>
+                <NuxtLink
+                    :to="localePath('/colors')"
+                    class="flex gap-2 items-center text-mainColor">
+                  <p class="whitespace-nowrap font-medium">
+                    {{ $t('products.colors_link') }}
+                  </p>
+                  <ChevronRightIcon class="w-5 h-5" />
+                </NuxtLink>
+              </div>
+              <div
+                  :style="`background: ${colorCookie.hex}`"
+                  class="mb-4 w-full h-[170px] rounded-2xl relative"
+              >
+                <div class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                  <svg
+                      class="size-5 w-5 h-5 text-mainColor"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        clip-rule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                        fill-rule="evenodd"
+                    />
+                  </svg>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container mx-auto px-4 lg:px-0 pb-16">
         <div
             v-if="categories.categoriesList"
@@ -432,8 +491,9 @@ onMounted(async () => {
                         </MenuItem>
                         <form action="#" method="POST">
                           <MenuItem v-slot="{ active }">
-                            <button :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']"
-                                    type="submit">
+                            <button
+                                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']"
+                                type="submit">
                               Sign out
                             </button>
                           </MenuItem>
@@ -451,8 +511,8 @@ onMounted(async () => {
                       v-for="(product, index) in products.productsList?.data"
                       :key="index"
                       class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3"
-                      data-aos="fade-up"
-                      v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}">
+                      :data-aos="'fade-up'"
+                      :data-aos-delay="index * 20">
                     <ProductCard :item-index="index" :productData="product"/>
                   </div>
                 </div>

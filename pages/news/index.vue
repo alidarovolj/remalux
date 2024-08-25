@@ -4,6 +4,7 @@ import {useLanguagesStore} from "~/stores/languages.js";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import Pagination from "~/components/general/pagination.vue";
 import Banner from "~/components/general/banner.vue";
+import AOS from 'aos';
 
 const news = useNewsStore();
 const {newsList} = storeToRefs(news);
@@ -22,6 +23,14 @@ onMounted(async () => {
   await nextTick()
   await news.getNews();
 });
+
+watch(
+    () => newsList,
+    async () => {
+      await nextTick();
+      AOS.refresh();
+    }
+);
 </script>
 
 <template>
@@ -41,7 +50,7 @@ onMounted(async () => {
             v-for="(news, index) in newsList.data"
             :key="news.id"
             :class="{ 'flex-col md:!flex-row-reverse' : index % 2 === 0 }"
-            :data-aos-duration="index * 500"
+            :data-aos-duration="index * 100"
             class="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center"
             data-aos="fade-up">
           <img

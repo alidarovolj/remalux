@@ -10,7 +10,7 @@ const props = defineProps(['data', 'itemIndex'])
 
 <template>
   <NuxtLink
-      :data-aos-duration="itemIndex * 300"
+      :data-aos-duration="itemIndex * 100"
       :to="`/ideas/${data.id}`"
       class="group relative flex flex-col overflow-hidden rounded-lg bg-white set_shadow w-full"
       data-aos="fade-up">

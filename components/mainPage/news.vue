@@ -3,6 +3,7 @@ import NewsCard from "~/components/cards/newsCard.vue";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import Heading from "~/components/general/heading.vue";
 
+const router = useRouter()
 const localePath = useLocalePath()
 const newsBreakpoints = ref({
   0: {
@@ -22,6 +23,7 @@ const {newsList} = storeToRefs(news)
 
 onMounted(async () => {
   await nextTick()
+  await router.push({query: {}});
   await news.getNews()
 })
 </script>
