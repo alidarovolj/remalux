@@ -28,7 +28,7 @@ const logoSrc = computed(() => {
             class="text-2xl md:text-[40px] font-medium font-montserrat">
           <p class="mb-3">{{ title }}</p>
           <div class="flex items-top gap-2">
-            <p class="h-max leading-3">{{ sec_title }}</p>
+            <p class="h-max leading-9 md:leading-3">{{ sec_title }}</p>
             <img
                 :src="logoSrc"
                 alt=""

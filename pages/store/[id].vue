@@ -387,7 +387,7 @@ const addToCartLocal = async () => {
     </div>
     <div>
       <div class="container mx-auto px-4 md:px-0">
-        <div class="flex justify-between items-start gap-32">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-32">
           <div class="w-full md:w-1/5">
             <div
                 v-if="detailProduct"
@@ -439,7 +439,9 @@ const addToCartLocal = async () => {
               </div>
             </div>
           </div>
-          <div class="w-full md:w-4/5 flex flex-col gap-10">
+          <div
+              v-if="detailProduct"
+              class="w-full md:w-4/5 flex flex-col gap-10">
             <div>
               <p class="text-2xl font-medium text-mainColor mb-4 font-montserrat">
                 Преимущества
