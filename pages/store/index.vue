@@ -148,10 +148,10 @@ onMounted(async () => {
     <div>
       <Breadcrumbs :links="links"/>
       <Banner
-          :title="$t('products.title')"
           :sec_title="$t('products.sec_title')"
-          text_color="white"
+          :title="$t('products.title')"
           image="products"
+          text_color="white"
       />
       <div class="container mx-auto px-4 lg:px-0 pb-16">
         <div
@@ -169,17 +169,17 @@ onMounted(async () => {
               </p>
             </div>
             <img
-                class="w-1/3 h-full rounded-tr-xl rounded-br-xl object-cover object-right"
                 :src="category.image_url"
-                alt="">
+                alt=""
+                class="w-1/3 h-full rounded-tr-xl rounded-br-xl object-cover object-right">
           </div>
         </div>
         <ProductsPreloader v-else/>
       </div>
       <!-- Mobile filter dialog -->
       <TransitionRoot
-          as="template"
-          :show="mobileFiltersOpen">
+          :show="mobileFiltersOpen"
+          as="template">
         <Dialog
             class="relative z-[1000000000000000] lg:hidden"
             @close="mobileFiltersOpen = false">
@@ -204,30 +204,30 @@ onMounted(async () => {
                 leave-from="translate-x-0"
                 leave-to="translate-x-full">
               <DialogPanel
+                  class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl font-manrope"
                   data-aos="fade-up"
-                  data-aos-duration="500"
-                  class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl font-manrope">
+                  data-aos-duration="500">
                 <div class="flex items-center justify-between px-4">
                   <h2 class="text-2xl font-bold text-gray-900 font-montserrat">
                     {{ $t('products.filters') }}
                   </h2>
                   <button
-                      type="button"
                       class="relative -mr-2 flex h-10 w-10 items-center justify-center p-2 text-gray-400 hover:text-gray-500"
+                      type="button"
                       @click="mobileFiltersOpen = false">
                     <span class="absolute -inset-0.5"/>
-                    <XMarkIcon class="h-6 w-6" aria-hidden="true"/>
+                    <XMarkIcon aria-hidden="true" class="h-6 w-6"/>
                   </button>
                 </div>
 
                 <!-- Filters -->
                 <form class="mt-4">
                   <Disclosure
-                      as="div"
                       v-for="section in filtersStore.filtersList.data"
                       :key="section.id"
-                      class="border-t border-gray-200 pb-4 pt-4"
-                      v-slot="{ open }">
+                      v-slot="{ open }"
+                      as="div"
+                      class="border-t border-gray-200 pb-4 pt-4">
                     <fieldset>
                       <legend class="w-full px-2">
                         <DisclosureButton
@@ -251,12 +251,12 @@ onMounted(async () => {
                               class="flex items-center">
                             <input
                                 :id="`${section.id}-${optionIdx}-mobile`"
+                                :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                                 :name="`${section.id}[]`"
                                 :value="option.id"
-                                type="checkbox"
                                 class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                type="checkbox"
                                 @change="updateFilter(section.id, option.id)"
-                                :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                             />
                             <label
                                 :for="`${section.id}-${optionIdx}-mobile`"
@@ -281,20 +281,20 @@ onMounted(async () => {
             <aside>
               <div class="mb-5 relative">
                 <MagnifyingGlassIcon class="w-6 h-6 text-mainColor absolute left-4 top-1/2 -translate-y-1/2"/>
-                <input class="w-full p-4 pl-14 border-b border-[#F0DFDF]" type="text"
-                       :placeholder="$t('search.placeholder')">
+                <input :placeholder="$t('search.placeholder')" class="w-full p-4 pl-14 border-b border-[#F0DFDF]"
+                       type="text">
               </div>
               <div class="flex items-center justify-between lg:hidden">
                 <button
-                    type="button"
                     class="inline-flex items-center"
+                    type="button"
                     @click="mobileFiltersOpen = true">
                   <span class="text-xl font-semibold">{{ $t('products.filters') }}</span>
-                  <PlusIcon class="ml-1 h-5 w-5 flex-shrink-0" aria-hidden="true"/>
+                  <PlusIcon aria-hidden="true" class="ml-1 h-5 w-5 flex-shrink-0"/>
                 </button>
                 <p
-                    @click="removeAllFilters"
-                    class="text-mainColor cursor-pointer">
+                    class="text-mainColor cursor-pointer"
+                    @click="removeAllFilters">
                   {{ $t('products.clear_filters') }}
                 </p>
               </div>
@@ -307,8 +307,8 @@ onMounted(async () => {
                         {{ $t('products.filters') }}
                       </h2>
                       <p
-                          @click="removeAllFilters"
-                          class="text-mainColor cursor-pointer underline">
+                          class="text-mainColor cursor-pointer underline"
+                          @click="removeAllFilters">
                         {{ $t('products.clear_filters') }}
                       </p>
                     </div>
@@ -317,11 +317,11 @@ onMounted(async () => {
                     <client-only>
                       <form v-if="filtersStore.filtersList" class="mt-4">
                         <Disclosure
-                            as="div"
                             v-for="section in filtersStore.filtersList.data"
                             :key="section.name"
-                            class="border-t border-[#F0DFDF]"
                             v-slot="{ open }"
+                            as="div"
+                            class="border-t border-[#F0DFDF]"
                         >
                           <fieldset>
                             <legend class="w-full">
@@ -348,12 +348,12 @@ onMounted(async () => {
                                 >
                                   <input
                                       :id="`${section.id}-${optionIdx}-mobile`"
+                                      :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                                       :name="`${section.id}[]`"
                                       :value="option.id"
-                                      type="checkbox"
                                       class="h-6 w-6 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
+                                      type="checkbox"
                                       @change="updateFilter(section.id, option.id)"
-                                      :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                                   />
                                   <label
                                       :for="`${section.id}-${optionIdx}-mobile`"
@@ -402,9 +402,9 @@ onMounted(async () => {
                 <Menu as="div" class="relative inline-block text-left">
                   <div>
                     <MenuButton class="flex items-center gap-2 text-sm">
-                      <BarsArrowDownIcon class="h-5 w-5" aria-hidden="true"/>
+                      <BarsArrowDownIcon aria-hidden="true" class="h-5 w-5"/>
                       <p>{{ $t('products.sort') }}</p>
-                      <ChevronDownIcon class="h-5 w-5" aria-hidden="true"/>
+                      <ChevronDownIcon aria-hidden="true" class="h-5 w-5"/>
                     </MenuButton>
                   </div>
 
@@ -418,22 +418,22 @@ onMounted(async () => {
                         class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div class="py-1">
                         <MenuItem v-slot="{ active }">
-                          <a href="#"
-                             :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Account
+                          <a :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
+                             href="#">Account
                             settings</a>
                         </MenuItem>
                         <MenuItem v-slot="{ active }">
-                          <a href="#"
-                             :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Support</a>
+                          <a :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
+                             href="#">Support</a>
                         </MenuItem>
                         <MenuItem v-slot="{ active }">
-                          <a href="#"
-                             :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">License</a>
+                          <a :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
+                             href="#">License</a>
                         </MenuItem>
-                        <form method="POST" action="#">
+                        <form action="#" method="POST">
                           <MenuItem v-slot="{ active }">
-                            <button type="submit"
-                                    :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']">
+                            <button :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']"
+                                    type="submit">
                               Sign out
                             </button>
                           </MenuItem>
@@ -450,10 +450,10 @@ onMounted(async () => {
                   <div
                       v-for="(product, index) in products.productsList?.data"
                       :key="index"
+                      class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3"
                       data-aos="fade-up"
-                      v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}"
-                      class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3">
-                    <ProductCard :productData="product" :item-index="index"/>
+                      v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}">
+                    <ProductCard :item-index="index" :productData="product"/>
                   </div>
                 </div>
                 <NoResults v-else/>
@@ -474,8 +474,8 @@ onMounted(async () => {
               </div>
               <div v-if="products.productsList">
                 <Pagination
-                    @updatePage="products.getProducts"
-                    :meta-data="products.productsList.meta"/>
+                    :meta-data="products.productsList.meta"
+                    @updatePage="products.getProducts"/>
               </div>
             </section>
           </div>

@@ -19,9 +19,9 @@ const links = computed(() => [
       <div class="bg-white p-6 rounded-2xl set_shadow">
         <div class="flex items-center gap-8 border-b border-[#F0DFDF] pb-3 mb-4">
           <img
+              alt=""
               class="w-[100px] h-[100px] rounded-full object-cover"
-              src="@/assets/img/bg-app.jpg"
-              alt="">
+              src="@/assets/img/bg-app.jpg">
           <p
               v-if="user.userProfile"
               class="text-3xl font-semibold">

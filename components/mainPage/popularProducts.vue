@@ -1,5 +1,4 @@
-<script setup lang="ts">
-import {ChevronRightIcon} from "@heroicons/vue/24/outline";
+<script lang="ts" setup>
 import ProductCard from "~/components/cards/productCard.vue";
 import {useProductsStore} from "~/stores/products";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
@@ -22,7 +21,7 @@ const breakpoints = ref({
 
 onMounted(async () => {
   await nextTick()
-  await router.push({ query: {} });
+  await router.push({query: {}});
   await products.getProducts()
 })
 </script>
@@ -30,10 +29,10 @@ onMounted(async () => {
 <template>
   <div class="container mx-auto px-4 lg:px-0">
     <Heading
-        class="!mb-0"
-        :title="$t('mainPage.popular_products.title')"
-        link="/store"
         :linkTitle="$t('mainPage.popular_products.link')"
+        :title="$t('mainPage.popular_products.title')"
+        class="!mb-0"
+        link="/store"
     />
     <div v-if="products.productsList">
       <client-only>
@@ -46,8 +45,8 @@ onMounted(async () => {
           <my-carousel-slide
               v-for="(item, index) of products.productsList.data"
               :key="index"
-          class="px-2">
-            <ProductCard :product-data="item" :itemIndex="index" />
+              class="px-2">
+            <ProductCard :itemIndex="index" :product-data="item"/>
           </my-carousel-slide>
           <template #addons>
             <my-carousel-navigation/>

@@ -6,7 +6,7 @@ import {useRecipientsStore} from "~/stores/recipients.js";
 const {t} = useI18n()
 const localePath = useLocalePath()
 const recipients = useRecipientsStore()
-const { recipientList } = storeToRefs(recipients)
+const {recipientList} = storeToRefs(recipients)
 const modals = useModalsStore()
 
 const links = computed(() => [
@@ -46,8 +46,8 @@ onMounted(async () => {
                 <p>{{ item.name }} / {{ item.phone_number }}</p>
               </div>
               <TrashIcon
-                  @click="modals.showModal('removeRecipient', item)"
-                  class="w-5 h-5 text-red-500 cursor-pointer"/>
+                  class="w-5 h-5 text-red-500 cursor-pointer"
+                  @click="modals.showModal('removeRecipient', item)"/>
             </div>
           </div>
           <div v-else>
@@ -58,8 +58,8 @@ onMounted(async () => {
         </div>
         <div v-else class="spinner p-3"></div>
         <div
-            @click="modals.showModal('createRecipient')"
-            class="cursor-pointer flex items-center justify-center py-4 border rounded-lg border-dashed border-mainColor text-mainColor text-center text-xl gap-3 mt-5">
+            class="cursor-pointer flex items-center justify-center py-4 border rounded-lg border-dashed border-mainColor text-mainColor text-center text-xl gap-3 mt-5"
+            @click="modals.showModal('createRecipient')">
           <PlusIcon class="w-7 h-7"/>
           <p>{{ $t('profile.add_recipient') }}</p>
         </div>

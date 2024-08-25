@@ -136,24 +136,24 @@ onMounted(async () => {
           <div class="mt-10">
             <div>
               <form
-                  @submit.prevent="registerUser"
                   action=""
-                  class="space-y-6">
+                  class="space-y-6"
+                  @submit.prevent="registerUser">
 
                 <div
                     :class="{ '!border !border-red-500' : v$.name.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="name" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="name">
                     {{ $t('forms.name.title') }}
                   </label>
                   <input
-                      v-model="form.name"
                       id="name"
+                      v-model="form.name"
+                      :placeholder="$t('forms.name.placeholder')"
+                      autocomplete="name"
+                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       name="name"
                       type="text"
-                      autocomplete="name"
-                      :placeholder="$t('forms.name.placeholder')"
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
 
@@ -161,20 +161,20 @@ onMounted(async () => {
                   <div
                       :class="{ '!border !border-red-500' : v$.phone_number.$error }"
                       class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                    <label for="phone_number" class="block text-xs font-medium text-gray-900">
+                    <label class="block text-xs font-medium text-gray-900" for="phone_number">
                       {{ $t('forms.phone_number.title') }}
                     </label>
                     <input
-                        v-model="form.phone_number"
-                        @input="checkPhone"
                         id="phone_number"
-                        name="phone_number"
-                        type="text"
-                        autocomplete="phone_number"
+                        v-model="form.phone_number"
                         v-maska
-                        data-maska="+7 (###) ###-##-##"
-                        placeholder="+7 (___) ___-__-__"
+                        autocomplete="phone_number"
                         class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        data-maska="+7 (###) ###-##-##"
+                        name="phone_number"
+                        placeholder="+7 (___) ___-__-__"
+                        type="text"
+                        @input="checkPhone"
                     />
                   </div>
                   <div v-if="form.phone_number.length === 18">
@@ -199,18 +199,18 @@ onMounted(async () => {
                   <div
                       :class="{ '!border !border-red-500' : v$.email.$error }"
                       class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                    <label for="email" class="block text-xs font-medium text-gray-900">
+                    <label class="block text-xs font-medium text-gray-900" for="email">
                       {{ $t('forms.email.title') }}
                     </label>
                     <input
-                        v-model="form.email"
-                        @input="checkEmail"
                         id="email"
+                        v-model="form.email"
+                        :placeholder="$t('forms.email.placeholder')"
+                        autocomplete="email"
+                        class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         name="email"
                         type="text"
-                        autocomplete="email"
-                        :placeholder="$t('forms.email.placeholder')"
-                        class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        @input="checkEmail"
                     />
                   </div>
                   <div>
@@ -236,16 +236,16 @@ onMounted(async () => {
                     :class="{ '!border !border-red-500' : v$.city_id.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
                   <label
-                      for="city"
-                      class="block text-xs font-medium text-gray-900">
+                      class="block text-xs font-medium text-gray-900"
+                      for="city">
                     {{ $t('addresses.create.city') }}
                   </label>
                   <select
+                      id="city"
                       v-model="form.city_id"
                       :class="{ 'border-red-500' : v$.city_id.$error }"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      name="city"
-                      id="city">
+                      name="city">
                     <option :value="null">{{ $t('addresses.create.city_placeholder') }}</option>
                     <option
                         v-for="(city, index) of addresses.citiesList"
@@ -259,17 +259,17 @@ onMounted(async () => {
                 <div
                     :class="{ '!border !border-red-500' : v$.password.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="password" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="password">
                     {{ $t('forms.password.title') }}
                   </label>
                   <input
-                      v-model="form.password"
                       id="password"
-                      name="password"
-                      type="password"
+                      v-model="form.password"
                       autocomplete="password"
-                      placeholder="********"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      name="password"
+                      placeholder="********"
+                      type="password"
                   />
                 </div>
 
@@ -291,17 +291,17 @@ onMounted(async () => {
                 <div
                     :class="{ '!border !border-red-500' : v$.password_confirmation.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="password_confirmation" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="password_confirmation">
                     {{ $t('forms.confirm_password.title') }}
                   </label>
                   <input
-                      v-model="form.password_confirmation"
                       id="password_confirmation"
-                      name="password_confirmation"
-                      type="password"
+                      v-model="form.password_confirmation"
                       autocomplete="password_confirmation"
-                      placeholder="********"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      name="password_confirmation"
+                      placeholder="********"
+                      type="password"
                   />
                 </div>
 
@@ -310,17 +310,17 @@ onMounted(async () => {
                       class="mb-6 w-full flex gap-3 items-center cursor-pointer"
                       for="agreement">
                     <input
-                        type="checkbox"
+                        id="agreement"
                         v-model="form.agreement"
                         class="w-6 h-6"
                         name="agreement"
-                        id="agreement">
-                    <p class="text-sm" :class="{ '!text-red-500 underline': v$.agreement.$error }">
+                        type="checkbox">
+                    <p :class="{ '!text-red-500 underline': v$.agreement.$error }" class="text-sm">
                       {{ $t('checkout.third.agreement.text') }}
                       <NuxtLink
                           :class="{ '!text-red-500 underline': v$.agreement.$error }"
-                          class="text-blue-500 underline"
-                          :to="localePath('/')">
+                          :to="localePath('/')"
+                          class="text-blue-500 underline">
                         {{ $t('checkout.third.agreement.link') }}
                       </NuxtLink>
                     </p>
@@ -336,8 +336,8 @@ onMounted(async () => {
                 </div>
 
                 <div>
-                  <button type="submit"
-                          class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
+                  <button class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                          type="submit">
                     {{ $t('forms.registration.button') }}
                   </button>
                 </div>
@@ -349,11 +349,11 @@ onMounted(async () => {
       <div class="relative hidden w-full md:block auth h-full">
         <client-only>
           <my-carousel-carousel
+              :autoplay="4000"
               :breakpoints="breakpoints"
               :mouse-drag="true"
               :touch-drag="true"
               :wrap-around="true"
-              :autoplay="4000"
           >
             <my-carousel-slide
                 v-for="(item, index) of carousel"
@@ -362,8 +362,8 @@ onMounted(async () => {
             >
               <img
                   :src="item"
-                  class="w-full h-full object-contain"
                   alt=""
+                  class="w-full h-full object-contain"
               />
             </my-carousel-slide>
             <template #addons>

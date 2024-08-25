@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { markRaw } from 'vue';
+import {markRaw} from 'vue';
 
 export default {
   name: 'MapWithSearch',

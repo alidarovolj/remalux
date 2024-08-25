@@ -28,26 +28,26 @@ onMounted(async () => {
   <div class="pb-16">
     <Breadcrumbs :links="links"/>
     <Banner
-        :title="$t('news.page_title.first')"
         :sec_title="$t('news.page_title.second')"
-        text_color="main"
+        :title="$t('news.page_title.first')"
         image="news"
+        text_color="main"
     />
     <div
         v-if="newsList"
         class="container mx-auto px-4 lg:px-0">
       <div class="flex flex-col gap-10">
         <div
-            data-aos="fade-up"
-            :data-aos-duration="index * 500"
             v-for="(news, index) in newsList.data"
             :key="news.id"
             :class="{ 'flex-col md:!flex-row-reverse' : index % 2 === 0 }"
-            class="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center">
+            :data-aos-duration="index * 500"
+            class="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center"
+            data-aos="fade-up">
           <img
-              class="w-full md:w-1/2 min-w-[50%] h-[414px] object-cover rounded-t-lg"
               :src="news.image_url"
-              alt="">
+              alt=""
+              class="w-full md:w-1/2 min-w-[50%] h-[414px] object-cover rounded-t-lg">
           <div class="p-5 md:p-14">
             <h2 class="text-xl font-semibold mb-4 font-montserrat">
               {{ news.title[cur_lang] }}

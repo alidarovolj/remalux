@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {ChevronRightIcon} from "@heroicons/vue/24/outline";
 
 const localePath = useLocalePath()

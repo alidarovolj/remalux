@@ -17,9 +17,9 @@ const links = computed(() => [
       <div class="py-44">
         <div class="text-center w-full md:w-max mx-auto border-2 border-[#E4E4E4] shadow-md p-6 rounded-lg">
           <img
+              alt=""
               class="mx-auto mb-4"
-              src="@/assets/img/payment/success.png"
-              alt="">
+              src="@/assets/img/payment/success.png">
           <h1 class="text-2xl font-semibold text-gray-900">
             {{ $t('payment_success.title') }}
           </h1>

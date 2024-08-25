@@ -71,8 +71,8 @@ onMounted(async () => {
         @submit.prevent="createAddress">
       <div class="mb-4">
         <label
-            for="address"
-            class="block text-sm font-medium text-gray-700">
+            class="block text-sm font-medium text-gray-700"
+            for="address">
           {{ $t('addresses.create.address') }}
         </label>
         <p
@@ -87,50 +87,54 @@ onMounted(async () => {
       <div class="grid grid-cols-1 grid-y-2 sm:gap-y-4 sm:grid-cols-2 gap-x-4 xl:grid-cols-3">
         <div class="mb-4">
           <label
-              for="address"
-              class="block text-sm font-medium text-gray-700">
-            {{ $t('addresses.create.entrance') }}  <span class="text-gray-400">({{ $t('no_results.not_required') }})</span>
+              class="block text-sm font-medium text-gray-700"
+              for="address">
+            {{ $t('addresses.create.entrance') }} <span class="text-gray-400">({{
+              $t('no_results.not_required')
+            }})</span>
           </label>
           <input
+              id="address"
               v-model="form.entrance"
               :placeholder="$t('addresses.create.entrance_placeholder')"
-              type="text"
+              class="py-2 px-4 border rounded-md w-full bg-white "
               name="address"
-              id="address"
-              class="py-2 px-4 border rounded-md w-full bg-white ">
+              type="text">
         </div>
         <div class="mb-4">
           <label
-              for="address"
-              class="block text-sm font-medium text-gray-700">
+              class="block text-sm font-medium text-gray-700"
+              for="address">
             {{ $t('addresses.create.floor') }} <span class="text-gray-400">({{ $t('no_results.not_required') }})</span>
           </label>
           <input
+              id="address"
               v-model="form.floor"
               :placeholder="$t('addresses.create.floor_placeholder')"
-              type="text"
+              class="py-2 px-4 border rounded-md w-full bg-white "
               name="address"
-              id="address"
-              class="py-2 px-4 border rounded-md w-full bg-white ">
+              type="text">
         </div>
         <div class="mb-4">
           <label
-              for="address"
-              class="block text-sm font-medium text-gray-700">
-            {{ $t('addresses.create.apartment') }} <span class="text-gray-400">({{ $t('no_results.not_required') }})</span>
+              class="block text-sm font-medium text-gray-700"
+              for="address">
+            {{ $t('addresses.create.apartment') }} <span class="text-gray-400">({{
+              $t('no_results.not_required')
+            }})</span>
           </label>
           <input
+              id="address"
               v-model="form.float"
               :placeholder="$t('addresses.create.apartment_placeholder')"
-              type="text"
+              class="py-2 px-4 border rounded-md w-full bg-white "
               name="address"
-              id="address"
-              class="py-2 px-4 border rounded-md w-full bg-white ">
+              type="text">
         </div>
       </div>
       <button
-          @submit.prevent="createAddress"
-          class="w-full">
+          class="w-full"
+          @submit.prevent="createAddress">
         <span v-if="loading" class="spinner"></span>
         <p
             v-else

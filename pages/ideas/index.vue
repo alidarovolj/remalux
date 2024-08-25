@@ -32,10 +32,10 @@ onMounted(async () => {
     <Breadcrumbs :links="links"/>
 
     <Banner
-        :title="$t('ideas.page_title.first')"
         :sec_title="$t('ideas.page_title.second')"
-        text_color="main"
+        :title="$t('ideas.page_title.first')"
         image="ideas"
+        text_color="main"
     />
 
     <div class="container mx-auto px-4 lg:px-0">
@@ -68,9 +68,9 @@ onMounted(async () => {
               <label
                   v-for="(item, index) of ideaColorsList.data"
                   :key="index"
-                  class="w-full h-20 rounded-md p-3"
-                  :style="`background: ${item.hex}`">
-                <input type="checkbox" class="rounded-full w-5 h-5 bg-none">
+                  :style="`background: ${item.hex}`"
+                  class="w-full h-20 rounded-md p-3">
+                <input class="rounded-full w-5 h-5 bg-none" type="checkbox">
               </label>
             </div>
             <div

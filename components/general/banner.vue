@@ -31,31 +31,31 @@ const logoSrc = computed(() => {
             <p class="h-max leading-3">{{ sec_title }}</p>
             <img
                 :src="logoSrc"
-                class="h-14"
-                alt="">
+                alt=""
+                class="h-14">
           </div>
         </div>
       </div>
       <img
           v-if="image === 'products'"
+          alt=""
           class="absolute right-0 top-0 h-full w-full object-cover object-left md:object-right block"
-          src="@/assets/img/products/main.png"
-          alt="">
+          src="@/assets/img/products/main.png">
       <img
           v-if="image === 'ideas'"
+          alt=""
           class="absolute right-0 top-0 h-full w-full object-cover object-left md:object-right block"
-          src="~/assets/img/ideas/bg.png"
-          alt="">
+          src="~/assets/img/ideas/bg.png">
       <img
           v-if="image === 'colors'"
+          alt=""
           class="absolute right-0 top-0 h-full w-full object-cover object-left md:object-right block"
-          src="~/assets/img/colors/bg.png"
-          alt="">
+          src="~/assets/img/colors/bg.png">
       <img
           v-if="image === 'news'"
+          alt=""
           class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
-          src="~/assets/img/news/bg.png"
-          alt="">
+          src="~/assets/img/news/bg.png">
     </div>
   </client-only>
 </template>

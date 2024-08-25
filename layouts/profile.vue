@@ -54,13 +54,13 @@ const logoutUser = async () => {
       <div class="hidden md:block w-1/5">
         <div class="bg-white set_shadow flex flex-col px-6 py-2 rounded-lg">
           <NuxtLink
-              :to="localePath(link.link)"
               v-for="(link, index) in links"
               :key="index"
               :class="[
                   { '!border-0' : index === links.length - 1 },
                   { 'text-mainColor' : link.link === route.fullPath }
                ]"
+              :to="localePath(link.link)"
               class="flex w-full items-center justify-between py-4 cursor-pointer transition-all hover:text-mainColor border-b border-[#F0DFDF]">
             <div class="flex gap-3">
               <component :is="link.icon" class="w-6 h-6"/>
@@ -70,8 +70,8 @@ const logoutUser = async () => {
           </NuxtLink>
         </div>
         <div
-            @click="logoutUser"
-            class="bg-white text-red-500 rounded-lg mt-4 set_shadow px-6 py-4 flex w-full items-center justify-between cursor-pointer transition-all">
+            class="bg-white text-red-500 rounded-lg mt-4 set_shadow px-6 py-4 flex w-full items-center justify-between cursor-pointer transition-all"
+            @click="logoutUser">
           <div class="flex gap-3">
             <ArrowLeftEndOnRectangleIcon class="w-6 h-6"/>
             <p>{{ $t('profile.logout') }}</p>

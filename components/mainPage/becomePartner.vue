@@ -1,5 +1,5 @@
 <script setup>
-const { t } = useI18n()
+const {t} = useI18n()
 
 const localePath = useLocalePath()
 
@@ -13,8 +13,8 @@ const stats = computed(() => [
 
 <template>
   <div
-      data-aos="fade-up"
-      class="container mx-auto px-4 md:px-0 mb-16">
+      class="container mx-auto px-4 md:px-0 mb-16"
+      data-aos="fade-up">
     <client-only>
       <div class="relative isolate overflow-hidden bg-[#BAA287] rounded-3xl">
         <div class="relative w-full px-6 md:px-12 py-6 md:py-9 md:w-3/4 z-10">
@@ -26,7 +26,8 @@ const stats = computed(() => [
               {{ $t('partners.text') }}
             </p>
           </div>
-          <NuxtLink class="my-9 font-semibold block w-max rounded-xl bg-white text-mainColor py-3 px-16" :to="localePath('/')">
+          <NuxtLink :to="localePath('/')"
+                    class="my-9 font-semibold block w-max rounded-xl bg-white text-mainColor py-3 px-16">
             {{ $t('partners.button') }}
           </NuxtLink>
           <dl class="mx-auto grid grid-cols-2 gap-x-8 gap-y-10 text-white sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
@@ -37,7 +38,7 @@ const stats = computed(() => [
           </dl>
         </div>
         <div class="w-auto absolute right-0 top-0 h-full hidden md:block">
-          <img class="h-full w-auto object-cover object-right-top" src="@/assets/img/hero/partners.png" alt="">
+          <img alt="" class="h-full w-auto object-cover object-right-top" src="@/assets/img/hero/partners.png">
         </div>
       </div>
     </client-only>

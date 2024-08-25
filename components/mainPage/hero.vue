@@ -1,5 +1,4 @@
 <script setup>
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 
 const localePath = useLocalePath();
 const leftPaneWidthPercent = ref(30); // Start with 50% as the initial width
@@ -50,25 +49,25 @@ onUnmounted(() => {
 <template>
   <div class="flex w-full h-[500px] relative">
     <div
-        class="h-full absolute bg-[#5B7986]"
-        :style="{ width: leftPaneWidthPercent + '%' }">
+        :style="{ width: leftPaneWidthPercent + '%' }"
+        class="h-full absolute bg-[#5B7986]">
     </div>
     <div
-        class="h-full w-[10px] bg-[#5B7986] absolute z-10 bg-none flex justify-center"
-        :style="{ left: leftPaneWidthPercent + '%' }">
+        :style="{ left: leftPaneWidthPercent + '%' }"
+        class="h-full w-[10px] bg-[#5B7986] absolute z-10 bg-none flex justify-center">
       <div class="relative w-full">
         <div
             class="w-[40px] h-[40px] rounded-full cursor-ew-resize flex items-center justify-center gap-2 absolute z-10 bg-white mt-8 right-0 translate-x-1/2"
             @mousedown="startDragging"
             @touchstart="startDragging"> <!-- Added touchstart for mobile -->
-          <div class="rounded triangle-left" :style="`color: #8E9D74`"></div>
-          <div class="rounded triangle-right" :style="`color: #5B7986`"></div>
+          <div :style="`color: #8E9D74`" class="rounded triangle-left"></div>
+          <div :style="`color: #5B7986`" class="rounded triangle-right"></div>
         </div>
       </div>
     </div>
     <div
-        class="h-full absolute bg-[#8E9D74]"
-        :style="{ left: `calc(${leftPaneWidthPercent}% + 10px)`, width: `calc(100% - ${leftPaneWidthPercent}% - 10px)` }">
+        :style="{ left: `calc(${leftPaneWidthPercent}% + 10px)`, width: `calc(100% - ${leftPaneWidthPercent}% - 10px)` }"
+        class="h-full absolute bg-[#8E9D74]">
     </div>
     <div
         class="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 relative px-4 md:px-0">
@@ -96,15 +95,15 @@ onUnmounted(() => {
       <div class="w-full md:w-1/3">
         <div class="relative z-10">
           <img
+              alt=""
               class="w-1/2 mx-auto md:mx-0"
-              src="~/assets/img/mainPage/photoFrame.png"
-              alt="">
+              src="~/assets/img/mainPage/photoFrame.png">
         </div>
       </div>
       <img
+          alt=""
           class="w-full md:w-1/2 absolute right-0 -bottom-1/2 -translate-y-1/2 lg:-translate-y-1/3"
-          src="~/assets/img/mainPage/tableSofa.png"
-          alt="">
+          src="~/assets/img/mainPage/tableSofa.png">
     </div>
   </div>
 </template>

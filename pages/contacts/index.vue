@@ -49,9 +49,9 @@ onMounted(async () => {
         <div
             v-for="(item, index) of contactsList.data"
             :key="index"
-            @click="activeContact = item"
             :class="{ '!border-mainColor !text-black bg-[#F0DFDF] border-l-[6px]' : activeContact.id === item.id }"
-            class="w-full pl-5 border-l-2 cursor-pointer border-[#B0B0B0] text-[#B0B0B0] rounded-r-lg py-2 hover:border-mainColor hover:text-black hover:bg-[#F0DFDF] hover:border-l-[6px] transition-all">
+            class="w-full pl-5 border-l-2 cursor-pointer border-[#B0B0B0] text-[#B0B0B0] rounded-r-lg py-2 hover:border-mainColor hover:text-black hover:bg-[#F0DFDF] hover:border-l-[6px] transition-all"
+            @click="activeContact = item">
           <h3 class="font-semibold font-montserrat">
             {{ item.city.title[cur_lang] }}
           </h3>
@@ -63,21 +63,21 @@ onMounted(async () => {
       <div class="flex flex-col md:flex-row gap-5">
         <div class="w-full md:w-1/2">
           <p
-              data-aos="fade-up"
-              class="text-2xl font-montserrat font-semibold mb-6">
+              class="text-2xl font-montserrat font-semibold mb-6"
+              data-aos="fade-up">
             {{ activeContact.city.title[cur_lang] }}
           </p>
 
           <div class="flex flex-col gap-5">
             <div
-                data-aos="fade-up"
-                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2"
+                data-aos="fade-up">
               <p class="w-1/4 text-mainColor">{{ $t('contacts.address') }}</p>
               <p class="w-3/4 ml-2 font-semibold">{{ activeContact.address }}</p>
             </div>
             <div
-                data-aos="fade-up"
-                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2"
+                data-aos="fade-up">
               <p class="w-1/4 text-mainColor">{{ $t('contacts.contacts') }}</p>
               <div class="w-3/4 ml-2 font-semibold flex gap-8 flex-wrap">
                 <a
@@ -97,8 +97,8 @@ onMounted(async () => {
               </div>
             </div>
             <div
-                data-aos="fade-up"
-                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2"
+                data-aos="fade-up">
               <p class="w-1/4 text-mainColor">{{ $t('contacts.email') }}</p>
               <div class="w-3/4 ml-2 font-semibold flex gap-8 flex-wrap">
                 <a
@@ -118,13 +118,15 @@ onMounted(async () => {
               </div>
             </div>
             <div
-                data-aos="fade-up"
-                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2">
+                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2"
+                data-aos="fade-up">
               <p class="w-1/4 text-mainColor">{{ $t('contacts.work_time') }}</p>
               <div class="w-3/4 ml-2 font-semibold flex flex-col">
-                <p>{{ $t('contacts.work_info.first.from') }} {{ activeContact.work_time.weekdays[0] }} {{ $t('contacts.work_info.first.to') }}
+                <p>{{ $t('contacts.work_info.first.from') }} {{ activeContact.work_time.weekdays[0] }}
+                  {{ $t('contacts.work_info.first.to') }}
                   {{ activeContact.work_time.weekdays[1] }}</p>
-                <p>{{ $t('contacts.work_info.second.from') }} {{ activeContact.work_time.weekends[0] }} {{ $t('contacts.work_info.second.to') }}
+                <p>{{ $t('contacts.work_info.second.from') }} {{ activeContact.work_time.weekends[0] }}
+                  {{ $t('contacts.work_info.second.to') }}
                   {{ activeContact.work_time.weekends[1] }}</p>
               </div>
             </div>

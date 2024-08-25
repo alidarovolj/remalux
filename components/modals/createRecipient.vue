@@ -6,7 +6,7 @@ import {useRecipientsStore} from "~/stores/recipients.js";
 import {vMaska} from "maska/vue"
 
 const recipients = useRecipientsStore()
-const { recipientList } = useRecipientsStore()
+const {recipientList} = useRecipientsStore()
 const notifications = useNotificationStore()
 const user = useUserStore()
 const modals = useModalsStore()
@@ -56,29 +56,29 @@ const createRecipient = async () => {
       {{ $t('recipients.create.title') }}
     </p>
     <form
-        @submit.prevent="createRecipient"
-        class="flex flex-col gap-4">
+        class="flex flex-col gap-4"
+        @submit.prevent="createRecipient">
       <div>
         <input
-            :class="{ '!border !border-red-500 rounded-md': v$.name.$error }"
             v-model="form.name"
-            type="text"
+            :class="{ '!border !border-red-500 rounded-md': v$.name.$error }"
             :placeholder="$t('recipients.create.name_placeholder')"
-            class="w-full px-4 border-b border-[#F0DFDF] py-3">
+            class="w-full px-4 border-b border-[#F0DFDF] py-3"
+            type="text">
       </div>
       <div>
         <input
-            :class="{ '!border !border-red-500 rounded-md': v$.phone_number.$error }"
             v-model="form.phone_number"
             v-maska
-            data-maska="+7 (###) ###-##-##"
-            type="text"
+            :class="{ '!border !border-red-500 rounded-md': v$.phone_number.$error }"
             :placeholder="$t('checkout.first.phone')"
-            class="w-full px-4 border-b border-[#F0DFDF] py-3">
+            class="w-full px-4 border-b border-[#F0DFDF] py-3"
+            data-maska="+7 (###) ###-##-##"
+            type="text">
       </div>
       <button
-          type="submit"
-          class="w-full">
+          class="w-full"
+          type="submit">
         <span v-if="loading" class="spinner"></span>
         <p
             v-else

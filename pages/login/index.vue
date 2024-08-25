@@ -95,51 +95,51 @@ const loginUser = async () => {
           <div class="mt-10">
             <div>
               <form
-                  @submit.prevent="loginUser"
                   action=""
-                  class="space-y-6">
+                  class="space-y-6"
+                  @submit.prevent="loginUser">
 
                 <div
                     :class="{ '!border !border-red-500': v$.phone_number.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="name" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="name">
                     {{ $t('forms.phone_number.title') }}
                   </label>
                   <input
-                      v-model="form.phone_number"
                       id="phone_number"
-                      name="phone_number"
-                      type="text"
-                      autocomplete="phone_number"
+                      v-model="form.phone_number"
                       v-maska
-                      data-maska="+7 (###) ###-##-##"
-                      placeholder="+7 (___) ___-__-__"
+                      autocomplete="phone_number"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      data-maska="+7 (###) ###-##-##"
+                      name="phone_number"
+                      placeholder="+7 (___) ___-__-__"
+                      type="text"
                   />
                 </div>
 
                 <div
                     :class="{ '!border !border-red-500': v$.password.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="password" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="password">
                     {{ $t('forms.password.title') }}
                   </label>
                   <input
-                      v-model="form.password"
                       id="password"
-                      name="password"
-                      type="password"
+                      v-model="form.password"
                       autocomplete="password"
-                      placeholder="********"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      name="password"
+                      placeholder="********"
+                      type="password"
                   />
                 </div>
 
                 <div class="flex items-center justify-between">
                   <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox"
-                           class="h-4 w-4 rounded border-gray-300 text-mainColor focus:ring-mainColor"/>
-                    <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-700">
+                    <input id="remember-me" class="h-4 w-4 rounded border-gray-300 text-mainColor focus:ring-mainColor" name="remember-me"
+                           type="checkbox"/>
+                    <label class="ml-3 block text-sm leading-6 text-gray-700" for="remember-me">
                       {{ $t('forms.remember_me') }}
                     </label>
                   </div>
@@ -154,8 +154,8 @@ const loginUser = async () => {
                 </div>
 
                 <div>
-                  <button type="submit"
-                          class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
+                  <button class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                          type="submit">
                     {{ $t('forms.login.button') }}
                   </button>
                 </div>
@@ -167,11 +167,11 @@ const loginUser = async () => {
       <div class="relative hidden w-full md:block auth h-full">
         <client-only>
           <my-carousel-carousel
+              :autoplay="4000"
               :breakpoints="breakpoints"
               :mouse-drag="true"
               :touch-drag="true"
               :wrap-around="true"
-              :autoplay="4000"
           >
             <my-carousel-slide
                 v-for="(item, index) of carousel"
@@ -180,8 +180,8 @@ const loginUser = async () => {
             >
               <img
                   :src="item"
-                  class="w-full h-full object-cover"
                   alt=""
+                  class="w-full h-full object-cover"
               />
             </my-carousel-slide>
             <template #addons>

@@ -10,7 +10,7 @@ html, body {
 }
 
 input[type='checkbox'],
-input[type='radio']{
+input[type='radio'] {
     accent-color: #AD2724;
 }
 
@@ -208,7 +208,7 @@ input:focus-visible {
 }
 
 .auth img,
-.auth.carousel__slide{
+.auth.carousel__slide {
     border-radius: 20px;
 }
 

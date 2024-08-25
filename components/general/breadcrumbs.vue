@@ -7,9 +7,9 @@ const localePath = useLocalePath();
 </script>
 
 <template>
-  <nav class="flex bg-[#F6F6F6] py-2" aria-label="Breadcrumb">
+  <nav aria-label="Breadcrumb" class="flex bg-[#F6F6F6] py-2">
     <div class="container mx-auto px-4 lg:px-0">
-      <ol role="list" class="flex items-center space-x-4">
+      <ol class="flex items-center space-x-4" role="list">
         <li
             v-for="(item, index) of links"
             :key="index">
@@ -21,13 +21,13 @@ const localePath = useLocalePath();
             </p>
             <ClientOnly>
               <NuxtLink
-                  :to="localePath(item.link)"
-                  class="ml-4 text-sm text-[#7B7B7B]"
+                  :aria-current="route.path === localePath(item.link) ? 'page' : undefined"
                   :class="[
                     { '!ml-0' : index === 0 },
                     { '!text-mainColor' : route.path === localePath(item.link) }
                  ]"
-                  :aria-current="route.path === localePath(item.link) ? 'page' : undefined">
+                  :to="localePath(item.link)"
+                  class="ml-4 text-sm text-[#7B7B7B]">
                 {{ item.title }}
               </NuxtLink>
             </ClientOnly>

@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import IdeaCard from "~/components/cards/ideaCard.vue";
-import {ChevronRightIcon} from "@heroicons/vue/24/outline";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import Heading from "~/components/general/heading.vue";
 
@@ -17,7 +16,7 @@ const breakpoints = ref({
 })
 
 const ideas = useIdeasStore()
-const { ideasList } = storeToRefs(ideas)
+const {ideasList} = storeToRefs(ideas)
 
 onMounted(async () => {
   await nextTick()
@@ -32,18 +31,18 @@ const preventAnchorNavigation = (event: MouseEvent) => {
 <template>
   <div class="container mx-auto px-4 lg:px-0">
     <Heading
+        :linkTitle="$t('mainPage.ideas.link')"
         :title="$t('mainPage.ideas.title')"
         link="/ideas"
-        :linkTitle="$t('mainPage.ideas.link')"
     />
     <div v-if="ideasList">
       <client-only>
         <my-carousel-carousel
+            :autoplay="4000"
             :breakpoints="breakpoints"
             :mouse-drag="true"
             :touch-drag="true"
             :wrap-around="true"
-            :autoplay="4000"
             @mousedown="preventAnchorNavigation"
         >
           <my-carousel-slide

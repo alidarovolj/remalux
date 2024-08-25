@@ -17,7 +17,7 @@ const {cartList, cartPrice} = storeToRefs(cart);
 const language = useLanguagesStore()
 const {cur_lang} = storeToRefs(language);
 const cartData = useCartCookieStore()
-const { cartCookie, cartTotalPrice } = storeToRefs(cartData)
+const {cartCookie, cartTotalPrice} = storeToRefs(cartData)
 
 const isItemChecked = (item) => {
   return cartCookie.value && cartCookie.value.some(cartItem => cartItem.id === item.id && cartItem.price === item.price);
@@ -83,8 +83,8 @@ onMounted(async () => {
           <div v-if="cartList">
             <div
                 v-if="cartList.data.length > 0"
-                @click="removeCartLocal"
-                class="flex items-center gap-2">
+                class="flex items-center gap-2"
+                @click="removeCartLocal">
               <p class="font-medium text-red-500">
                 {{ t('cart.clear') }}
               </p>
@@ -102,32 +102,32 @@ onMounted(async () => {
                   class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-[#FAFAFA]">
                 <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900">
+                  <th class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900" scope="col">
                     <input
+                        :checked="checkedCartCookie"
                         class="w-5 h-5"
                         type="checkbox"
-                        :checked="checkedCartCookie"
                         @input="cartData.addAllItemsCart(cartList)">
                   </th>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900">
+                  <th class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900" scope="col">
                     {{ t('cart.table.product') }}
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                  <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                     {{ t('cart.table.color') }}
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                  <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                     {{ t('cart.table.weight') }}
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                  <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                     {{ t('cart.table.quantity') }}
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                  <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                     {{ t('cart.table.price') }}
                   </th>
-                  <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                  <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                     {{ t('cart.table.total') }}
                   </th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                  <th class="relative py-3.5 pl-3 pr-4 sm:pr-0" scope="col">
                   </th>
                 </tr>
                 </thead>
@@ -137,18 +137,18 @@ onMounted(async () => {
                     :key="index">
                   <td class="whitespace-nowrap py-5 pl-4 pr-3">
                     <input
+                        :checked="isItemChecked(item)"
                         class="w-5 h-5"
                         type="checkbox"
-                        :checked="isItemChecked(item)"
                         @input="cartData.addOrRemoveItemCart(item)">
                   </td>
                   <td class="whitespace-nowrap py-5 pl-4 pr-3  sm:pl-0">
                     <div class="flex items-center">
                       <div class="h-24 w-24 flex-shrink-0">
                         <img
-                            class="h-24 w-24 rounded-full object-cover"
                             :src="item.product_image"
                             alt=""
+                            class="h-24 w-24 rounded-full object-cover"
                         />
                       </div>
                       <div class="ml-4">
@@ -174,16 +174,16 @@ onMounted(async () => {
                   <td class="whitespace-nowrap px-3 py-5  ">
                     <div class="text-mainColor flex gap-7">
                       <button
-                          @click="editQuantity(item.id, item.quantity - 1)"
-                          class="border border-[#F0DFDF] rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F0DFDF] transition-all">
+                          class="border border-[#F0DFDF] rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F0DFDF] transition-all"
+                          @click="editQuantity(item.id, item.quantity - 1)">
                         <MinusIcon class="w-5 h-5"/>
                       </button>
                       <p class=" text-xl">
                         {{ item.quantity }}
                       </p>
                       <button
-                          @click="editQuantity(item.id, item.quantity + 1)"
-                          class="border border-[#F0DFDF] rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F0DFDF] transition-all">
+                          class="border border-[#F0DFDF] rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F0DFDF] transition-all"
+                          @click="editQuantity(item.id, item.quantity + 1)">
                         <PlusIcon class="w-5 h-5"/>
                       </button>
                     </div>
@@ -198,8 +198,8 @@ onMounted(async () => {
                   </td>
                   <td class="whitespace-nowrap px-3 py-5 font-semibold ">
                     <TrashIcon
-                        @click="removeLocal(item.id)"
                         class="w-6 h-6 text-red-500 cursor-pointer"
+                        @click="removeLocal(item.id)"
                     />
                   </td>
                 </tr>
@@ -216,8 +216,8 @@ onMounted(async () => {
                 :key="index">
               <div class="flex justify-between mb-3 border p-2 rounded-lg gap-3">
                 <div
-                    class="skeleton w-10 h-4"
                     :class="{ 'bg-[#989898]' : index === 0 }"
+                    class="skeleton w-10 h-4"
                 ></div>
                 <div
                     :class="{ 'bg-[#989898]' : index === 0 }"
@@ -255,9 +255,9 @@ onMounted(async () => {
                 </p>
                 <div class="flex flex-col md:flex-row justify-between gap-5 mb-10 md:mb-0">
                   <input
-                      type="text"
                       :placeholder="$t('cart.checkout.coupon_placeholder')"
-                      class="w-full px-4 border-b border-[#F0DFDF] bg-[#FAFAFA]">
+                      class="w-full px-4 border-b border-[#F0DFDF] bg-[#FAFAFA]"
+                      type="text">
                   <button
                       class="w-full border border-mainColor text-mainColor px-6 py-2 rounded-lg text-lg font-semibold">
                     {{ $t('cart.checkout.coupon_button') }}
@@ -281,8 +281,8 @@ onMounted(async () => {
                 </NuxtLink>
                 <p
                     v-else
-                    @click="notifications.showNotification('error', 'Ошибка', 'Корзина пуста, пожалуйста добавьте товары')"
-                    class="w-full bg-mainColor cursor-pointer text-white px-6 py-2 rounded-lg text-lg font-semibold text-center">
+                    class="w-full bg-mainColor cursor-pointer text-white px-6 py-2 rounded-lg text-lg font-semibold text-center"
+                    @click="notifications.showNotification('error', 'Ошибка', 'Корзина пуста, пожалуйста добавьте товары')">
                   {{ $t('cart.checkout.checkout_button') }}
                 </p>
               </div>

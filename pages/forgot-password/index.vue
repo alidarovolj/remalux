@@ -113,61 +113,61 @@ const passwordRequest = async () => {
             <div>
               <form
                   v-if="!code_sent"
-                  @submit.prevent="codeRequest"
                   action=""
-                  class="space-y-6">
+                  class="space-y-6"
+                  @submit.prevent="codeRequest">
 
                 <div
                     :class="{ '!border !border-red-500': v$.phone_number.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="name" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="name">
                     {{ $t('forms.phone_number.title') }}
                   </label>
                   <input
-                      v-model="form.phone_number"
                       id="phone_number"
-                      name="phone_number"
-                      type="text"
-                      autocomplete="phone_number"
+                      v-model="form.phone_number"
                       v-maska
-                      data-maska="+7 (###) ###-##-##"
-                      placeholder="+7 (___) ___-__-__"
+                      autocomplete="phone_number"
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      data-maska="+7 (###) ###-##-##"
+                      name="phone_number"
+                      placeholder="+7 (___) ___-__-__"
+                      type="text"
                   />
                 </div>
 
                 <div>
-                  <button type="submit"
-                          class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
+                  <button class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                          type="submit">
                     {{ $t('forms.forgot_password.button') }}
                   </button>
                 </div>
               </form>
               <form
                   v-else
-                  @submit.prevent="passwordRequest"
                   class="space-y-6"
+                  @submit.prevent="passwordRequest"
               >
                 <div
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label for="name" class="block text-xs font-medium text-gray-900">
+                  <label class="block text-xs font-medium text-gray-900" for="name">
                     {{ $t('forms.code.title') }}
                   </label>
                   <input
-                      v-model="formCode.code"
                       id="code"
+                      v-model="formCode.code"
+                      :placeholder="$t('forms.code.placeholder')"
+                      autocomplete="code"
+                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       name="code"
                       type="text"
-                      autocomplete="code"
-                      :placeholder="$t('forms.code.placeholder')"
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
 
                 <div>
                   <button
-                      type="submit"
-                      class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor">
+                      class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                      type="submit">
                     {{ $t('forms.forgot_password.code_button') }}
                   </button>
                 </div>
@@ -190,8 +190,8 @@ const passwordRequest = async () => {
             >
               <img
                   :src="item"
-                  class="w-full h-full object-cover"
                   alt=""
+                  class="w-full h-full object-cover"
               />
             </my-carousel-slide>
             <template #addons>

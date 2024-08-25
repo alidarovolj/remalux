@@ -94,15 +94,15 @@ const navigation = computed(() => {
 
 <template>
   <footer
-      class="bg-white border-t border-gray-900/10 pt-8"
-      aria-labelledby="footer-heading">
+      aria-labelledby="footer-heading"
+      class="bg-white border-t border-gray-900/10 pt-8">
     <div class="container mx-auto px-4 lg:px-0">
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <div class="space-y-8">
           <img
+              alt="Company name"
               class="h-7"
               src="~/assets/img/logos/mainLogo.svg"
-              alt="Company name"
           />
           <p class="text-sm leading-6 text-gray-600">
             {{ $t('footer_links.about_text') }}
@@ -114,7 +114,7 @@ const navigation = computed(() => {
                 :href="item.href"
                 class="text-gray-400 hover:text-gray-500">
               <span class="sr-only">{{ item.name }}</span>
-              <component :is="item.icon" class="h-6 w-6" aria-hidden="true"/>
+              <component :is="item.icon" aria-hidden="true" class="h-6 w-6"/>
             </a>
           </div>
         </div>
@@ -125,8 +125,8 @@ const navigation = computed(() => {
                 {{ $t('footer_links.remalux.title') }}
               </h3>
               <ul
-                  role="list"
-                  class="mt-6 space-y-3">
+                  class="mt-6 space-y-3"
+                  role="list">
                 <li
                     v-for="item in navigation.about"
                     :key="item.name">
@@ -142,7 +142,7 @@ const navigation = computed(() => {
               <h3 class="text-sm font-semibold leading-6 text-gray-900">
                 {{ $t('footer_links.store.title') }}
               </h3>
-              <ul role="list" class="mt-6 space-y-3">
+              <ul class="mt-6 space-y-3" role="list">
                 <li
                     v-for="item in navigation.store"
                     :key="item.name">
@@ -211,15 +211,15 @@ const navigation = computed(() => {
           </div>
           <div class="w-full md:w-1/4 flex gap-5">
             <a href="#">
-              <img class="w-auto h-8" src="~/assets/img/apple.png" alt="">
+              <img alt="" class="w-auto h-8" src="~/assets/img/apple.png">
             </a>
             <a href="#">
-              <img class="w-auto h-8" src="~/assets/img/android.png" alt="">
+              <img alt="" class="w-auto h-8" src="~/assets/img/android.png">
             </a>
           </div>
           <div class="w-full md:w-1/4 flex gap-5">
-            <img class="w-auto h-6" src="~/assets/img/payment/visa.svg" alt="">
-            <img class="w-auto h-6" src="~/assets/img/payment/mastercard.svg" alt="">
+            <img alt="" class="w-auto h-6" src="~/assets/img/payment/visa.svg">
+            <img alt="" class="w-auto h-6" src="~/assets/img/payment/mastercard.svg">
           </div>
         </div>
       </div>

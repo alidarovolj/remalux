@@ -45,8 +45,8 @@ onMounted(async () => {
               <p>{{ item.country.title }}, {{ item.address }}, {{ item.entrance }} подъезд, этаж {{ item.floor }},
                 кв. {{ item.float }}</p>
               <TrashIcon
-                  @click="modals.showModal('removeAddress', item)"
-                  class="w-5 h-5 text-red-500 cursor-pointer"/>
+                  class="w-5 h-5 text-red-500 cursor-pointer"
+                  @click="modals.showModal('removeAddress', item)"/>
             </div>
           </div>
           <div v-else>
@@ -57,8 +57,8 @@ onMounted(async () => {
         </div>
         <div v-else class="spinner p-3"></div>
         <div
-            @click="modals.showModal('createAddress')"
-            class="cursor-pointer flex items-center justify-center py-4 border rounded-lg border-dashed border-mainColor text-mainColor text-center text-xl gap-3 mt-5">
+            class="cursor-pointer flex items-center justify-center py-4 border rounded-lg border-dashed border-mainColor text-mainColor text-center text-xl gap-3 mt-5"
+            @click="modals.showModal('createAddress')">
           <PlusIcon class="w-7 h-7"/>
           <p>
             {{ t('profile.add_address') }}

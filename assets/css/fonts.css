@@ -6,6 +6,7 @@
     font-weight: 300;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-300italic - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -14,6 +15,7 @@
     font-weight: 300;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-300italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-regular - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -22,6 +24,7 @@
     font-weight: 400;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-italic - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -30,6 +33,7 @@
     font-weight: 400;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-500 - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -38,6 +42,7 @@
     font-weight: 500;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-500italic - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -46,6 +51,7 @@
     font-weight: 500;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-500italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-600 - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -54,6 +60,7 @@
     font-weight: 600;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-600italic - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -62,6 +69,7 @@
     font-weight: 600;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-700 - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -70,6 +78,7 @@
     font-weight: 700;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-700italic - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -78,6 +87,7 @@
     font-weight: 700;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-800 - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -86,6 +96,7 @@
     font-weight: 800;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* open-sans-800italic - cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -94,6 +105,7 @@
     font-weight: 800;
     src: url('../fonts/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-800italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-100 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -102,6 +114,7 @@
     font-weight: 100;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-100.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-100italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -110,6 +123,7 @@
     font-weight: 100;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-100italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-200 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -118,6 +132,7 @@
     font-weight: 200;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-200.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-200italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -126,6 +141,7 @@
     font-weight: 200;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-200italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-300 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -134,6 +150,7 @@
     font-weight: 300;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-300italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -142,6 +159,7 @@
     font-weight: 300;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-300italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-regular - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -150,6 +168,7 @@
     font-weight: 400;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -158,6 +177,7 @@
     font-weight: 400;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-500 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -166,6 +186,7 @@
     font-weight: 500;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-500italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -174,6 +195,7 @@
     font-weight: 500;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-500italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-600 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -182,6 +204,7 @@
     font-weight: 600;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-600italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -190,6 +213,7 @@
     font-weight: 600;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-600italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-700 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -198,6 +222,7 @@
     font-weight: 700;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-700italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -206,6 +231,7 @@
     font-weight: 700;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-800 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -214,6 +240,7 @@
     font-weight: 800;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-800italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -222,6 +249,7 @@
     font-weight: 800;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-800italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-900 - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -230,6 +258,7 @@
     font-weight: 900;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* montserrat-alternates-900italic - cyrillic_cyrillic-ext_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -238,6 +267,7 @@
     font-weight: 900;
     src: url('../fonts/montserrat-alternates-v17-cyrillic_cyrillic-ext_latin_latin-ext_vietnamese-900italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-200 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -246,6 +276,7 @@
     font-weight: 200;
     src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-200.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-300 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -254,6 +285,7 @@
     font-weight: 300;
     src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-regular - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -262,6 +294,7 @@
     font-weight: 400;
     src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-500 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -270,6 +303,7 @@
     font-weight: 500;
     src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-600 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -278,6 +312,7 @@
     font-weight: 600;
     src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-700 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -286,6 +321,7 @@
     font-weight: 700;
     src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* manrope-800 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */

@@ -67,8 +67,8 @@ onMounted(async () => {
                 <div
                     v-for="(it, ind) of value.content.colors"
                     :key="ind"
-                    class="px-5 py-7"
                     :style="`background: #${it}`"
+                    class="px-5 py-7"
                 >
                   <p class="text-white">
                     #{{ it }}
@@ -83,11 +83,11 @@ onMounted(async () => {
                     :key="ind"
                     class="w-full max-h-[400px]"
                 >
-                  <img class="w-full h-full object-cover" :src="it" alt="">
+                  <img :src="it" alt="" class="w-full h-full object-cover">
                 </div>
               </div>
               <div v-if="value.type === 'color_combinations'">
-                <div class="px-7 py-12 text-white" :style="`background: ${ideaDetail.color_title.hex}`">
+                <div :style="`background: ${ideaDetail.color_title.hex}`" class="px-7 py-12 text-white">
                   <p class="text-3xl font-extrabold mb-5">
                     Цветовая схема:
                   </p>

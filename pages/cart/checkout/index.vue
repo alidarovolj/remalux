@@ -10,7 +10,7 @@ import {useRecipientsStore} from "~/stores/recipients.js";
 import {useCartCookieStore} from "~/stores/cartCookie.js";
 import {storeToRefs} from "pinia";
 import {useVuelidate} from "@vuelidate/core";
-import {required, helpers, requiredIf, sameAs} from "@vuelidate/validators";
+import {required, requiredIf, sameAs} from "@vuelidate/validators";
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -52,10 +52,10 @@ const v$ = useVuelidate({
       return form.value.delivery_type_id === 1;
     }),
   },
-  recipient_id: { required },
-  delivery_type_id: { required },
-  payment_method_id: { required },
-  agreement: { sameAs: sameAs(true) },
+  recipient_id: {required},
+  delivery_type_id: {required},
+  payment_method_id: {required},
+  agreement: {sameAs: sameAs(true)},
   delivery_date: {
     required: requiredIf(function () {
       return form.value.delivery_type_id === 1;
@@ -160,9 +160,9 @@ onMounted(async () => {
                 <div
                     v-for="(item, index) of cart.delivery_types"
                     :key="index"
-                    @click="form.delivery_type_id = item.id; form.delivery_address_id = null; form.delivery_date = null"
                     :class="{ 'bg-[#F0DFDF]' : form.delivery_type_id === item.id }"
-                    class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
+                    class="transition-all cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2"
+                    @click="form.delivery_type_id = item.id; form.delivery_address_id = null; form.delivery_date = null">
                   <p>{{ item.title[cur_lang] }}</p>
                 </div>
               </div>
@@ -171,15 +171,16 @@ onMounted(async () => {
                     class="mb-6 block border-b border-[#F0DFDF] w-full"
                     for="">
                   <p class="text-xs text-[#7B7B7B]">{{ $t('checkout.second.time') }}</p>
-                  <input type="datetime-local" class="text-sm p-4" :class="{ '!border border-red-500 rounded-lg' : v$.delivery_date.$error }">
+                  <input :class="{ '!border border-red-500 rounded-lg' : v$.delivery_date.$error }" class="text-sm p-4"
+                         type="datetime-local">
                 </label>
                 <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
                     {{ $t('checkout.second.address') }}
                   </p>
                   <p
-                      @click="modals.showModal('createAddress')"
-                      class="text-mainColor cursor-pointer">
+                      class="text-mainColor cursor-pointer"
+                      @click="modals.showModal('createAddress')">
                     + {{ $t('checkout.second.add') }}
                   </p>
                 </div>
@@ -194,19 +195,19 @@ onMounted(async () => {
                           :class="['p-4 border border-[#F0DFDF] transition-all cursor-pointer rounded-lg flex items-center justify-between', { 'bg-[#F0DFDF]': form.delivery_address_id === item.id }, { 'border-red-500' : v$.delivery_address_id.$error }]">
                         <div class="flex items-center gap-3">
                           <input
-                              type="radio"
-                              name="addresses"
-                              :value="item.id"
                               v-model="form.delivery_address_id"
-                              class="w-6 h-6">
+                              :value="item.id"
+                              class="w-6 h-6"
+                              name="addresses"
+                              type="radio">
                           <p>{{ item.country.title }}, {{ item.address }}, {{ item.entrance }} подъезд, этаж {{
                               item.floor
                             }},
                             кв. {{ item.float }}</p>
                         </div>
                         <TrashIcon
-                            @click.stop="modals.showModal('removeAddress', item)"
-                            class="w-5 h-5 text-red-500 cursor-pointer"/>
+                            class="w-5 h-5 text-red-500 cursor-pointer"
+                            @click.stop="modals.showModal('removeAddress', item)"/>
                       </label>
                     </div>
                     <div v-else>
@@ -242,13 +243,13 @@ onMounted(async () => {
                   </p>
                 </div>
                 <p
-                    @click="modals.showModal('createAddress')"
-                    class="text-mainColor cursor-pointer">
+                    class="text-mainColor cursor-pointer"
+                    @click="modals.showModal('createAddress')">
                   + {{ $t('checkout.first.add') }}
                 </p>
               </div>
 
-              <div class="mb-5" v-if="recipients.recipientList">
+              <div v-if="recipients.recipientList" class="mb-5">
                 <div
                     v-if="recipients.recipientList.data.length > 0"
                     class="flex flex-col gap-5">
@@ -258,16 +259,16 @@ onMounted(async () => {
                       :class="['p-4 border border-[#F0DFDF] transition-all cursor-pointer rounded-lg flex items-center justify-between', { 'bg-[#F0DFDF]': form.recipient_id === item.id }, { 'border-red-500' : v$.recipient_id.$error }]">
                     <div class="flex gap-3 items-center w-full">
                       <input
-                          type="radio"
-                          name="recipients"
-                          :value="item.id"
                           v-model="form.recipient_id"
-                          class="w-6 h-6">
+                          :value="item.id"
+                          class="w-6 h-6"
+                          name="recipients"
+                          type="radio">
                       <p>{{ item.name }} / {{ item.phone_number }}</p>
                     </div>
                     <TrashIcon
-                        @click.stop="modals.showModal('removeRecipient', item)"
-                        class="w-5 h-5 text-red-500 cursor-pointer"/>
+                        class="w-5 h-5 text-red-500 cursor-pointer"
+                        @click.stop="modals.showModal('removeRecipient', item)"/>
                   </label>
                 </div>
                 <div v-else>
@@ -283,9 +284,9 @@ onMounted(async () => {
                 </p>
                 <textarea
                     v-model="form.note"
-                    rows="1"
                     class="border-b border-[#F0DFDF] w-full p-4"
                     placeholder="Введите свой комментарий"
+                    rows="1"
                 />
               </div>
             </div>
@@ -307,8 +308,8 @@ onMounted(async () => {
                     class="flex flex-col md:flex-row gap-5">
                   <div
                       :class="{ 'bg-[#F0DFDF]' : localPayment === 1 }"
-                      @click="localPayment = 1"
-                      class="transition-all hover:bg-[#F0DFDF] cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2">
+                      class="transition-all hover:bg-[#F0DFDF] cursor-pointer rounded-lg py-3 w-full text-mainColor border border-[#F0DFDF] flex items-center justify-center gap-2"
+                      @click="localPayment = 1">
                     <p>{{ $t('checkout.third.online') }}</p>
                   </div>
                 </div>
@@ -316,15 +317,15 @@ onMounted(async () => {
                   <div class="flex flex-col gap-5">
                     <label
                         v-for="(item, index) of cart.payment_methods.online"
-                        @click="form.payment_method_id = item.id"
                         :key="index"
-                        :class="['p-4 border cursor-pointer border-[#F0DFDF] transition-all rounded-lg flex items-center gap-3', { 'bg-[#F0DFDF]': form.payment_method_id === item.id }, { 'border-red-500' : v$.payment_method_id.$error }]">
+                        :class="['p-4 border cursor-pointer border-[#F0DFDF] transition-all rounded-lg flex items-center gap-3', { 'bg-[#F0DFDF]': form.payment_method_id === item.id }, { 'border-red-500' : v$.payment_method_id.$error }]"
+                        @click="form.payment_method_id = item.id">
                       <input
-                          type="radio"
-                          name="payment_methods"
-                          :value="item.id"
                           v-model="form.payment_method_id"
-                          class="w-6 h-6">
+                          :value="item.id"
+                          class="w-6 h-6"
+                          name="payment_methods"
+                          type="radio">
                       <div class="flex gap-5">
                         <p>{{ item.title[cur_lang] }}</p>
                       </div>
@@ -336,17 +337,17 @@ onMounted(async () => {
                   class="mb-6 w-full flex gap-3 items-center cursor-pointer"
                   for="agreement">
                 <input
-                    type="checkbox"
+                    id="agreement"
                     v-model="form.agreement"
                     class="w-6 h-6"
                     name="agreement"
-                    id="agreement">
-                <p class="text-sm" :class="{ '!text-red-500 underline': v$.agreement.$error }">
+                    type="checkbox">
+                <p :class="{ '!text-red-500 underline': v$.agreement.$error }" class="text-sm">
                   {{ $t('checkout.third.agreement.text') }}
                   <NuxtLink
                       :class="{ '!text-red-500 underline': v$.agreement.$error }"
-                      class="text-blue-500 underline"
-                      :to="localePath('/')">
+                      :to="localePath('/')"
+                      class="text-blue-500 underline">
                     {{ $t('checkout.third.agreement.link') }}
                   </NuxtLink>
                 </p>
@@ -356,8 +357,8 @@ onMounted(async () => {
               </p>
               <p
                   v-if="!loading"
-                  @click="makeOrder"
-                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center cursor-pointer">
+                  class="w-full md:w-1/3 bg-mainColor text-white py-3 rounded-lg text-lg font-semibold text-center cursor-pointer"
+                  @click="makeOrder">
                 {{ $t('cart.checkout.checkout_button') }}
               </p>
               <p
@@ -385,13 +386,13 @@ onMounted(async () => {
                       class="min-w-full divide-y divide-gray-300 text-xs">
                     <thead class="bg-[#FAFAFA]">
                     <tr>
-                      <th scope="col" class="py-3.5 pr-3 text-left  font-semibold text-gray-900">
+                      <th class="py-3.5 pr-3 text-left  font-semibold text-gray-900" scope="col">
                         {{ t('cart.table.product') }}
                       </th>
-                      <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                      <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                         {{ t('cart.table.quantity') }}
                       </th>
-                      <th scope="col" class="px-3 py-3.5 text-left  font-semibold text-gray-900">
+                      <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
                         {{ t('cart.table.total') }}
                       </th>
                     </tr>
@@ -404,9 +405,9 @@ onMounted(async () => {
                         <div class="flex flex-col">
                           <div class="h-10 w-10 flex-shrink-0">
                             <img
-                                class="h-10 w-10 rounded-full ml-4 object-cover"
                                 :src="item.product_image"
                                 alt=""
+                                class="h-10 w-10 rounded-full ml-4 object-cover"
                             />
                           </div>
                           <div class="ml-4">
@@ -419,16 +420,16 @@ onMounted(async () => {
                       <td class="whitespace-nowrap px-3 py-5">
                         <div class="text-mainColor flex gap-3 items-center">
                           <button
-                              @click="editQuantity(item.id, item.quantity - 1)"
-                              class="border border-[#F0DFDF] rounded-full w-5 h-5 flex items-center justify-center hover:bg-[#F0DFDF] transition-all">
+                              class="border border-[#F0DFDF] rounded-full w-5 h-5 flex items-center justify-center hover:bg-[#F0DFDF] transition-all"
+                              @click="editQuantity(item.id, item.quantity - 1)">
                             <MinusIcon class="w-5 h-5"/>
                           </button>
                           <p class=" text-xs">
                             {{ item.quantity }}
                           </p>
                           <button
-                              @click="editQuantity(item.id, item.quantity + 1)"
-                              class="border border-[#F0DFDF] rounded-full w-5 h-5 flex items-center justify-center hover:bg-[#F0DFDF] transition-all">
+                              class="border border-[#F0DFDF] rounded-full w-5 h-5 flex items-center justify-center hover:bg-[#F0DFDF] transition-all"
+                              @click="editQuantity(item.id, item.quantity + 1)">
                             <PlusIcon class="w-5 h-5"/>
                           </button>
                         </div>
@@ -450,8 +451,8 @@ onMounted(async () => {
                     :key="index">
                   <div class="flex justify-between mb-3 border p-2 rounded-lg gap-3">
                     <div
-                        class="skeleton w-10 h-4"
                         :class="{ 'bg-[#989898]' : index === 0 }"
+                        class="skeleton w-10 h-4"
                     ></div>
                     <div
                         :class="{ 'bg-[#989898]' : index === 0 }"

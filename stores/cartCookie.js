@@ -5,7 +5,7 @@ export const useCartCookieStore = defineStore("cartCookie", () => {
     });
     const cartItems = ref([]);
     const cart = useCartStore();
-    const { cartList } = storeToRefs(cart);
+    const {cartList} = storeToRefs(cart);
     const cartTotalPrice = ref(0);
 
     // Watcher to observe changes in cartList or cartCookie
@@ -35,7 +35,7 @@ export const useCartCookieStore = defineStore("cartCookie", () => {
         } else {
             console.log('cartList or cartList.data is null or undefined');
         }
-    }, { deep: true });
+    }, {deep: true});
 
 
     // Helper function to update the total price

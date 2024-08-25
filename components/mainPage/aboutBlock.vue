@@ -36,13 +36,13 @@ const social = ref([
 
 <template>
   <div
-      data-aos="fade-up"
-      class="container mx-auto px-4 lg:px-0">
+      class="container mx-auto px-4 lg:px-0"
+      data-aos="fade-up">
     <div class="rounded-xl relative flex flex-col md:flex-row">
       <img
+          alt=""
           class="w-full h-full absolute rounded-xl object-cover object-right-top"
-          src="~/assets/img/mainPage/about.png"
-          alt="">
+          src="~/assets/img/mainPage/about.png">
       <div
           class="w-full md:w-1/2 py-14 px-4 md:px-9 rounded-xl relative z-10"
           style="background: linear-gradient(90deg, #ad2725 72.63%, rgba(115, 115, 115, 0) 100%);">
@@ -60,9 +60,9 @@ const social = ref([
               class="text-gray-500 hover:text-gray-400">
             <div class="border-2 border-white p-3 rounded-full">
               <img
-                  class="w-5 h-5 object-contain"
                   :src="item.icon"
-                  alt="">
+                  alt=""
+                  class="w-5 h-5 object-contain">
             </div>
           </a>
         </div>

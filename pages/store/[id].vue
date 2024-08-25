@@ -148,12 +148,12 @@ const addToCartLocal = async () => {
                 <client-only>
                   <my-carousel-carousel
                       ref="imagesCarousel"
-                      class="w-full h-full"
-                      :breakpoints="breakpoints"
                       :autoplay="4000"
+                      :breakpoints="breakpoints"
                       :mouse-drag="true"
                       :touch-drag="true"
                       :wrap-around="true"
+                      class="w-full h-full"
                   >
                     <my-carousel-slide
                         v-for="(item, index) of images"
@@ -161,7 +161,7 @@ const addToCartLocal = async () => {
                       <div
                           :class="[{ 'bg-white' : !products.detailProduct.is_colorable }]"
                           class="w-full h-full absolute left-0 top-0"></div>
-                      <img class="w-full h-full absolute left-0 top-0 z-10" :src="item" alt="">
+                      <img :src="item" alt="" class="w-full h-full absolute left-0 top-0 z-10">
                     </my-carousel-slide>
                     <template #addons="{ currentSlide, slidesCount }">
                       <div
@@ -203,26 +203,26 @@ const addToCartLocal = async () => {
               <div class="absolute right-8 top-8 w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
                 <svg
                     v-if="detailProduct.title[cur_lang]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
+                    class="size-5 w-5 h-5 text-mainColor"
                     fill="currentColor"
-                    class="size-5 w-5 h-5 text-mainColor">
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
                   <path
-                      fill-rule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                       clip-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                      fill-rule="evenodd"
                   />
                 </svg>
                 <svg
                     v-else
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
+                    class="size-5 w-5 h-5 text-white"
                     fill="currentColor"
-                    class="size-5 w-5 h-5 text-white">
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
                   <path
-                      fill-rule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                       clip-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                      fill-rule="evenodd"
                   />
                 </svg>
 
@@ -237,11 +237,11 @@ const addToCartLocal = async () => {
                 <svg
                     v-for="(item, index) of 5"
                     :key="index"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    class="size-6 text-mainColor">
-                  <path fill-rule="evenodd"
+                    class="size-6 text-mainColor" fill="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <path clip-rule="evenodd"
                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                        clip-rule="evenodd"/>
+                        fill-rule="evenodd"/>
                 </svg>
                 <p class="ml-1 text-lg">4.5 (265)</p>
               </div>
@@ -272,11 +272,11 @@ const addToCartLocal = async () => {
                 </p>
                 <div class="flex gap-3">
                   <button
-                      @click="form.variant = item.id; prod_var = item.price; addToCart.product_variant_id = item.id"
                       v-for="(item, index) of detailProduct.product_variants"
-                      :class="[{ 'bg-mainColor text-white': form.variant === item.id }, { '!border !border-red-500': v$.product_variant_id.$error }]"
                       :key="index"
+                      :class="[{ 'bg-mainColor text-white': form.variant === item.id }, { '!border !border-red-500': v$.product_variant_id.$error }]"
                       class="transition-all px-6 w-max text-center text-xl border border-[#7B7B7B] border-opacity-25 py-2 text-[#7B7B7B] rounded-lg"
+                      @click="form.variant = item.id; prod_var = item.price; addToCart.product_variant_id = item.id"
                   >
                     {{ item.value }}{{ $t('products.details.kg') }}
                   </button>
@@ -289,9 +289,9 @@ const addToCartLocal = async () => {
                   </p>
                   <div class=" flex border-[#F0DFDF] border px-5 py-3 rounded-lg justify-between">
                     <button
-                        @click="addToCart.quantity > 1 && (addToCart.quantity = addToCart.quantity - 1)"
-                        class="text-[#7B7B7B]"
                         :class="{ 'text-mainColor' : addToCart.quantity !== 1 }"
+                        class="text-[#7B7B7B]"
+                        @click="addToCart.quantity > 1 && (addToCart.quantity = addToCart.quantity - 1)"
                     >
                       <MinusIcon class="w-5 h-5"/>
                     </button>
@@ -299,8 +299,8 @@ const addToCartLocal = async () => {
                       {{ addToCart.quantity }}
                     </p>
                     <button
-                        @click="addToCart.quantity = addToCart.quantity + 1"
                         class="text-mainColor"
+                        @click="addToCart.quantity = addToCart.quantity + 1"
                     >
                       <PlusIcon class="w-5 h-5"/>
                     </button>
@@ -311,8 +311,8 @@ const addToCartLocal = async () => {
                     {{ $t('products.details.paint_calculator') }}
                   </p>
                   <div
-                      @click="calculatorActive = !calculatorActive"
                       class="transition-all border-[#F0DFDF] text-xl border px-5 py-3 rounded-lg flex items-center justify-center gap-3 cursor-pointer hover:bg-mainColor hover:text-white"
+                      @click="calculatorActive = !calculatorActive"
                   >
                     <CalculatorIcon
                         class="w-5 h-5"
@@ -330,10 +330,10 @@ const addToCartLocal = async () => {
                       {{ $t('products.details.width') }}:</p>
                     <div class="relative">
                       <input
-                          type="number"
                           v-model="form.width"
                           class="pl-4 pr-10 transition-all font-normal w-full text-2xl border border-[#7B7B7B] border-opacity-25 py-2 text-[#7B7B7B] rounded-lg"
                           placeholder="10"
+                          type="number"
                       />
                       <p class="absolute top-1/2 -translate-y-1/2 right-4 text-2xl">
                         М
@@ -346,10 +346,10 @@ const addToCartLocal = async () => {
                       {{ $t('products.details.height') }}:</p>
                     <div class="relative">
                       <input
-                          type="number"
                           v-model="form.height"
                           class="pl-4 pr-10 transition-all font-normal w-full text-2xl border border-[#7B7B7B] border-opacity-25 py-2 text-[#7B7B7B] rounded-lg"
                           placeholder="10"
+                          type="number"
                       />
                       <p class="absolute top-1/2 -translate-y-1/2 right-4 text-2xl">
                         М
@@ -361,10 +361,10 @@ const addToCartLocal = async () => {
                       {{ $t('products.details.layers') }}:
                     </p>
                     <input
-                        type="number"
                         v-model="form.layers"
                         class="px-4 transition-all font-normal w-full text-2xl border border-[#7B7B7B] border-opacity-25 py-2 text-[#7B7B7B] rounded-lg"
                         placeholder="2"
+                        type="number"
                     />
                   </div>
                 </div>
@@ -376,8 +376,8 @@ const addToCartLocal = async () => {
                 </div>
               </div>
               <button
-                  @click="addToCartLocal"
-                  class="bg-white border border-mainColor text-xl font-montserrat text-mainColor rounded-xl w-full py-4 transition-all hover:bg-mainColor hover:text-white">
+                  class="bg-white border border-mainColor text-xl font-montserrat text-mainColor rounded-xl w-full py-4 transition-all hover:bg-mainColor hover:text-white"
+                  @click="addToCartLocal">
                 {{ $t('products.details.add_to_cart') }}
               </button>
             </div>
@@ -400,8 +400,8 @@ const addToCartLocal = async () => {
               <div
                   v-for="(item, index) of detailProduct.filter_data"
                   :key="index"
-                  class="py-4 px-6"
                   :class="{ 'border-b border-[#F0DFDF]' : index !== detailProduct.filter_data.length - 1 }"
+                  class="py-4 px-6"
               >
                 <p class="font-medium font-montserrat">{{ item.title[cur_lang] }}</p>
                 <p class="text-sm text-[#7B7B7B] font-montserrat">{{ item.value[cur_lang] }}</p>
@@ -419,8 +419,8 @@ const addToCartLocal = async () => {
                 <div
                     v-for="(item, index) of products.relatedProducts.data"
                     :key="index"
-                    class="py-4 px-6 flex gap-6"
                     :class="{ 'border-b border-[#F0DFDF]' : index !== products.relatedProducts.data.length - 1 }"
+                    class="py-4 px-6 flex gap-6"
                 >
                   <img
                       :src="item.image_url"

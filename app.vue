@@ -6,9 +6,9 @@ import ModalDialog from "~/components/general/modalDialog.vue";
 <template>
   <div>
     <NuxtLayout name="default">
-      <NuxtPage />
+      <NuxtPage/>
     </NuxtLayout>
-    <Notifications />
-    <ModalDialog />
+    <Notifications/>
+    <ModalDialog/>
   </div>
 </template>

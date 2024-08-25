@@ -12,9 +12,9 @@ const localePath = useLocalePath()
 <template>
   <div
       v-if="postData"
-      data-aos="fade-up"
       :data-aos-duration="itemIndex * 300"
-      class="w-full h-[420px] relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 pt-80 sm:pt-48 lg:pt-80 text-start news-card">
+      class="w-full h-[420px] relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 pt-80 sm:pt-48 lg:pt-80 text-start news-card"
+      data-aos="fade-up">
     <div>
       <img :src="postData.image_url" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover transition-all"/>
 
