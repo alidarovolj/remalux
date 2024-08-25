@@ -36,7 +36,7 @@ const localePath = useLocalePath()
   </div>
 </template>
 
-<style scoped>
+<style>
 .set-backdrop {
   backdrop-filter: blur(10px);
 }

@@ -2,6 +2,7 @@
 import NewsCard from "~/components/cards/newsCard.vue";
 import {ChevronRightIcon} from "@heroicons/vue/24/outline";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
+import Heading from "~/components/general/heading.vue";
 
 const localePath = useLocalePath()
 const newsBreakpoints = ref({
@@ -27,23 +28,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mb-36">
-    <div class="container mx-auto px-4 lg:px-0 mb-10">
-      <div
-          class="flex justify-between items-center pb-3 mb-10 gap-5"
-          style="box-shadow: 0px 6px 6.4px -4px #00000026;">
-        <h2 class="text-lg md:text-3xl font-bold font-montserrat">
-          {{ $t('mainPage.news.title') }}
-        </h2>
-        <NuxtLink
-            :to="localePath('/news')"
-            class="flex gap-2 items-center text-mainColor hover:border-b hover:border-mainColor transition-all">
-          <p class="text-sm md:text-xl">
-            {{ $t('mainPage.news.link') }}
-          </p>
-          <ChevronRightIcon class="w-5 h-5"/>
-        </NuxtLink>
-      </div>
+  <div>
+    <div class="container mx-auto px-4 lg:px-0">
+      <Heading
+          :title="$t('mainPage.news.title')"
+          link="/news"
+          :linkTitle="$t('mainPage.news.link')"
+      />
       <div v-if="newsList">
         <client-only>
           <my-carousel-carousel

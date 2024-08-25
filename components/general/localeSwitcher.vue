@@ -20,10 +20,10 @@ const handleClick = () => {
   <client-only>
     <Menu
         as="div"
-        class="relative inline-block text-left w-max">
+        class="relative text-left w-max h-full rounded-md flex items-center text-sm font-semibold px-2 uppercase bg-mainColor text-white">
       <div>
         <MenuButton
-            class="inline-flex w-full justify-center gap-x-1.5 rounded-md text-sm font-semibold px-2 py-1 uppercase bg-mainColor text-white">
+            class="w-full h-full justify-center gap-x-1.5 uppercase">
           {{ locales.find((lang) => lang.code === locale).sh_name }}
         </MenuButton>
       </div>

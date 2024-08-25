@@ -25,9 +25,9 @@ const localePath = useLocalePath();
                   class="ml-4 text-sm text-[#7B7B7B]"
                   :class="[
                     { '!ml-0' : index === 0 },
-                    { '!text-mainColor' : route.fullPath === localePath(item.link) }
+                    { '!text-mainColor' : route.path === localePath(item.link) }
                  ]"
-                  :aria-current="route.fullPath === localePath(item.link) ? 'page' : undefined">
+                  :aria-current="route.path === localePath(item.link) ? 'page' : undefined">
                 {{ item.title }}
               </NuxtLink>
             </ClientOnly>

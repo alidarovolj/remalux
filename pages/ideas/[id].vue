@@ -34,7 +34,7 @@ onMounted(async () => {
             class="w-full h-full object-cover absolute left-0 top-0">
         <div class="container mx-auto px-4 lg:px-0 relative z-10 h-full">
           <div class="text-4xl text-white font-bold bg-white h-full w-full md:w-1/3 flex items-end p-7">
-            <p class="text-mainColor">{{ ideaDetail.title[cur_lang] }}</p>
+            <p class="text-mainColor font-montserrat">{{ ideaDetail.title[cur_lang] }}</p>
           </div>
         </div>
       </div>

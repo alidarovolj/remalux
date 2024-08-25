@@ -22,7 +22,7 @@ const { t } = useI18n();
           >
             <h1
                 data-aos="fade-up"
-                class="max-w-2xl text-4xl font-bold tracking-tight text-gray-900 lg:col-span-2 xl:col-auto">
+                class="max-w-2xl text-4xl font-bold tracking-tight text-gray-900 lg:col-span-2 xl:col-auto font-montserrat">
               {{ t('about_page.hero_section.title') }}
             </h1>
             <div
@@ -48,7 +48,7 @@ const { t } = useI18n();
           data-aos="fade-up"
           class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="mb-20 text-center">
-          <h2 class="text-3xl font-bold mb-5">
+          <h2 class="text-3xl font-bold mb-5 font-montserrat">
             {{ t('about_page.why_choose_us.title') }}
           </h2>
           <p class="font-medium w-full md:w-1/2 mx-auto leading-8">
@@ -63,7 +63,7 @@ const { t } = useI18n();
               <ShieldCheckIcon class="w-6 h-6" />
             </div>
             <div>
-              <h3 class="font-bold mb-2">{{ t('about_page.why_choose_us.quality.title') }}</h3>
+              <h3 class="font-bold mb-2 font-montserrat">{{ t('about_page.why_choose_us.quality.title') }}</h3>
               <p class="text-xs text-[#7B7B7B]">{{ t('about_page.why_choose_us.quality.description') }}</p>
             </div>
           </div>
@@ -74,7 +74,7 @@ const { t } = useI18n();
               <ShieldCheckIcon class="w-6 h-6" />
             </div>
             <div>
-              <h3 class="font-bold mb-2">{{ t('about_page.why_choose_us.innovation.title') }}</h3>
+              <h3 class="font-bold mb-2 font-montserrat">{{ t('about_page.why_choose_us.innovation.title') }}</h3>
               <p class="text-xs text-[#7B7B7B]">{{ t('about_page.why_choose_us.innovation.description') }}</p>
             </div>
           </div>
@@ -85,7 +85,7 @@ const { t } = useI18n();
               <ShieldCheckIcon class="w-6 h-6" />
             </div>
             <div>
-              <h3 class="font-bold mb-2">{{ t('about_page.why_choose_us.economy.title') }}</h3>
+              <h3 class="font-bold mb-2 font-montserrat">{{ t('about_page.why_choose_us.economy.title') }}</h3>
               <p class="text-xs text-[#7B7B7B]">{{ t('about_page.why_choose_us.economy.description') }}</p>
             </div>
           </div>
@@ -96,7 +96,7 @@ const { t } = useI18n();
               <ShieldCheckIcon class="w-6 h-6" />
             </div>
             <div>
-              <h3 class="font-bold mb-2">{{ t('about_page.why_choose_us.price.title') }}</h3>
+              <h3 class="font-bold mb-2 font-montserrat">{{ t('about_page.why_choose_us.price.title') }}</h3>
               <p class="text-xs text-[#7B7B7B]">{{ t('about_page.why_choose_us.price.description') }}</p>
             </div>
           </div>
@@ -107,7 +107,7 @@ const { t } = useI18n();
               <ShieldCheckIcon class="w-6 h-6" />
             </div>
             <div>
-              <h3 class="font-bold mb-2">{{ t('about_page.why_choose_us.service.title') }}</h3>
+              <h3 class="font-bold mb-2 font-montserrat">{{ t('about_page.why_choose_us.service.title') }}</h3>
               <p class="text-xs text-[#7B7B7B]">{{ t('about_page.why_choose_us.service.description') }}</p>
             </div>
           </div>
@@ -118,7 +118,7 @@ const { t } = useI18n();
               <ShieldCheckIcon class="w-6 h-6" />
             </div>
             <div>
-              <h3 class="font-bold mb-2">{{ t('about_page.why_choose_us.assortment.title') }}</h3>
+              <h3 class="font-bold mb-2 font-montserrat">{{ t('about_page.why_choose_us.assortment.title') }}</h3>
               <p class="text-xs text-[#7B7B7B]">{{ t('about_page.why_choose_us.assortment.description') }}</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ const { t } = useI18n();
               class="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8"
           >
             <div class="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
-              <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+              <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-montserrat">
                 {{ t('about_page.for_whom.title') }}
               </h2>
               <p class="mt-6 text-xl leading-8 text-gray-600">
@@ -190,7 +190,7 @@ const { t } = useI18n();
           <div class="w-full lg:flex-auto">
             <h2
                 data-aos="fade-up"
-                class="text-3xl font-bold tracking-tight text-gray-900">
+                class="text-3xl font-montserrat font-bold tracking-tight text-gray-900">
               <span class="text-mainColor">{{ t('about_page.remalux_section.title') }}</span>
             </h2>
             <img
@@ -210,25 +210,25 @@ const { t } = useI18n();
               <li
                   data-aos="fade-up"
                   class="gap-3 border-b border-[#F0DFDF] pb-7">
-                <p class="text-mainColor font-extrabold mb-3">{{ t('about_page.remalux_section.innovation.title') }}</p>
+                <p class="text-mainColor font-montserrat font-extrabold mb-3">{{ t('about_page.remalux_section.innovation.title') }}</p>
                 <p>{{ t('about_page.remalux_section.innovation.description') }}</p>
               </li>
               <li
                   data-aos="fade-up"
                   class="gap-3 border-b border-[#F0DFDF] pb-7">
-                <p class="text-mainColor font-extrabold mb-3">{{ t('about_page.remalux_section.service.title') }}</p>
+                <p class="text-mainColor font-montserrat font-extrabold mb-3">{{ t('about_page.remalux_section.service.title') }}</p>
                 <p>{{ t('about_page.remalux_section.service.description') }}</p>
               </li>
               <li
                   data-aos="fade-up"
                   class="gap-3 border-b border-[#F0DFDF] pb-7">
-                <p class="text-mainColor font-extrabold mb-3">{{ t('about_page.remalux_section.assortment.title') }}</p>
+                <p class="text-mainColor font-montserrat font-extrabold mb-3">{{ t('about_page.remalux_section.assortment.title') }}</p>
                 <p>{{ t('about_page.remalux_section.assortment.description') }}</p>
               </li>
               <li
                   data-aos="fade-up"
                   class="gap-3 border-b border-[#F0DFDF] pb-7">
-                <p class="text-mainColor font-extrabold mb-3">{{ t('about_page.remalux_section.safety.title') }}</p>
+                <p class="text-mainColor font-montserrat font-extrabold mb-3">{{ t('about_page.remalux_section.safety.title') }}</p>
                 <p>{{ t('about_page.remalux_section.safety.description') }}</p>
               </li>
             </ul>

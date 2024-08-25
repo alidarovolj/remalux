@@ -6,6 +6,24 @@ html, body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     font-family: "Open Sans", sans-serif;
+    color: #333333;
+}
+
+input[type='checkbox'],
+input[type='radio']{
+    accent-color: #AD2724;
+}
+
+input[type="checkbox"] {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 0.1rem;
+    border: 1px solid #ECECEC;
+    accent-color: #AD2724;
+    background: #F6F6F6;
+    border-radius: 5px;
 }
 
 .for_gradient {
@@ -63,13 +81,17 @@ html, body {
     color: #fff !important;
 }
 
-.product-hover:hover img {
-    scale: 1.2;
+.product-hover:hover {
+    box-shadow: 7px 7px 6.1px 0px #195ABC0D !important;
+    box-shadow: -7px 7px 6.1px 0px #195ABC0D !important;
 }
 
 .product-hover:hover a {
     background: #ad2725;
     color: #fff;
+    box-shadow: 7px 7px 6.1px 0px #195ABC0D !important;
+    box-shadow: -7px 7px 6.1px 0px #195ABC0D !important;
+
 }
 
 .navigation a {
@@ -95,7 +117,7 @@ html, body {
     border-bottom: 3px solid #ad2725;
     position: absolute;
     width: 100%;
-    bottom: -85%;
+    bottom: -65%;
     left: 0;
 }
 
@@ -104,7 +126,7 @@ html, body {
     border-bottom: 3px solid #ad2725;
     position: absolute;
     width: 100%;
-    bottom: -85%;
+    bottom: -65%;
     left: 0;
 }
 

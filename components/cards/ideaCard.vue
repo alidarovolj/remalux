@@ -14,9 +14,22 @@ const props = defineProps(['data', 'itemIndex'])
       data-aos="fade-up"
       :data-aos-duration="itemIndex * 300"
       class="group relative flex flex-col overflow-hidden rounded-lg bg-white set_shadow w-full">
+    <div class="absolute top-4 left-4 w-max p-2 rounded-xl border border-white flex gap-2 set-backdrop">
+      <div class="w-[28px] h-[28px] rounded-full bg-[#020202]"></div>
+      <div class="w-[28px] h-[28px] rounded-full bg-[#6E5651]"></div>
+      <div class="w-[28px] h-[28px] rounded-full bg-[#E9E3DD]"></div>
+      <div class="w-[28px] h-[28px] rounded-full bg-[#30364F]"></div>
+    </div>
     <img class="h-[230px] min-h-[230px] object-cover" :src="data.image_url" alt="">
-    <p class="flex font-montserrat items-center text-base font-semibold px-5 py-6 min-h-[100px]">
-      {{ data.title[cur_lang] }}
-    </p>
+    <div class="px-5 pt-6 pb-12 text-start">
+      <p class="flex font-montserrat items-center text-2xl font-medium truncate mb-5">
+        {{ data.title[cur_lang] }}
+      </p>
+      <p class="text-base text-[#333333]">
+        Цветах для интерьера можно говорить бесконечно В конце концов все зависит от вашего вкуса и того, какое влияние
+        на вас оказывает определенный цвет. Но мы, как профессионалы лакокрасочных изделий, и так как работа с цветом –
+        наше дело, расскажем вам о нескольких обсуждаемых цветах на 2024 год.
+      </p>
+    </div>
   </NuxtLink>
 </template>

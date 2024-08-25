@@ -20,7 +20,7 @@ const cart = useCartStore()
 
 const navigation = computed(() => [
   {name: t('header_links.store'), href: localePath('/store')},
-  // {name: t('header_links.choose_color'), href: localePath('/')},
+  {name: t('header_links.choose_color'), href: localePath('/colors')},
   {name: t('header_links.ideas'), href: localePath('/ideas')},
   {name: t('header_links.about_us'), href: localePath('/about')},
   {name: t('header_links.news'), href: localePath('/news')},
@@ -90,7 +90,7 @@ onUnmounted(() => {
               :to="localePath('/')"
               class="-m-1.5 p-1.5">
             <img
-                class="h-8 w-auto"
+                class="h-10 w-auto"
                 src="~/assets/img/logos/mainLogo.svg"
                 alt=""
             />
@@ -110,22 +110,22 @@ onUnmounted(() => {
               v-for="item in navigation"
               :key="item.name"
               :to="localePath(item.href)"
-              class="text-xs font-bold leading-6 text-gray-900">
+              class="text-xs font-semibold leading-6 text-gray-900">
             {{ item.name }}
           </NuxtLink>
         </div>
-        <div class="hidden lg:flex items-center gap-3 !w-max">
+        <div class="hidden lg:flex gap-3 !w-max">
           <div
               v-if="user.userProfile === false"
-              class="flex items-center gap-3 text-sm !w-max">
+              class="flex items-center gap-4 text-sm !w-max">
             <NuxtLink
                 :to="localePath('/login')"
-                class="block rounded-lg px-3 py-2.5 text-mainColor text-sm font-semibold leading-7">
+                class="block rounded-lg text-mainColor text-sm font-semibold">
               {{ $t('header_links.login') }}
             </NuxtLink>
             <NuxtLink
                 :to="localePath('/registration')"
-                class="block text-white bg-mainColor rounded-lg px-3 py-2.5 font-semibold leading-7">
+                class="text-white bg-mainColor rounded-lg px-4 h-full flex items-center font-semibold">
               {{ $t('header_links.register') }}
             </NuxtLink>
           </div>
@@ -199,7 +199,7 @@ onUnmounted(() => {
                 :to="localePath('/')"
                 class="-m-1.5 p-1.5">
               <img
-                  class="h-8 w-auto"
+                  class="h-10 w-auto"
                   src="~/assets/img/logos/mainLogo.svg"
                   alt=""
               />

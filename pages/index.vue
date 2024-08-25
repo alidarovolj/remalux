@@ -5,19 +5,19 @@ import PopularProducts from "~/components/mainPage/popularProducts.vue";
 import DownloadRemalux from "~/components/mainPage/downloadRemalux.vue";
 import News from "~/components/mainPage/news.vue";
 import BecomePartner from "~/components/mainPage/becomePartner.vue";
-import AboutBlock from "~/components/mainPage/aboutBlock.vue";
+// import AboutBlock from "~/components/mainPage/aboutBlock.vue";
 import HeroNew from "~/components/mainPage/heroNew.vue";
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col gap-36">
     <HeroNew/>
     <ChooseType/>
     <News/>
     <PopularProducts/>
-    <DownloadRemalux/>
+    <DownloadRemalux class="hidden md:block" />
     <Ideas/>
-    <AboutBlock/>
+<!--    <AboutBlock/>-->
     <BecomePartner/>
   </div>
 </template>

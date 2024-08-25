@@ -2,6 +2,7 @@
 import IdeaCard from "~/components/cards/ideaCard.vue";
 import {ChevronRightIcon} from "@heroicons/vue/24/outline";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
+import Heading from "~/components/general/heading.vue";
 
 const localePath = useLocalePath()
 const breakpoints = ref({
@@ -29,23 +30,12 @@ const preventAnchorNavigation = (event: MouseEvent) => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 lg:px-0 mb-10">
-    <div
-        class="flex justify-between items-center pb-3 mb-8 gap-5"
-        style="box-shadow: 0px 6px 6.4px -4px #00000026;">
-      <h2 class="text-lg md:text-3xl font-bold font-montserrat">
-        {{ $t('mainPage.ideas.title') }}
-      </h2>
-      <NuxtLink
-          :to="localePath('/')"
-          class="flex gap-2 items-center text-mainColor hover:border-b hover:border-mainColor transition-all"
-          @mousedown="preventAnchorNavigation">
-        <p class="text-sm md:text-xl">
-          {{ $t('mainPage.ideas.link') }}
-        </p>
-        <ChevronRightIcon class="w-5 h-5"/>
-      </NuxtLink>
-    </div>
+  <div class="container mx-auto px-4 lg:px-0">
+    <Heading
+        :title="$t('mainPage.ideas.title')"
+        link="/ideas"
+        :linkTitle="$t('mainPage.ideas.link')"
+    />
     <div v-if="ideasList">
       <client-only>
         <my-carousel-carousel

@@ -37,7 +37,7 @@ const social = ref([
 <template>
   <div
       data-aos="fade-up"
-      class="container mx-auto px-4 lg:px-0 mb-36">
+      class="container mx-auto px-4 lg:px-0">
     <div class="rounded-xl relative flex flex-col md:flex-row">
       <img
           class="w-full h-full absolute rounded-xl object-cover object-right-top"

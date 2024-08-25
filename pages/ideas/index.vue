@@ -3,6 +3,8 @@ import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import Pagination from "~/components/general/pagination.vue";
 import NoResults from "~/components/general/noResults.vue";
 import {useLanguagesStore} from "~/stores/languages.js";
+import IdeaCard from "~/components/cards/ideaCard.vue";
+import Banner from "~/components/general/banner.vue";
 
 const ideas = useIdeasStore()
 const {ideasList, ideaColorsList, ideaRoomsList} = storeToRefs(ideas)
@@ -29,23 +31,12 @@ onMounted(async () => {
   <div>
     <Breadcrumbs :links="links"/>
 
-    <div class="relative py-16 bg-white mb-10">
-      <div class="container mx-auto relative z-10 px-4 md:px-0">
-        <div class="text-4xl text-mainColor font-bold">
-          <p>{{ $t('ideas.page_title.first') }}</p>
-          <div class="flex items-center gap-2">
-            <p>{{ $t('ideas.page_title.second') }}</p>
-            <img
-                src="~/assets/img/logos/mainLogo.svg"
-                alt="">
-          </div>
-        </div>
-      </div>
-      <img
-          class="absolute right-0 top-0 h-full w-full object-cover object-right hidden md:block"
-          src="~/assets/img/ideas/bg.png"
-          alt="">
-    </div>
+    <Banner
+        :title="$t('ideas.page_title.first')"
+        :sec_title="$t('ideas.page_title.second')"
+        text_color="main"
+        image="ideas"
+    />
 
     <div class="container mx-auto px-4 lg:px-0">
       <main class="mx-auto">
@@ -54,7 +45,7 @@ onMounted(async () => {
               aria-labelledby="product-heading"
               class="mt-6 lg:mt-0 w-full">
             <div class="flex gap-5 flex-col md:flex-row justify-between items-center mb-9">
-              <p class="text-2xl">
+              <p class="text-2xl font-montserrat">
                 {{ $t('ideas.direction') }}
               </p>
               <select
@@ -87,18 +78,12 @@ onMounted(async () => {
               <div
                   v-if="ideasList.data.length > 0"
                   class="grid grid-cols-1 gap-y-5 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-10 xl:grid-cols-3">
-                <NuxtLink
-                    data-aos="fade-up"
-                    v-bind="index !== undefined ? { 'data-aos-duration': index * 200 } : {}"
+                <IdeaCard
                     v-for="(idea, index) in ideasList.data"
                     :key="index"
-                    :to="localePath(`/ideas/${idea.id}`)"
-                    class="group relative flex flex-col overflow-hidden rounded-lg bg-white set_shadow">
-                  <img class="h-[230px] object-cover" :src="idea.image_url" alt="">
-                  <p class="px-5 py-6 text-base font-semibold">
-                    {{ idea.title[cur_lang] }}
-                  </p>
-                </NuxtLink>
+                    :data="idea"
+                    class="mx-2"
+                />
               </div>
               <NoResults v-else/>
             </div>

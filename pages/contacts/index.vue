@@ -40,9 +40,9 @@ onMounted(async () => {
         class="container mx-auto px-4 md:px-0">
       <div
           class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 font-montserrat">
           {{ $t('contacts.title') }}
-        </h2>
+        </h1>
       </div>
       <div
           class="mx-auto mt-6 mb-12 flex flex-col md:flex-row gap-5">
@@ -52,7 +52,7 @@ onMounted(async () => {
             @click="activeContact = item"
             :class="{ '!border-mainColor !text-black bg-[#F0DFDF] border-l-[6px]' : activeContact.id === item.id }"
             class="w-full pl-5 border-l-2 cursor-pointer border-[#B0B0B0] text-[#B0B0B0] rounded-r-lg py-2 hover:border-mainColor hover:text-black hover:bg-[#F0DFDF] hover:border-l-[6px] transition-all">
-          <h3 class="font-semibold">
+          <h3 class="font-semibold font-montserrat">
             {{ item.city.title[cur_lang] }}
           </h3>
           <address class="mt-3 text-xs not-italic">
@@ -64,8 +64,8 @@ onMounted(async () => {
         <div class="w-full md:w-1/2">
           <p
               data-aos="fade-up"
-              class="text-2xl font-semibold mb-6">
-            {{ activeContact.city.title.ru }}
+              class="text-2xl font-montserrat font-semibold mb-6">
+            {{ activeContact.city.title[cur_lang] }}
           </p>
 
           <div class="flex flex-col gap-5">

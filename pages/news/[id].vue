@@ -32,7 +32,7 @@ onMounted(async () => {
           class="w-full h-[440px] object-contain mb-12"
           :src="newsDetail.image_url"
           alt="">
-      <h1 class="text-3xl font-semibold mb-6">
+      <h1 class="text-3xl font-semibold mb-6 font-montserrat">
         {{ newsDetail.title[cur_lang] }}
       </h1>
       <p v-html="newsDetail.description[cur_lang]" class="text-xl mb-12"></p>

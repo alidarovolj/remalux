@@ -3,6 +3,7 @@ import {ChevronRightIcon} from "@heroicons/vue/24/outline";
 import ProductCard from "~/components/cards/productCard.vue";
 import {useProductsStore} from "~/stores/products";
 import ProductsPreloader from "~/components/general/productsPreloader.vue";
+import Heading from "~/components/general/heading.vue";
 
 const localePath = useLocalePath();
 const products = useProductsStore()
@@ -27,22 +28,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 lg:px-0 mb-36">
-    <div
-        class="flex justify-between items-center pb-3 gap-5"
-        style="box-shadow: 0px 6px 6.4px -4px #00000026;">
-      <h2 class=" font-montserrat text-lg md:text-3xl font-bold">
-        {{ $t('mainPage.popular_products.title') }}
-      </h2>
-      <NuxtLink
-          :to="localePath('/')"
-          class="flex gap-2 items-center text-mainColor hover:border-b hover:border-mainColor transition-all">
-        <p class="text-sm md:text-xl">
-          {{ $t('mainPage.popular_products.link') }}
-        </p>
-        <ChevronRightIcon class="w-5 h-5"/>
-      </NuxtLink>
-    </div>
+  <div class="container mx-auto px-4 lg:px-0">
+    <Heading
+        class="!mb-0"
+        :title="$t('mainPage.popular_products.title')"
+        link="/store"
+        :linkTitle="$t('mainPage.popular_products.link')"
+    />
     <div v-if="products.productsList">
       <client-only>
         <my-carousel-carousel
@@ -50,7 +42,6 @@ onMounted(async () => {
             :mouse-drag="true"
             :touch-drag="true"
             :wrap-around="true"
-            :autoplay="4000"
         >
           <my-carousel-slide
               v-for="(item, index) of products.productsList.data"
