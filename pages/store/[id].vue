@@ -145,7 +145,7 @@ const addToCartLocal = async () => {
               </div>
 
               <div
-                  v-if="colorCookie || !products.detailProduct.is_colorable"
+                  v-if="colorCookie && products.detailProduct.is_colorable"
                   class="w-full h-full product-carousel">
                 <client-only>
                   <my-carousel-carousel
@@ -188,8 +188,51 @@ const addToCartLocal = async () => {
                 </client-only>
               </div>
 
+              <div
+                  v-else-if="!products.detailProduct.is_colorable"
+                  class="w-full h-full product-carousel">
+                <client-only>
+                  <my-carousel-carousel
+                      ref="imagesCarousel"
+                      :autoplay="4000"
+                      :breakpoints="breakpoints"
+                      :mouse-drag="true"
+                      :touch-drag="true"
+                      :wrap-around="true"
+                      class="w-full h-full"
+                  >
+                    <my-carousel-slide
+                        v-for="(item, index) of images"
+                        :key="index">
+                      <div
+                          :class="[{ 'bg-white' : !products.detailProduct.is_colorable }]"
+                          class="w-full h-full absolute left-0 top-0"
+                      ></div>
+                      <img :src="item" alt="" class="w-full h-full absolute left-0 top-0 z-10">
+                    </my-carousel-slide>
+                    <template #addons="{ currentSlide, slidesCount }">
+                      <div
+                          class="flex justify-center gap-4 w-full md:pl-14 overflow-x-auto"
+                      >
+                        <div
+                            v-for="(painting, index) of images"
+                            :key="index"
+                            class="bg-cardBg dark:bg-dElement cursor-pointer dark:text-dText"
+                        >
+                          <img
+                              :src="painting"
+                              alt=""
+                              class="max-w-36 max-h-36 min-w-36 min-h-36 object-contain"
+                          />
+                        </div>
+                      </div>
+                    </template>
+                  </my-carousel-carousel>
+                </client-only>
+              </div>
+
               <NuxtLink
-                  v-else
+                  v-else-if="!colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
                   class="py-6 rounded flex items-center gap-4 justify-center mb-8 cursor-pointer absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div class="rounded-full flex items-center justify-center">
@@ -260,7 +303,7 @@ const addToCartLocal = async () => {
                 {{ prod_var }}₸
               </p>
               <NuxtLink
-                  v-if="products.detailProduct.is_colorable && !colorCookie"
+                  v-if="!colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
                   class="border border-[#7B7B7B40] border-dashed py-6 rounded flex items-center gap-4 justify-center mb-8 cursor-pointer">
                 <div class="rounded-full flex items-center justify-center">
@@ -271,7 +314,7 @@ const addToCartLocal = async () => {
                 </p>
               </NuxtLink>
               <NuxtLink
-                  v-else
+                  v-else-if="colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
                   :style="`background: ${colorCookie.hex}`"
                   class="border border-[#7B7B7B40] border-dashed rounded mb-8 cursor-pointer p-3">
@@ -455,16 +498,16 @@ const addToCartLocal = async () => {
                     class="py-4 px-6 flex gap-6"
                 >
                   <img
-                      :src="item.image_url"
+                      :src="item.product.image_url"
                       alt="product"
                       class="w-[60px] h-[60px] object-contain rounded-xl"
                   />
                   <div class="flex flex-col gap-3">
                     <p class="text-sm">
-                      {{ item.title[cur_lang] }}
+                      {{ item.product.title[cur_lang] }}
                     </p>
                     <p class="text-sm text-[#191919]">
-                      {{ item.price_range }}
+                      {{ item.product.price_range }}
                     </p>
                   </div>
                 </div>
