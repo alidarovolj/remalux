@@ -1,10 +1,11 @@
 <script setup>
 import {Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
-import {Bars3Icon, ChevronDownIcon, ShoppingBagIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {Bars3Icon, ChevronDownIcon, ShoppingBagIcon, XMarkIcon, PaintBrushIcon} from '@heroicons/vue/24/outline'
 import {useUserStore} from "~/stores/user.js";
 import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useAuthStore} from "~/stores/auth.js";
+import {useColorsStore} from "~/stores/colors.js";
 
 const loading = ref(false)
 const {t} = useI18n()
@@ -17,6 +18,7 @@ const auth = useAuthStore()
 auth.initCookieToken()
 const {token} = storeToRefs(auth)
 const cart = useCartStore()
+const colors = useColorsStore()
 
 const navigation = computed(() => [
   {name: t('header_links.store'), href: localePath('/store')},
@@ -67,6 +69,7 @@ onMounted(async () => {
   await nextTick()
   if (token.value) {
     await cart.getCart()
+    await colors.getFavouriteColors()
   }
   window.addEventListener('scroll', handleScroll);
 })
@@ -132,6 +135,18 @@ onUnmounted(() => {
           <div
               v-else-if="user.userProfile"
               class="flex items-center gap-3 !w-max">
+            <div v-if="colors.favouriteColorsList">
+              <NuxtLink
+                  :to="localePath('/cart')"
+                  class="relative">
+                <div
+                    v-if="colors.favouriteColorsList.data.length > 0"
+                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                  {{ colors.favouriteColorsList.data.length }}
+                </div>
+                <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+              </NuxtLink>
+            </div>
             <div v-if="cart.cartList">
               <NuxtLink
                   :to="localePath('/cart')"
@@ -147,7 +162,7 @@ onUnmounted(() => {
             <Menu as="div" class="relative inline-block text-left">
               <div>
                 <MenuButton
-                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-mainColor hover:bg-gray-50">
                   {{ user.userProfile.name }}
                   <ChevronDownIcon aria-hidden="true" class="-mr-1 h-5 w-5 text-gray-400"/>
                 </MenuButton>
@@ -247,6 +262,18 @@ onUnmounted(() => {
                 <div
                     v-else-if="user.userProfile"
                     class="flex items-center gap-3">
+                  <div v-if="colors.favouriteColorsList">
+                    <NuxtLink
+                        :to="localePath('/cart')"
+                        class="relative">
+                      <div
+                          v-if="colors.favouriteColorsList.data.length > 0"
+                          class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                        {{ colors.colorsList.data.length }}
+                      </div>
+                      <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+                    </NuxtLink>
+                  </div>
                   <div v-if="cart.cartList">
                     <NuxtLink
                         :to="localePath('/cart')"
@@ -263,7 +290,7 @@ onUnmounted(() => {
                   <Menu as="div" class="relative inline-block text-left">
                     <div>
                       <MenuButton
-                          class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                          class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-mainColor hover:bg-gray-50">
                         {{ user.userProfile.name }}
                         <ChevronDownIcon aria-hidden="true" class="-mr-1 h-5 w-5 text-gray-400"/>
                       </MenuButton>

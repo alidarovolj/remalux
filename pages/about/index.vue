@@ -3,6 +3,29 @@ import {ShieldCheckIcon} from "@heroicons/vue/24/outline";
 import {useI18n} from "vue-i18n";
 
 const {t} = useI18n();
+
+useHead({
+  title: t("headers.about.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.about.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.about.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.about.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.about.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.about.canonical")}],
+});
 </script>
 
 <template>

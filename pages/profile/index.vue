@@ -10,6 +10,29 @@ const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
   {title: t('breadcrumbs.profile'), link: localePath('/profile')}
 ]);
+
+useHead({
+  title: t("headers.profile.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.profile.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.profile.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.profile.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.profile.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.profile.canonical")}],
+});
 </script>
 
 <template>

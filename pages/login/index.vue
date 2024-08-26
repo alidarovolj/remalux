@@ -8,6 +8,7 @@ import img2 from "assets/img/auth/slide2.jpg";
 import img3 from "assets/img/auth/slide3.jpg";
 import {useAuthStore} from "~/stores/auth.js";
 import {useUserStore} from "~/stores/user.js";
+import {useColorsStore} from "~/stores/colors.js";
 
 const loading = ref(false);
 const notifications = useNotificationStore()
@@ -17,6 +18,8 @@ const localePath = useLocalePath()
 const auth = useAuthStore()
 const user = useUserStore()
 const cart = useCartStore()
+const colors = useColorsStore()
+const {t} = useI18n()
 
 const form = ref({
   phone_number: '',
@@ -64,12 +67,36 @@ const loginUser = async () => {
     await nextTick()
     await user.getProfile()
     await cart.getCart()
+    await colors.getFavouriteColors()
     await router.push(localePath('/'))
   } catch (e) {
     notifications.showNotification("error", "Произошла ошибка", e);
   }
 
 }
+
+useHead({
+  title: t("headers.login.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.login.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.login.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.login.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.login.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.login.canonical")}],
+});
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
 import {ChevronDownIcon, PlusIcon} from '@heroicons/vue/20/solid'
-import {BarsArrowDownIcon, MagnifyingGlassIcon, XMarkIcon, ChevronRightIcon} from '@heroicons/vue/24/outline'
+import {BarsArrowDownIcon, ChevronRightIcon, MagnifyingGlassIcon, XMarkIcon} from '@heroicons/vue/24/outline'
 import {
   Dialog,
   DialogPanel,
@@ -24,11 +24,12 @@ import ProductsPreloader from "~/components/general/productsPreloader.vue";
 import NoResults from "~/components/general/noResults.vue";
 import Pagination from "~/components/general/pagination.vue";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
-import ProductCard from "~/components/cards/productCard.vue";
 import Banner from "~/components/general/banner.vue";
 import {useColorCookieStore} from "~/stores/colorCookie.js";
+import VariantCard from "~/components/cards/variantCard.vue";
 
 const products = useProductsStore()
+const {variantsList} = storeToRefs(products)
 const categories = useCategoriesStore()
 const mobileFiltersOpen = ref(false)
 const languages = useLanguagesStore()
@@ -37,7 +38,8 @@ const filtersStore = useFiltersStore()
 const route = useRoute()
 const notifications = useNotificationStore()
 const savedColor = useColorCookieStore()
-const { colorCookie } = storeToRefs(savedColor)
+const {colorCookie} = storeToRefs(savedColor)
+const colors = useColorsStore()
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -69,7 +71,7 @@ const updateCategoryFilter = async (categoryId) => {
       }
     });
   }
-  await products.getProducts()
+  await products.getVariantsList()
 };
 
 const updateFilter = async (sectionId, optionId) => {
@@ -97,9 +99,13 @@ const updateFilter = async (sectionId, optionId) => {
     delete newQuery[filterKey];
   }
 
+  // Set page and perPage parameters
+  newQuery.page = 1;
+  newQuery.perPage = 10;
+
   // Make sure to keep all existing query parameters
   await router.push({query: {...newQuery}});
-  await products.getProducts();
+  await products.getVariantsList();
 };
 
 const removeAllFilters = async () => {
@@ -109,8 +115,13 @@ const removeAllFilters = async () => {
       delete newQuery[key];
     }
   }
+  // Set page and perPage parameters
+  newQuery.page = 1;
+  newQuery.perPage = 10;
+
+  // Make sure to keep all existing query parameters
   await router.push({query: {...newQuery}});
-  await products.getProducts();
+  await products.getVariantsList();
   await notifications.showNotification('success', 'Успешно', 'Фильтры успешно сброшены')
 };
 
@@ -138,21 +149,58 @@ const filterElements = computed(() => {
   return elements;
 });
 
+const favouriteColorIds = computed(() => {
+  return colors.favouriteColorsList?.data.map(fav => fav.color.id);
+});
+
+const addOrRemoveFavouriteColor = async (colorId) => {
+  if (favouriteColorIds.value.includes(colorId)) {
+    await colors.removeFromFavourites(colorId)
+  } else {
+    await colors.addToFavouriteColors(colorId)
+  }
+};
 
 onMounted(async () => {
   await nextTick()
-  await products.getProducts()
+  await products.getVariantsList()
+  await products.getVariantsList()
   await categories.getCategories()
   await filtersStore.getFilters()
+  await products.removeVariant()
+  await colors.getFavouriteColors()
 })
 
 watch(
-    () => products.productsList,
+    () => products.variantsList,
     async () => {
       await nextTick();
       AOS.refresh();
     }
 );
+
+useHead({
+  title: t("headers.store.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.store.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.store.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.store.canonical")}],
+});
 </script>
 
 <template>
@@ -177,7 +225,7 @@ watch(
               <div class="flex items-center gap-6 mb-4">
                 <div class="flex gap-2 items-center">
                   <p class="text-2xl font-medium whitespace-nowrap">{{ colorCookie.title[cur_lang] }}</p>
-                  <ChevronRightIcon class="w-6 h-6" />
+                  <ChevronRightIcon class="w-6 h-6"/>
                 </div>
                 <div class="border-t h-[1px] w-full border-[#F0DFDF]"></div>
                 <NuxtLink
@@ -186,16 +234,20 @@ watch(
                   <p class="whitespace-nowrap font-medium">
                     {{ $t('products.colors_link') }}
                   </p>
-                  <ChevronRightIcon class="w-5 h-5" />
+                  <ChevronRightIcon class="w-5 h-5"/>
                 </NuxtLink>
               </div>
               <div
                   :style="`background: ${colorCookie.hex}`"
                   class="mb-4 w-full h-[170px] rounded-2xl relative"
               >
-                <div class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                <div
+                    v-if="favouriteColorIds"
+                    @click="addOrRemoveFavouriteColor(colorCookie.id)"
+                    class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
                   <svg
-                      class="size-5 w-5 h-5 text-mainColor"
+                      :class="{ 'text-mainColor' : favouriteColorIds.includes(colorCookie.id) }"
+                      class="size-5 w-5 h-5 text-[#E8E8E5]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg">
@@ -505,21 +557,21 @@ watch(
               </div>
               <div>
                 <div
-                    v-if="products.productsList?.data.length > 0"
+                    v-if="variantsList?.data.length > 0"
                     class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
                   <div
-                      v-for="(product, index) in products.productsList?.data"
+                      v-for="(product, index) in variantsList?.data"
                       :key="index"
                       class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3"
                       :data-aos="'fade-up'"
                       :data-aos-delay="index * 20">
-                    <ProductCard :item-index="index" :productData="product"/>
+                    <VariantCard :item-index="index" :productData="product"/>
                   </div>
                 </div>
                 <NoResults v-else/>
               </div>
               <div
-                  v-if="!products.productsList"
+                  v-if="!products.variantsList"
                   class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
                 <div
                     v-for="(_, index) of 8"
@@ -532,10 +584,10 @@ watch(
                   <div class="w-full h-8 skeleton mb-3"></div>
                 </div>
               </div>
-              <div v-if="products.productsList">
+              <div v-if="products.variantsList">
                 <Pagination
-                    :meta-data="products.productsList.meta"
-                    @updatePage="products.getProducts"/>
+                    :meta-data="products.variantsList.meta"
+                    @updatePage="products.getVariantsList"/>
               </div>
             </section>
           </div>

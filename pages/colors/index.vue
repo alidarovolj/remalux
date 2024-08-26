@@ -13,19 +13,56 @@ const {cur_lang} = storeToRefs(languages)
 const localePath = useLocalePath()
 const {t} = useI18n()
 const router = useRouter()
+const route = useRoute()
 const savedColor = useColorCookieStore()
 const { colorCookie } = storeToRefs(savedColor)
+
+const favouriteColorIds = computed(() => {
+  return colors.favouriteColorsList.data.map(fav => fav.color.id);
+});
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
   {title: t('breadcrumbs.colors'), link: localePath('/colors')},
 ]);
 
+const updateCategoryFilter = async (colorID) => {
+  if (parseInt(route.query['filters[parentColor.id]']) === colorID) {
+    delete route.query['filters[parentColor.id]']
+    await router.push({
+      query: {
+        ...route.query,
+        page: 1,
+        perPage: 10
+      }
+    });
+  } else {
+    await router.push({
+      query: {
+        ...route.query,
+        'filters[parentColor.id]': colorID,
+        page: 1,
+        perPage: 10
+      }
+    });
+  }
+  await colors.getColors()
+};
+
 onMounted(async () => {
   await nextTick()
   await colors.getColors()
   await colors.getMainColors()
+  await colors.getFavouriteColors()
 })
+
+const addOrRemoveFavouriteColor = async (colorId) => {
+  if (favouriteColorIds.value.includes(colorId)) {
+    await colors.removeFromFavourites(colorId)
+  } else {
+    await colors.addToFavouriteColors(colorId)
+  }
+};
 
 const saveColor = async (color) => {
   await savedColor.saveCookie(color)
@@ -39,6 +76,29 @@ watch(
       AOS.refresh();
     }
 );
+
+useHead({
+  title: t("headers.colors.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.colors.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.colors.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.colors.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.colors.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.colors.canonical")}],
+});
 </script>
 
 <template>
@@ -61,13 +121,21 @@ watch(
               v-if="mainColorsList.length > 0"
               class="grid grid-cols-2 gap-y-5 sm:grid-cols-4 sm:gap-x-5 md:grid-cols-6">
             <label
-                v-for="(item, index) of mainColorsList"
+                v-for="(item, index) in mainColorsList"
+                @click="updateCategoryFilter(item.id)"
+                :for="`colors-${index}`"
                 :key="index"
                 :style="`background: ${item.hex}`"
                 class="w-full h-20 rounded-md p-3"
                 :data-aos="'fade-up'"
                 :data-aos-delay="index * 100">
-              <input class="rounded-full w-4 h-4 bg-none" type="checkbox">
+              <input
+                  v-model="selectedColor"
+                  :value="item.id"
+                  :name="`colors`"
+                  :id="`colors-${index}`"
+                  class="rounded-full w-4 h-4 bg-none"
+                  type="radio">
             </label>
           </div>
           <NoResults v-else/>
@@ -85,45 +153,48 @@ watch(
           <div
               v-for="(item, index) of colorsList.data"
               :key="index"
-              class="bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer"
-              @click="saveColor(item)"
+              class="bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer relative"
+              :class="{ 'border-2 border-mainColor' : colorCookie?.id === item.id }"
               style="box-shadow: 0px 0px 20px 0px #0000000D;"
               :data-aos="'fade-up'"
               :data-aos-delay="index * 100"
           >
             <div
+                @click="addOrRemoveFavouriteColor(item.id)"
+                class="absolute right-7 top-7 w-8 h-8 rounded-full bg-white flex items-center justify-center z-20">
+              <svg
+                  v-if="favouriteColorIds.includes(item.id)"
+                  class="size-5 w-5 h-5 text-mainColor"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                <path
+                    clip-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                    fill-rule="evenodd"
+                />
+              </svg>
+              <svg
+                  v-else
+                  class="size-5 w-5 h-5 text-[#E8E8E5]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                <path
+                    clip-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                    fill-rule="evenodd"
+                />
+              </svg>
+
+            </div>
+            <div
                 :style="`background: ${item.hex}`"
+                @click="saveColor(item)"
                 class="mb-4 w-full h-[170px] rounded-2xl relative"
             >
-              <div class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                <svg
-                    v-if="colorCookie?.id === item.id"
-                    class="size-5 w-5 h-5 text-mainColor"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                  <path
-                      clip-rule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                      fill-rule="evenodd"
-                  />
-                </svg>
-                <svg
-                    v-else
-                    class="size-5 w-5 h-5 text-[#E8E8E5]"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                  <path
-                      clip-rule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                      fill-rule="evenodd"
-                  />
-                </svg>
-
-              </div>
             </div>
-            <p>{{ item.title[cur_lang] }}</p>
+            <p @click="saveColor(item)">{{ item.title[cur_lang] }}</p>
           </div>
         </div>
         <NoResults v-else/>

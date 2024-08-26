@@ -74,6 +74,9 @@ onMounted(async () => {
   await products.getSameProducts(route.params.id);
   await products.getRelatedProducts(route.params.id);
   await products.getProducts();
+  if(products.savedVariant) {
+    form.value.variant = products.savedVariant
+  }
 });
 
 const links = computed(() => [

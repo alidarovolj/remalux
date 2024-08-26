@@ -34,6 +34,29 @@ watch(
       AOS.refresh();
     }
 );
+
+useHead({
+  title: t("headers.ideas.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.ideas.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.ideas.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.ideas.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.ideas.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.ideas.canonical")}],
+});
 </script>
 
 <template>

@@ -69,6 +69,29 @@ onMounted(async () => {
   await cart.getCart()
   await cartData.cartGetItems()
 })
+
+useHead({
+  title: t("headers.cart.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.cart.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.cart.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.cart.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.cart.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.cart.canonical")}],
+});
 </script>
 
 <template>

@@ -19,6 +19,7 @@ const localePath = useLocalePath()
 const addresses = useAddressesStore()
 const {citiesList} = storeToRefs(addresses)
 const user = useUserStore()
+const {t} = useI18n();
 
 const form = ref({
   name: '',
@@ -111,6 +112,29 @@ onMounted(async () => {
   await nextTick()
   await addresses.getCities()
 })
+
+useHead({
+  title: t("headers.registration.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.registration.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.registration.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.registration.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.registration.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.registration.canonical")}],
+});
 </script>
 
 <template>

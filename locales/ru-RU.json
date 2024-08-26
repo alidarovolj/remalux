@@ -1,4 +1,96 @@
 {
+  "headers": {
+    "mainPage": {
+      "title": "Главная страница - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU",
+      "canonical": "https://globalart.ai/ru-RU"
+    },
+    "store": {
+      "title": "Магазин - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/store",
+      "canonical": "https://globalart.ai/ru-RU/store"
+    },
+    "colors": {
+      "title": "Краска - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/colors",
+      "canonical": "https://globalart.ai/ru-RU/colors"
+    },
+    "ideas": {
+      "title": "Идеи - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/ideas",
+      "canonical": "https://globalart.ai/ru-RU/ideas"
+    },
+    "about": {
+      "title": "О нас - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/about",
+      "canonical": "https://globalart.ai/ru-RU/about"
+    },
+    "news": {
+      "title": "Новости - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/news",
+      "canonical": "https://globalart.ai/ru-RU/news"
+    },
+    "contacts": {
+      "title": "Контакты - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/contacts",
+      "canonical": "https://globalart.ai/ru-RU/contacts"
+    },
+    "profile": {
+      "title": "Профиль - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
+    },
+    "addresses": {
+      "title": "Профиль - Адреса - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
+    },
+    "recipients": {
+      "title": "Профиль - Получатели - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
+    },
+    "login": {
+      "title": "Авторизация - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/login",
+      "canonical": "https://globalart.ai/ru-RU/login"
+    },
+    "registration": {
+      "title": "Регистрация - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/registration",
+      "canonical": "https://globalart.ai/ru-RU/login"
+    },
+    "forgot_pass": {
+      "title": "Забыли пароль - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/forgot-password",
+      "canonical": "https://globalart.ai/ru-RU/forgot-password"
+    },
+    "cart": {
+      "title": "Корзина - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/cart",
+      "canonical": "https://globalart.ai/ru-RU/cart"
+    },
+    "checkout": {
+      "title": "Оформление заказа - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/ru-RU/cart/checkout",
+      "canonical": "https://globalart.ai/ru-RU/cart/checkout"
+    }
+  },
   "partners": {
     "title": "Стать партнером",
     "button": "Подать заявку",

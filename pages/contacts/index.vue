@@ -29,6 +29,29 @@ onMounted(async () => {
     activeContact.value = contactsList.value.data[0];
   }
 });
+
+useHead({
+  title: t("headers.contacts.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.contacts.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.contacts.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.contacts.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.contacts.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.contacts.canonical")}],
+});
 </script>
 
 

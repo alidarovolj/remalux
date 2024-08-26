@@ -19,6 +19,29 @@ onMounted(async () => {
   await nextTick()
   await recipients.getRecipients()
 })
+
+useHead({
+  title: t("headers.recipients.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.recipients.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.recipients.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.recipients.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.recipients.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.recipients.canonical")}],
+});
 </script>
 
 <template>

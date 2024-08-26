@@ -19,6 +19,29 @@ onMounted(async () => {
   await nextTick()
   await addresses.getAddresses()
 })
+
+useHead({
+  title: t("headers.addresses.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.addresses.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.addresses.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.addresses.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.addresses.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.addresses.canonical")}],
+});
 </script>
 
 <template>

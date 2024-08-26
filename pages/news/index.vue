@@ -31,6 +31,29 @@ watch(
       AOS.refresh();
     }
 );
+
+useHead({
+  title: t("headers.news.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.news.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.news.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.news.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.news.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.news.canonical")}],
+});
 </script>
 
 <template>

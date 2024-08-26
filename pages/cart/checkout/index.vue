@@ -130,6 +130,29 @@ onMounted(async () => {
   await cartData.cartGetItems()
   await makeDataForOrder()
 })
+
+useHead({
+  title: t("headers.checkout.title"),
+  meta: [
+    {
+      property: "description",
+      content: t("headers.checkout.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.checkout.description"),
+    },
+    {
+      property: "og:title",
+      content: t("headers.checkout.title"),
+    },
+    {
+      property: "og:url",
+      content: t("headers.checkout.og_url"),
+    },
+  ],
+  link: [{rel: "canonical", href: t("headers.checkout.canonical")}],
+});
 </script>
 
 <template>
