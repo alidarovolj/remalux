@@ -40,6 +40,9 @@ const notifications = useNotificationStore()
 const savedColor = useColorCookieStore()
 const {colorCookie} = storeToRefs(savedColor)
 const colors = useColorsStore()
+const auth = useAuthStore()
+auth.initCookieToken()
+const {token} = storeToRefs(auth)
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -154,10 +157,14 @@ const favouriteColorIds = computed(() => {
 });
 
 const addOrRemoveFavouriteColor = async (colorId) => {
-  if (favouriteColorIds.value.includes(colorId)) {
-    await colors.removeFromFavourites(colorId)
+  if(token.value) {
+    if (favouriteColorIds.value.includes(colorId)) {
+      await colors.removeFromFavourites(colorId)
+    } else {
+      await colors.addToFavouriteColors(colorId)
+    }
   } else {
-    await colors.addToFavouriteColors(colorId)
+    notifications.showNotification('error', 'Необходимо авторизоваться', 'Для добавления в избранное необходимо авторизоваться')
   }
 };
 
@@ -242,11 +249,10 @@ useHead({
                   class="mb-4 w-full h-[170px] rounded-2xl relative"
               >
                 <div
-                    v-if="favouriteColorIds"
                     @click="addOrRemoveFavouriteColor(colorCookie.id)"
                     class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
                   <svg
-                      :class="{ 'text-mainColor' : favouriteColorIds.includes(colorCookie.id) }"
+                      :class="{ 'text-mainColor' : favouriteColorIds?.includes(colorCookie.id) }"
                       class="size-5 w-5 h-5 text-[#E8E8E5]"
                       fill="currentColor"
                       viewBox="0 0 24 24"

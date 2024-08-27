@@ -5,6 +5,7 @@ import NoResults from "~/components/general/noResults.vue";
 import Pagination from "~/components/general/pagination.vue";
 import AOS from 'aos';
 import {useColorCookieStore} from "~/stores/colorCookie";
+import {useNotificationStore} from "~/stores/notifications.js";
 
 const colors = useColorsStore()
 const {colorsList, mainColorsList} = storeToRefs(colors)
@@ -16,9 +17,13 @@ const router = useRouter()
 const route = useRoute()
 const savedColor = useColorCookieStore()
 const { colorCookie } = storeToRefs(savedColor)
+const auth = useAuthStore()
+auth.initCookieToken()
+const {token} = storeToRefs(auth)
+const notifications = useNotificationStore()
 
 const favouriteColorIds = computed(() => {
-  return colors.favouriteColorsList.data.map(fav => fav.color.id);
+  return colors.favouriteColorsList?.data?.map(fav => fav.color.id);
 });
 
 const links = computed(() => [
@@ -57,10 +62,14 @@ onMounted(async () => {
 })
 
 const addOrRemoveFavouriteColor = async (colorId) => {
-  if (favouriteColorIds.value.includes(colorId)) {
-    await colors.removeFromFavourites(colorId)
+  if(token.value) {
+    if (favouriteColorIds.value.includes(colorId)) {
+      await colors.removeFromFavourites(colorId)
+    } else {
+      await colors.addToFavouriteColors(colorId)
+    }
   } else {
-    await colors.addToFavouriteColors(colorId)
+    notifications.showNotification('error', 'Необходимо авторизоваться', 'Для добавления в избранное необходимо авторизоваться')
   }
 };
 
@@ -163,7 +172,7 @@ useHead({
                 @click="addOrRemoveFavouriteColor(item.id)"
                 class="absolute right-7 top-7 w-8 h-8 rounded-full bg-white flex items-center justify-center z-20">
               <svg
-                  v-if="favouriteColorIds.includes(item.id)"
+                  v-if="favouriteColorIds?.includes(item.id)"
                   class="size-5 w-5 h-5 text-mainColor"
                   fill="currentColor"
                   viewBox="0 0 24 24"

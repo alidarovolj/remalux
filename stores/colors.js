@@ -7,6 +7,9 @@ export const useColorsStore = defineStore("colors", () => {
     const favouriteColorsList = ref(null);
     const addedFavouriteColor = ref(null);
     const route = useRoute()
+    const auth = useAuthStore()
+    auth.initCookieToken()
+    const {token} = storeToRefs(auth)
     const notifications = useNotificationStore()
 
     return {
@@ -31,11 +34,15 @@ export const useColorsStore = defineStore("colors", () => {
             }
         },
         async getFavouriteColors() {
-            try {
-                const response = await api(`/api/favourite-colors`, "GET", {}, route.query);
-                favouriteColorsList.value = response;
-            } catch (e) {
-                notifications.showNotification("error", "Произошла ошибка", e);
+            if(token.value) {
+                try {
+                    const response = await api(`/api/favourite-colors`, "GET", {}, route.query);
+                    favouriteColorsList.value = response;
+                } catch (e) {
+                    notifications.showNotification("error", "Произошла ошибка", e);
+                }
+            } else {
+                favouriteColorsList.value = null;
             }
         },
         async addToFavouriteColors(id) {
