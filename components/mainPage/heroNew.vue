@@ -65,7 +65,7 @@ const localePath = useLocalePath()
       <img
           data-aos="fade-left"
           alt=""
-          class="w-full h-full object-contain -mb-20"
+          class="w-auto h-1/2 object-contain -mb-20"
           src="@/assets/img/hero/elements.png">
     </div>
   </div>
