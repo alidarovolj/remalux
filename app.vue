@@ -14,10 +14,10 @@ onMounted(async () => {
 
 <template>
   <div>
+    <ModalDialog/>
     <NuxtLayout name="default">
       <NuxtPage/>
     </NuxtLayout>
     <Notifications/>
-    <ModalDialog/>
   </div>
 </template>

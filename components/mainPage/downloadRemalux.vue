@@ -43,51 +43,67 @@ onBeforeUnmount(() => {
   <div
       class="container mx-auto px-4 lg:px-0"
       data-aos="fade-up">
-    <div class="rounded-xl relative flex flex-col md:flex-row block md:hidden">
+    <div class="rounded-xl relative flex flex-col md:flex-row md:hidden">
       <img
           alt=""
           class="w-full h-full absolute rounded-xl object-cover object-right-bottom"
           src="~/assets/img/bg-app.jpg">
       <div
-          class="w-full md:w-1/2 py-14 px-4 md:px-9 rounded-xl relative z-10"
+          class="w-full md:w-1/2 py-14 px-4 md:px-9 rounded-xl relative z-40"
           style="background: linear-gradient(90deg, #ad2725 72.63%, rgba(115, 115, 115, 0) 100%);">
-        <h2 class="text-3xl font-bold text-white mb-5 font-montserrat">
+        <h2 class="text-4xl font-medium text-white mb-5 font-montserrat">
           {{ $t('mainPage.download_remalux.title') }}
         </h2>
-        <p class="font-medium text-white mb-9">
+        <p class="text-white text-xl mb-12">
           {{ $t('mainPage.download_remalux.description') }}
         </p>
         <div class="flex gap-3 md:gap-7">
-          <img
-              alt=""
-              class="w-auto h-12"
-              src="~/assets/img/apple.png">
-          <img
-              alt=""
-              class="w-auto h-12"
-              src="~/assets/img/android.png">
+          <a
+              href="#"
+              class="hover:scale-110 transition-all cursor-pointer">
+            <img
+                alt=""
+                class="w-auto h-12"
+                src="~/assets/img/apple.png">
+          </a>
+          <a
+              href="#"
+              class="hover:scale-110 transition-all cursor-pointer">
+            <img
+                alt=""
+                class="w-auto h-12"
+                src="~/assets/img/android.png">
+          </a>
         </div>
       </div>
     </div>
     <!-- Content before the video -->
     <div class="hidden md:block">
       <div class="relative">
-        <div class="absolute left-9 flex flex-col justify-center h-full w-[30%]">
-          <h2 class="text-3xl font-bold text-white mb-5">
+        <div class="absolute z-20 left-9 flex flex-col justify-center h-full w-[30%]">
+          <h2 class="text-4xl font-medium text-white mb-5 font-montserrat">
             {{ $t('mainPage.download_remalux.title') }}
           </h2>
-          <p class="font-medium text-white mb-9">
+          <p class="text-white text-xl mb-12">
             {{ $t('mainPage.download_remalux.description') }}
           </p>
           <div class="flex gap-3 md:gap-7">
-            <img
-                alt=""
-                class="w-auto h-12"
-                src="~/assets/img/apple.png">
-            <img
-                alt=""
-                class="w-auto h-12"
-                src="~/assets/img/android.png">
+            <a
+                href="#"
+                class="hover:scale-110 transition-all cursor-pointer">
+              <img
+                  alt=""
+                  class="w-auto h-12"
+                  src="~/assets/img/apple.png">
+            </a>
+            <a
+                href="#"
+                class="hover:scale-110 transition-all cursor-pointer">
+              <img
+                  alt=""
+                  class="w-auto h-12"
+                  src="~/assets/img/android.png">
+            </a>
           </div>
         </div>
         <div id="bound-two" ref="boundRef" class="scroll-bound">

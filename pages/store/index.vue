@@ -43,9 +43,19 @@ const colors = useColorsStore()
 const auth = useAuthStore()
 auth.initCookieToken()
 const {token} = storeToRefs(auth)
-
 const {t} = useI18n()
 const localePath = useLocalePath()
+
+const searchForm = ref({
+  searchKeyword: ''
+})
+
+const chosenCategory = computed(() => {
+  if (route.query['filters[product.category_id]']) {
+    return categories.categoriesList?.data?.find(category => category.id === parseInt(route.query['filters[category_id]']));
+  }
+  return null;
+});
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
@@ -55,8 +65,8 @@ const links = computed(() => [
 const router = useRouter();
 
 const updateCategoryFilter = async (categoryId) => {
-  if (parseInt(route.query['filters[category_id]']) === categoryId) {
-    delete route.query['filters[category_id]']
+  if (parseInt(route.query['filters[product.category_id]']) === categoryId) {
+    delete route.query['filters[product.category_id]']
     await router.push({
       query: {
         ...route.query,
@@ -68,7 +78,7 @@ const updateCategoryFilter = async (categoryId) => {
     await router.push({
       query: {
         ...route.query,
-        'filters[category_id]': categoryId,
+        'filters[product.category_id]': categoryId,
         page: 1,
         perPage: 10
       }
@@ -168,9 +178,37 @@ const addOrRemoveFavouriteColor = async (colorId) => {
   }
 };
 
+const searchByText = async () => {
+  const newQuery = {...route.query};
+
+  if (searchForm.value.searchKeyword) {
+    newQuery.searchKeyword = searchForm.value.searchKeyword;
+  } else {
+    delete newQuery.searchKeyword;
+  }
+
+  newQuery.page = 1; // Reset page to 1 when a new search is performed
+
+  await router.push({ query: newQuery });
+  await products.getVariantsList(); // Assuming this fetches the products based on the query
+  await filtersStore.getFilters()
+};
+
+const removeColor = async () => {
+  savedColor.removeCookie()
+  await router.push({ query: { ...route.query, is_colorable: 0 } });
+  await products.getVariantsList();
+};
+
 onMounted(async () => {
   await nextTick()
-  await products.getVariantsList()
+  const { searchKeyword } = route.query;
+  if (searchKeyword) {
+    searchForm.value.searchKeyword = searchKeyword;
+  }
+  if (colorCookie.value) {
+    await router.push({ query: { ...route.query, is_colorable: 1 } });
+  }
   await products.getVariantsList()
   await categories.getCategories()
   await filtersStore.getFilters()
@@ -179,7 +217,7 @@ onMounted(async () => {
 })
 
 watch(
-    () => products.variantsList,
+    () => variantsList.value,
     async () => {
       await nextTick();
       AOS.refresh();
@@ -250,7 +288,7 @@ useHead({
               >
                 <div
                     @click="addOrRemoveFavouriteColor(colorCookie.id)"
-                    class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                    class="absolute right-12 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
                   <svg
                       :class="{ 'text-mainColor' : favouriteColorIds?.includes(colorCookie.id) }"
                       class="size-5 w-5 h-5 text-[#E8E8E5]"
@@ -263,6 +301,12 @@ useHead({
                         fill-rule="evenodd"
                     />
                   </svg>
+
+                </div>
+                <div
+                    @click="removeColor"
+                    class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                  <XMarkIcon class="text-mainColor w-5 h-5" />
 
                 </div>
               </div>
@@ -278,7 +322,7 @@ useHead({
               v-for="(category, index) in categories.categoriesList.data"
               :key="index"
               :class="{ 'for_gradient text-mainColor' : parseInt(route.query['filters[category_id]']) === category.id }"
-              class="relative w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] transition-all cursor-pointer text-[#7B7B7B]"
+              class="relative w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] transition-all cursor-pointer text-[#7B7B7B] hover:shadow-hovShadow"
               @click="updateCategoryFilter(category.id)">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
               <p class="font-medium font-montserrat">
@@ -396,11 +440,17 @@ useHead({
 
           <div class="pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4 font-manrope">
             <aside>
-              <div class="mb-5 relative">
+              <form
+                  @submit.prevent="searchByText"
+                  class="mb-5 relative">
                 <MagnifyingGlassIcon class="w-6 h-6 text-mainColor absolute left-4 top-1/2 -translate-y-1/2"/>
-                <input :placeholder="$t('search.placeholder')" class="w-full p-4 pl-14 border-b border-[#F0DFDF]"
-                       type="text">
-              </div>
+                <input
+                    v-model="searchForm.searchKeyword"
+                    :placeholder="$t('search.placeholder')"
+                    class="w-full p-4 pl-14 border-b border-[#F0DFDF]"
+                    type="text"
+                />
+              </form>
               <div class="flex items-center justify-between lg:hidden">
                 <button
                     class="inline-flex items-center"
@@ -495,10 +545,11 @@ useHead({
                 class="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
               <div class="flex justify-between items-center mb-5 pb-3 border-b border-[#F0DFDF]">
                 <p class="text-3xl font-medium text-mainColor font-montserrat">
-                  {{ $t('products.products_title') }}
+                  <span v-if="!chosenCategory">{{ $t('products.products_title') }}</span>
+                  <span v-else>{{ chosenCategory.title[cur_lang] }}</span>
                 </p>
                 <p>
-                  <span class="font-semibold">{{ products.productsList?.meta?.total }}</span>
+                  <span class="font-semibold">{{ variantsList?.meta?.total }}</span>
                   {{ $t('products.found_products') }}
                 </p>
               </div>
@@ -570,7 +621,7 @@ useHead({
                       :key="index"
                       class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3"
                       :data-aos="'fade-up'"
-                      :data-aos-delay="index * 20">
+                      :data-aos-delay="index * 10">
                     <VariantCard :item-index="index" :productData="product"/>
                   </div>
                 </div>

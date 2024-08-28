@@ -1,7 +1,6 @@
 <script setup>
-import {ChevronLeftIcon, ChevronRightIcon} from '@heroicons/vue/20/solid';
-import {useRoute, useRouter} from 'vue-router';
-import {computed, defineProps, onMounted, ref, watch} from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { defineProps, ref, onMounted, watch, nextTick, computed } from 'vue';
 
 const props = defineProps(['metaData']);
 const emit = defineEmits(['updatePage']);
@@ -9,107 +8,87 @@ const route = useRoute();
 const router = useRouter();
 
 const form = ref({
-  per_page: route.query.perPage || 10,
-  page: route.query.page || 1
+  per_page: Number(route.query.perPage) || 10, // Ensure this starts as a number
+  page: Number(route.query.page) || 1
 });
 
-const pageNumbers = computed(() =>
-    props.metaData.links.filter(link => !isNaN(link.label))
-);
+const loading = ref(false); // Flag to control the spinner and request
+let lastPerPage = form.value.per_page; // Track the last known perPage value
 
-const updateQueryParams = async (page, perPage) => {
-  await router.push({query: {...route.query, page, perPage}});
-  emit('updatePage', {page, perPage});
+// Computed property to determine the maximum per_page value
+const maxPerPage = computed(() => props.metaData.total);
+
+const updateQueryParams = async () => {
+  if (loading.value) return; // Prevents multiple requests
+  loading.value = true; // Show spinner
+
+  // Ensure per_page does not exceed maxPerPage
+  form.value.per_page = Math.min(form.value.per_page, maxPerPage.value);
+
+  await router.push({ query: { ...route.query, page: form.value.page, perPage: form.value.per_page } });
+  emit('updatePage', { page: form.value.page, perPage: form.value.per_page });
+
+  loading.value = false; // Hide spinner after the request
 };
 
-onMounted(() => {
-  updateQueryParams(form.value.page, form.value.per_page);
+// Watch for changes in per_page and reset lastPerPage if needed
+watch(() => form.value.per_page, async (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    console.log(`per_page changed from ${oldVal} to ${newVal}`);
+    lastPerPage = newVal; // Update last known value
+    await updateQueryParams(); // Ensure that the query params are updated when per_page changes
+  }
 });
 
-watch(form, async () => {
-  await updateQueryParams(form.value.page, form.value.per_page);
-}, {deep: true});
+// Watch for changes in route.query.perPage and update form.per_page
+watch(() => route.query.perPage, (newVal) => {
+  if (newVal) {
+    form.value.per_page = Number(newVal);
+    lastPerPage = form.value.per_page; // Update last known value
+  }
+});
 
-const setPage = (page) => {
-  form.value.page = page;
-};
+const observer = ref(null);
+
+onMounted(async () => {
+  await nextTick(); // Wait for the DOM to be fully rendered
+  const anchorElement = document.querySelector('#scroll-anchor');
+
+  if (anchorElement) {
+    observer.value = new IntersectionObserver(async ([entry]) => {
+      if (entry.isIntersecting && !loading.value) {
+        form.value.per_page = Math.min(lastPerPage + 10, maxPerPage.value); // Explicitly increase by 10 each time, respecting maxPerPage
+        // Debugging output (optional)
+        console.log('New per_page:', form.value.per_page);
+        await updateQueryParams(); // Fetch new data
+      }
+    });
+
+    observer.value.observe(anchorElement); // Observe the spinner or a designated element
+  } else {
+    console.error('Anchor element not found.');
+  }
+});
 </script>
 
 <template>
-  <div class="flex items-center justify-between border-t border-gray-200 bg-white py-3 mt-10">
-    <div class="flex flex-1 justify-between sm:hidden">
-      <a
-          v-if="metaData.current_page > 1"
-          class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-          href="#"
-          @click.prevent="setPage(metaData.current_page - 1)"
-      >
-        {{ $t('pagination.prev') }}
-      </a>
-      <a
-          v-if="metaData.current_page < metaData.last_page"
-          class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-          href="#"
-          @click.prevent="setPage(metaData.current_page + 1)"
-      >
-        {{ $t('pagination.next') }}
-      </a>
+  <div class="overflow-auto border-t border-gray-200 bg-white py-20 mt-10">
+
+    <!-- Spinner for loading indication -->
+    <div v-if="loading" class="flex justify-center items-center py-4">
+      <svg class="animate-spin h-5 w-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+      </svg>
     </div>
-    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-      <div class="flex items-center gap-5">
-        <div>
-          <select
-              id="perPage"
-              v-model="form.per_page"
-              class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              name="perPage"
-          >
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-        <div>
-          <p class="text-sm text-gray-700">
-            {{ $t('pagination.show_by.text') }}
-            {{ ' ' }}
-            <span class="font-medium">{{ metaData.total }}</span>
-            {{ ' ' }}
-            {{ $t('pagination.show_by.items') }}
-          </p>
-        </div>
-      </div>
-      <div>
-        <nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
-          <button
-              :disabled="metaData.current_page <= 1"
-              class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              @click="setPage(metaData.current_page - 1)"
-          >
-            <span class="sr-only">{{ $t('pagination.prev') }}</span>
-            <ChevronLeftIcon aria-hidden="true" class="h-5 w-5"/>
-          </button>
-          <p
-              v-for="(item, index) in pageNumbers"
-              :key="index"
-              :class="{ 'z-10 bg-mainColor text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor' : metaData.current_page === parseInt(item.label) }"
-              class="relative cursor-pointer inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0"
-              @click="setPage(parseInt(item.label))"
-          >
-            {{ item.label }}
-          </p>
-          <button
-              :disabled="metaData.current_page >= metaData.last_page"
-              class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              @click="setPage(metaData.current_page + 1)"
-          >
-            <span class="sr-only">{{ $t('pagination.next') }}</span>
-            <ChevronRightIcon aria-hidden="true" class="h-5 w-5"/>
-          </button>
-        </nav>
-      </div>
+
+    <!-- Your content goes here, e.g., list items -->
+    <div>
+      <p class="font-medium">Показывается {{ route.query.perPage }} из {{ metaData.total }} элементов</p>
     </div>
+
+
+    <!-- Scroll anchor for IntersectionObserver -->
+    <div id="scroll-anchor" class="h-1"></div>
   </div>
 </template>

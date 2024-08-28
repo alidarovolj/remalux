@@ -28,8 +28,7 @@ export async function api(url, method, options = {}, query = {}) {
 
     // Combine the passed query params with the route's query params
     const finalQuery = {
-        ...params,
-        ...route.query
+        ...params
     };
 
     // Create the query string

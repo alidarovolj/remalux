@@ -10,7 +10,10 @@ export const useFiltersStore = defineStore("filters", () => {
         filtersList,
         async getFilters() {
             try {
-                const response = await api(`/api/filters/all`, "GET", {}, route.query);
+                const response = await api(`/api/filters/all`, "GET", {}, {
+                    page: route.query.page,
+                    perPage: route.query.perPage,
+                });
                 filtersList.value = response;
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);

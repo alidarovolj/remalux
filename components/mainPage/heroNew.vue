@@ -19,14 +19,14 @@ const localePath = useLocalePath()
           </h2>
           <div class="flex gap-6 font-montserrat">
             <NuxtLink
-                :to="localePath('/')"
+                :to="localePath('/store')"
                 data-aos="fade-right"
                 class="w-full md:w-max px-0 md:px-9 bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-4 text-center text-base md:text-xl font-semibold border-2 border-white"
             >
               {{ $t('mainPage.hero.choose_paint') }}
             </NuxtLink>
             <NuxtLink
-                :to="localePath('/')"
+                :to="localePath('/colors')"
                 data-aos="fade-right"
                 class="w-full md:w-max px-0 md:px-9 bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-4 text-center text-base md:text-xl font-semibold border-2 border-white"
             >

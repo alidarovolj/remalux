@@ -6,6 +6,7 @@ import Pagination from "~/components/general/pagination.vue";
 import AOS from 'aos';
 import {useColorCookieStore} from "~/stores/colorCookie";
 import {useNotificationStore} from "~/stores/notifications.js";
+import {CheckCircleIcon} from "@heroicons/vue/24/outline"
 
 const colors = useColorsStore()
 const {colorsList, mainColorsList} = storeToRefs(colors)
@@ -21,6 +22,7 @@ const auth = useAuthStore()
 auth.initCookieToken()
 const {token} = storeToRefs(auth)
 const notifications = useNotificationStore()
+const modals = useModalsStore()
 
 const favouriteColorIds = computed(() => {
   return colors.favouriteColorsList?.data?.map(fav => fav.color.id);
@@ -75,7 +77,7 @@ const addOrRemoveFavouriteColor = async (colorId) => {
 
 const saveColor = async (color) => {
   await savedColor.saveCookie(color)
-  await router.push(localePath(`/store`))
+  modals.showModal('chosenColor', color)
 }
 
 watch(
@@ -126,28 +128,22 @@ useHead({
           {{ $t('colors.choose_color') }}
         </p>
         <div v-if="mainColorsList" class="mb-10">
-          <div
-              v-if="mainColorsList.length > 0"
-              class="grid grid-cols-2 gap-y-5 sm:grid-cols-4 sm:gap-x-5 md:grid-cols-6">
-            <label
+          <div v-if="mainColorsList.length > 0" class="flex">
+            <div
                 v-for="(item, index) in mainColorsList"
                 @click="updateCategoryFilter(item.id)"
-                :for="`colors-${index}`"
                 :key="index"
-                :style="`background: ${item.hex}`"
-                class="w-full h-20 rounded-md p-3"
-                :data-aos="'fade-up'"
-                :data-aos-delay="index * 100">
-              <input
-                  v-model="selectedColor"
-                  :value="item.id"
-                  :name="`colors`"
-                  :id="`colors-${index}`"
-                  class="rounded-full w-4 h-4 bg-none"
-                  type="radio">
-            </label>
+                :style="{ background: item.hex }"
+                class="color-block"
+                :class="{ 'selected': parseInt(route.query['filters[parentColor.id]']) === item.id }"
+            >
+              <CheckCircleIcon
+                  v-if="parseInt(route.query['filters[parentColor.id]']) === item.id"
+                  class="check-icon invert"
+              />
+            </div>
           </div>
-          <NoResults v-else/>
+          <NoResults v-else />
         </div>
       </div>
       <div class="mb-8">
@@ -166,7 +162,7 @@ useHead({
               :class="{ 'border-2 border-mainColor' : colorCookie?.id === item.id }"
               style="box-shadow: 0px 0px 20px 0px #0000000D;"
               :data-aos="'fade-up'"
-              :data-aos-delay="index * 100"
+              :data-aos-delay="index * 10"
           >
             <div
                 @click="addOrRemoveFavouriteColor(item.id)"
@@ -231,3 +227,29 @@ useHead({
     </div>
   </div>
 </template>
+
+<style>
+.color-block {
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, padding 0.3s ease-in-out;
+  position: relative;
+}
+
+.color-block.selected {
+  transform: scale(1.1); /* Increase size by 10% */
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Ensure selected block is above others */
+}
+
+.check-icon {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+}
+</style>

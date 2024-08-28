@@ -9,6 +9,12 @@ html, body {
     color: #333333;
 }
 
+.custom-dashed-border {
+    @apply border-2 border-dashed border-gray-500;
+    border-spacing: 30px; /* Customize this value for spacing between dashes */
+    border-style: dashed;
+}
+
 input[type='checkbox'],
 input[type='radio'] {
     accent-color: #AD2724;

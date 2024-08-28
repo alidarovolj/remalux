@@ -1,5 +1,6 @@
 <script setup>
 import {defineComponent, h} from 'vue'
+import NewsLetter from "~/components/mainPage/newsLetter.vue";
 
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -95,8 +96,9 @@ const navigation = computed(() => {
 <template>
   <footer
       aria-labelledby="footer-heading"
-      class="bg-white border-t border-gray-900/10 pt-8">
-    <div class="container mx-auto px-4 lg:px-0">
+      class="bg-white">
+    <NewsLetter />
+    <div class="container mx-auto px-4 lg:px-0 pt-8">
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <div class="space-y-8">
           <img

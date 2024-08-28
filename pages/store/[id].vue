@@ -75,7 +75,9 @@ onMounted(async () => {
   await products.getRelatedProducts(route.params.id);
   await products.getProducts();
   if(products.savedVariant) {
-    form.value.variant = products.savedVariant
+    form.value.variant = products.savedVariant.id
+    prod_var.value = products.savedVariant.price;
+    addToCart.product_variant_id = products.savedVariant.id
   }
 });
 
@@ -137,7 +139,8 @@ const addToCartLocal = async () => {
         <div v-if="detailProduct && sameProducts && productsList">
           <div class="flex flex-col md:flex-row items-start gap-7">
             <div
-                class="h-auto md:h-[420px] w-full md:w-3/5 rounded-xl border-2 border-[#7B7B7B40] border-dashed relative">
+                :class="{ 'border-none' : colorCookie || !products.detailProduct.is_colorable }"
+                class="h-auto md:h-[420px] w-full md:w-3/5 rounded-xl border-2 border-[#7B7B7B40] border-dashed hover:border-spacing-4 relative">
 
               <div class="w-[150px] h-[150px] absolute left-0 bottom-0 z-20 bg-white rounded-tr-lg">
                 <img
@@ -165,24 +168,27 @@ const addToCartLocal = async () => {
                         :key="index">
                       <div
                           :class="[{ 'bg-white' : !products.detailProduct.is_colorable }]"
-                          class="w-full h-full absolute left-0 top-0"
+                          class="w-full h-full absolute left-0 top-0 rounded-xl"
                           :style="`background: ${colorCookie.hex}`"
                       ></div>
                       <img :src="item" alt="" class="w-full h-full absolute left-0 top-0 z-10">
                     </my-carousel-slide>
                     <template #addons="{ currentSlide, slidesCount }">
                       <div
-                          class="flex justify-center gap-4 w-full md:pl-14 overflow-x-auto"
+                          class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
                       >
                         <div
                             v-for="(painting, index) of images"
                             :key="index"
-                            class="bg-cardBg dark:bg-dElement cursor-pointer dark:text-dText"
+                            @click="imagesCarousel.slideTo(index)"
+                            :style="`background: ${colorCookie.hex}`"
+                            :class="{ 'border-mainColor' : currentSlide === index }"
+                            class="bg-cardBg border-2 rounded dark:bg-dElement cursor-pointer dark:text-dText"
                         >
                           <img
                               :src="painting"
                               alt=""
-                              class="max-w-36 max-h-36 min-w-36 min-h-36 object-contain"
+                              class="w-full object-contain"
                           />
                         </div>
                       </div>
@@ -298,7 +304,7 @@ const addToCartLocal = async () => {
               <p
                   v-if="!prod_var"
                   class="text-2xl mb-8">
-                {{ detailProduct.price_range }}
+                {{ detailProduct.price_range[0] }}₸ - {{ detailProduct.price_range[1] }}₸
               </p>
               <p
                   v-else
@@ -320,7 +326,7 @@ const addToCartLocal = async () => {
                   v-else-if="colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
                   :style="`background: ${colorCookie.hex}`"
-                  class="border border-[#7B7B7B40] border-dashed rounded mb-8 cursor-pointer p-3">
+                  class="border border-[#7B7B7B40] border-dashed mb-8 cursor-pointer rounded-xl p-3">
                 <div class="flex items-center gap-2 mb-3">
                   <div
                       class="w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
@@ -348,7 +354,7 @@ const addToCartLocal = async () => {
                 <p class="mb-4">
                   {{ $t('products.details.weight') }}
                 </p>
-                <div class="flex gap-3">
+                <div class="flex flex-wrap gap-3">
                   <button
                       v-for="(item, index) of detailProduct.product_variants"
                       :key="index"
@@ -401,7 +407,7 @@ const addToCartLocal = async () => {
                   </div>
                 </div>
               </div>
-              <div v-if="calculatorActive">
+              <div v-if="calculatorActive" class="mb-8">
                 <div class="flex gap-4 items-end">
                   <div>
                     <p class="mb-4">
@@ -414,7 +420,7 @@ const addToCartLocal = async () => {
                           type="number"
                       />
                       <p class="absolute top-1/2 -translate-y-1/2 right-4 text-2xl">
-                        М
+                        м
                       </p>
                     </div>
                   </div>
@@ -430,7 +436,7 @@ const addToCartLocal = async () => {
                           type="number"
                       />
                       <p class="absolute top-1/2 -translate-y-1/2 right-4 text-2xl">
-                        М
+                        м
                       </p>
                     </div>
                   </div>

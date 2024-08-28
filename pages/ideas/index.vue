@@ -6,6 +6,7 @@ import {useLanguagesStore} from "~/stores/languages.js";
 import IdeaCard from "~/components/cards/ideaCard.vue";
 import Banner from "~/components/general/banner.vue";
 import AOS from 'aos';
+import {CheckCircleIcon} from "@heroicons/vue/24/outline/index.js";
 
 const ideas = useIdeasStore()
 const {ideasList, ideaColorsList, ideaRoomsList} = storeToRefs(ideas)
@@ -14,11 +15,36 @@ const {t} = useI18n()
 const localePath = useLocalePath()
 const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
+const route = useRoute()
+const router = useRouter()
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
   {title: t('breadcrumbs.ideas'), link: localePath('/ideas')},
 ]);
+
+const updateCategoryFilter = async (colorID) => {
+  if (parseInt(route.query['filters[parentColor.id]']) === colorID) {
+    delete route.query['filters[parentColor.id]']
+    await router.push({
+      query: {
+        ...route.query,
+        page: 1,
+        perPage: 10
+      }
+    });
+  } else {
+    await router.push({
+      query: {
+        ...route.query,
+        'filters[parentColor.id]': colorID,
+        page: 1,
+        perPage: 10
+      }
+    });
+  }
+  await ideas.getIdeas()
+};
 
 onMounted(async () => {
   await nextTick()
@@ -94,18 +120,23 @@ useHead({
                 </option>
               </select>
             </div>
-            <div
-                v-if="ideaColorsList"
-                class="grid grid-cols-2 gap-y-5 sm:grid-cols-6 sm:gap-x-5 sm:gap-y-10 mb-28">
-              <label
-                  v-for="(item, index) of ideaColorsList.data"
-                  :key="index"
-                  :style="`background: ${item.hex}`"
-                  :data-aos="'fade-up'"
-                  :data-aos-delay="index * 100"
-                  class="w-full h-20 rounded-md p-3">
-                <input class="rounded-full w-5 h-5 bg-none" type="checkbox">
-              </label>
+            <div v-if="ideaColorsList" class="mb-10">
+              <div v-if="ideaColorsList.data.length > 0" class="flex">
+                <div
+                    v-for="(item, index) in ideaColorsList.data"
+                    @click="updateCategoryFilter(item.id)"
+                    :key="index"
+                    :style="{ background: item.hex }"
+                    class="color-block"
+                    :class="{ 'selected': parseInt(route.query['filters[parentColor.id]']) === item.id }"
+                >
+                  <CheckCircleIcon
+                      v-if="parseInt(route.query['filters[parentColor.id]']) === item.id"
+                      class="check-icon invert"
+                  />
+                </div>
+              </div>
+              <NoResults v-else />
             </div>
             <div
                 v-if="ideasList">

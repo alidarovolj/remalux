@@ -81,7 +81,7 @@ onUnmounted(() => {
 
 <template>
   <header
-      class="bg-white fixed top-0 z-[10000] w-full"
+      class="bg-white fixed top-0 z-[100000] w-full"
       style="box-shadow: 0px 0px 10px 0px #00000026;">
     <div class="container mx-auto px-4 md:px-0">
       <nav

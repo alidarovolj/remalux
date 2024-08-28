@@ -61,15 +61,15 @@ const {cur_lang} = storeToRefs(language);
           </svg>
           <p class="ml-1 text-lg">4.5 (265)</p>
         </div>
-        <p class="text-[#333333] font-light">
-          {{ productData.article }}
-        </p>
+<!--        <p class="text-[#333333] font-light">-->
+<!--          {{ productData.article }}-->
+<!--        </p>-->
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-[10px] text-[#7B7B7B] mb-1">
-              Цена
-            </p>
-            <p>{{ productData.price_range }}</p>
+<!--            <p class="text-[10px] text-[#7B7B7B] mb-1">-->
+<!--              Цена-->
+<!--            </p>-->
+            <p class="text-lg font-medium">{{ productData.price_range[0] }}₸ - {{ productData.price_range[1] }}₸</p>
           </div>
           <NuxtLink
               :to="localePath(`/store/${productData.id}`)"

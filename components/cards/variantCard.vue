@@ -12,7 +12,7 @@ const {cur_lang} = storeToRefs(language);
 
 <template>
   <div
-      @click="products.saveVariant(productData.id)"
+      @click="products.saveVariant(productData)"
       class="mt-40 w-full relative">
     <NuxtLink
         :to="localePath('/store/' + productData.product.id)"
@@ -68,15 +68,9 @@ const {cur_lang} = storeToRefs(language);
           </svg>
           <p class="ml-1 text-lg">4.5 (265)</p>
         </div>
-        <p class="text-[#333333] font-light">
-          {{ productData.product.article }}
-        </p>
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-[10px] text-[#7B7B7B] mb-1">
-              Цена
-            </p>
-            <p>{{ productData.price }}₸</p>
+            <p class="text-lg font-medium">{{ productData.price }}₸</p>
           </div>
           <NuxtLink
               :to="localePath(`/store/${productData.product.id}`)"

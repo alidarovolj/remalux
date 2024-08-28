@@ -13,11 +13,14 @@ const stats = computed(() => [
 
 <template>
   <div
-      class="container mx-auto px-4 md:px-0 mb-16"
+      class="container mx-auto px-4 md:px-0"
       data-aos="fade-up">
     <client-only>
-      <div class="relative isolate overflow-hidden bg-[#BAA287] rounded-3xl">
-        <div class="relative w-full px-6 md:px-12 py-6 md:py-9 md:w-3/4 z-10">
+      <div
+          style="background: linear-gradient(294.9deg, #E7A263 34.96%, #D59A62 62.31%);"
+          class="relative flex bg-[#BAA287] rounded-3xl">
+        <div
+            class="relative w-full px-6 md:px-12 py-6 md:py-9 lg:w-3/4 z-10">
           <div class="mx-auto lg:mx-0">
             <p class="mt-2 text-xl md:text-3xl font-bold tracking-tight text-white pb-5 border-b border-white">
               {{ $t('partners.title') }}
@@ -37,8 +40,15 @@ const stats = computed(() => [
             </div>
           </dl>
         </div>
-        <div class="w-auto absolute right-0 top-0 h-full hidden md:block">
-          <img alt="" class="h-full w-auto object-cover object-right-top" src="@/assets/img/hero/partners.png">
+        <img
+            class="h-6 md:h-10 w-auto absolute right-5 md:right-12 top-5 md:top-9"
+            src="@/assets/img/logos/mainLogo.svg" alt="">
+        <div class="hidden w-full md:w-1/4 min-h-full lg:flex items-end">
+          <img
+              src="~/assets/img/mainPage/partners.png"
+              alt="partners-bg"
+              class="w-full h-auto object-contain z-10"
+          />
         </div>
       </div>
     </client-only>
