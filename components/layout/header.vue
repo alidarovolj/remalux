@@ -14,6 +14,7 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import {useAuthStore} from "~/stores/auth.js";
 import {useColorsStore} from "~/stores/colors.js";
 
+const searchValue = ref('')
 const loading = ref(false)
 const {t} = useI18n()
 const localePath = useLocalePath()
@@ -73,6 +74,10 @@ const handleScroll = () => {
     navRef.value.classList.remove('!py-2');
   }
 };
+
+const makeSearch = () => {
+  router.push({ path: localePath('/store'), query: {searchKeyword: searchValue.value}});
+}
 
 onMounted(async () => {
   await nextTick()
@@ -352,12 +357,17 @@ onUnmounted(() => {
         <div
             :class="{ '!pb-3 !h-max !max-h-max' : searchOpen }"
             class="overflow-hidden w-full pb-0 h-0 max-h-0 transition-all">
-          <form class="w-full flex gap-2">
+          <form
+              @submit.prevent="makeSearch"
+              class="w-full flex gap-2">
             <input
+                v-model="searchValue"
                 type="text"
                 class="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 :placeholder="$t('search.title')">
-            <button class="bg-mainColor text-white px-5 rounded-lg text-sm font-semibold">
+            <button
+                type="submit"
+                class="bg-mainColor text-white px-5 rounded-lg text-sm font-semibold">
               {{ $t('search.placeholder') }}
             </button>
           </form>
