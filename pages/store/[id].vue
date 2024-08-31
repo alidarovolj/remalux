@@ -230,7 +230,6 @@ const addToCartLocal = async () => {
                             v-for="(painting, index) of images"
                             :key="index"
                             @click="imagesCarousel.slideTo(index)"
-                            :style="`background: ${colorCookie.hex}`"
                             :class="{ 'border-mainColor' : currentSlide === index }"
                             class="bg-cardBg border-2 rounded dark:bg-dElement cursor-pointer dark:text-dText"
                         >
