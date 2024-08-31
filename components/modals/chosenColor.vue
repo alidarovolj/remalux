@@ -70,15 +70,29 @@ const addOrRemoveFavouriteColor = async (colorId) => {
         </div>
         <div class="flex flex-col gap-9 w-full">
           <NuxtLink
+              v-if="!modals.modal.modalData"
               :to="localePath('/store')"
               @click="modals.modal.show = false"
               class="px-14 py-12 flex items-center gap-7 border border-mainColor rounded-xl border-dashed element_hover">
-            <img class="transition-all" src="@/assets/img/colors/paint.png" alt="">
+            <img class="transition-all w-1/3 h-32 object-contain" src="@/assets/img/colors/paint.png" alt="">
             <div class="flex items-center gap-6">
               <div class="p-3 bg-[#F0DFDF] rounded-full">
                 <PlusIcon class="h-3 w-3 text-mainColor"/>
               </div>
               <p class="text-mainColor text-2xl">{{ $t('colors_modal.first') }}</p>
+            </div>
+          </NuxtLink>
+          <NuxtLink
+              v-else
+              :to="localePath(`/store/${modals.modal.modalData.id}`)"
+              @click="modals.modal.show = false"
+              class="px-14 py-12 flex items-center gap-7 border border-mainColor rounded-xl border-dashed element_hover">
+            <img class="transition-all w-1/3 h-32 object-contain" :src="modals.modal.modalData.image_url" alt="">
+            <div class="flex items-center gap-6">
+              <p class="text-mainColor text-2xl">{{ modals.modal.modalData.title[cur_lang] }}</p>
+              <div class="p-3 bg-[#F0DFDF] rounded-full">
+                <ChevronRightIcon class="h-3 w-3 text-mainColor"/>
+              </div>
             </div>
           </NuxtLink>
           <div class="bg-[#F0DFDF] rounded-xl flex items-center gap-6 element_hover">

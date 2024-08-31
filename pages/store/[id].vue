@@ -16,6 +16,7 @@ import img4 from "~/assets/img/store/4.png";
 import img5 from "~/assets/img/store/5.png";
 import {useModalsStore} from "~/stores/modals.js";
 import {useColorCookieStore} from "~/stores/colorCookie.js";
+import {useColorForProductStore} from "~/stores/colorForProduct.js";
 
 const products = useProductsStore();
 const cart = useCartStore()
@@ -37,6 +38,8 @@ const calculatorActive = ref(false);
 const {t} = useI18n();
 const modals = useModalsStore()
 const imagesCarousel = ref(null);
+const prodColor = useColorForProductStore()
+const {colorForProduct} = storeToRefs(prodColor)
 
 const images = ref([
   img1, img2, img3, img4, img5
@@ -221,17 +224,20 @@ const addToCartLocal = async () => {
                     </my-carousel-slide>
                     <template #addons="{ currentSlide, slidesCount }">
                       <div
-                          class="flex justify-center gap-4 w-full md:pl-14 overflow-x-auto"
+                          class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
                       >
                         <div
                             v-for="(painting, index) of images"
                             :key="index"
-                            class="bg-cardBg dark:bg-dElement cursor-pointer dark:text-dText"
+                            @click="imagesCarousel.slideTo(index)"
+                            :style="`background: ${colorCookie.hex}`"
+                            :class="{ 'border-mainColor' : currentSlide === index }"
+                            class="bg-cardBg border-2 rounded dark:bg-dElement cursor-pointer dark:text-dText"
                         >
                           <img
                               :src="painting"
                               alt=""
-                              class="max-w-36 max-h-36 min-w-36 min-h-36 object-contain"
+                              class="w-full object-contain"
                           />
                         </div>
                       </div>
@@ -314,6 +320,7 @@ const addToCartLocal = async () => {
               <NuxtLink
                   v-if="!colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
+                  @click="colorForProduct.saveCookie(detailProduct)"
                   class="border border-[#7B7B7B40] border-dashed py-6 rounded flex items-center gap-4 justify-center mb-8 cursor-pointer">
                 <div class="rounded-full flex items-center justify-center">
                   <PlusIcon class="w-7 h-7 bg-[#F0DFDF] text-mainColor rounded-full p-1"/>
@@ -325,6 +332,7 @@ const addToCartLocal = async () => {
               <NuxtLink
                   v-else-if="colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
+                  @click="prodColor.saveCookie(detailProduct.id)"
                   :style="`background: ${colorCookie.hex}`"
                   class="border border-[#7B7B7B40] border-dashed mb-8 cursor-pointer rounded-xl p-3">
                 <div class="flex items-center gap-2 mb-3">
@@ -485,10 +493,13 @@ const addToCartLocal = async () => {
                   v-for="(item, index) of detailProduct.filter_data"
                   :key="index"
                   :class="{ 'border-b border-[#F0DFDF]' : index !== detailProduct.filter_data.length - 1 }"
-                  class="py-4 px-6"
+                  class="py-4 px-6 flex items-center gap-4"
               >
-                <p class="font-medium font-montserrat">{{ item.title[cur_lang] }}</p>
-                <p class="text-sm text-[#7B7B7B] font-montserrat">{{ item.value[cur_lang] }}</p>
+                <div v-html="item.svg" class="w-6 h-6 text-mainColor" />
+                <div>
+                  <p class="font-medium font-montserrat">{{ item.title[cur_lang] }}</p>
+                  <p class="text-sm text-[#7B7B7B] font-montserrat">{{ item.value[cur_lang] }}</p>
+                </div>
               </div>
             </div>
             <div v-if="products.relatedProducts">

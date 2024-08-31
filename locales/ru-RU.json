@@ -1,4 +1,10 @@
 {
+  "sorting": {
+    "name_asc": "По возрастанию цены",
+    "name_desc": "По убыванию цены",
+    "colorable": "Красящиеся",
+    "non_colorable": "Не красящиеся"
+  },
   "headers": {
     "mainPage": {
       "title": "Главная страница - Remalux",
@@ -103,6 +109,7 @@
     }
   },
   "search": {
+    "title": "Например, краска для стен",
     "placeholder": "Поиск"
   },
   "about_page": {

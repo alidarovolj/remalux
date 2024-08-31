@@ -27,6 +27,7 @@ import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import Banner from "~/components/general/banner.vue";
 import {useColorCookieStore} from "~/stores/colorCookie.js";
 import VariantCard from "~/components/cards/variantCard.vue";
+import PriceRange from "~/components/general/priceRange.vue";
 
 const products = useProductsStore()
 const {variantsList} = storeToRefs(products)
@@ -47,8 +48,36 @@ const {t} = useI18n()
 const localePath = useLocalePath()
 
 const searchForm = ref({
-  searchKeyword: ''
-})
+  searchKeyword: '',
+  orderBy: 'name',  // default sorting order
+  isColorable: null,  // no default filter on colorable
+});
+
+const updateSorting = async (orderBy, isColorable = null) => {
+  const newQuery = {...route.query};
+
+  // Toggle order_by sorting
+  if (newQuery.order_by === orderBy) {
+    delete newQuery.order_by; // Remove order_by if it's already selected
+  } else {
+    newQuery.order_by = orderBy; // Set order_by to the selected value
+  }
+
+  // Toggle is_colorable filter if provided
+  if (isColorable !== null) {
+    if (newQuery.is_colorable === String(isColorable)) {
+      delete newQuery.is_colorable; // Remove is_colorable if it's already selected
+    } else {
+      newQuery.is_colorable = isColorable; // Set is_colorable to the selected value
+    }
+  }
+
+  newQuery.page = 1; // Reset to the first page when sorting changes
+
+  await router.push({query: newQuery});
+  await products.getVariantsList(); // Fetch sorted products
+};
+
 
 const chosenCategory = computed(() => {
   if (route.query['filters[product.category_id]']) {
@@ -91,7 +120,6 @@ const updateFilter = async (sectionId, optionId) => {
   const filterKey = `filter_ids[${optionId}]`;
   const newQuery = {...route.query};
 
-  // Initialize the filter array if it doesn't exist
   if (!newQuery[filterKey]) {
     newQuery[filterKey] = [];
   } else {
@@ -100,23 +128,19 @@ const updateFilter = async (sectionId, optionId) => {
         : [newQuery[filterKey]];
   }
 
-  // Add or remove the optionId from the filter array
   if (newQuery[filterKey].includes(optionId.toString())) {
     newQuery[filterKey] = newQuery[filterKey].filter(id => id !== optionId.toString());
   } else {
     newQuery[filterKey].push(optionId.toString());
   }
 
-  // Clean up the query if the array is empty
   if (newQuery[filterKey].length === 0) {
     delete newQuery[filterKey];
   }
 
-  // Set page and perPage parameters
   newQuery.page = 1;
   newQuery.perPage = 10;
 
-  // Make sure to keep all existing query parameters
   await router.push({query: {...newQuery}});
   await products.getVariantsList();
 };
@@ -167,7 +191,7 @@ const favouriteColorIds = computed(() => {
 });
 
 const addOrRemoveFavouriteColor = async (colorId) => {
-  if(token.value) {
+  if (token.value) {
     if (favouriteColorIds.value.includes(colorId)) {
       await colors.removeFromFavourites(colorId)
     } else {
@@ -189,37 +213,48 @@ const searchByText = async () => {
 
   newQuery.page = 1; // Reset page to 1 when a new search is performed
 
-  await router.push({ query: newQuery });
+  await router.push({query: newQuery});
   await products.getVariantsList(); // Assuming this fetches the products based on the query
   await filtersStore.getFilters()
 };
 
 const removeColor = async () => {
   savedColor.removeCookie()
-  await router.push({ query: { ...route.query, is_colorable: 0 } });
+  await router.push({query: {...route.query, is_colorable: 0}});
   await products.getVariantsList();
 };
 
 onMounted(async () => {
   await nextTick()
-  const { searchKeyword } = route.query;
+  const {searchKeyword} = route.query;
   if (searchKeyword) {
     searchForm.value.searchKeyword = searchKeyword;
   }
   if (colorCookie.value) {
-    await router.push({ query: { ...route.query, is_colorable: 1 } });
+    await router.push({query: {...route.query, is_colorable: 1}});
   }
   await products.getVariantsList()
   await categories.getCategories()
   await filtersStore.getFilters()
   await products.removeVariant()
   await colors.getFavouriteColors()
+
+  if (route.query.order_by) {
+    searchForm.value.orderBy = route.query.order_by;
+  }
+  if (route.query.is_colorable) {
+    searchForm.value.isColorable = route.query.is_colorable;
+  }
+
 })
 
+
 watch(
-    () => variantsList.value,
+    () => [variantsList.value],
     async () => {
       await nextTick();
+      AOS.refresh();
+      console.log('AOS refreshed');
       AOS.refresh();
     }
 );
@@ -275,7 +310,7 @@ useHead({
                 <div class="border-t h-[1px] w-full border-[#F0DFDF]"></div>
                 <NuxtLink
                     :to="localePath('/colors')"
-                    class="flex gap-2 items-center text-mainColor">
+                    class="flex gap-2 items-center text-mainColor hover:underline transition-all">
                   <p class="whitespace-nowrap font-medium">
                     {{ $t('products.colors_link') }}
                   </p>
@@ -288,10 +323,10 @@ useHead({
               >
                 <div
                     @click="addOrRemoveFavouriteColor(colorCookie.id)"
-                    class="absolute right-12 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                    class="absolute right-12 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#E8E8E5] hover:bg-mainColor hover:!text-white transition-all">
                   <svg
                       :class="{ 'text-mainColor' : favouriteColorIds?.includes(colorCookie.id) }"
-                      class="size-5 w-5 h-5 text-[#E8E8E5]"
+                      class="size-5 w-5 h-5"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg">
@@ -305,9 +340,8 @@ useHead({
                 </div>
                 <div
                     @click="removeColor"
-                    class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                  <XMarkIcon class="text-mainColor w-5 h-5" />
-
+                    class="absolute right-3 top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-mainColor hover:bg-mainColor hover:!text-white transition-all">
+                  <XMarkIcon class="w-5 h-5"/>
                 </div>
               </div>
             </div>
@@ -489,48 +523,92 @@ useHead({
                             v-slot="{ open }"
                             as="div"
                             class="border-t border-[#F0DFDF]"
+                            :defaultOpen="true"
                         >
                           <fieldset>
                             <legend class="w-full">
                               <DisclosureButton
-                                  class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]"
-                              >
-              <span class="text-xl font-medium text-gray-900 font-montserrat">
-                {{ section.title[cur_lang] }}
-              </span>
+                                  class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]">
+                                <span class="text-xl font-medium text-gray-900 font-montserrat">
+                                  {{ section.title[cur_lang] }}
+                                </span>
                                 <span class="ml-6 flex h-7 items-center text-black">
-                <ChevronDownIcon
-                    :class="[open ? '-rotate-180' : 'rotate-0', 'h-7 w-7 transform']"
-                    aria-hidden="true"
-                />
-              </span>
+                                  <ChevronDownIcon
+                                      :class="[open ? '-rotate-180' : 'rotate-0', 'h-7 w-7 transform']"
+                                      aria-hidden="true"
+                                  />
+                                </span>
                               </DisclosureButton>
                             </legend>
-                            <DisclosurePanel>
-                              <div class="space-y-4 bg-[#F9F9F9] px-4 py-4">
-                                <div
-                                    v-for="(option, optionIdx) in section.values"
-                                    :key="option.id"
-                                    class="flex gap-3 items-center"
-                                >
-                                  <input
-                                      :id="`${section.id}-${optionIdx}-mobile`"
-                                      :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
-                                      :name="`${section.id}[]`"
-                                      :value="option.id"
-                                      class="h-6 w-6 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
-                                      type="checkbox"
-                                      @change="updateFilter(section.id, option.id)"
-                                  />
-                                  <label
-                                      :for="`${section.id}-${optionIdx}-mobile`"
-                                      class="text-base text-[#191919]"
+
+                            <div
+                                :class="{
+                                  'transition-max-height overflow-hidden': true,
+                                  'max-h-0': !open,
+                                  'max-h-96': open
+                                }"
+                            >
+                              <DisclosurePanel>
+                                <div class="space-y-4 bg-[#F9F9F9] px-4 py-4">
+                                  <div
+                                      v-for="(option, optionIdx) in section.values"
+                                      :key="option.id"
+                                      class="flex gap-3 items-center"
                                   >
-                                    {{ option.values[cur_lang] }}
-                                  </label>
+                                    <input
+                                        :id="`${section.id}-${optionIdx}-mobile`"
+                                        :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
+                                        :name="`${section.id}[]`"
+                                        :value="option.id"
+                                        class="h-6 w-6 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
+                                        type="checkbox"
+                                        @change="updateFilter(section.id, option.id)"
+                                    />
+                                    <label
+                                        :for="`${section.id}-${optionIdx}-mobile`"
+                                        class="text-base text-[#191919]"
+                                    >
+                                      {{ option.values[cur_lang] }}
+                                    </label>
+                                  </div>
                                 </div>
-                              </div>
-                            </DisclosurePanel>
+                              </DisclosurePanel>
+                            </div>
+                          </fieldset>
+                        </Disclosure>
+                        <Disclosure
+                            v-slot="{ open }"
+                            as="div"
+                            class="border-t border-[#F0DFDF]"
+                            :defaultOpen="true"
+                        >
+                          <fieldset>
+                            <legend class="w-full">
+                              <DisclosureButton
+                                  class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]">
+                                <span class="text-xl font-medium text-gray-900 font-montserrat">
+                                  {{ $t('cart.table.price') }}
+                                </span>
+                                <span class="ml-6 flex h-7 items-center text-black">
+                                  <ChevronDownIcon
+                                      :class="[open ? '-rotate-180' : 'rotate-0', 'h-7 w-7 transform']"
+                                      aria-hidden="true"
+                                  />
+                                </span>
+                              </DisclosureButton>
+                            </legend>
+
+                            <div
+                                :class="{
+                                  'transition-max-height overflow-hidden': true,
+                                  'max-h-0': !open,
+                                  'max-h-96': open
+                                }"
+                            >
+                              <DisclosurePanel>
+                                <PriceRange />
+                              </DisclosurePanel>
+                            </div>
                           </fieldset>
                         </Disclosure>
                       </form>
@@ -576,41 +654,57 @@ useHead({
                     </MenuButton>
                   </div>
 
-                  <transition enter-active-class="transition ease-out duration-100"
-                              enter-from-class="transform opacity-0 scale-95"
-                              enter-to-class="transform opacity-100 scale-100"
-                              leave-active-class="transition ease-in duration-75"
-                              leave-from-class="transform opacity-100 scale-100"
-                              leave-to-class="transform opacity-0 scale-95">
+                  <transition
+                      enter-active-class="transition ease-out duration-100"
+                      enter-from-class="transform opacity-0 scale-95"
+                      enter-to-class="transform opacity-100 scale-100"
+                      leave-active-class="transition ease-in duration-75"
+                      leave-from-class="transform opacity-100 scale-100"
+                      leave-to-class="transform opacity-0 scale-95">
                     <MenuItems
                         class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div class="py-1">
-                        <MenuItem v-slot="{ active }">
-                          <a :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
-                             href="#">Account
-                            settings</a>
+                        <!-- Sort by Name Ascending -->
+                        <MenuItem as="div">
+                          <div
+                              :class="{ 'bg-mainColor text-white': route.query.order_by === 'asc' }"
+                              class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
+                              @click="updateSorting('asc')">
+                            {{ $t('sorting.name_asc') }}
+                          </div>
                         </MenuItem>
-                        <MenuItem v-slot="{ active }">
-                          <a :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
-                             href="#">Support</a>
+                        <!-- Sort by Name Descending -->
+                        <MenuItem as="div">
+                          <div
+                              :class="{ 'bg-mainColor text-white': route.query.order_by === 'desc' }"
+                              class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
+                              @click="updateSorting('desc')">
+                            {{ $t('sorting.name_desc') }}
+                          </div>
                         </MenuItem>
-                        <MenuItem v-slot="{ active }">
-                          <a :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
-                             href="#">License</a>
+                        <!-- Sort by Colorable Products -->
+                        <MenuItem as="div">
+                          <div
+                              :class="{ 'bg-mainColor text-white': route.query.is_colorable === '1' }"
+                              class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
+                              @click="updateSorting('desc', 1)">
+                            {{ $t('sorting.colorable') }}
+                          </div>
                         </MenuItem>
-                        <form action="#" method="POST">
-                          <MenuItem v-slot="{ active }">
-                            <button
-                                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']"
-                                type="submit">
-                              Sign out
-                            </button>
-                          </MenuItem>
-                        </form>
+                        <!-- Sort by Non-Colorable Products -->
+                        <MenuItem as="div">
+                          <div
+                              :class="{ 'bg-mainColor text-white': route.query.is_colorable === '0' }"
+                              class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
+                              @click="updateSorting('desc', 0)">
+                            {{ $t('sorting.non_colorable') }}
+                          </div>
+                        </MenuItem>
                       </div>
                     </MenuItems>
                   </transition>
                 </Menu>
+
               </div>
               <div>
                 <div
@@ -619,9 +713,7 @@ useHead({
                   <div
                       v-for="(product, index) in variantsList?.data"
                       :key="index"
-                      class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3"
-                      :data-aos="'fade-up'"
-                      :data-aos-delay="index * 10">
+                      class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3">
                     <VariantCard :item-index="index" :productData="product"/>
                   </div>
                 </div>
@@ -653,3 +745,17 @@ useHead({
     </div>
   </client-only>
 </template>
+
+<style scoped>
+.transition-max-height {
+  transition: max-height 0.5s ease-in-out;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 24px;
+  height: 24px;
+  -webkit-appearance: none;
+  /* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}
+</style>

@@ -1,6 +1,13 @@
 <script setup>
 import {Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
-import {Bars3Icon, ChevronDownIcon, ShoppingBagIcon, XMarkIcon, PaintBrushIcon} from '@heroicons/vue/24/outline'
+import {
+  Bars3Icon,
+  ChevronDownIcon,
+  ShoppingBagIcon,
+  XMarkIcon,
+  PaintBrushIcon,
+  MagnifyingGlassIcon
+} from '@heroicons/vue/24/outline'
 import {useUserStore} from "~/stores/user.js";
 import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
@@ -19,6 +26,8 @@ auth.initCookieToken()
 const {token} = storeToRefs(auth)
 const cart = useCartStore()
 const colors = useColorsStore()
+
+const searchOpen = ref(false)
 
 const navigation = computed(() => [
   {name: t('header_links.store'), href: localePath('/store')},
@@ -118,6 +127,12 @@ onUnmounted(() => {
           </NuxtLink>
         </div>
         <div class="hidden lg:flex gap-3 !w-max">
+          <div class="flex items-center">
+            <MagnifyingGlassIcon
+                @click="searchOpen = !searchOpen"
+                class="w-5 h-5 text-mainColor cursor-pointer"
+            />
+          </div>
           <div
               v-if="user.userProfile === false"
               class="flex items-center gap-4 text-sm !w-max">
@@ -333,6 +348,21 @@ onUnmounted(() => {
           </div>
         </DialogPanel>
       </Dialog>
+      <client-only>
+        <div
+            :class="{ '!pb-3 !h-max !max-h-max' : searchOpen }"
+            class="overflow-hidden w-full pb-0 h-0 max-h-0 transition-all">
+          <form class="w-full flex gap-2">
+            <input
+                type="text"
+                class="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                :placeholder="$t('search.title')">
+            <button class="bg-mainColor text-white px-5 rounded-lg text-sm font-semibold">
+              {{ $t('search.placeholder') }}
+            </button>
+          </form>
+        </div>
+      </client-only>
     </div>
   </header>
 </template>

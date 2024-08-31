@@ -7,6 +7,8 @@ import AOS from 'aos';
 import {useColorCookieStore} from "~/stores/colorCookie";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {CheckCircleIcon} from "@heroicons/vue/24/outline"
+import {useColorForProductStore} from "~/stores/colorForProduct.js";
+import {useProductsStore} from "~/stores/products.js";
 
 const colors = useColorsStore()
 const {colorsList, mainColorsList} = storeToRefs(colors)
@@ -23,6 +25,8 @@ auth.initCookieToken()
 const {token} = storeToRefs(auth)
 const notifications = useNotificationStore()
 const modals = useModalsStore()
+const prodCol = useColorForProductStore()
+const products = useProductsStore()
 
 const favouriteColorIds = computed(() => {
   return colors.favouriteColorsList?.data?.map(fav => fav.color.id);
@@ -61,6 +65,9 @@ onMounted(async () => {
   await colors.getColors()
   await colors.getMainColors()
   await colors.getFavouriteColors()
+  if(prodCol.colorForProduct) {
+    await products.getDetailProduct(prodCol.colorForProduct);
+  }
 })
 
 const addOrRemoveFavouriteColor = async (colorId) => {
@@ -77,7 +84,11 @@ const addOrRemoveFavouriteColor = async (colorId) => {
 
 const saveColor = async (color) => {
   await savedColor.saveCookie(color)
-  modals.showModal('chosenColor', color)
+  if(products.detailProduct) {
+    modals.showModal('chosenColor', products.detailProduct)
+  } else {
+    modals.showModal('chosenColor', null)
+  }
 }
 
 watch(
@@ -121,7 +132,6 @@ useHead({
         image="colors"
         text_color="main"
     />
-
     <div class="container mx-auto px-4 md:px-0">
       <div>
         <p class="text-2xl font-montserrat font-medium mb-9">

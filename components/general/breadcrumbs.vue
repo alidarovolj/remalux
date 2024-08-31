@@ -21,15 +21,19 @@ const localePath = useLocalePath();
             </p>
             <ClientOnly>
               <NuxtLink
+                  v-if="route.path !== localePath(item.link)"
                   :aria-current="route.path === localePath(item.link) ? 'page' : undefined"
-                  :class="[
-                    { '!ml-0' : index === 0 },
-                    { '!text-mainColor' : route.path === localePath(item.link) }
-                 ]"
+                  :class="[{ '!ml-0' : index === 0 }]"
                   :to="localePath(item.link)"
                   class="ml-4 text-sm text-[#7B7B7B]">
                 {{ item.title }}
               </NuxtLink>
+              <p
+                  v-else
+                  :aria-current="route.path === localePath(item.link) ? 'page' : undefined"
+                  class="ml-4 text-sm text-mainColor">
+                {{ item.title }}
+              </p>
             </ClientOnly>
           </div>
         </li>
