@@ -1,100 +1,106 @@
 {
+  "sorting": {
+    "name_asc": "Ascending price",
+    "name_desc": "Descending price",
+    "colorable": "Painting",
+    "non_colorable": "Not dyeable"
+  },
   "headers": {
     "mainPage": {
-      "title": "Main Page - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US",
-      "canonical": "https://globalart.ai/en-US"
+      "title": "Home page - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU",
+      "canonical": "https://globalart.ai/ru-RU"
     },
     "store": {
       "title": "Store - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/store",
-      "canonical": "https://globalart.ai/en-US/store"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/store",
+      "canonical": "https://globalart.ai/ru-RU/store"
     },
     "colors": {
       "title": "Paint - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/colors",
-      "canonical": "https://globalart.ai/en-US/colors"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/colors",
+      "canonical": "https://globalart.ai/ru-RU/colors"
     },
     "ideas": {
       "title": "Ideas - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/ideas",
-      "canonical": "https://globalart.ai/en-US/ideas"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/ideas",
+      "canonical": "https://globalart.ai/ru-RU/ideas"
     },
     "about": {
-      "title": "About Us - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/about",
-      "canonical": "https://globalart.ai/en-US/about"
+      "title": "About us - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/about",
+      "canonical": "https://globalart.ai/ru-RU/about"
     },
     "news": {
       "title": "News - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/news",
-      "canonical": "https://globalart.ai/en-US/news"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/news",
+      "canonical": "https://globalart.ai/ru-RU/news"
     },
     "contacts": {
       "title": "Contacts - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/contacts",
-      "canonical": "https://globalart.ai/en-US/contacts"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/contacts",
+      "canonical": "https://globalart.ai/ru-RU/contacts"
     },
     "profile": {
       "title": "Profile - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/profile",
-      "canonical": "https://globalart.ai/en-US/profile"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
     },
     "addresses": {
       "title": "Profile - Addresses - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/profile",
-      "canonical": "https://globalart.ai/en-US/profile"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
     },
     "recipients": {
       "title": "Profile - Recipients - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/profile",
-      "canonical": "https://globalart.ai/en-US/profile"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
     },
     "login": {
-      "title": "Login - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/login",
-      "canonical": "https://globalart.ai/en-US/login"
+      "title": "Authorization - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/login",
+      "canonical": "https://globalart.ai/ru-RU/login"
     },
     "registration": {
       "title": "Registration - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/registration",
-      "canonical": "https://globalart.ai/en-US/login"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/registration",
+      "canonical": "https://globalart.ai/ru-RU/login"
     },
     "forgot_pass": {
-      "title": "Forgot Password - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/forgot-password",
-      "canonical": "https://globalart.ai/en-US/forgot-password"
+      "title": "Forgot your password - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/forgot-password",
+      "canonical": "https://globalart.ai/ru-RU/forgot-password"
     },
     "cart": {
       "title": "Cart - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/cart",
-      "canonical": "https://globalart.ai/en-US/cart"
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/cart",
+      "canonical": "https://globalart.ai/ru-RU/cart"
     },
     "checkout": {
-      "title": "Checkout - Remalux",
-      "description": "Remalux - high European quality at an affordable price. Choose paint and color for your home.",
-      "og_url": "https://remalux.kz/en-US/cart/checkout",
-      "canonical": "https://globalart.ai/en-US/cart/checkout"
+      "title": "Place an order - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/ru-RU/cart/checkout",
+      "canonical": "https://globalart.ai/ru-RU/cart/checkout"
     }
   },
   "partners": {
-    "title": "Become a Partner",
-    "button": "Apply Now",
-    "text": "Looking for a reliable partner in the paint sales industry? Join us! We offer high-quality products, favorable cooperation terms, and support at all stages. Be part of a successful business and reach new heights with us! Contact us to discuss partnership details.",
+    "title": "Become a partner",
+    "button": "Apply now",
+    "text": "Are you looking for a reliable partner in paint sales? ",
     "stats": {
       "first": "Branches",
       "second": "Products",
@@ -103,134 +109,135 @@
     }
   },
   "search": {
+    "title": "For example, wall paint",
     "placeholder": "Search"
   },
   "about_page": {
     "hero_section": {
-      "title": "LLP 'K-COLOR' with the trademark 'REMALUX' – high European quality at an affordable price.",
-      "description": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paint and varnish materials, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, manufactured under a British license from raw materials of renowned French, Belgian, German, Dutch, and American producers."
+      "title": "LLP \"K-COLOR\" \"K-COLOR\" with the trademark \"REMALUX\" - high European quality at an affordable price.",
+      "description": "LLP \"K-COLOR\" \"K-COLOR\" with the trademark \"REMALUX\" is a leader in the production of paints and varnishes, located in the Republic of Kazakhstan. "
     },
     "why_choose_us": {
-      "title": "Why do customers choose our products?",
-      "description": "Our paints are trusted for their high quality, innovative solutions, and economical consumption. Add competitive prices and a variety of assortment, and you will understand why we are chosen again.",
+      "title": "Why do buyers choose our products?",
+      "description": "Our paints are trusted for their high quality, innovative solutions and economical consumption. ",
       "quality": {
-        "title": "High Quality",
-        "description": "Our paints undergo strict quality control, ensuring excellent coverage and durability on any surface."
+        "title": "High quality",
+        "description": "Our paints undergo strict quality control to ensure superior coverage and durability on any surface."
       },
       "innovation": {
-        "title": "Innovative Production Technologies",
-        "description": "We use advanced technologies to create paints that are easy to apply, dry quickly, and provide rich colors."
+        "title": "Innovative production technologies",
+        "description": "We use advanced technology to create paints that apply easily, dry quickly and deliver rich colors."
       },
       "economy": {
-        "title": "Economical Material Consumption",
-        "description": "Our paints offer high coverage, allowing for reduced consumption and cost savings."
+        "title": "Economical consumption of materials",
+        "description": "Our paints provide high hiding power, which allows you to reduce consumption and reduce costs."
       },
       "price": {
-        "title": "Competitive Prices",
-        "description": "We offer great value for money, so you can get a professional product at an affordable cost."
+        "title": "Competitive prices",
+        "description": "We offer excellent value for money so you can get a professional product at an affordable price."
       },
       "service": {
-        "title": "Professional Service",
-        "description": "Professional service."
+        "title": "Professional service",
+        "description": "Professional service"
       },
       "assortment": {
-        "title": "Wide Range of Products",
-        "description": "In our assortment, you will find paints for any need – from interior to industrial coatings, in a variety of colors and textures."
+        "title": "Wide range of products",
+        "description": "In our assortment you will find paints for any need - from interior to industrial coatings, in a variety of colors and textures."
       }
     },
     "for_whom": {
-      "title": "Who is our product for?",
-      "description": "Our products are designed to easily meet the demands of the most stringent professionals for use in prestigious facilities. They are also perfectly suitable for ordinary people choosing materials for home use and DIY cosmetic repairs."
+      "title": "Who are our company's products intended for?",
+      "description": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
     },
     "remalux_section": {
       "title": "REMALUX: Everything you need for perfect results",
-      "description": "REMALUX offers high-quality paint and varnish materials with modern technologies and excellent service. All products are safe and meet European standards.",
+      "description": "REMALUX offers high-quality paints and varnishes with modern technology and excellent service. ",
       "innovation": {
-        "title": "Innovative Technologies and Modern Production Methods",
-        "description": "The production of paint and varnish materials at REMALUX is based on modern technologies and advances in chemical science, guaranteeing high quality and product safety at competitive prices."
+        "title": "Innovative technologies and modern production methods",
+        "description": "The production of paints and varnishes at REMALUX is based on modern technologies and achievements of chemical science, which guarantees high quality and safety of products at competitive prices."
       },
       "service": {
         "title": "Service",
-        "description": "We provide pre- and post-purchase service, meeting customer requirements through high product quality and excellent service."
+        "description": "We provide pre-purchase and post-purchase services to meet customer requirements through high quality products and excellent service."
       },
       "assortment": {
-        "title": "Wide Range of Products",
-        "description": "REMALUX offers textured coatings, water-based paints, varnishes, acrylic glue, and other materials. We will help you choose the right shade and guarantee high quality at competitive prices."
+        "title": "Wide range of products",
+        "description": "REMALUX offers texture coatings, water-based paints, varnishes, acrylic adhesives and other materials. "
       },
       "safety": {
-        "title": "Safety and Comfort in Use",
-        "description": "Water-based products are non-toxic and odorless, providing comfortable use for both professionals and DIYers. Our paints are safe for people and pets."
+        "title": "Safety and comfort in use",
+        "description": "Water-based products are non-toxic and odorless, which ensures comfortable use for both professionals and home craftsmen. "
       }
     },
     "our_fleet": {
-      "title": "Our Fleet: Fast and Reliable Delivery",
-      "description": "Our products are designed to easily meet the demands of the most stringent professionals for use in prestigious facilities. They are also perfectly suitable for ordinary people choosing materials for home use and DIY cosmetic repairs."
+      "title": "Our fleet: Fast and reliable delivery",
+      "description": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
     }
   },
   "breadcrumbs": {
     "home": "Home",
-    "store": "Store",
+    "store": "Shop",
     "ideas": "Ideas",
     "news": "News",
-    "cart": "Cart",
-    "checkout": "Checkout",
+    "cart": "Basket",
+    "checkout": "Placing an order",
     "profile": "Profile",
     "addresses": "Addresses",
     "recipients": "Recipients",
     "orders": "Orders",
     "favourites": "Favorites",
-    "payment_success": "Payment Success",
+    "payment_success": "Successful payment",
     "contacts": "Contacts",
     "colors": "Colors"
   },
   "shopOrCart": {
-    "title": "Thank you for your choice!",
-    "text": "Please choose one of the options below to continue shopping or go to the cart.",
-    "button": "Continue Shopping",
-    "checkout": "Proceed to Checkout"
+    "title": "Thanks for your choice!",
+    "text": "Please select one of the options below to continue shopping or proceed to cart.",
+    "button": "Continue shopping",
+    "checkout": "Place an order"
   },
   "contacts": {
-    "title": "Our Branches",
+    "title": "Our branches",
     "address": "Address",
     "contacts": "Contacts",
-    "email": "Email",
-    "work_time": "Working Hours",
+    "email": "Mail",
+    "work_time": "Working hours",
     "work_info": {
       "first": {
         "from": "Monday - Friday from",
         "to": "to"
       },
       "second": {
-        "from": "Weekends from",
+        "from": "Weekend from",
         "to": "to"
       }
     }
   },
   "payment_success": {
-    "title": "Your order has been successfully placed!",
-    "text": "You can check the status of your order on the",
+    "title": "Your order has been successfully completed!",
+    "text": "The status of your order can be viewed on the page",
     "link": "Orders",
-    "button": "Return to Main Page"
+    "button": "Return to home"
   },
   "profile": {
-    "phone": "Phone Number",
-    "logout": "Logout",
+    "phone": "Phone number",
+    "logout": "Log out",
     "profile": "Profile",
     "recipients": "Recipients",
-    "no_recipients": "Unfortunately, you have no saved recipients, please add them.",
-    "add_recipient": "Add Recipient",
-    "no_addresses": "Unfortunately, you have no saved addresses, please add them.",
-    "add_address": "Add Address",
-    "my_addresses": "My Addresses"
+    "no_recipients": "Sorry, you don't have any recipients saved, please add them.",
+    "add_recipient": "Add recipient",
+    "no_addresses": "Sorry, you don't have any addresses saved, please add them.",
+    "add_address": "Add address",
+    "my_addresses": "My addresses"
   },
   "addresses": {
     "create": {
-      "title": "Add Delivery Address",
-      "no_address": "Delivery address not selected",
-      "provide_address": "Please provide an address",
+      "title": "Add delivery address",
+      "no_address": "No delivery address selected",
+      "provide_address": "Please provide your address",
       "address_placeholder": "Enter address",
       "city": "City",
-      "city_placeholder": "Select city",
+      "city_placeholder": "Select a city",
       "address": "Address",
       "entrance": "Entrance",
       "entrance_placeholder": "Enter entrance",
@@ -241,134 +248,134 @@
       "button": "Save"
     },
     "remove": {
-      "title": "Delete Address",
-      "confirmation": "Are you sure you want to delete this address?",
+      "title": "Deleting an address",
+      "confirmation": "Are you sure you want to delete the address?",
       "cancel": "Cancel",
       "delete": "Delete"
     }
   },
   "recipients": {
     "create": {
-      "title": "Add Recipient",
+      "title": "Add recipient",
       "no_recipient": "Recipient not selected",
-      "provide_recipient": "Please provide a recipient",
+      "provide_recipient": "Please indicate the recipient",
       "name": "Name",
       "name_placeholder": "Enter name",
-      "phone": "Phone Number",
-      "phone_placeholder": "Enter phone number",
+      "phone": "Phone number",
+      "phone_placeholder": "Enter your phone number",
       "button": "Save"
     },
     "remove": {
-      "title": "Delete Recipient",
-      "confirmation": "Are you sure you want to delete this recipient?",
+      "title": "Removing a recipient",
+      "confirmation": "Are you sure you want to delete the recipient?",
       "cancel": "Cancel",
       "delete": "Delete"
     }
   },
   "no_results": {
-    "title": "Unfortunately, your search returned no results",
+    "title": "Sorry, your search did not return any results.",
     "not_required": "optional"
   },
   "about": {
-    "hero_title": "We are a group of passionate people from around the world working on creating the future of e-commerce.",
-    "hero_description": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+    "hero_title": "We are a group of passionate people from around the world working to create the future of e-commerce.",
+    "hero_description": "Anim aute id magna aliqua ad ad non desert sunt. ",
     "timeline": [
       {
-        "name": "Company Founded",
-        "description": "Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.",
+        "name": "Founding of the company",
+        "description": "Nihil aut nam. ",
         "date": "Aug 2021",
         "dateTime": "2021-08"
       },
       {
-        "name": "$65M Funding Raised",
-        "description": "Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.",
+        "name": "$65 million in investments raised",
+        "description": "Provident quia ut esse. ",
         "date": "Dec 2021",
         "dateTime": "2021-12"
       },
       {
-        "name": "Beta Version Launched",
-        "description": "Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.",
+        "name": "Beta launch",
+        "description": "Sunt perspiciatis incidunt. ",
         "date": "Feb 2022",
         "dateTime": "2022-02"
       },
       {
-        "name": "Global Product Launch",
-        "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
+        "name": "Global product launch",
+        "description": "Ut ipsa sint distinctio quod itaque nam qui. ",
         "date": "Dec 2022",
         "dateTime": "2022-12"
       }
     ],
-    "customers_love_us": "Our Customers Love Us",
-    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
+    "customers_love_us": "Our clients love us",
+    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. ",
     "stats_title": "We view the workplace as something that adds value to our lives and the world.",
-    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
+    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. ",
     "stat1": {
       "value": "250k",
-      "title": "Users on the Platform",
+      "title": "Users on the platform",
       "description": "Vel labore deleniti veniam consequuntur sunt nobis."
     },
     "stat2": {
-      "value": "$8.9 Billion",
-      "title": "We are proud that our clients have earned over $8 billion.",
-      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
+      "value": "$8.9 billion",
+      "title": "We are proud that our clients have earned more than $8 billion.",
+      "description": "Eu duis porta aliquam ornare. "
     },
     "stat3": {
       "value": "401,093",
-      "title": "Transactions This Year",
-      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
+      "title": "Transactions this year",
+      "description": "Eu duis porta aliquam ornare. "
     },
-    "people_title": "Our People",
-    "people_description1": "Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
-    "people_description2": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat. Quasi aperiam sit non sit neque reprehenderit.",
+    "people_title": "Our people",
+    "people_description1": "Quasi est quaerat. ",
+    "people_description2": "Anim aute id magna aliqua ad ad non desert sunt. ",
     "join_us_title": "We are always looking for talented people to join our team",
-    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
-    "view_all_openings": "View All Openings"
+    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. ",
+    "view_all_openings": "View all vacancies"
   },
   "checkout": {
-    "title": "Checkout",
-    "items": "Items in Cart",
-    "del_type": "Delivery Type",
+    "title": "Placing an order",
+    "items": "Items in cart",
+    "del_type": "Delivery type",
     "delivery_status": {
       "pickup": "Pickup",
       "delivery": "Delivery"
     },
-    "to_pay": "Total Amount",
+    "to_pay": "Amount to be paid",
     "first": {
-      "title": "Recipient Details",
-      "add": "Add Recipient",
-      "text": "* To place an order, you need to add and select a recipient",
-      "placeholder": "Search recipient",
+      "title": "Recipient details",
+      "add": "Add recipient",
+      "text": "* To place an order, you must add and select a recipient",
+      "placeholder": "Search for recipient",
       "physical": "Individual",
       "legal": "Legal entity",
-      "name": "Your Name",
-      "phone": "Phone Number"
+      "name": "your name",
+      "phone": "Phone number"
     },
     "second": {
-      "title": "Order Pickup Method",
+      "title": "Method of receiving an order",
       "pickup": "Pickup",
       "delivery": "Delivery",
-      "address": "Delivery Address",
-      "placeholder": "Search address",
-      "add": "Add Delivery Address",
-      "time": "Desired Delivery Time",
-      "text": "*To place an order, you need to add and select a delivery address"
+      "address": "Delivery address",
+      "placeholder": "Address search",
+      "add": "Add delivery address",
+      "time": "Desired delivery time",
+      "text": "*To place an order, you must add and select a delivery address"
     },
     "third": {
       "title": "Payment",
       "phys": "Payment upon receipt",
       "agreement": {
-        "text": "I agree with the ",
+        "text": "I agree with ",
         "link": "terms of return and claims"
       },
-      "online": "Online Payment",
-      "to_pay": "Total"
+      "online": "Online payment",
+      "to_pay": "For payment"
     }
   },
   "cart": {
-    "title": "Shopping Cart",
-    "clear": "Clear Cart",
+    "title": "Shopping cart",
+    "clear": "Empty Trash",
     "table": {
-      "product": "Product Name",
+      "product": "Product name",
       "color": "Color",
       "weight": "Weight",
       "total": "Total",
@@ -376,14 +383,14 @@
       "quantity": "Quantity"
     },
     "checkout": {
-      "title": "Order Information",
-      "coupon_title": "Coupons and Promo Codes",
-      "coupon_text": "Enter the coupon code in the cart in the appropriate field and click 'Apply' to see the discount reflected in the total order amount.",
+      "title": "Order information",
+      "coupon_title": "Coupons and promotional codes",
+      "coupon_text": "Enter the coupon code into your cart in the appropriate field and click \"Apply\" for the discount to be reflected in your order total.",
       "coupon_placeholder": "Enter coupon code",
-      "coupon_button": "Apply Coupon",
-      "summary": "SUMMARY",
+      "coupon_button": "Apply coupon",
+      "summary": "RESULTS",
       "total": "Total",
-      "checkout_button": "Proceed to Checkout"
+      "checkout_button": "Place an order"
     }
   },
   "forms": {
@@ -397,51 +404,51 @@
       "title": "Registration",
       "already_have": "Already have an account?",
       "login": "Login",
-      "button": "Register",
+      "button": "Registration",
       "phone_yes": "This phone number is already registered",
-      "phone_no": "This phone number is available",
+      "phone_no": "This phone number is free",
       "email_yes": "This email is already registered",
-      "email_no": "This email is available",
+      "email_no": "This email is free",
       "rules": {
-        "first": "Password must be at least 8 characters long.",
-        "second": "Latin uppercase letters.",
-        "third": "Latin lowercase letters.",
-        "fourth": "Digits 0-9."
+        "first": "The password must be at least 8 characters long.",
+        "second": "Latin capital letters.",
+        "third": "Latin small letters.",
+        "fourth": "Numbers 0-9."
       }
     },
     "forgot_password": {
-      "title": "Forgot Password",
+      "title": "Forgot your password",
       "description": "Enter your phone number, we will send you a verification code.",
-      "button": "Send Code",
-      "code_button": "Verify"
+      "button": "Send code",
+      "code_button": "Confirm"
     },
     "code": {
       "title": "Code",
       "placeholder": "Enter code"
     },
-    "forgot_pass": "Forgot Password?",
-    "remember_me": "Remember Me",
+    "forgot_pass": "Forgot your password?",
+    "remember_me": "Remember me",
     "name": {
-      "title": "Name",
+      "title": "First Name Last Name",
       "placeholder": "Enter your name"
     },
     "email": {
-      "title": "Email",
+      "title": "E-mail",
       "placeholder": "Enter your email"
     },
     "phone_number": {
-      "title": "Phone Number"
+      "title": "Phone number"
     },
     "password": {
       "title": "Password"
     },
     "confirm_password": {
-      "title": "Confirm Password"
+      "title": "Confirm your password"
     }
   },
   "header_links": {
-    "store": "Store",
-    "choose_color": "Choose Color",
+    "store": "Shop",
+    "choose_color": "Select color",
     "ideas": "Ideas",
     "calculator": "Calculator",
     "about_us": "About Us",
@@ -451,48 +458,48 @@
     "register": "Register"
   },
   "cards": {
-    "more": "Read More"
+    "more": "More details"
   },
   "colors": {
-    "title": "Pick a Color for Yourself",
-    "sec_title": "and Your Home",
-    "choose_color": "Choose Your Color Palette",
-    "style_text": "Style Chosen by Millions"
+    "title": "Choose a color for yourself",
+    "sec_title": "and your home",
+    "choose_color": "Choose your color palette",
+    "style_text": "Style chosen by millions"
   },
   "products": {
     "title": "Branded Products",
     "clear_filters": "Reset",
     "picked_filters": "Filters",
-    "sort": "Sort",
-    "colors_link": "Choose another color",
-    "sec_title": "store",
-    "products_title": "Paint",
+    "sort": "Sorting",
+    "colors_link": "Choose a different color",
+    "sec_title": "shop",
+    "products_title": "Products",
     "found_products": "products found",
     "filters": "Filters",
     "details": {
       "article": "Article",
       "weight": "Weight",
       "kg": "kg",
-      "choose_color": "Choose Color",
+      "choose_color": "Select color",
       "quantity": "Quantity",
-      "paint_calculator": "Paint Calculator",
+      "paint_calculator": "Paint calculator",
       "calculate": "Calculate",
       "width": "Width",
       "height": "Height",
-      "layers": "Number of Layers",
-      "area": "Total Area",
+      "layers": "Number of layers",
+      "area": "Total area",
       "on": "On",
       "layer": "layer",
       "liters": "liters",
-      "add_to_cart": "Add to Cart",
+      "add_to_cart": "Add to cart",
       "tabs": {
         "description": "Description",
         "details": "Details",
         "certificates": "Certificates"
       },
-      "also_bought": "Customers Also Bought",
-      "data": "Main Characteristics",
-      "similar_products": "Similar Products"
+      "also_bought": "They buy with these products",
+      "data": "Main Features",
+      "similar_products": "Similar products"
     }
   },
   "pagination": {
@@ -503,8 +510,12 @@
     "prev": "Previous",
     "next": "Next"
   },
+  "colors_modal": {
+    "first": "Choose paint for painting",
+    "second": "Try our visualizer app"
+  },
   "footer_links": {
-    "about_text": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
+    "about_text": "K-TsVET LLP with the REMALUX trademark is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
     "remalux": {
       "title": "Remalux",
       "about_us": "About Us",
@@ -513,43 +524,43 @@
       "contacts": "Contacts"
     },
     "store": {
-      "title": "Store",
+      "title": "Shop",
       "products": "Products",
-      "payment_and_delivery": "Payment and Delivery",
+      "payment_and_delivery": "Payment and delivery",
       "calculator": "Calculator",
-      "choose_color": "Choose Color",
-      "public_offer": "Public Offer"
+      "choose_color": "Select color",
+      "public_offer": "Public offer"
     },
     "contacts": {
       "title": "Contacts",
-      "address": "Almaty, Tole bi St., 300/2"
+      "address": "Almaty, st. "
     },
     "privacy_policy": "Privacy Policy"
   },
   "ideas": {
     "page_title": {
-      "first": "From Idea to Reality",
-      "second": "with"
+      "first": "From idea to reality",
+      "second": "With"
     },
-    "direction": "Choose Idea Direction",
-    "select_room": "Choose Room"
+    "direction": "Choose the direction of your idea",
+    "select_room": "Choose a room"
   },
   "news": {
     "page_title": {
-      "first": "Stay Updated",
-      "second": "with all the news"
+      "first": "Stay informed",
+      "second": "all news"
     },
-    "read_more": "Read More"
+    "read_more": "Read more"
   },
   "mainPage": {
     "hero": {
-      "title": "High European Quality at an Affordable Price",
-      "choose_paint": "Choose Paint",
-      "choose_color": "Choose Color"
+      "title": "High European quality at an affordable price",
+      "choose_paint": "Select product",
+      "choose_color": "Select color"
     },
     "choose_type": {
       "paint": {
-        "title": "Branded Paint",
+        "title": "Brand paint",
         "description": "For all types of surfaces"
       },
       "coating": {
@@ -557,7 +568,7 @@
         "description": "For all types of surfaces"
       },
       "dye": {
-        "title": "Paint",
+        "title": "Dye",
         "description": "For all types of surfaces"
       },
       "varnish": {
@@ -565,29 +576,30 @@
         "description": "For all types of surfaces"
       },
       "putty": {
-        "title": "Putty",
+        "title": "putty",
         "description": "For all types of surfaces"
       }
     },
     "ideas": {
-      "title": "Ready Solutions for Your Home",
-      "link": "More Ideas"
+      "title": "Ready-made solutions for your home",
+      "link": "More ideas"
     },
     "popular_products": {
       "title": "Popular Products",
-      "link": "More Products"
+      "link": "More products"
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Visualize your idea with our app! Just point the camera at the wall and select a color, and see it come to life in real-time. A great way to choose the perfect shade and see how your interior will look!"
+      "description": "Visualize your idea with our application! "
     },
     "news": {
-      "title": "Current News",
-      "link": "All News"
+      "title": "Current news",
+      "link": "All news"
     },
     "about_us": {
-      "title": "About Us Remalux",
-      "description": "LLP 'K-COLOR' with the trademark 'REMALUX' is a leader in the production of paints and coatings, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, manufactured under a British license from raw materials of renowned French, Belgian, German, Dutch, and American producers."
+      "title": "Create the perfect coating with Remalux paints!",
+      "button": "Get to know each other better",
+      "description": "K-COLOR LLP (“K-COLOR”) with the trademark “REMALUX” offers high-quality paint and varnish materials\n          "
     }
   }
 }

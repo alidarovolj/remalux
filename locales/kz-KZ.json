@@ -1,100 +1,106 @@
 {
+  "sorting": {
+    "name_asc": "Өсу бағасы",
+    "name_desc": "Төмендеу бағасы",
+    "colorable": "Сурет салу",
+    "non_colorable": "Боялмайды"
+  },
   "headers": {
     "mainPage": {
-      "title": "Басты бет - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ",
-      "canonical": "https://globalart.ai/kz-KZ"
+      "title": "Негізгі бет - Remalux",
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU",
+      "canonical": "https://globalart.ai/ru-RU"
     },
     "store": {
       "title": "Дүкен - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/store",
-      "canonical": "https://globalart.ai/kz-KZ/store"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/store",
+      "canonical": "https://globalart.ai/ru-RU/store"
     },
     "colors": {
       "title": "Бояу - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/colors",
-      "canonical": "https://globalart.ai/kz-KZ/colors"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/colors",
+      "canonical": "https://globalart.ai/ru-RU/colors"
     },
     "ideas": {
       "title": "Идеялар - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/ideas",
-      "canonical": "https://globalart.ai/kz-KZ/ideas"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/ideas",
+      "canonical": "https://globalart.ai/ru-RU/ideas"
     },
     "about": {
       "title": "Біз туралы - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/about",
-      "canonical": "https://globalart.ai/kz-KZ/about"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/about",
+      "canonical": "https://globalart.ai/ru-RU/about"
     },
     "news": {
       "title": "Жаңалықтар - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/news",
-      "canonical": "https://globalart.ai/kz-KZ/news"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/news",
+      "canonical": "https://globalart.ai/ru-RU/news"
     },
     "contacts": {
       "title": "Байланыстар - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/contacts",
-      "canonical": "https://globalart.ai/kz-KZ/contacts"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/contacts",
+      "canonical": "https://globalart.ai/ru-RU/contacts"
     },
     "profile": {
       "title": "Профиль - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/profile",
-      "canonical": "https://globalart.ai/kz-KZ/profile"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
     },
     "addresses": {
       "title": "Профиль - Мекенжайлар - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/profile",
-      "canonical": "https://globalart.ai/kz-KZ/profile"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
     },
     "recipients": {
       "title": "Профиль - Алушылар - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/profile",
-      "canonical": "https://globalart.ai/kz-KZ/profile"
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/profile",
+      "canonical": "https://globalart.ai/ru-RU/profile"
     },
     "login": {
-      "title": "Кіру - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/login",
-      "canonical": "https://globalart.ai/kz-KZ/login"
+      "title": "Авторизация - Remalux",
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/login",
+      "canonical": "https://globalart.ai/ru-RU/login"
     },
     "registration": {
-      "title": "Тіркелу - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/registration",
-      "canonical": "https://globalart.ai/kz-KZ/login"
+      "title": "Тіркеу - Remalux",
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/registration",
+      "canonical": "https://globalart.ai/ru-RU/login"
     },
     "forgot_pass": {
-      "title": "Құпиясөзді ұмыттыңыз ба - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/forgot-password",
-      "canonical": "https://globalart.ai/kz-KZ/forgot-password"
+      "title": "Құпия сөзіңізді ұмытып қалдыңыз - Remalux",
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/forgot-password",
+      "canonical": "https://globalart.ai/ru-RU/forgot-password"
     },
     "cart": {
-      "title": "Себет - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/cart",
-      "canonical": "https://globalart.ai/kz-KZ/cart"
+      "title": "Арба - Remalux",
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/cart",
+      "canonical": "https://globalart.ai/ru-RU/cart"
     },
     "checkout": {
-      "title": "Тапсырысты рәсімдеу - Remalux",
-      "description": "Remalux - жоғары еуропалық сапа қолжетімді бағамен. Үйіңізге бояу және түс таңдаңыз.",
-      "og_url": "https://remalux.kz/kz-KZ/cart/checkout",
-      "canonical": "https://globalart.ai/kz-KZ/cart/checkout"
+      "title": "Тапсырыс беріңіз - Remalux",
+      "description": "Remalux - қол жетімді бағамен жоғары еуропалық сапа. ",
+      "og_url": "https://remalux.kz/ru-RU/cart/checkout",
+      "canonical": "https://globalart.ai/ru-RU/cart/checkout"
     }
   },
   "partners": {
-    "title": "Серіктес болу",
-    "button": "Өтінім беру",
-    "text": "Бояу сату саласында сенімді серіктес іздеп жүрсіз бе? Бізге қосылыңыз! Біз жоғары сапалы өнімдерді, тиімді ынтымақтастық шарттарын және барлық кезеңдерде қолдау ұсынамыз. Сәтті бизнестің бөлігі болыңыз және бізбен бірге жаңа биіктерге қол жеткізіңіз! Серіктестік туралы мәліметтерді талқылау үшін бізбен хабарласыңыз.",
+    "title": "Серіктес болыңыз",
+    "button": "Қазір өтініш беріңіз",
+    "text": "Сіз бояу сатуда сенімді серіктес іздеп жүрсіз бе? ",
     "stats": {
       "first": "Филиалдар",
       "second": "Өнімдер",
@@ -103,326 +109,327 @@
     }
   },
   "search": {
+    "title": "Мысалы, қабырға бояуы",
     "placeholder": "Іздеу"
   },
   "about_page": {
     "hero_section": {
-      "title": "«K-COLOR» ЖШС «REMALUX» сауда маркасымен – жоғары еуропалық сапа қолжетімді бағамен.",
-      "description": "«K-COLOR» ЖШС «REMALUX» сауда маркасымен лак-бояу материалдарын өндіруде көшбасшы, Қазақстан Республикасында орналасқан. Біз тұтынушыларға жоғары сапалы бояулардың кең ассортиментін ұсынамыз, олар британдық лицензия бойынша француз, бельгиялық, неміс, голланд және американдық атақты өндірушілердің шикізатынан жасалған."
+      "title": "«REMALUX» сауда белгісімен «K-COLOR» «K-COLOR» ЖШС – қолжетімді бағамен жоғары еуропалық сапа.",
+      "description": "«REMALUX» сауда белгісімен «K-COLOR» «K-COLOR» ЖШС Қазақстан Республикасында орналасқан лак-бояу материалдарын өндіруде көшбасшы болып табылады. "
     },
     "why_choose_us": {
-      "title": "Неліктен тұтынушылар біздің өнімді таңдайды?",
-      "description": "Біздің бояулар жоғары сапасы, инновациялық шешімдері және үнемді шығыны үшін сенімді. Қолайлы бағаларды және ассортимент алуан түрлілігін қоссаңыз, бізді қайта таңдайтындығыңызды түсінесіз.",
+      "title": "Неліктен сатып алушылар біздің өнімдерді таңдайды?",
+      "description": "Біздің бояулар жоғары сапасы, инновациялық шешімдері және үнемді тұтынуы үшін сенімді. ",
       "quality": {
         "title": "Жоғары сапа",
-        "description": "Біздің бояулар қатаң сапа бақылауынан өтеді, кез келген бетке тамаша жабындылық пен ұзақ мерзімділікті қамтамасыз етеді."
+        "description": "Біздің бояулар кез келген бетінде жоғары жабу және беріктігін қамтамасыз ету үшін қатаң сапа бақылауынан өтеді."
       },
       "innovation": {
-        "title": "Өндірістің инновациялық технологиялары",
-        "description": "Біз оңай жағылады, тез кебеді және қанық түстер береді бояуларды жасау үшін алдыңғы қатарлы технологияларды қолданамыз."
+        "title": "Инновациялық өндіріс технологиялары",
+        "description": "Оңай жағылатын, тез кебетін және қанық түстер беретін бояулар жасау үшін озық технологияны қолданамыз."
       },
       "economy": {
         "title": "Материалдардың үнемді шығыны",
-        "description": "Біздің бояулар жоғары жабындылықты қамтамасыз етеді, бұл шығынды азайтып, шығындарды төмендетуге мүмкіндік береді."
+        "description": "Біздің бояулар тұтынуды азайтуға және шығындарды азайтуға мүмкіндік беретін жоғары жасыру күшін қамтамасыз етеді."
       },
       "price": {
         "title": "Бәсекеге қабілетті бағалар",
-        "description": "Біз сізге қол жетімді бағамен кәсіби өнімді алуға мүмкіндік беру үшін баға мен сапаның тамаша қатынасын ұсынамыз."
+        "description": "Қолжетімді бағамен кәсіби өнімді алу үшін біз ақшаның тамаша құнын ұсынамыз."
       },
       "service": {
-        "title": "Кәсіби қызмет көрсету",
-        "description": "Кәсіби қызмет көрсету."
+        "title": "Кәсіби қызмет",
+        "description": "Кәсіби қызмет"
       },
       "assortment": {
         "title": "Өнімдердің кең ассортименті",
-        "description": "Біздің ассортиментімізде интерьерден бастап өнеркәсіптік жабындыларға дейінгі барлық қажеттіліктер үшін бояуларды, түстер мен текстуралардың алуан түрін таба аласыз."
+        "description": "Біздің ассортиментте сіз кез келген қажеттілікке арналған бояуларды таба аласыз - интерьерден өнеркәсіптік жабындарға дейін, әртүрлі түстер мен текстураларда."
       }
     },
     "for_whom": {
-      "title": "Біздің өніміміз кімге арналған?",
-      "description": "Біздің өнімдеріміз өкілдік деңгейдегі беделді объектілерде пайдалану үшін жоғары білікті ең қатаң мамандардың талаптарын оңай қанағаттандыру үшін жасалған. Сонымен қатар, ол үйде пайдалану үшін материалдарды таңдайтын және косметикалық жөндеуді өздігінен жүргізетін қарапайым адамдар үшін де өте қолайлы."
+      "title": "Біздің компанияның өнімдері кімдерге арналған?",
+      "description": "Біз шығаратын өнімдер беделді, атқарушы деңгейдегі нысандарда пайдалану үшін ең қатаң жоғары білікті мамандардың талаптарын оңай қанағаттандыруға арналған. "
     },
     "remalux_section": {
-      "title": "REMALUX: Мінсіз нәтиже үшін қажеттінің бәрі",
-      "description": "REMALUX жоғары сапалы лак-бояу материалдарын заманауи технологиялармен және керемет қызмет көрсетумен ұсынады. Барлық өнімдер қауіпсіз және еуропалық стандарттарға сай.",
+      "title": "REMALUX: Мінсіз нәтижелер алу үшін қажет нәрсенің бәрі",
+      "description": "REMALUX заманауи технологиясы мен тамаша сервисі бар жоғары сапалы бояулар мен лактарды ұсынады. ",
       "innovation": {
         "title": "Инновациялық технологиялар және заманауи өндіріс әдістері",
-        "description": "REMALUX-те лак-бояу материалдарын өндіру заманауи технологиялар мен химия ғылымындағы жетістіктерге негізделген, бұл жоғары сапа мен бәсекеге қабілетті бағалармен өнімнің қауіпсіздігін қамтамасыз етеді."
+        "description": "REMALUX-да лак-бояу материалдарының өндірісі бәсекеге қабілетті бағамен өнімнің жоғары сапасы мен қауіпсіздігіне кепілдік беретін заманауи технологиялар мен химия ғылымының жетістіктеріне негізделген."
       },
       "service": {
-        "title": "Қызмет көрсету",
-        "description": "Біз сатып алу алдындағы және сатып алудан кейінгі қызмет көрсетуді қамтамасыз етеміз, жоғары сапалы өнім мен тамаша қызмет көрсету арқылы клиенттердің талаптарын қанағаттандырамыз."
+        "title": "Қызмет",
+        "description": "Біз жоғары сапалы өнімдер мен тамаша қызмет көрсету арқылы тұтынушылардың талаптарын қанағаттандыру үшін сатып алу алдындағы және сатып алудан кейінгі қызметтерді ұсынамыз."
       },
       "assortment": {
         "title": "Өнімдердің кең ассортименті",
-        "description": "REMALUX текстуралы жабындыларды, су негізіндегі бояуларды, лактарды, акрил желімдерін және басқа да материалдарды ұсынады. Біз сізге қажетті реңкті таңдауға көмектесеміз және жоғары сапаны тиімді бағамен қамтамасыз етеміз."
+        "description": "REMALUX текстуралық жабындарды, су негізіндегі бояуларды, лактарды, акрилді желімдерді және басқа материалдарды ұсынады. "
       },
       "safety": {
-        "title": "Қолданудағы қауіпсіздік және жайлылық",
-        "description": "Су негізіндегі өнімдер улы емес және иіссіз, бұл мамандар мен DIY әуесқойлары үшін ыңғайлы пайдалануды қамтамасыз етеді. Біздің бояулар адамдар мен үй жануарлары үшін қауіпсіз."
+        "title": "Пайдалану кезіндегі қауіпсіздік пен жайлылық",
+        "description": "Су негізіндегі өнімдер улы емес және иіссіз, бұл кәсіпқойларға да, үй шеберлеріне де ыңғайлы пайдалануды қамтамасыз етеді. "
       }
     },
     "our_fleet": {
-      "title": "Біздің автопаркіміз: Жылдам және сенімді жеткізу",
-      "description": "Біздің өнімдеріміз өкілдік деңгейдегі беделді объектілерде пайдалану үшін жоғары білікті ең қатаң мамандардың талаптарын оңай қанағаттандыру үшін жасалған. Сонымен қатар, ол үйде пайдалану үшін материалдарды таңдайтын және косметикалық жөндеуді өздігінен жүргізетін қарапайым адамдар үшін де өте қолайлы."
+      "title": "Біздің флот: жылдам және сенімді жеткізу",
+      "description": "Біз шығаратын өнімдер беделді, атқарушы деңгейдегі нысандарда пайдалану үшін ең қатаң жоғары білікті мамандардың талаптарын оңай қанағаттандыруға арналған. "
     }
   },
   "breadcrumbs": {
-    "home": "Басты бет",
+    "home": "Үй",
     "store": "Дүкен",
     "ideas": "Идеялар",
     "news": "Жаңалықтар",
     "cart": "Себет",
-    "checkout": "Тапсырысты рәсімдеу",
+    "checkout": "Тапсырыс беру",
     "profile": "Профиль",
     "addresses": "Мекенжайлар",
     "recipients": "Алушылар",
     "orders": "Тапсырыстар",
     "favourites": "Таңдаулылар",
-    "payment_success": "Төлем сәтті аяқталды",
-    "contacts": "Байланыстар",
+    "payment_success": "Сәтті төлем",
+    "contacts": "Контактілер",
     "colors": "Түстер"
   },
   "shopOrCart": {
-    "title": "Таңдауыңыз үшін рахмет!",
-    "text": "Сатып алуды жалғастыру немесе себетке өту үшін төмендегі нұсқалардың бірін таңдаңыз.",
-    "button": "Сатып алуды жалғастыру",
-    "checkout": "Тапсырысты рәсімдеу"
+    "title": "Таңдауыңызға рахмет!",
+    "text": "Сатып алуды жалғастыру немесе себетке өту үшін төмендегі опциялардың бірін таңдаңыз.",
+    "button": "Сатып алуды жалғастырыңыз",
+    "checkout": "Тапсырыс беріңіз"
   },
   "contacts": {
     "title": "Біздің филиалдар",
     "address": "Мекенжай",
-    "contacts": "Байланыстар",
-    "email": "Электрондық пошта",
-    "work_time": "Жұмыс кестесі",
+    "contacts": "Контактілер",
+    "email": "Пошта",
+    "work_time": "Жұмыс уақыты",
     "work_info": {
       "first": {
-        "from": "Дүйсенбі - Жұма",
+        "from": "Дүйсенбіден жұмаға дейін",
         "to": "дейін"
       },
       "second": {
-        "from": "Демалыс күндері",
+        "from": "бастап демалыс күндері",
         "to": "дейін"
       }
     }
   },
   "payment_success": {
-    "title": "Сіздің тапсырысыңыз сәтті орналастырылды!",
-    "text": "Тапсырысыңыздың күйін қарап шығуға болады",
+    "title": "Тапсырысыңыз сәтті аяқталды!",
+    "text": "Тапсырысыңыздың күйін бетте көруге болады",
     "link": "Тапсырыстар",
-    "button": "Басты бетке оралу"
+    "button": "Үйге оралу"
   },
   "profile": {
     "phone": "Телефон нөмірі",
     "logout": "Шығу",
     "profile": "Профиль",
     "recipients": "Алушылар",
-    "no_recipients": "Өкінішке орай, сізде сақталған алушылар жоқ, оларды қосыңыз.",
-    "add_recipient": "Алушыны қосу",
-    "no_addresses": "Өкінішке орай, сізде сақталған мекенжайлар жоқ, оларды қосыңыз.",
-    "add_address": "Мекенжайды қосу",
+    "no_recipients": "Кешіріңіз, сізде сақталған алушы жоқ, оларды қосыңыз.",
+    "add_recipient": "Алушыны қосыңыз",
+    "no_addresses": "Кешіріңіз, сізде сақталған мекенжайлар жоқ, оларды қосыңыз.",
+    "add_address": "Мекенжай қосыңыз",
     "my_addresses": "Менің мекенжайларым"
   },
   "addresses": {
     "create": {
-      "title": "Жеткізу мекенжайын қосу",
-      "no_address": "Жеткізу мекенжайы таңдалмады",
-      "provide_address": "Мекенжайды енгізіңіз",
+      "title": "Жеткізу мекенжайын қосыңыз",
+      "no_address": "Жеткізу мекенжайы таңдалмаған",
+      "provide_address": "Мекенжайыңызды көрсетіңіз",
       "address_placeholder": "Мекенжайды енгізіңіз",
       "city": "Қала",
       "city_placeholder": "Қаланы таңдаңыз",
       "address": "Мекенжай",
-      "entrance": "Кіреберіс",
-      "entrance_placeholder": "Кіреберісті енгізіңіз",
-      "floor": "Қабат",
-      "floor_placeholder": "Қабатты енгізіңіз",
+      "entrance": "Кіру",
+      "entrance_placeholder": "Кіру",
+      "floor": "Еден",
+      "floor_placeholder": "Еденге кіру",
       "apartment": "Пәтер",
-      "apartment_placeholder": "Пәтерді енгізіңіз",
+      "apartment_placeholder": "Пәтерге кіру",
       "button": "Сақтау"
     },
     "remove": {
-      "title": "Мекенжайды жою",
-      "confirmation": "Сіз осы мекенжайды жойғыңыз келетініне сенімдісіз бе?",
-      "cancel": "Бас тарту",
+      "title": "Мекенжай жойылуда",
+      "confirmation": "Мекенжайды шынымен жойғыңыз келе ме?",
+      "cancel": "Болдырмау",
       "delete": "Жою"
     }
   },
   "recipients": {
     "create": {
-      "title": "Алушыны қосу",
-      "no_recipient": "Алушы таңдалмады",
+      "title": "Алушыны қосыңыз",
+      "no_recipient": "Алушы таңдалмаған",
       "provide_recipient": "Алушыны көрсетіңіз",
-      "name": "Аты-жөні",
-      "name_placeholder": "Аты-жөнін енгізіңіз",
+      "name": "Аты",
+      "name_placeholder": "Атын енгізіңіз",
       "phone": "Телефон нөмірі",
-      "phone_placeholder": "Телефон нөмірін енгізіңіз",
+      "phone_placeholder": "Телефон нөміріңізді енгізіңіз",
       "button": "Сақтау"
     },
     "remove": {
       "title": "Алушыны жою",
-      "confirmation": "Сіз осы алушыны жойғыңыз келетініне сенімдісіз бе?",
-      "cancel": "Бас тарту",
+      "confirmation": "Алушыны шынымен жойғыңыз келе ме?",
+      "cancel": "Болдырмау",
       "delete": "Жою"
     }
   },
   "no_results": {
-    "title": "Өкінішке орай, іздеу нәтижелері табылмады",
+    "title": "Кешіріңіз, сіздің іздеуіңіз ешқандай нәтиже бермеді.",
     "not_required": "міндетті емес"
   },
   "about": {
-    "hero_title": "Біз - әлемнің түкпір-түкпірінен жиналған болашақ электрондық коммерцияны құрумен айналысатын құштар адамдар тобы.",
-    "hero_description": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+    "hero_title": "Біз электрондық коммерцияның болашағын құру үшін жұмыс істейтін дүние жүзіндегі ынталы адамдар тобымыз.",
+    "hero_description": "Бұл шөлді күндізгі уақыттан тыс жерде өте маңызды. ",
     "timeline": [
       {
-        "name": "Компанияның негізі қаланды",
-        "description": "Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.",
-        "date": "Там 2021",
+        "name": "Компанияның құрылуы",
+        "description": "Нихил аут нам. ",
+        "date": "2021 жылдың тамызы",
         "dateTime": "2021-08"
       },
       {
-        "name": "$65 млн инвестиция тартылды",
-        "description": "Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.",
-        "date": "Жел 2021",
+        "name": "65 миллион доллар инвестиция тартылды",
+        "description": "Провидент quia ut esse. ",
+        "date": "2021 жылдың желтоқсаны",
         "dateTime": "2021-12"
       },
       {
-        "name": "Бета-нұсқа іске қосылды",
-        "description": "Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.",
-        "date": "Ақп 2022",
+        "name": "Бета нұсқасы",
+        "description": "Тері бөртпелері. ",
+        "date": "2022 жылдың ақпаны",
         "dateTime": "2022-02"
       },
       {
-        "name": "Өнімнің жаһандық іске қосылуы",
-        "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
-        "date": "Жел 2022",
+        "name": "Жаһандық өнімді шығару",
+        "description": "Ut ipsa sint distinctio quod itaque nam qui. ",
+        "date": "2022 жылдың желтоқсаны",
         "dateTime": "2022-12"
       }
     ],
     "customers_love_us": "Біздің клиенттер бізді жақсы көреді",
-    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
-    "stats_title": "Біз жұмыс орнын өмірімізге және әлемге құндылық қосатын нәрсе деп санаймыз.",
-    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
+    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. ",
+    "stats_title": "Біз жұмыс орнын өмірімізге және әлемге құндылық қосатын нәрсе ретінде қарастырамыз.",
+    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. ",
     "stat1": {
-      "value": "250k",
-      "title": "Платформадағы қолданушылар саны",
-      "description": "Vel labore deleniti veniam consequuntur sunt nobis."
+      "value": "250 мың",
+      "title": "Платформадағы пайдаланушылар",
+      "description": "Бұл жұмыстың ешбір нәтижесін беруі мүмкін."
     },
     "stat2": {
-      "value": "$8.9 миллиард",
-      "title": "Біздің клиенттеріміздің $8 миллиардтан астам табыс тапқанына мақтан тұтамыз.",
-      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
+      "value": "$8,9 млрд",
+      "title": "Біз клиенттеріміздің 8 миллиард доллардан астам табыс тапқанын мақтан тұтамыз.",
+      "description": "Eu duis porta aliquam ornare. "
     },
     "stat3": {
-      "value": "401,093",
-      "title": "Биылғы жылы транзакциялар",
-      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
+      "value": "401 093",
+      "title": "Биылғы транзакциялар",
+      "description": "Eu duis porta aliquam ornare. "
     },
-    "people_title": "Біздің адамдар",
-    "people_description1": "Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
-    "people_description2": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat. Quasi aperiam sit non sit neque reprehenderit.",
-    "join_us_title": "Біз әрдайым талантты адамдарды біздің командаға қосылуға іздейміз",
-    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
-    "view_all_openings": "Барлық бос орындарды қарау"
+    "people_title": "Біздің халық",
+    "people_description1": "Квази est quaerat. ",
+    "people_description2": "Бұл шөлді күндізгі уақыттан тыс жерде өте маңызды. ",
+    "join_us_title": "Біз әрқашан командамызға дарынды адамдарды іздейміз",
+    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. ",
+    "view_all_openings": "Барлық бос жұмыс орындарын қараңыз"
   },
   "checkout": {
-    "title": "Тапсырысты рәсімдеу",
-    "items": "Себеттегі тауарлар",
+    "title": "Тапсырыс беру",
+    "items": "Себеттегі заттар",
     "del_type": "Жеткізу түрі",
     "delivery_status": {
-      "pickup": "Өзіндік жеткізу",
+      "pickup": "Ала кету",
       "delivery": "Жеткізу"
     },
-    "to_pay": "Төлеуге арналған сома",
+    "to_pay": "Төленетін сома",
     "first": {
-      "title": "Алушының деректері",
-      "add": "Алушыны қосу",
-      "text": "* Тапсырыс беру үшін алушыны қосу және таңдау қажет",
+      "title": "Алушы мәліметтері",
+      "add": "Алушыны қосыңыз",
+      "text": "* Тапсырыс беру үшін сіз алушыны қосып, таңдауыңыз керек",
       "placeholder": "Алушыны іздеу",
-      "physical": "Жеке тұлға",
+      "physical": "Жеке",
       "legal": "Заңды тұлға",
-      "name": "Сіздің атыңыз",
+      "name": "сіздің атыңыз",
       "phone": "Телефон нөмірі"
     },
     "second": {
-      "title": "Тапсырыс алу тәсілі",
-      "pickup": "Өзіндік жеткізу",
+      "title": "Тапсырысты қабылдау тәсілі",
+      "pickup": "Ала кету",
       "delivery": "Жеткізу",
       "address": "Жеткізу мекенжайы",
-      "placeholder": "Мекенжайды іздеу",
-      "add": "Жеткізу мекенжайын қосу",
-      "time": "Жеткізудің қалаған уақыты",
-      "text": "*Тапсырыс беру үшін жеткізу мекенжайын қосу және таңдау қажет"
+      "placeholder": "Мекенжай іздеу",
+      "add": "Жеткізу мекенжайын қосыңыз",
+      "time": "Қалаған жеткізу уақыты",
+      "text": "*Тапсырыс беру үшін жеткізу мекенжайын қосу және таңдау керек"
     },
     "third": {
       "title": "Төлем",
-      "phys": "Алған кезде төлеу",
+      "phys": "Төлем алу кезінде",
       "agreement": {
-        "text": "Қайтару және талап қою ",
-        "link": "шарттарымен келісемін"
+        "text": "Мен келісемін ",
+        "link": "қайтару және талаптар"
       },
       "online": "Онлайн төлем",
-      "to_pay": "Төлеуге"
+      "to_pay": "Төлем үшін"
     }
   },
   "cart": {
-    "title": "Сатып алу себеті",
-    "clear": "Себетті тазарту",
+    "title": "Кәрзеңке",
+    "clear": "Қоқысты босату",
     "table": {
       "product": "Өнім атауы",
       "color": "Түс",
-      "weight": "Салмақ",
+      "weight": "Салмағы",
       "total": "Барлығы",
       "price": "Бағасы",
       "quantity": "Саны"
     },
     "checkout": {
       "title": "Тапсырыс туралы ақпарат",
-      "coupon_title": "Купондар мен промокодтар",
-      "coupon_text": "Купон кодын себеттегі сәйкес өріске енгізіп, 'Қолдану' түймесін басыңыз, сонда жеңілдік жалпы тапсырыс сомасына қосылады.",
+      "coupon_title": "Купондар мен жарнамалық кодтар",
+      "coupon_text": "Себетке купон кодын сәйкес өріске енгізіңіз және жеңілдік тапсырысыңыздың жалпы сомасында көрсетілуі үшін «Қолдану» түймесін басыңыз.",
       "coupon_placeholder": "Купон кодын енгізіңіз",
       "coupon_button": "Купонды қолдану",
-      "summary": "ҚОРЫТЫНДЫ",
+      "summary": "НӘТИЖЕЛЕР",
       "total": "Барлығы",
-      "checkout_button": "Тапсырысты рәсімдеу"
+      "checkout_button": "Тапсырыс беріңіз"
     }
   },
   "forms": {
     "login": {
       "title": "Қош келдіңіз!",
-      "yet_account": "Әлі тіркелгі жоқ па?",
+      "yet_account": "Әлі тіркелгіңіз жоқ па?",
       "please_register": "Тіркеліңіз",
-      "button": "Кіру"
+      "button": "Жүйеге кіру"
     },
     "registration": {
-      "title": "Тіркелу",
-      "already_have": "Тіркелгіңіз бар ма?",
-      "login": "Кіру",
-      "button": "Тіркелу",
+      "title": "Тіркеу",
+      "already_have": "Есептік жазбаңыз бар ма?",
+      "login": "Жүйеге кіру",
+      "button": "Тіркеу",
       "phone_yes": "Бұл телефон нөмірі бұрыннан тіркелген",
-      "phone_no": "Бұл телефон нөмірі қолжетімді",
-      "email_yes": "Бұл электрондық пошта бұрыннан тіркелген",
-      "email_no": "Бұл электрондық пошта қолжетімді",
+      "phone_no": "Бұл телефон нөмірі тегін",
+      "email_yes": "Бұл электронды пошта бұрын тіркелген",
+      "email_no": "Бұл электрондық пошта тегін",
       "rules": {
-        "first": "Құпиясөздің ұзындығы кемінде 8 таңба болуы керек.",
+        "first": "Құпия сөз кемінде 8 таңбадан тұруы керек.",
         "second": "Латынның бас әріптері.",
         "third": "Латынның кіші әріптері.",
-        "fourth": "0-9 аралығындағы цифрлар."
+        "fourth": "0-9 сандары."
       }
     },
     "forgot_password": {
-      "title": "Құпиясөзді ұмыттыңыз ба",
-      "description": "Сіздің телефон нөміріңізді енгізіңіз, біз сізге растау кодын жібереміз.",
-      "button": "Кодты жіберу",
+      "title": "Құпия сөзіңізді ұмытып қалдыңыз",
+      "description": "Телефон нөміріңізді енгізіңіз, біз сізге растау кодын жібереміз.",
+      "button": "Код жіберу",
       "code_button": "Растау"
     },
     "code": {
       "title": "Код",
       "placeholder": "Кодты енгізіңіз"
     },
-    "forgot_pass": "Құпиясөзді ұмыттыңыз ба?",
-    "remember_me": "Мені есте сақта",
+    "forgot_pass": "Құпия сөзіңізді ұмыттыңыз ба?",
+    "remember_me": "Мені ұмытпаңыз",
     "name": {
-      "title": "Аты-жөні",
+      "title": "Аты Тегі",
       "placeholder": "Атыңызды енгізіңіз"
     },
     "email": {
@@ -433,55 +440,55 @@
       "title": "Телефон нөмірі"
     },
     "password": {
-      "title": "Құпиясөз"
+      "title": "Құпия сөз"
     },
     "confirm_password": {
-      "title": "Құпиясөзді растаңыз"
+      "title": "Құпия сөзіңізді растаңыз"
     }
   },
   "header_links": {
     "store": "Дүкен",
-    "choose_color": "Түсті таңдау",
+    "choose_color": "Түсті таңдаңыз",
     "ideas": "Идеялар",
     "calculator": "Калькулятор",
     "about_us": "Біз туралы",
     "news": "Жаңалықтар",
-    "contacts": "Байланыстар",
-    "login": "Кіру",
+    "contacts": "Контактілер",
+    "login": "Жүйеге кіру",
     "register": "Тіркелу"
   },
   "cards": {
     "more": "Толығырақ"
   },
   "colors": {
-    "title": "Өзіңізге және үйіңізге",
-    "sec_title": "түс таңдаңыз",
-    "choose_color": "Түстер палитрасын таңдаңыз",
-    "style_text": "Миллиондаған таңдаған стиль"
+    "title": "Өзіңізге түсті таңдаңыз",
+    "sec_title": "және сіздің үйіңіз",
+    "choose_color": "Түс палитрасын таңдаңыз",
+    "style_text": "Миллиондаған адамдар таңдаған стиль"
   },
   "products": {
-    "title": "Бренд өнімдері",
-    "clear_filters": "Тазалау",
-    "picked_filters": "Фильтрлер",
+    "title": "Брендтік өнімдер",
+    "clear_filters": "Қалпына келтіру",
+    "picked_filters": "Сүзгілер",
     "sort": "Сұрыптау",
-    "colors_link": "Басқа түсті таңдау",
+    "colors_link": "Басқа түсті таңдаңыз",
     "sec_title": "дүкен",
-    "products_title": "Бояу",
+    "products_title": "Өнімдер",
     "found_products": "өнімдер табылды",
-    "filters": "Фильтрлер",
+    "filters": "Сүзгілер",
     "details": {
       "article": "Мақала",
-      "weight": "Салмақ",
+      "weight": "Салмағы",
       "kg": "кг",
       "choose_color": "Түсті таңдаңыз",
       "quantity": "Саны",
-      "paint_calculator": "Бояу калькуляторы",
+      "paint_calculator": "Paint калькуляторы",
       "calculate": "Есептеу",
       "width": "Ені",
       "height": "Биіктігі",
-      "layers": "Қабат саны",
+      "layers": "Қабаттар саны",
       "area": "Жалпы ауданы",
-      "on": "Қабат",
+      "on": "Қосулы",
       "layer": "қабат",
       "liters": "литр",
       "add_to_cart": "Себетке қосу",
@@ -490,8 +497,8 @@
         "details": "Мәліметтер",
         "certificates": "Сертификаттар"
       },
-      "also_bought": "Осы өніммен бірге сатып алады",
-      "data": "Негізгі сипаттамалар",
+      "also_bought": "Олар осы өнімдермен сатып алады",
+      "data": "Негізгі мүмкіндіктер",
       "similar_products": "Ұқсас өнімдер"
     }
   },
@@ -503,91 +510,96 @@
     "prev": "Алдыңғы",
     "next": "Келесі"
   },
+  "colors_modal": {
+    "first": "Бояу үшін бояуды таңдаңыз",
+    "second": "Біздің визуализатор қолданбасын қолданып көріңіз"
+  },
   "footer_links": {
-    "about_text": "«K-COLOR» ЖШС «REMALUX» сауда маркасымен Қазақстан Республикасында орналасқан бояулар мен жабындылар өндіруде көшбасшы болып табылады.",
+    "about_text": "«REMALUX» сауда белгісі бар «К-ЦВЕТ» ЖШС Қазақстан Республикасында орналасқан бояулар мен жабындар өндірісінің көшбасшысы болып табылады.",
     "remalux": {
       "title": "Remalux",
       "about_us": "Біз туралы",
       "news": "Жаңалықтар",
       "projects": "Жобалар",
-      "contacts": "Байланыстар"
+      "contacts": "Контактілер"
     },
     "store": {
       "title": "Дүкен",
       "products": "Өнімдер",
       "payment_and_delivery": "Төлем және жеткізу",
       "calculator": "Калькулятор",
-      "choose_color": "Түсті таңдау",
+      "choose_color": "Түсті таңдаңыз",
       "public_offer": "Қоғамдық ұсыныс"
     },
     "contacts": {
-      "title": "Байланыстар",
-      "address": "Алматы, Төле би к-сі, 300/2"
+      "title": "Контактілер",
+      "address": "Алматы, көш. "
     },
-    "privacy_policy": "Құпиялық саясаты"
+    "privacy_policy": "Құпиялылық саясаты"
   },
   "ideas": {
     "page_title": {
       "first": "Идеядан шындыққа",
       "second": "бірге"
     },
-    "direction": "Идея бағытын таңдаңыз",
+    "direction": "Сіздің идеяңыздың бағытын таңдаңыз",
     "select_room": "Бөлмені таңдаңыз"
   },
   "news": {
     "page_title": {
-      "first": "Барлық жаңалықтардан",
-      "second": "құлағдар болыңыз"
+      "first": "Хабардар болыңыз",
+      "second": "барлық жаңалықтар"
     },
-    "read_more": "Толығырақ оқу"
+    "read_more": "Толығырақ оқыңыз"
   },
   "mainPage": {
     "hero": {
-      "title": "Жоғары еуропалық сапа қолжетімді бағамен",
-      "choose_paint": "Бояу таңдау",
-      "choose_color": "Түсті таңдау"
+      "title": "Қолжетімді бағамен жоғары еуропалық сапа",
+      "choose_paint": "Өнімді таңдаңыз",
+      "choose_color": "Түсті таңдаңыз"
     },
     "choose_type": {
       "paint": {
         "title": "Бренд бояуы",
-        "description": "Барлық беттерге арналған"
+        "description": "Беттердің барлық түрлеріне арналған"
       },
       "coating": {
-        "title": "Жабын",
-        "description": "Барлық беттерге арналған"
+        "title": "Қаптау",
+        "description": "Беттердің барлық түрлеріне арналған"
       },
       "dye": {
-        "title": "Бояу",
-        "description": "Барлық беттерге арналған"
+        "title": "Бояғыш",
+        "description": "Беттердің барлық түрлеріне арналған"
       },
       "varnish": {
         "title": "Лак",
-        "description": "Барлық беттерге арналған"
+        "description": "Беттердің барлық түрлеріне арналған"
       },
       "putty": {
-        "title": "Шпатлевка",
-        "description": "Барлық беттерге арналған"
+        "title": "замазка",
+        "description": "Беттердің барлық түрлеріне арналған"
       }
     },
     "ideas": {
-      "title": "Үйіңіз үшін дайын шешімдер",
-      "link": "Көбірек идеялар"
+      "title": "Сіздің үйіңізге дайын шешімдер",
+      "link": "Қосымша идеялар"
     },
     "popular_products": {
       "title": "Танымал өнімдер",
-      "link": "Көбірек өнімдер"
+      "link": "Қосымша өнімдер"
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Біздің қолданбамыздың көмегімен идеяңызды визуализациялаңыз! Жай ғана камераны қабырғаға бағыттап, түс таңдаңыз, және ол нақты уақытта өмірге келеді. Мінсіз реңкті таңдау және интерьеріңіздің қалай көрінетінін көрудің керемет тәсілі!"
+      "description": "Біздің қолданба арқылы идеяңызды визуализациялаңыз! "
     },
     "news": {
       "title": "Ағымдағы жаңалықтар",
       "link": "Барлық жаңалықтар"
     },
     "about_us": {
-      "title": "Remalux туралы",
-      "description": "«K-COLOR» ЖШС «REMALUX» сауда маркасымен Қазақстан Республикасында орналасқан бояулар мен жабындылар өндіруде көшбасшы болып табылады. Біз тұтынушыларға жоғары сапалы бояулардың кең ассортиментін ұсынамыз, олар британдық лицензия бойынша француз, бельгиялық, неміс, голланд және американдық атақты өндірушілердің шикізатынан жасалған."
+      "title": "Remalux бояуларымен тамаша жабынды жасаңыз!",
+      "button": "Бір-біріңізді жақсырақ біліңіз",
+      "description": "«REMALUX» сауда белгісімен «K-COLOR» ЖШС («K-COLOR») жоғары сапалы бояу және лак материалдарын ұсынады.\n          "
     }
   }
 }

@@ -1,4 +1,22 @@
+import axios from 'axios'
+
+async function getStore() {
+    const { data } = await axios.get('https://api.remalux.kz/api/products/paginated?page=1&perPage=100')
+
+    return data.data.map(item => `/store/${item.id}`)
+}
+
 export default defineNuxtConfig({
+    hooks: {
+        async 'nitro:config'(nitroConfig) {
+            if (nitroConfig.dev) return
+
+            let slugs = await getStore();
+            nitroConfig.prerender.routes.push(...slugs);
+            return
+        },
+    },
+
     app: {
         head: {
             link: [

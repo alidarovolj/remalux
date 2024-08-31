@@ -72,7 +72,7 @@ useHead({
         <div
             v-for="(news, index) in newsList.data"
             :key="news.id"
-            :class="{ 'flex-col md:!flex-row-reverse' : index % 2 === 0 }"
+            :class="{ 'flex-col md:!flex-row-reverse bg-[#F5F5F5] text-check' : index % 2 === 0 }"
             :data-aos-duration="index * 100"
             class="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center"
             data-aos="fade-up">
@@ -100,3 +100,10 @@ useHead({
     </div>
   </div>
 </template>
+
+<style>
+.text-check p span {
+  color: #000;
+  background: #F5F5F5 !important;
+}
+</style>
