@@ -84,7 +84,7 @@ onBeforeUnmount(() => {
           <h2 class="text-4xl font-medium text-white mb-5 font-montserrat">
             {{ $t('mainPage.download_remalux.title') }}
           </h2>
-          <p class="text-white text-xl mb-12">
+          <p class="text-white text-base mb-12">
             {{ $t('mainPage.download_remalux.description') }}
           </p>
           <div class="flex gap-3 md:gap-7">

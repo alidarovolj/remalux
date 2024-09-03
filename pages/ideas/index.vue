@@ -24,8 +24,8 @@ const links = computed(() => [
 ]);
 
 const updateCategoryFilter = async (colorID) => {
-  if (parseInt(route.query['filters[parentColor.id]']) === colorID) {
-    delete route.query['filters[parentColor.id]']
+  if (parseInt(route.query['filters[ideaColor.id]']) === colorID) {
+    delete route.query['filters[ideaColor.id]']
     await router.push({
       query: {
         ...route.query,
@@ -37,7 +37,30 @@ const updateCategoryFilter = async (colorID) => {
     await router.push({
       query: {
         ...route.query,
-        'filters[parentColor.id]': colorID,
+        'filters[ideaColor.id]': colorID,
+        page: 1,
+        perPage: 10
+      }
+    });
+  }
+  await ideas.getIdeas()
+};
+
+const updateRoomFilter = async (event) => {
+  if (parseInt(route.query['filters[ideaRoom.id]']) === event.target.value.id) {
+    delete route.query['filters[ideaColor.id]']
+    await router.push({
+      query: {
+        ...route.query,
+        page: 1,
+        perPage: 10
+      }
+    });
+  } else {
+    await router.push({
+      query: {
+        ...route.query,
+        'filters[ideaColor.id]': event.target.value.id,
         page: 1,
         perPage: 10
       }
@@ -108,6 +131,7 @@ useHead({
               </p>
               <select
                   v-if="ideaRoomsList"
+                  @change="updateRoomFilter"
                   class="w-full md:w-1/3 p-4 rounded-lg border">
                 <option :value="null">
                   {{ $t('ideas.select_room') }}
@@ -128,10 +152,10 @@ useHead({
                     :key="index"
                     :style="{ background: item.hex }"
                     class="color-block"
-                    :class="{ 'selected': parseInt(route.query['filters[parentColor.id]']) === item.id }"
+                    :class="{ 'selected': parseInt(route.query['filters[ideaColor.id]']) === item.id }"
                 >
                   <CheckCircleIcon
-                      v-if="parseInt(route.query['filters[parentColor.id]']) === item.id"
+                      v-if="parseInt(route.query['filters[ideaColor.id]']) === item.id"
                       class="check-icon invert"
                   />
                 </div>

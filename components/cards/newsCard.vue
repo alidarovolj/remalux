@@ -20,7 +20,7 @@ const localePath = useLocalePath()
 
       <div class="bg-white bg-opacity-15 set-backdrop py-4 px-6 text-white hover:py-5 transition-all">
         <div class="flex items-center gap-2">
-          <NewspaperIcon class="w-8 h-8 text-white"/>
+          <NewspaperIcon class="w-8 h-8 min-w-8 min-h-8 text-white"/>
           <h3 class="text-lg font-semibold truncate">
             <NuxtLink :to="localePath(`/news/${postData.id}`)">
               <span class="absolute inset-0"/>
@@ -38,6 +38,7 @@ const localePath = useLocalePath()
 
 <style>
 .set-backdrop {
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 }
 

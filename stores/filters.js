@@ -13,6 +13,7 @@ export const useFiltersStore = defineStore("filters", () => {
                 const response = await api(`/api/filters/all`, "GET", {}, {
                     page: route.query.page,
                     perPage: route.query.perPage,
+                    category_id: route.query.category_id,
                 });
                 filtersList.value = response;
             } catch (e) {

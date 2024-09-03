@@ -52,6 +52,25 @@ input[type="checkbox"] {
     filter: blur(10px); /* Blur effect */
 }
 
+.var_card .for_gradient_card {
+    display: block !important;
+}
+
+.for_gradient_card {
+    display: none;
+    position: absolute;
+    width: 81.48px;
+    height: 81.48px;
+    top: 70%;
+    background: #AD2724;
+    border-radius: 100%;
+    left: -40.74px;
+    gap: 0;
+    opacity: 0.5;
+    box-shadow: 0 0 80px 30px #AD2724; /* Spread effect */
+    filter: blur(10px); /* Blur effect */
+}
+
 .carousel__pagination {
     background: #AD27241A;
     width: max-content;
@@ -88,8 +107,8 @@ input[type="checkbox"] {
 }
 
 .product-hover:hover {
-    box-shadow: 7px 7px 6.1px 0px #195ABC0D !important;
-    box-shadow: -7px 7px 6.1px 0px #195ABC0D !important;
+    box-shadow: 7px 7px 6.1px 0px rgba(173, 39, 37, 0.1) !important;
+    box-shadow: -7px 7px 6.1px 0px rgba(173, 39, 37, 0.1) !important;
 }
 
 .product-hover:hover a {

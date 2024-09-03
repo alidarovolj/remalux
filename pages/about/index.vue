@@ -262,24 +262,36 @@ useHead({
         </div>
       </div>
 
-      <div
-          class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8"
-          data-aos="fade-up">
-        <div class="bg-[#F0DFDF] p-4 md:p-8 rounded-xl border-4 border-[#AD272426]">
-          <div class="flex items-center flex-col md:flex-row">
-            <div class="w-full md:w-1/3">
-              <h2 class="text-xl md:text-3xl font-bold mb-5">
-                <span class="text-mainColor">{{ t('about_page.our_fleet.title') }}</span>
-              </h2>
-              <p class="text-sm md:text-xl font-medium leading-5 md:leading-8">
-                {{ t('about_page.our_fleet.description') }}
-              </p>
-            </div>
-            <div class="w-full md:w-2/3">
-              <img alt="" class="w-full" src="@/assets/img/about/auto.png"/>
-            </div>
+      <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-5"
+            data-aos="fade-up">
+          {{ $t('mainPage.about_us.park.title') }}
+        </h2>
+
+        <div class="flex flex-col md:flex-row gap-5 h-full md:h-[600px] mb-5">
+          <div class="flex flex-col gap-5">
+            <img
+                data-aos="fade-right"
+                class="w-full h-full"
+                src="@/assets/img/about/car-1.png"
+                alt="">
+            <img
+                data-aos="fade-right"
+                class="w-full h-full"
+                src="@/assets/img/about/car-2.png"
+                alt="">
           </div>
+          <img
+              data-aos="fade-left"
+              class="w-full h-full"
+              src="@/assets/img/about/car-3.png"
+              alt="">
         </div>
+
+        <p
+            data-aos="fade-up" class="text-sm md:text-xl font-medium">
+          {{ $t('mainPage.about_us.park.text') }}
+        </p>
       </div>
     </main>
   </div>

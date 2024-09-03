@@ -81,7 +81,7 @@ const updateSorting = async (orderBy, isColorable = null) => {
 
 const chosenCategory = computed(() => {
   if (route.query['filters[product.category_id]']) {
-    return categories.categoriesList?.data?.find(category => category.id === parseInt(route.query['filters[category_id]']));
+    return categories.categoriesList?.data?.find(category => category.id === parseInt(route.query['filters[product.category_id]']));
   }
   return null;
 });
@@ -95,12 +95,13 @@ const router = useRouter();
 
 const updateCategoryFilter = async (categoryId) => {
   if (parseInt(route.query['filters[product.category_id]']) === categoryId) {
-    delete route.query['filters[product.category_id]']
+    delete route.query['filters[product.category_id]'];
     await router.push({
       query: {
         ...route.query,
         page: 1,
-        perPage: 10
+        perPage: 10,
+        category_id: categoryId
       }
     });
   } else {
@@ -109,11 +110,13 @@ const updateCategoryFilter = async (categoryId) => {
         ...route.query,
         'filters[product.category_id]': categoryId,
         page: 1,
-        perPage: 10
+        perPage: 10,
+        category_id: categoryId
       }
     });
   }
-  await products.getVariantsList()
+  await products.getVariantsList();
+  await filtersStore.getFilters()
 };
 
 const updateFilter = async (sectionId, optionId) => {
@@ -355,11 +358,11 @@ useHead({
           <div
               v-for="(category, index) in categories.categoriesList.data"
               :key="index"
-              :class="{ 'for_gradient text-mainColor' : parseInt(route.query['filters[category_id]']) === category.id }"
+              :class="{ 'for_gradient text-mainColor' : parseInt(route.query['filters[product.category_id]']) === category.id }"
               class="relative w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] transition-all cursor-pointer text-[#7B7B7B] hover:shadow-hovShadow"
               @click="updateCategoryFilter(category.id)">
             <div class="flex flex-col gap-5 w-2/3 pl-7">
-              <p class="font-medium font-montserrat">
+              <p class="font-medium text-sm font-montserrat">
                 {{ category.title[cur_lang] }}
               </p>
             </div>
@@ -529,7 +532,7 @@ useHead({
                             <legend class="w-full">
                               <DisclosureButton
                                   class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]">
-                                <span class="text-xl font-medium text-gray-900 font-montserrat">
+                                <span class="text-xl text-start font-medium text-gray-900 font-montserrat">
                                   {{ section.title[cur_lang] }}
                                 </span>
                                 <span class="ml-6 flex h-7 items-center text-black">
@@ -543,7 +546,7 @@ useHead({
 
                             <div
                                 :class="{
-                                  'transition-max-height overflow-hidden': true,
+                                  'transition-max-height overflow-hidden overflow-y-auto': true,
                                   'max-h-0': !open,
                                   'max-h-96': open
                                 }"
@@ -560,13 +563,13 @@ useHead({
                                         :checked="route.query[`filter_ids[${option.id}]`]?.includes(option.id.toString())"
                                         :name="`${section.id}[]`"
                                         :value="option.id"
-                                        class="h-6 w-6 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
+                                        class="h-4 w-4 min-w-4 min-h-4 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
                                         type="checkbox"
                                         @change="updateFilter(section.id, option.id)"
                                     />
                                     <label
                                         :for="`${section.id}-${optionIdx}-mobile`"
-                                        class="text-base text-[#191919]"
+                                        class="text-sm text-[#191919]"
                                     >
                                       {{ option.values[cur_lang] }}
                                     </label>
@@ -709,11 +712,11 @@ useHead({
               <div>
                 <div
                     v-if="variantsList?.data.length > 0"
-                    class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
+                    class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-5 xl:grid-cols-3">
                   <div
                       v-for="(product, index) in variantsList?.data"
                       :key="index"
-                      class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-3">
+                      class="group relative flex flex-col overflow-hidden rounded-lg bg-white p-2">
                     <VariantCard :item-index="index" :productData="product"/>
                   </div>
                 </div>

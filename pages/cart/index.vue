@@ -8,6 +8,7 @@ import {MinusIcon, TrashIcon} from "@heroicons/vue/24/outline/index.js";
 import NoResults from "~/components/general/noResults.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useCartCookieStore} from "~/stores/cartCookie.js";
+import PopularProducts from "~/components/mainPage/popularProducts.vue";
 
 const {t} = useI18n();
 const localePath = useLocalePath();
@@ -98,10 +99,10 @@ useHead({
   <div>
     <Breadcrumbs :links="links"/>
     <div class="container mx-auto px-4 md:px-0">
-      <div class="pt-12 pb-32">
-        <div class="flex justify-between">
-          <h1 class="text-3xl font-semibold">
-            {{ t('cart.title') }}: <span v-if="cartList">{{ cartList.data.length }}</span>
+      <div class="mt-12 mb-32 pb-10 rounded-2xl shadow-lg">
+        <div class="flex justify-between px-10">
+          <h1 class="text-xl font-medium font-montserrat">
+            {{ t('cart.title') }}: <span v-if="cartCookie">{{ cartCookie.length }}</span>)
           </h1>
           <div v-if="cartList">
             <div
@@ -117,14 +118,14 @@ useHead({
         <div class="mt-8 flow-root">
           <div
               v-if="cartList && cartCookie"
-              class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 text-sm">
             <div
                 v-if="cartList.data.length > 0"
-                class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8 mb-8 overflow-x-auto">
+                class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8 mb-8">
               <table
                   class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-[#FAFAFA]">
-                <tr>
+                <tr class="px-4">
                   <th class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900" scope="col">
                     <input
                         :checked="checkedCartCookie"
@@ -157,7 +158,11 @@ useHead({
                 <tbody class="divide-y divide-gray-200 bg-white">
                 <tr
                     v-for="(item, index) in cartList.data"
-                    :key="index">
+                    :key="index"
+                    class="border-b news-card cursor-pointer"
+                    data-aos="fade-up"
+                    :data-aos-delay="index * 300"
+                >
                   <td class="whitespace-nowrap py-5 pl-4 pr-3">
                     <input
                         :checked="isItemChecked(item)"
@@ -171,7 +176,7 @@ useHead({
                         <img
                             :src="item.product_image"
                             alt=""
-                            class="h-24 w-24 rounded-full object-cover"
+                            class="h-24 w-24 rounded-full object-cover transition-all"
                         />
                       </div>
                       <div class="ml-4">
@@ -180,14 +185,18 @@ useHead({
                     </div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-5  ">
-                    <div
-                        v-if="item.color_id"
-                        class="text-gray-900">
-                      {{ item.color_id }}
+                    <div v-if="item.product_variant.product.is_colorable">
+                      <div
+                          v-if="item.color_id"
+                          class="text-gray-900">
+                        {{ item.color_id }}
+                      </div>
+                      <div class="border-2 border-mainColor hover:bg-mainColor hover:text-white transition-all hover:rounded-lg w-max p-3 text-mainColor border-dashed cursor-pointer">
+                        <PlusIcon class="w-5 h-5"/>
+                      </div>
                     </div>
-                    <div class="border-2 border-mainColor w-max p-3 text-mainColor border-dashed cursor-pointer">
-                      <PlusIcon class="w-5 h-5"/>
-                    </div>
+                    <div v-else class="w-12 h-12 rounded-lg bg-white shadow-lg flex items-center justify-center text-sm font-semibold"><p class="">N/A</p></div>
+
                   </td>
                   <td class="whitespace-nowrap px-3 py-5">
                     <div class="text-gray-900">
@@ -195,14 +204,14 @@ useHead({
                     </div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-5  ">
-                    <div class="text-mainColor flex gap-7">
+                    <div class="text-mainColor flex items-center gap-5">
                       <button
                           class="border border-[#F0DFDF] rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F0DFDF] transition-all"
                           @click="editQuantity(item.id, item.quantity - 1)">
                         <MinusIcon class="w-5 h-5"/>
                       </button>
-                      <p class=" text-xl">
-                        {{ item.quantity }}
+                      <p class=" text-sm">
+                        {{ item.quantity }} шт.
                       </p>
                       <button
                           class="border border-[#F0DFDF] rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F0DFDF] transition-all"
@@ -261,58 +270,86 @@ useHead({
             </div>
           </div>
         </div>
-        <div v-if="cartList">
-          <div
-              v-if="cartList.data.length > 0"
-              class="bg-[#FAFAFA] py-5 px-6 rounded-lg set_shadow">
-            <p class="text-mainColor text-2xl font-semibold border-b border-[#F0DFDF] pb-3 mb-4">
-              {{ $t('cart.checkout.title') }}
-            </p>
-            <div class="flex flex-col md:flex-row justify-between">
-              <div class="w-full md:w-1/3">
-                <p class="text-xl mb-3 font-semibold">
-                  {{ $t('cart.checkout.coupon_title') }}
-                </p>
-                <p class="mb-8">
-                  {{ $t('cart.checkout.coupon_text') }}
-                </p>
-                <div class="flex flex-col md:flex-row justify-between gap-5 mb-10 md:mb-0">
-                  <input
-                      :placeholder="$t('cart.checkout.coupon_placeholder')"
-                      class="w-full px-4 border-b border-[#F0DFDF] bg-[#FAFAFA]"
-                      type="text">
-                  <button
-                      class="w-full border border-mainColor text-mainColor px-6 py-2 rounded-lg text-lg font-semibold">
-                    {{ $t('cart.checkout.coupon_button') }}
-                  </button>
-                </div>
-              </div>
-              <div class="w-full md:w-1/3 flex flex-col justify-between">
-                <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">
-                  <p>{{ $t('cart.checkout.summary') }}</p>
-                  <p>{{ cartTotalPrice }} ₸</p>
-                </div>
-                <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">
-                  <p>{{ $t('cart.checkout.total') }}</p>
-                  <p class="text-xl font-bold">{{ cartTotalPrice }} ₸</p>
-                </div>
-                <NuxtLink
-                    v-if="cartData.cartItems.length > 0"
-                    :to="localePath('/cart/checkout')"
-                    class="w-full bg-mainColor text-white px-6 py-2 rounded-lg text-lg font-semibold text-center">
-                  {{ $t('cart.checkout.checkout_button') }}
-                </NuxtLink>
-                <p
-                    v-else
-                    class="w-full bg-mainColor cursor-pointer text-white px-6 py-2 rounded-lg text-lg font-semibold text-center"
-                    @click="notifications.showNotification('error', 'Ошибка', 'Корзина пуста, пожалуйста добавьте товары')">
-                  {{ $t('cart.checkout.checkout_button') }}
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="flex justify-end pr-10">
+          <NuxtLink
+              v-if="cartData.cartItems.length > 0"
+              :to="localePath('/cart/checkout')"
+              class="block w-max px-6 py-2 border hover:bg-mainColor hover:text-white transition-all text-center border-mainColor text-mainColor rounded-xl text-base md:text-base font-medium">
+            {{ $t('cart.checkout.checkout_button') }}
+          </NuxtLink>
+          <p
+              v-else
+              class="block w-max px-6 py-2 border bg-gray-200 text-center border-gray-200 cursor-not-allowed rounded-xl text-base md:text-base font-medium"
+              @click="notifications.showNotification('error', 'Ошибка', 'Выберите товар для оформления заказа')">
+            {{ $t('cart.checkout.checkout_button') }}
+          </p>
         </div>
+<!--        <div v-if="cartList">-->
+<!--          <div-->
+<!--              v-if="cartList.data.length > 0"-->
+<!--              class="bg-[#FAFAFA] py-5 px-6 rounded-lg set_shadow">-->
+<!--            <p class="text-mainColor text-2xl font-semibold border-b border-[#F0DFDF] pb-3 mb-4">-->
+<!--              {{ $t('cart.checkout.title') }}-->
+<!--            </p>-->
+<!--            <div class="flex flex-col md:flex-row justify-between">-->
+<!--              <div class="w-full md:w-1/3">-->
+<!--                <p class="text-xl mb-3 font-semibold">-->
+<!--                  {{ $t('cart.checkout.coupon_title') }}-->
+<!--                </p>-->
+<!--                <p class="mb-8">-->
+<!--                  {{ $t('cart.checkout.coupon_text') }}-->
+<!--                </p>-->
+<!--                <div class="flex flex-col md:flex-row justify-between gap-5 mb-10 md:mb-0">-->
+<!--                  <input-->
+<!--                      :placeholder="$t('cart.checkout.coupon_placeholder')"-->
+<!--                      class="w-full px-4 border-b border-[#F0DFDF] bg-[#FAFAFA]"-->
+<!--                      type="text">-->
+<!--                  <button-->
+<!--                      class="w-full border border-mainColor text-mainColor px-6 py-2 rounded-lg text-lg font-semibold">-->
+<!--                    {{ $t('cart.checkout.coupon_button') }}-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="w-full md:w-1/3 flex flex-col justify-between">-->
+<!--                <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">-->
+<!--                  <p>{{ $t('cart.checkout.summary') }}</p>-->
+<!--                  <p>{{ cartTotalPrice }} ₸</p>-->
+<!--                </div>-->
+<!--                <div class="border-b border-[#F0DFDF] flex items-center justify-between py-3">-->
+<!--                  <p>{{ $t('cart.checkout.total') }}</p>-->
+<!--                  <p class="text-xl font-bold">{{ cartTotalPrice }} ₸</p>-->
+<!--                </div>-->
+<!--                <NuxtLink-->
+<!--                    v-if="cartData.cartItems.length > 0"-->
+<!--                    :to="localePath('/cart/checkout')"-->
+<!--                    class="w-full bg-mainColor text-white px-6 py-2 rounded-lg text-lg font-semibold text-center">-->
+<!--                  {{ $t('cart.checkout.checkout_button') }}-->
+<!--                </NuxtLink>-->
+<!--                <p-->
+<!--                    v-else-->
+<!--                    class="w-full bg-mainColor cursor-pointer text-white px-6 py-2 rounded-lg text-lg font-semibold text-center"-->
+<!--                    @click="notifications.showNotification('error', 'Ошибка', 'Корзина пуста, пожалуйста добавьте товары')">-->
+<!--                  {{ $t('cart.checkout.checkout_button') }}-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
+<!--      <div class="mb-32">-->
+<!--        <PopularProducts />-->
+<!--      </div>-->
     </div>
   </div>
 </template>
+
+<style scoped>
+table td,
+table th {
+  padding: 0.75rem 1.5rem !important;
+}
+
+h2 {
+  font-size: 1rem !important;
+}
+</style>

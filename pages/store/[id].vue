@@ -79,8 +79,8 @@ onMounted(async () => {
   await products.getProducts();
   if(products.savedVariant) {
     form.value.variant = products.savedVariant.id
+    addToCart.value.product_variant_id = products.savedVariant.id
     prod_var.value = products.savedVariant.price;
-    addToCart.product_variant_id = products.savedVariant.id
   }
 });
 
@@ -145,14 +145,6 @@ const addToCartLocal = async () => {
                 :class="{ 'border-none' : colorCookie || !products.detailProduct.is_colorable }"
                 class="h-auto md:h-[420px] w-full md:w-3/5 rounded-xl border-2 border-[#7B7B7B40] border-dashed hover:border-spacing-4 relative">
 
-              <div class="w-[150px] h-[150px] absolute left-0 bottom-0 z-20 bg-white rounded-tr-lg">
-                <img
-                    :src="detailProduct.image_url"
-                    alt="product"
-                    class="w-full h-full object-contain rounded-xl"
-                />
-              </div>
-
               <div
                   v-if="colorCookie && products.detailProduct.is_colorable"
                   class="w-full h-full product-carousel">
@@ -180,6 +172,13 @@ const addToCartLocal = async () => {
                       <div
                           class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
                       >
+                        <div class="object-contain z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
+                          <img
+                              :src="detailProduct.image_url"
+                              alt="product"
+                              class="w-full h-full object-contain rounded-xl"
+                          />
+                        </div>
                         <div
                             v-for="(painting, index) of images"
                             :key="index"
@@ -223,9 +222,15 @@ const addToCartLocal = async () => {
                       <img :src="item" alt="" class="w-full h-full absolute left-0 top-0 z-10">
                     </my-carousel-slide>
                     <template #addons="{ currentSlide, slidesCount }">
-                      <div
-                          class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
-                      >
+                      <div class="flex justify-center h-full gap-4 w-full overflow-x-auto mt-4">
+
+                        <div class="object-contain z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
+                          <img
+                              :src="detailProduct.image_url"
+                              alt="product"
+                              class="w-full h-full object-contain rounded-xl"
+                          />
+                        </div>
                         <div
                             v-for="(painting, index) of images"
                             :key="index"

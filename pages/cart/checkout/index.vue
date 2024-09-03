@@ -194,8 +194,11 @@ useHead({
                     class="mb-6 block border-b border-[#F0DFDF] w-full"
                     for="">
                   <p class="text-xs text-[#7B7B7B]">{{ $t('checkout.second.time') }}</p>
-                  <input :class="{ '!border border-red-500 rounded-lg' : v$.delivery_date.$error }" class="text-sm p-4"
-                         type="datetime-local">
+                  <input
+                      v-model="form.delivery_date"
+                      :class="{ '!border border-red-500 rounded-lg' : v$.delivery_date.$error }"
+                      class="w-full text-sm p-4"
+                      type="datetime-local">
                 </label>
                 <div class="flex flex-col md:flex-row gap-3 justify-between mb-6">
                   <p class="text-xl font-semibold">
@@ -267,7 +270,7 @@ useHead({
                 </div>
                 <p
                     class="text-mainColor cursor-pointer"
-                    @click="modals.showModal('createAddress')">
+                    @click="modals.showModal('createRecipient')">
                   + {{ $t('checkout.first.add') }}
                 </p>
               </div>
@@ -337,11 +340,11 @@ useHead({
                   </div>
                 </div>
                 <div>
-                  <div class="flex flex-col gap-5">
+                  <div class="flex flex-row gap-5">
                     <label
                         v-for="(item, index) of cart.payment_methods.online"
                         :key="index"
-                        :class="['p-4 border cursor-pointer border-[#F0DFDF] transition-all rounded-lg flex items-center gap-3', { 'bg-[#F0DFDF]': form.payment_method_id === item.id }, { 'border-red-500' : v$.payment_method_id.$error }]"
+                        :class="['p-4 w-full border cursor-pointer border-[#F0DFDF] transition-all rounded-lg flex items-center gap-3', { 'bg-[#F0DFDF]': form.payment_method_id === item.id }, { 'border-red-500' : v$.payment_method_id.$error }]"
                         @click="form.payment_method_id = item.id">
                       <input
                           v-model="form.payment_method_id"
@@ -349,6 +352,14 @@ useHead({
                           class="w-6 h-6"
                           name="payment_methods"
                           type="radio">
+                      <img
+                          v-if="item.title.ru === 'Каспи'"
+                          class="w-10 h-10 min-h-10 min-w-10"
+                          src="@/assets/img/payments/kaspi.png" alt="">
+                      <img
+                          v-if="item.title.ru === 'Халык'"
+                          class="w-10 h-10 min-h-10 min-w-10"
+                          src="@/assets/img/payments/halyk.png" alt="">
                       <div class="flex gap-5">
                         <p>{{ item.title[cur_lang] }}</p>
                       </div>

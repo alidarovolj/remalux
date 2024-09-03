@@ -2,14 +2,48 @@
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import {useIdeasStore} from "~/stores/ideas.js";
 import {useLanguagesStore} from "~/stores/languages.js";
+import NoResults from "~/components/general/noResults.vue";
+import {useColorCookieStore} from "~/stores/colorCookie.js";
+import {useModalsStore} from "~/stores/modals.js";
+import {useProductsStore} from "~/stores/products.js";
+
+const favouriteColorIds = computed(() => {
+  return colors.favouriteColorsList?.data?.map(fav => fav.color.id);
+});
 
 const ideas = useIdeasStore()
 const {ideaDetail} = storeToRefs(ideas)
+const modals = useModalsStore()
 const route = useRoute()
 const {t} = useI18n()
 const localePath = useLocalePath()
 const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
+const savedColor = useColorCookieStore()
+const colors = useColorsStore()
+const { colorCookie } = storeToRefs(savedColor)
+const products = useProductsStore()
+
+const addOrRemoveFavouriteColor = async (colorId) => {
+  if(token.value) {
+    if (favouriteColorIds.value.includes(colorId)) {
+      await colors.removeFromFavourites(colorId)
+    } else {
+      await colors.addToFavouriteColors(colorId)
+    }
+  } else {
+    notifications.showNotification('error', 'Необходимо авторизоваться', 'Для добавления в избранное необходимо авторизоваться')
+  }
+};
+
+const saveColor = async (color) => {
+  await savedColor.saveCookie(color)
+  if(products.detailProduct) {
+    modals.showModal('chosenColor', products.detailProduct)
+  } else {
+    modals.showModal('chosenColor', null)
+  }
+}
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
@@ -55,10 +89,10 @@ onMounted(async () => {
                     :key="ind"
                     class="px-7 py-16"
                 >
-                  <p class="mb-3 font-bold text-3xl">
+                  <p class="mb-3 font-semibold text-3xl font-montserrat">
                     {{ it.heading }}
                   </p>
-                  <p class="text-xl">
+                  <p class="text-xl font-light">
                     {{ it.text }}
                   </p>
                 </div>
@@ -70,7 +104,7 @@ onMounted(async () => {
                     :style="`background: #${it}`"
                     class="px-5 py-7"
                 >
-                  <p class="text-white">
+                  <p class="invert">
                     #{{ it }}
                   </p>
                 </div>
@@ -88,7 +122,7 @@ onMounted(async () => {
               </div>
               <div v-if="value.type === 'color_combinations'">
                 <div :style="`background: ${ideaDetail.color_title.hex}`" class="px-7 py-12 text-white">
-                  <p class="text-3xl font-extrabold mb-5">
+                  <p class="text-3xl font-bold mb-5 font-montserrat">
                     Цветовая схема:
                   </p>
                   <p class="mb-3 text-lg font-medium">
@@ -108,6 +142,66 @@ onMounted(async () => {
                   </ul>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-10">
+          <p class="mt-2 text-xl md:text-3xl font-montserrat font-semibold tracking-tight pb-5 border-b mb-5">
+            Используемые цвета
+          </p>
+          <div class="flex gap-3 justify-center w-full">
+            <div class="w-full" v-if="ideaDetail.colors">
+              <div
+                  v-if="ideaDetail.colors.length > 0"
+                  class="w-full flex gap-3">
+                <div
+                    v-for="(item, index) of ideaDetail.colors"
+                    :key="index"
+                    class="w-full bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer relative"
+                    :class="{ 'border-2 border-mainColor' : colorCookie?.id === item.id }"
+                    style="box-shadow: 0px 0px 20px 0px #0000000D;"
+                    :data-aos="'fade-up'"
+                    :data-aos-delay="index * 10"
+                >
+                  <div
+                      @click="addOrRemoveFavouriteColor(item.id)"
+                      class="absolute right-7 top-7 w-8 h-8 rounded-full bg-white flex items-center justify-center z-20">
+                    <svg
+                        v-if="favouriteColorIds?.includes(item.id)"
+                        class="size-5 w-5 h-5 text-mainColor"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          clip-rule="evenodd"
+                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                          fill-rule="evenodd"
+                      />
+                    </svg>
+                    <svg
+                        v-else
+                        class="size-5 w-5 h-5 text-[#E8E8E5]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          clip-rule="evenodd"
+                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                          fill-rule="evenodd"
+                      />
+                    </svg>
+
+                  </div>
+                  <div
+                      :style="`background: ${item.hex}`"
+                      @click="saveColor(item)"
+                      class="mb-4 w-full h-[170px] rounded-2xl relative"
+                  >
+                  </div>
+                  <p @click="saveColor(item)">{{ item.title[cur_lang] }}</p>
+                </div>
+              </div>
+              <NoResults v-else/>
             </div>
           </div>
         </div>
