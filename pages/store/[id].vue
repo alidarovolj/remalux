@@ -77,7 +77,7 @@ onMounted(async () => {
   await products.getSameProducts(route.params.id);
   await products.getRelatedProducts(route.params.id);
   await products.getProducts();
-  if(products.savedVariant) {
+  if (products.savedVariant) {
     form.value.variant = products.savedVariant.id
     addToCart.value.product_variant_id = products.savedVariant.id
     prod_var.value = products.savedVariant.price;
@@ -172,7 +172,7 @@ const addToCartLocal = async () => {
                       <div
                           class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
                       >
-                        <div class="object-contain z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
+                        <div class="object-contain h-max z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
                           <img
                               :src="detailProduct.image_url"
                               alt="product"
@@ -222,9 +222,11 @@ const addToCartLocal = async () => {
                       <img :src="item" alt="" class="w-full h-full absolute left-0 top-0 z-10">
                     </my-carousel-slide>
                     <template #addons="{ currentSlide, slidesCount }">
-                      <div class="flex justify-center h-full gap-4 w-full overflow-x-auto mt-4">
 
-                        <div class="object-contain z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
+                      <div
+                          class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
+                      >
+                        <div class="object-contain h-max z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
                           <img
                               :src="detailProduct.image_url"
                               alt="product"
@@ -499,7 +501,7 @@ const addToCartLocal = async () => {
                   :class="{ 'border-b border-[#F0DFDF]' : index !== detailProduct.filter_data.length - 1 }"
                   class="py-4 px-6 flex items-center gap-4"
               >
-                <div v-html="item.svg" class="w-6 h-6 text-mainColor" />
+                <div v-html="item.svg" class="w-6 h-6 text-mainColor"/>
                 <div>
                   <p class="font-medium font-montserrat">{{ item.title[cur_lang] }}</p>
                   <p class="text-sm text-[#7B7B7B] font-montserrat">{{ item.value[cur_lang] }}</p>

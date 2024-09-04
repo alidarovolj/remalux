@@ -1,13 +1,15 @@
 <script setup>
+import Counter from "~/components/general/counter.vue";
+
 const {t} = useI18n()
 
 const localePath = useLocalePath()
 
 const stats = computed(() => [
   {id: 1, name: t('partners.stats.first'), value: '5'},
-  {id: 2, name: t('partners.stats.second'), value: '42+'},
-  {id: 3, name: t('partners.stats.third'), value: '150+'},
-  {id: 4, name: t('partners.stats.fourth'), value: '200+'},
+  {id: 2, name: t('partners.stats.second'), value: '42'},
+  {id: 3, name: t('partners.stats.third'), value: '150'},
+  {id: 4, name: t('partners.stats.fourth'), value: '200'},
 ]);
 </script>
 
@@ -36,7 +38,7 @@ const stats = computed(() => [
           <dl class="mx-auto grid grid-cols-2 gap-x-8 gap-y-10 text-white sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
             <div v-for="stat in stats" :key="stat.id" class="flex flex-col gap-y-2 border-l border-white pl-3">
               <dt class="text-sm md:text-xl">{{ stat.name }}</dt>
-              <dd class="order-first text-3xl md:text-4xl font-bold tracking-tight">{{ stat.value }}</dd>
+              <dd class="order-first text-3xl md:text-4xl font-bold tracking-tight"><Counter :endValue="stat.value" /><span v-if="stat.id !== 1">+</span></dd>
             </div>
           </dl>
         </div>

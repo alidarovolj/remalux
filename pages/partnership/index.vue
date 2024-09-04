@@ -6,6 +6,7 @@ import {ShieldCheckIcon} from "@heroicons/vue/24/outline/index.js";
 import {useVuelidate} from "@vuelidate/core";
 import {email, required, sameAs} from "@vuelidate/validators";
 import {useUserStore} from "~/stores/user.js";
+import Counter from "~/components/general/counter.vue";
 
 const localePath = useLocalePath();
 const {t} = useI18n();
@@ -269,7 +270,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          1990
+                          <Counter :endValue="1990" />
                         </p>
                         <p
                             data-aos="fade-up"
@@ -296,7 +297,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          1995
+                          <Counter :endValue="1995" />
                         </p>
                         <p
                             data-aos="fade-up"
@@ -323,7 +324,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          2000
+                          <Counter :endValue="2000" />
                         </p>
                         <p
                             data-aos="fade-up"
@@ -350,7 +351,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          2010
+                          <Counter :endValue="2010" />
                         </p>
                         <p
                             data-aos="fade-up"
@@ -377,7 +378,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          2015
+                          <Counter :endValue="2015" />
                         </p>
                         <p
                             data-aos="fade-up"
@@ -404,7 +405,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          2023
+                          <Counter :endValue="2023" />
                         </p>
                         <p
                             data-aos="fade-up"
@@ -438,7 +439,7 @@ onMounted(async () => {
 
         <div class="w-full flex flex-col md:flex-row items-start gap-4">
           <div data-aos="fade-up" class="text-left whitespace-nowrap">
-            <p class="text-5xl text-[#E31E1E] mb-1">8000 +</p>
+            <p class="text-5xl text-[#E31E1E] mb-1"><Counter :endValue="8000" /> +</p>
             <p class="text-2xl font-semibold">{{ t("partnership.clients_label") }}</p>
           </div>
           <img
@@ -551,7 +552,7 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #FDCDBF 0%, rgba(253, 205, 191, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl">15</p>
+            <p class="text-5xl"><Counter :endValue="15" /></p>
             <p class="text-lg font-medium">{{ t("partnership.years_in_market_label") }}</p>
           </div>
           <div
@@ -559,7 +560,7 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #F4EDE7 0%, rgba(244, 237, 231, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl">60+</p>
+            <p class="text-5xl"><Counter :endValue="60" />+</p>
             <p class="text-lg font-medium">{{ t("partnership.employees_label") }}</p>
           </div>
           <div
@@ -567,7 +568,7 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #DAE4A7 0%, rgba(218, 228, 167, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl">6</p>
+            <p class="text-5xl"><Counter :endValue="6" /></p>
             <p class="text-lg font-medium">{{ t("partnership.branches_count_label") }}</p>
           </div>
           <div
@@ -575,7 +576,7 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #F4EDE7 0%, rgba(244, 237, 231, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl">185</p>
+            <p class="text-5xl"><Counter :endValue="185" /></p>
             <p class="text-lg font-medium">{{ t("partnership.unique_projects_label") }}</p>
           </div>
           <div
@@ -583,7 +584,7 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #FDCDBF 0%, rgba(253, 205, 191, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl">15</p>
+            <p class="text-5xl"><Counter :endValue="15" /></p>
             <p class="text-lg font-medium">{{ t("partnership.years_in_market_label") }}</p>
           </div>
         </div>
@@ -705,7 +706,6 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-
       <div class="container mx-auto px-4 md:px-0 mb-24">
         <div
             class="p-6 rounded-[48px] flex flex-col md:flex-row items-start gap-5"

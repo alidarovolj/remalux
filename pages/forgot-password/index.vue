@@ -200,12 +200,13 @@ useHead({
           </div>
         </div>
       </div>
-      <div class="relative hidden w-full md:block auth h-full">
-        <client-only>
+      <div class="w-full md:w-2/3 relative hidden md:block auth h-[700px]">
+        <client-only class="h-full">
           <my-carousel-carousel
               :breakpoints="breakpoints"
               :mouse-drag="true"
               :touch-drag="true"
+              class="h-full"
           >
             <my-carousel-slide
                 v-for="(item, index) of carousel"
