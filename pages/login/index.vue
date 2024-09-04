@@ -128,12 +128,12 @@ useHead({
 
                 <div
                     :class="{ '!border !border-red-500 rounded-md': v$.phone_number.$error }"
-                    class="border-b border-[#F0DFDF] p-4">
+                    class="border-b border-[#F0DFDF]">
                   <input
                       id="phone_number"
                       v-model="form.phone_number"
                       v-maska
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      class="block w-full border-0 p-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       data-maska="+7 ### - ### - ## - ##"
                       name="phone_number"
                       :placeholder="$t('forms.phone_number.title')"
@@ -143,11 +143,11 @@ useHead({
 
                 <div
                     :class="{ '!border !border-red-500 rounded-md': v$.password.$error }"
-                    class="border-b border-[#F0DFDF] p-4">
+                    class="border-b border-[#F0DFDF]">
                   <input
                       id="password"
                       v-model="form.password"
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      class="block w-full border-0 p-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       name="password"
                       placeholder="********"
                       type="password"

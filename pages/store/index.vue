@@ -100,8 +100,7 @@ const updateCategoryFilter = async (categoryId) => {
       query: {
         ...route.query,
         page: 1,
-        perPage: 10,
-        category_id: categoryId
+        perPage: 10
       }
     });
   } else {
@@ -110,8 +109,7 @@ const updateCategoryFilter = async (categoryId) => {
         ...route.query,
         'filters[product.category_id]': categoryId,
         page: 1,
-        perPage: 10,
-        category_id: categoryId
+        perPage: 10
       }
     });
   }

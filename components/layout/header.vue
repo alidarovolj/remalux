@@ -37,6 +37,7 @@ const navigation = computed(() => [
   {name: t('header_links.about_us'), href: localePath('/about')},
   {name: t('header_links.news'), href: localePath('/news')},
   {name: t('header_links.contacts'), href: localePath('/contacts')},
+  {name: t('header_links.partners'), href: localePath('/partnership')},
 ])
 
 const logoutUser = async () => {

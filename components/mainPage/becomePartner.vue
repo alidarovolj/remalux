@@ -31,14 +31,17 @@ const stats = computed(() => [
               {{ $t('partners.text') }}
             </p>
           </div>
-          <NuxtLink :to="localePath('/')"
-                    class="my-9 font-semibold block w-max rounded-xl bg-white text-mainColor py-3 px-16 hover:bg-mainColor hover:text-white transition-all">
+          <NuxtLink
+              :to="localePath('/partnership')"
+              class="my-9 font-semibold block w-max rounded-xl bg-white text-mainColor py-3 px-16 hover:bg-mainColor hover:text-white transition-all">
             {{ $t('partners.button') }}
           </NuxtLink>
           <dl class="mx-auto grid grid-cols-2 gap-x-8 gap-y-10 text-white sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
             <div v-for="stat in stats" :key="stat.id" class="flex flex-col gap-y-2 border-l border-white pl-3">
               <dt class="text-sm md:text-xl">{{ stat.name }}</dt>
-              <dd class="order-first text-3xl md:text-4xl font-bold tracking-tight"><Counter :endValue="stat.value" /><span v-if="stat.id !== 1">+</span></dd>
+              <dd class="order-first text-3xl md:text-4xl font-bold tracking-tight">
+                <Counter :endValue="stat.value"/>
+                <span v-if="stat.id !== 1">+</span></dd>
             </div>
           </dl>
         </div>

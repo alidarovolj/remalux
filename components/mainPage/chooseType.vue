@@ -10,7 +10,7 @@ const router = useRouter()
     <div class="flex flex-col md:flex-row gap-5">
       <div
           class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow"
-          @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })">
+          @click="router.push({ path: localePath('/store')})">
         <div class="flex flex-col gap-3 w-[55%] pl-7">
           <p class="text-2xl md:text-3xl font-medium font-montserrat">
             {{ $t('mainPage.choose_type.paint.title') }}
@@ -26,7 +26,7 @@ const router = useRouter()
       </div>
       <div
           class="w-full md:w-1/2 grid grid-cols-1 gap-y-4 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8"
-          @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '18' } })">
+          @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '20' } })">
         <div class="h-full flex flex-col md:flex-row gap-5">
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
@@ -45,7 +45,7 @@ const router = useRouter()
           </div>
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow"
-              @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '15' } })">
+              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '14' } })">
             <div class="flex flex-col gap-3 w-2/3 pl-7">
               <p class="text-2xl font-medium font-montserrat">
                 {{ $t('mainPage.choose_type.varnish.title') }}
@@ -63,7 +63,7 @@ const router = useRouter()
         <div class="h-full flex flex-col md:flex-row gap-5">
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow"
-              @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '14' } })">
+              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '15' } })">
             <div class="flex flex-col gap-3 w-2/3 pl-7">
               <p class="text-2xl font-medium font-montserrat">
                 {{ $t('mainPage.choose_type.dye.title') }}
@@ -79,7 +79,7 @@ const router = useRouter()
           </div>
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow"
-              @click="router.push({ path: localePath('/store'), query: { 'filters[category_id]': '16' } })">
+              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '16' } })">
             <div class="flex flex-col gap-3 w-2/3 pl-7">
               <p class="text-2xl font-medium font-montserrat">
                 {{ $t('mainPage.choose_type.putty.title') }}

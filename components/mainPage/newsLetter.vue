@@ -53,7 +53,7 @@ const subscribeUser = async () => {
   <div class="bg-[#FFF3F3] py-10">
     <div class="container mx-auto px-4 md:px-0">
       <div class="flex justify-center items-center">
-        <div class="w-full md:w-1/2 flex flex-col md:flex-row items-center gap-10">
+        <div class="w-full md:w-[70%] flex flex-col md:flex-row items-center gap-10">
           <img
               data-aos="fade-right"
               class="w-1/2 md:w-1/3"
@@ -63,10 +63,10 @@ const subscribeUser = async () => {
               data-aos="fade-left"
               class="flex flex-col gap-5">
             <h3 class="text-2xl font-medium font-montserrat leading-9">
-              Присоединяйтесь к нашей новостной рассылке
+              {{ $t('newsletter.title') }}
             </h3>
             <p class="font-light">
-              Узнайте о тенденциях и идеях декорирования в нашем новом ежемесячном информационном бюллетене.
+              {{ $t('newsletter.description') }}
             </p>
             <form
                 @submit.prevent="subscribeUser"
@@ -75,12 +75,12 @@ const subscribeUser = async () => {
                 <input
                     v-model="form.email"
                     :class="{'border-red-500': v$.$dirty && v$.email.$error}"
-                    placeholder="Ваш email"
+                    :placeholder="$t('newsletter.placeholder')"
                     class="w-full bg-white rounded p-4 border border-[#F0DFDF]" type="text">
                 <button
                     type="submit"
                     class="bg-mainColor text-sm md:text-base w-max whitespace-nowrap px-4 md:px-12 text-white rounded">
-                  Подписаться
+                  {{ $t('newsletter.button') }}
                 </button>
               </div>
               <label class="flex items-center gap-3">
@@ -89,7 +89,7 @@ const subscribeUser = async () => {
                     class="w-6 h-6"
                     type="checkbox">
                 <p :class="{'outline-red-500': v$.$dirty && v$.agreement.$error}">
-                  Cогласен с <a class="text-mainColor" href="#">правилами сайта</a>
+                  {{ $t('newsletter.agreement.first') }} <a class="text-mainColor" href="#">{{ $t('newsletter.agreement.second') }}</a>
                 </p>
               </label>
             </form>

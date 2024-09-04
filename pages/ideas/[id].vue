@@ -117,7 +117,7 @@ onMounted(async () => {
                     :key="ind"
                     class="w-full max-h-[400px]"
                 >
-                  <img :src="it" alt="" class="w-full h-full object-cover">
+                  <img :src="it" alt="" class="w-full h-full object-cover hover:scale-105 transition-all">
                 </div>
               </div>
               <div v-if="value.type === 'color_combinations'">

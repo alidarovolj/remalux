@@ -543,24 +543,7 @@ const addToCartLocal = async () => {
           <div
               v-if="detailProduct"
               class="w-full md:w-4/5 flex flex-col gap-10">
-            <div>
-              <p class="text-2xl font-medium text-mainColor mb-4 font-montserrat">
-                Преимущества
-              </p>
-              <p v-html="detailProduct.description[cur_lang]"></p>
-            </div>
-            <div>
-              <p class="text-2xl font-medium text-mainColor mb-4 font-montserrat">
-                Подготовка поверхностей
-              </p>
-              <p v-html="detailProduct.description[cur_lang]"></p>
-            </div>
-            <div>
-              <p class="text-2xl font-medium text-mainColor mb-4 font-montserrat">
-                Сертификаты продукции
-              </p>
-              <p v-html="detailProduct.description[cur_lang]"></p>
-            </div>
+            <div v-html="detailProduct.description[cur_lang]"></div>
           </div>
         </div>
       </div>
