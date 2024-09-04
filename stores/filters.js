@@ -10,12 +10,20 @@ export const useFiltersStore = defineStore("filters", () => {
         filtersList,
         async getFilters() {
             try {
-                const response = await api(`/api/filters/all`, "GET", {}, {
-                    page: route.query.page,
-                    perPage: route.query.perPage,
-                    category_id: route.query.category_id,
-                });
-                filtersList.value = response;
+                if(route.query.category_id) {
+                    const response = await api(`/api/filters/all`, "GET", {}, {
+                        page: route.query.page,
+                        perPage: route.query.perPage,
+                        category_id: route.query.category_id,
+                    });
+                    filtersList.value = response;
+                } else {
+                    const response = await api(`/api/filters/all`, "GET", {}, {
+                        page: route.query.page,
+                        perPage: route.query.perPage,
+                    });
+                    filtersList.value = response;
+                }
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }
