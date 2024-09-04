@@ -57,6 +57,7 @@ const form = ref({
 const addToCart = ref({
   product_variant_id: null,
   quantity: 1,
+  color_id: null
 })
 
 const v$ = useVuelidate({
@@ -82,6 +83,10 @@ onMounted(async () => {
     addToCart.value.product_variant_id = products.savedVariant.id
     prod_var.value = products.savedVariant.price;
   }
+  if(colorCookie.value) {
+    addToCart.value.color_id = colorCookie.value.id
+  }
+  console.log(addToCart.value.color_id)
 });
 
 const links = computed(() => [
@@ -542,7 +547,7 @@ const addToCartLocal = async () => {
           </div>
           <div
               v-if="detailProduct"
-              class="w-full md:w-4/5 flex flex-col gap-10">
+              class="w-full md:w-4/5 flex flex-col gap-10 info_block">
             <div v-html="detailProduct.description[cur_lang]"></div>
           </div>
         </div>
@@ -562,5 +567,14 @@ const addToCartLocal = async () => {
 .product-carousel .carousel__slide img {
   height: 100%;
   object-fit: cover;
+}
+
+.info_block h2,
+.info_block h3 {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #AD2724;
+  margin-bottom: 1rem;
 }
 </style>

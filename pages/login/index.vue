@@ -102,7 +102,7 @@ useHead({
 <template>
   <div class="container mx-auto px-4 lg:px-0">
     <div class="flex flex-1 items-center py-10">
-      <div class="w-full md:w-1/3 flex flex-1 flex-col justify-center px-4 sm:pr-6 lg:flex-none lg:pr-20 xl:pr-24">
+      <div class="w-max flex flex-1 flex-col justify-center px-4 sm:pr-6 lg:flex-none lg:pr-20 xl:pr-24">
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
             <h2 class="text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -183,7 +183,7 @@ useHead({
           </div>
         </div>
       </div>
-      <div class="w-full md:w-2/3 relative hidden md:block auth h-[700px]">
+      <div class="w-full relative hidden md:block auth h-[500px]">
         <client-only class="h-full">
           <my-carousel-carousel
               :autoplay="4000"

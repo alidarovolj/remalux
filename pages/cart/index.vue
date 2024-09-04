@@ -118,7 +118,7 @@ useHead({
         <div class="mt-8 flow-root">
           <div
               v-if="cartList && cartCookie"
-              class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 text-sm">
+              class="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 text-sm">
             <div
                 v-if="cartList.data.length > 0"
                 class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8 mb-8">
@@ -161,7 +161,7 @@ useHead({
                     :key="index"
                     class="border-b news-card cursor-pointer"
                     data-aos="fade-up"
-                    :data-aos-delay="index * 300"
+                    :data-aos-delay="index * 100"
                 >
                   <td class="whitespace-nowrap py-5 pl-4 pr-3">
                     <input
@@ -186,12 +186,17 @@ useHead({
                   </td>
                   <td class="whitespace-nowrap px-3 py-5  ">
                     <div v-if="item.product_variant.product.is_colorable">
-                      <div
-                          v-if="item.color_id"
-                          class="text-gray-900">
-                        {{ item.color_id }}
+                      <div v-if="item.color_id" class="relative show_on_hover">
+                        <div
+                            class="text-gray-900 w-8 h-8 rounded-md shadow"
+                            :style="`background: ${item.color_id.hex}`"
+                        >
+                        </div>
+                        <p class="opacity-0 transition-all absolute left-0 text-center top-[105%]">{{ item.color_id.title[cur_lang] }}</p>
                       </div>
-                      <div class="border-2 border-mainColor hover:bg-mainColor hover:text-white transition-all hover:rounded-lg w-max p-3 text-mainColor border-dashed cursor-pointer">
+                      <div
+                          v-else
+                          class="border-2 border-mainColor hover:bg-mainColor hover:text-white transition-all hover:rounded-lg w-max p-3 text-mainColor border-dashed cursor-pointer">
                         <PlusIcon class="w-5 h-5"/>
                       </div>
                     </div>
@@ -351,5 +356,9 @@ table th {
 
 h2 {
   font-size: 1rem !important;
+}
+
+.show_on_hover:hover p {
+  opacity: 100% !important;
 }
 </style>

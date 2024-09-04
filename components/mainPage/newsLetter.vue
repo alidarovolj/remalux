@@ -76,7 +76,7 @@ const subscribeUser = async () => {
                     v-model="form.email"
                     :class="{'border-red-500': v$.$dirty && v$.email.$error}"
                     :placeholder="$t('newsletter.placeholder')"
-                    class="w-full bg-white rounded p-4 border border-[#F0DFDF]" type="text">
+                    class="w-full bg-white rounded py-2 px-4 border border-[#F0DFDF]" type="text">
                 <button
                     type="submit"
                     class="bg-mainColor text-sm md:text-base w-max whitespace-nowrap px-4 md:px-12 text-white rounded">

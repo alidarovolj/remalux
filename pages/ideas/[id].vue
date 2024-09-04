@@ -104,7 +104,7 @@ onMounted(async () => {
                     :style="`background: #${it}`"
                     class="px-5 py-7"
                 >
-                  <p class="invert">
+                  <p class="bg-white w-max px-4 py-1 rounded-md text-sm">
                     #{{ it }}
                   </p>
                 </div>
@@ -157,7 +157,7 @@ onMounted(async () => {
                 <div
                     v-for="(item, index) of ideaDetail.colors"
                     :key="index"
-                    class="w-full bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer relative"
+                    class="w-full bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] !transition-all cursor-pointer relative"
                     :class="{ 'border-2 border-mainColor' : colorCookie?.id === item.id }"
                     style="box-shadow: 0px 0px 20px 0px #0000000D;"
                     :data-aos="'fade-up'"
@@ -195,7 +195,7 @@ onMounted(async () => {
                   <div
                       :style="`background: ${item.hex}`"
                       @click="saveColor(item)"
-                      class="mb-4 w-full h-[170px] rounded-2xl relative"
+                      class="mb-4 w-full h-[170px] rounded-2xl relative transition-all"
                   >
                   </div>
                   <p @click="saveColor(item)">{{ item.title[cur_lang] }}</p>

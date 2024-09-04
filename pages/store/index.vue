@@ -234,11 +234,13 @@ onMounted(async () => {
   if (colorCookie.value) {
     await router.push({query: {...route.query, is_colorable: 1}});
   }
-  await products.getVariantsList()
+  await nextTick()
+  console.log(route.query)
   await categories.getCategories()
-  await filtersStore.getFilters()
   await products.removeVariant()
   await colors.getFavouriteColors()
+  await filtersStore.getFilters()
+  await products.getVariantsList()
 
   if (route.query.order_by) {
     searchForm.value.orderBy = route.query.order_by;
@@ -249,7 +251,6 @@ onMounted(async () => {
 
 })
 
-
 watch(
     () => [variantsList.value],
     async () => {
@@ -259,6 +260,14 @@ watch(
       AOS.refresh();
     }
 );
+
+// watch(
+//     () => [route.query],
+//     async () => {
+//       await products.getVariantsList()
+//       await filtersStore.getFilters()
+//     }
+// )
 
 useHead({
   title: t("headers.store.title"),
@@ -359,8 +368,8 @@ useHead({
               :class="{ 'for_gradient text-mainColor' : parseInt(route.query['filters[product.category_id]']) === category.id }"
               class="relative w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] transition-all cursor-pointer text-[#7B7B7B] hover:shadow-hovShadow"
               @click="updateCategoryFilter(category.id)">
-            <div class="flex flex-col gap-5 w-2/3 pl-7">
-              <p class="font-medium text-sm font-montserrat">
+            <div class="flex flex-col gap-5 w-2/3 pl-3">
+              <p class="font-medium text-xs font-montserrat">
                 {{ category.title[cur_lang] }}
               </p>
             </div>

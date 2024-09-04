@@ -115,7 +115,7 @@ const makeDataForOrder = async () => {
       product_variant_id: item.product_variant.id,
       quantity: item.quantity,
       price: item.price,
-      color_id: item.color_id
+      color_id: item.color_id.id
     }
   })
 }

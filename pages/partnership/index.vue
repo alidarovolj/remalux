@@ -162,13 +162,13 @@ onMounted(async () => {
                 >
                   {{ t("partnership.description") }}
                 </p>
-                <NuxtLink
+                <a
                     data-aos="fade-up"
-                    :to="localePath('about')"
+                    :href="localePath('/partnership/#apply')"
                     class="block w-1/2 py-4 border-2 hover:bg-mainColor hover:text-white transition-all text-center border-mainColor text-mainColor rounded-xl text-base md:text-xl font-medium"
                 >
                   {{ t("partnership.apply_button") }}
-                </NuxtLink>
+                </a>
               </div>
               <div
                   class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0"
@@ -270,7 +270,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          <Counter :endValue="1990" />
+                          <Counter :endValue="1990"/>
                         </p>
                         <p
                             data-aos="fade-up"
@@ -297,7 +297,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          <Counter :endValue="1995" />
+                          <Counter :endValue="1995"/>
                         </p>
                         <p
                             data-aos="fade-up"
@@ -324,7 +324,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          <Counter :endValue="2000" />
+                          <Counter :endValue="2000"/>
                         </p>
                         <p
                             data-aos="fade-up"
@@ -351,7 +351,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          <Counter :endValue="2010" />
+                          <Counter :endValue="2010"/>
                         </p>
                         <p
                             data-aos="fade-up"
@@ -378,7 +378,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          <Counter :endValue="2015" />
+                          <Counter :endValue="2015"/>
                         </p>
                         <p
                             data-aos="fade-up"
@@ -405,7 +405,7 @@ onMounted(async () => {
                             data-aos="fade-up"
                             class="text-mainColor font-bold text-3xl mb-2"
                         >
-                          <Counter :endValue="2023" />
+                          <Counter :endValue="2023"/>
                         </p>
                         <p
                             data-aos="fade-up"
@@ -439,7 +439,10 @@ onMounted(async () => {
 
         <div class="w-full flex flex-col md:flex-row items-start gap-4">
           <div data-aos="fade-up" class="text-left whitespace-nowrap">
-            <p class="text-5xl text-[#E31E1E] mb-1"><Counter :endValue="8000" /> +</p>
+            <p class="text-5xl text-[#E31E1E] mb-1">
+              <Counter :endValue="8000"/>
+              +
+            </p>
             <p class="text-2xl font-semibold">{{ t("partnership.clients_label") }}</p>
           </div>
           <img
@@ -552,7 +555,9 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #FDCDBF 0%, rgba(253, 205, 191, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl"><Counter :endValue="15" /></p>
+            <p class="text-5xl">
+              <Counter :endValue="15"/>
+            </p>
             <p class="text-lg font-medium">{{ t("partnership.years_in_market_label") }}</p>
           </div>
           <div
@@ -560,7 +565,10 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #F4EDE7 0%, rgba(244, 237, 231, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl"><Counter :endValue="60" />+</p>
+            <p class="text-5xl">
+              <Counter :endValue="60"/>
+              +
+            </p>
             <p class="text-lg font-medium">{{ t("partnership.employees_label") }}</p>
           </div>
           <div
@@ -568,7 +576,9 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #DAE4A7 0%, rgba(218, 228, 167, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl"><Counter :endValue="6" /></p>
+            <p class="text-5xl">
+              <Counter :endValue="6"/>
+            </p>
             <p class="text-lg font-medium">{{ t("partnership.branches_count_label") }}</p>
           </div>
           <div
@@ -576,7 +586,9 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #F4EDE7 0%, rgba(244, 237, 231, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl"><Counter :endValue="185" /></p>
+            <p class="text-5xl">
+              <Counter :endValue="185"/>
+            </p>
             <p class="text-lg font-medium">{{ t("partnership.unique_projects_label") }}</p>
           </div>
           <div
@@ -584,7 +596,9 @@ onMounted(async () => {
               style="background: linear-gradient(90deg, #FDCDBF 0%, rgba(253, 205, 191, 0) 100%)"
               class="w-full flex items-center gap-4 py-5 px-3"
           >
-            <p class="text-5xl"><Counter :endValue="15" /></p>
+            <p class="text-5xl">
+              <Counter :endValue="15"/>
+            </p>
             <p class="text-lg font-medium">{{ t("partnership.years_in_market_label") }}</p>
           </div>
         </div>
@@ -682,7 +696,7 @@ onMounted(async () => {
         </div>
       </div>
 
-      <div class="container mx-auto px-4 md:px-0 mb-48">
+      <div class="container mx-auto px-4 md:px-0 mb-24">
         <div
             class="w-full p-8 rounded-[48px] flex flex-col md:flex-row items-center gap-11"
             style="box-shadow: 0px 0px 20px 0px #0000000D"
@@ -706,7 +720,9 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <div class="container mx-auto px-4 md:px-0 mb-24">
+      <div
+          id="apply"
+          class="container mx-auto px-4 md:px-0 py-24">
         <div
             class="p-6 rounded-[48px] flex flex-col md:flex-row items-start gap-5"
             style="box-shadow: 0px 0px 20px 0px #0000000D"
@@ -735,7 +751,7 @@ onMounted(async () => {
               />
             </div>
             <div class="flex gap-5">
-              <div class="w-full">
+              <div class="w-full relative">
                 <input
                     v-model="form.email"
                     :class="{ '!border-red-500': v$.email.$error }"
@@ -744,7 +760,7 @@ onMounted(async () => {
                     type="text"
                     @input="checkEmail"
                 />
-                <div>
+                <div class="absolute top-full left-0">
                   <div v-if="user.userCheckedEmail !== null" class="text-xs mt-1">
                     <p v-if="!user.userCheckedEmail" class="text-red-500">
                       {{ t('forms.registration.email_yes') }}
@@ -764,7 +780,7 @@ onMounted(async () => {
                   class="w-full p-4 border-b border-[#F0DFDF]"
                   type="text"
               />
-              <div class="w-full">
+              <div class="w-full relative">
                 <input
                     v-model="form.phone_number"
                     data-maska="+7 (###) ###-##-##"
@@ -775,9 +791,11 @@ onMounted(async () => {
                     type="text"
                     @input="checkPhone"
                 />
-                <div v-if="form.phone_number.length === 18">
+                <div class="absolute top-full left-0" v-if="form.phone_number.length === 18">
                   <div class="text-xs mt-1">
-                    <p v-if="!user.userCheckedPhone" class="text-red-500">
+                    <p
+                        v-if="!user.userCheckedPhone"
+                        class="text-red-500">
                       {{ t('forms.registration.phone_yes') }}
                     </p>
                     <p v-else class="text-green-500">
@@ -787,7 +805,9 @@ onMounted(async () => {
                 </div>
               </div>
             </div>
-            <div v-if="addresses.citiesList" class="flex gap-5">
+            <div
+                v-if="addresses.citiesList"
+                class="flex gap-5">
               <select
                   id="city"
                   v-model="form.city_id"
@@ -808,7 +828,7 @@ onMounted(async () => {
               </select>
             </div>
             <button type="submit" class="bg-mainColor py-3 text-white rounded-md font-semibold text-lg">
-              {{ t("partnership.submit_button") }}
+              {{ t("partnership.apply_button") }}
             </button>
             <label
                 class="mb-6 w-full flex gap-3 items-center cursor-pointer"
