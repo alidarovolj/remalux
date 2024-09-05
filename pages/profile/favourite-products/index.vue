@@ -57,7 +57,7 @@ useHead({
           <div class="flex items-center gap-3 mb-6">
             <HeartIcon class="w-8 h-8 text-mainColor"/>
             <h1 class="text-xl font-medium">
-              Избранные товары
+              {{ $t('breadcrumbs.favourite-products') }}
             </h1>
           </div>
         </div>

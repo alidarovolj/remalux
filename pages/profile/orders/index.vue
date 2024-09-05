@@ -9,7 +9,7 @@
           <div class="flex justify-between items-center mb-4">
             <div class="flex gap-3 items-center">
               <CubeIcon class="text-mainColor w-8 h-8"/>
-              <p class="text-xl font-medium">Мои заказы</p>
+              <p class="text-xl font-medium">{{ $t('orders.title') }}</p>
             </div>
           </div>
           <div class="flex flex-col gap-5">
@@ -23,26 +23,26 @@
                 <DisclosureButton class="w-full">
                   <div class="flex w-full items-start justify-between text-left text-gray-900">
                     <div>
-                      <p class="text-xl font-medium mb-5">Заказ №{{ item.id }}</p>
-                      <p class="text-sm font-medium">Статус: <span v-if="item.status === 'created'"
+                      <p class="text-xl font-medium mb-5">{{ $t('orders.order.title') }} №{{ item.id }}</p>
+                      <p class="text-sm font-medium">{{ $t('orders.order.status') }}: <span v-if="item.status === 'created'"
                                                                    class="text-orange-500">Создан</span>
                       </p>
                     </div>
                     <div class="text-right">
                       <p class="font-light mb-5">{{ formatDate(item.created_at) }}</p>
-                      <p class="font-semibold">Cумма заказа: {{ item.total_amount }} ₸</p>
+                      <p class="font-semibold">{{ $t('orders.order.amount') }}: {{ item.total_amount }} ₸</p>
                     </div>
                   </div>
                   <div
                       v-if="!open"
                       class="text-xs text-[#2157E2] flex items-center justify-center gap-2">
-                    <p>Посмотреть товары в заказе</p>
+                    <p>{{ $t('orders.order.show') }}</p>
                     <ChevronDownIcon class="w-5 h-5" />
                   </div>
                   <div
                       v-else
                       class="text-xs text-[#2157E2] flex items-center justify-center gap-2">
-                    <p>Скрыть товары в заказе</p>
+                    <p>{{ $t('orders.order.hide') }}</p>
                     <ChevronUpIcon class="w-5 h-5" />
                   </div>
                 </DisclosureButton>
@@ -94,7 +94,6 @@
                               :style="`background: ${it.color_id.hex}`"
                           >
                           </div>
-<!--                          <p class="opacity-0 transition-all absolute left-0 text-center top-[105%]">{{ it.color_id.title[cur_lang] }}</p>-->
                         </div>
                         <div v-else class="w-12 h-12 rounded-lg bg-white shadow-lg flex items-center justify-center text-sm font-semibold"><p class="">N/A</p></div>
                       </div>

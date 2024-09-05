@@ -1,9 +1,82 @@
 {
+  "orders": {
+    "title": "My orders",
+    "order": {
+      "title": "Order",
+      "status": "Status",
+      "amount": "Order amount",
+      "show": "View items in order",
+      "hide": "Hide products in order"
+    }
+  },
   "sorting": {
     "name_asc": "Ascending price",
     "name_desc": "Descending price",
     "colorable": "Painting",
     "non_colorable": "Not dyeable"
+  },
+  "newsletter": {
+    "title": "Join our newsletter",
+    "description": "Find out about decorating trends and ideas in our new monthly newsletter.",
+    "button": "Subscribe",
+    "placeholder": "Your email",
+    "agreement": {
+      "first": "I agree with",
+      "second": "site rules"
+    }
+  },
+  "partnership": {
+    "product_paint": "Dye",
+    "product_paint_description": "+9 types of paint",
+    "product_varnish": "Varnish",
+    "product_varnish_description": "5+ types of varnish",
+    "product_putty": "Putty",
+    "product_putty_description": "6 types of putty",
+    "product_coating": "Coating",
+    "product_coating_description": "+7 types of coatings",
+    "product_enamel": "Enamel",
+    "product_enamel_description": "+8 types of enamels",
+    "product_glue": "Glue",
+    "product_glue_description": "2 types of glue",
+    "history_description": "Remalux was founded over 30 years ago with one simple mission - to offer the highest quality paints that inspire unique and long-lasting designs. ",
+    "title": "Create bright projects with Remalux",
+    "description": "Welcome to Remalux! ",
+    "apply_button": "Apply now",
+    "history_title": "Company history",
+    "history_1990": "Remalux opened its doors with the goal of creating paints that will inspire and transform the world around us.",
+    "history_1995": "We presented our first line of interior paints, immediately winning the trust of customers due to their high quality and variety of shades.",
+    "history_2000": "We began to use new production technologies, significantly increasing the durability and environmental friendliness of our products.",
+    "history_2010": "Remalux has expanded its presence throughout the country, offering products in large retail chains and specialty stores.",
+    "history_2015": "We launched an export program, entering international markets and starting cooperation with partners around the world.",
+    "history_2023": "We opened a state-of-the-art manufacturing facility, increasing our capacity and expanding our product range to better meet our customers' needs.",
+    "branches_title": "Branches",
+    "branches_description": "Remlux has 6 branches in all major cities of Kazakhstan with its head office in Almaty.",
+    "clients_count": "8000+",
+    "clients_label": "clients",
+    "why_choose_us_title": "Why choose us",
+    "statistics_title": "Remalux in numbers",
+    "years_in_market": "15",
+    "years_in_market_label": "years on the market",
+    "employees_count": "60+",
+    "employees_label": "person on staff",
+    "branches_count": "6",
+    "branches_count_label": "branches throughout Kazakhstan",
+    "unique_projects": "185",
+    "unique_projects_label": "unique projects",
+    "news_title": "Stay up to date with all the news",
+    "news_description": "Do you want to be the first to know about new products, promotions and inspiring projects? ",
+    "application_form_title": "Partnership Application Form",
+    "application_form_description": "Do you want to become a Remalux partner and offer our customers the best paints? ",
+    "form": {
+      "name_placeholder": "Full name *",
+      "email_placeholder": "Email address *",
+      "bin_placeholder": "BIN *",
+      "phone_placeholder": "Phone number*",
+      "city_placeholder": "Select a city",
+      "submit_button": "Apply now",
+      "agreement_text": "I agree with",
+      "agreement_link_text": "terms and conditions"
+    }
   },
   "headers": {
     "mainPage": {
@@ -186,9 +259,12 @@
     "recipients": "Recipients",
     "orders": "Orders",
     "favourites": "Favorites",
+    "favourite-colors": "Featured Colors",
+    "favourite-products": "Featured Products",
     "payment_success": "Successful payment",
     "contacts": "Contacts",
-    "colors": "Colors"
+    "colors": "Colors",
+    "partnership": "Partnership"
   },
   "shopOrCart": {
     "title": "Thanks for your choice!",
@@ -228,7 +304,11 @@
     "add_recipient": "Add recipient",
     "no_addresses": "Sorry, you don't have any addresses saved, please add them.",
     "add_address": "Add address",
-    "my_addresses": "My addresses"
+    "my_addresses": "My addresses",
+    "to_addresses": "Go to my addresses",
+    "entrance": "entrance",
+    "floor": "floor",
+    "apartment": "kv"
   },
   "addresses": {
     "create": {
@@ -372,7 +452,7 @@
     }
   },
   "cart": {
-    "title": "Shopping cart",
+    "title": "Cart (Selected products",
     "clear": "Empty Trash",
     "table": {
       "product": "Product name",
@@ -394,6 +474,10 @@
     }
   },
   "forms": {
+    "name_placeholder": "Full name *",
+    "email_placeholder": "Email address *",
+    "bin_placeholder": "BIN *",
+    "phone_placeholder": "Phone number *",
     "login": {
       "title": "Welcome!",
       "yet_account": "Don't have an account yet?",
@@ -455,7 +539,8 @@
     "news": "News",
     "contacts": "Contacts",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "partners": "Become a partner"
   },
   "cards": {
     "more": "More details"
@@ -560,11 +645,11 @@
     },
     "choose_type": {
       "paint": {
-        "title": "Brand paint",
+        "title": "Branded products",
         "description": "For all types of surfaces"
       },
       "coating": {
-        "title": "Coating",
+        "title": "Primer",
         "description": "For all types of surfaces"
       },
       "dye": {
@@ -576,7 +661,7 @@
         "description": "For all types of surfaces"
       },
       "putty": {
-        "title": "putty",
+        "title": "Putty",
         "description": "For all types of surfaces"
       }
     },
@@ -599,7 +684,11 @@
     "about_us": {
       "title": "Create the perfect coating with Remalux paints!",
       "button": "Get to know each other better",
-      "description": "K-COLOR LLP (“K-COLOR”) with the trademark “REMALUX” offers high-quality paint and varnish materials\n          "
+      "description": "K-COLOR LLP (“K-COLOR”) with the trademark “REMALUX” offers high-quality paint and varnish materials\n          ",
+      "park": {
+        "title": "Our fleet: Fast and reliable delivery",
+        "text": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
+      }
     }
   }
 }
