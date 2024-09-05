@@ -370,7 +370,7 @@ useHead({
           </div>
         </div>
       </div>
-      <div class="w-full md:w-2/3 relative hidden md:block auth h-[700px]">
+      <div class="w-full relative hidden md:block auth h-[700px]">
         <client-only class="h-full">
           <my-carousel-carousel
               :autoplay="4000"

@@ -20,20 +20,34 @@
                 class="px-4 py-3 border border-[#F0DFDF] rounded-xl w-full"
                 v-slot="{ open }">
               <dt class="w-full">
-                <DisclosureButton class="flex w-full items-start justify-between text-left text-gray-900">
-                  <div>
-                    <p class="text-xl font-medium mb-5">Заказ №{{ item.id }}</p>
-                    <p class="text-sm font-medium">Статус: <span v-if="item.status === 'created'"
-                                                                 class="text-orange-500">Создан</span>
-                    </p>
+                <DisclosureButton class="w-full">
+                  <div class="flex w-full items-start justify-between text-left text-gray-900">
+                    <div>
+                      <p class="text-xl font-medium mb-5">Заказ №{{ item.id }}</p>
+                      <p class="text-sm font-medium">Статус: <span v-if="item.status === 'created'"
+                                                                   class="text-orange-500">Создан</span>
+                      </p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-light mb-5">{{ formatDate(item.created_at) }}</p>
+                      <p class="font-semibold">Cумма заказа: {{ item.total_amount }} ₸</p>
+                    </div>
                   </div>
-                  <div class="text-right">
-                    <p class="font-light mb-5">{{ formatDate(item.created_at) }}</p>
-                    <p class="font-semibold">Cумма заказа: {{ item.total_amount }} ₸</p>
+                  <div
+                      v-if="!open"
+                      class="text-xs text-[#2157E2] flex items-center justify-center gap-2">
+                    <p>Посмотреть товары в заказе</p>
+                    <ChevronDownIcon class="w-5 h-5" />
+                  </div>
+                  <div
+                      v-else
+                      class="text-xs text-[#2157E2] flex items-center justify-center gap-2">
+                    <p>Скрыть товары в заказе</p>
+                    <ChevronUpIcon class="w-5 h-5" />
                   </div>
                 </DisclosureButton>
               </dt>
-              <DisclosurePanel as="dd" class="mt-2 pr-12">
+              <DisclosurePanel as="dd" class="mt-2">
                 <table
                     class="min-w-full divide-y divide-gray-300">
                   <thead class="bg-[#FAFAFA]">
@@ -112,7 +126,7 @@
 
 <script setup lang="ts">
 import {formatDate} from "~/utils/formatDate";
-import {CubeIcon, PlusIcon} from "@heroicons/vue/24/outline";
+import {CubeIcon, ChevronUpIcon, ChevronDownIcon} from "@heroicons/vue/24/outline";
 import {useOrdersStore} from "~/stores/orders";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import {useLocalePath} from "#i18n";

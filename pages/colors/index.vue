@@ -9,6 +9,7 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import {CheckCircleIcon} from "@heroicons/vue/24/outline"
 import {useColorForProductStore} from "~/stores/colorForProduct.js";
 import {useProductsStore} from "~/stores/products.js";
+import ColorCard from "~/components/cards/colorCard.vue";
 
 const colors = useColorsStore()
 const {colorsList, mainColorsList} = storeToRefs(colors)
@@ -19,7 +20,7 @@ const {t} = useI18n()
 const router = useRouter()
 const route = useRoute()
 const savedColor = useColorCookieStore()
-const { colorCookie } = storeToRefs(savedColor)
+const {colorCookie} = storeToRefs(savedColor)
 const auth = useAuthStore()
 auth.initCookieToken()
 const {token} = storeToRefs(auth)
@@ -27,10 +28,6 @@ const notifications = useNotificationStore()
 const modals = useModalsStore()
 const prodCol = useColorForProductStore()
 const products = useProductsStore()
-
-const favouriteColorIds = computed(() => {
-  return colors.favouriteColorsList?.data?.map(fav => fav.color.id);
-});
 
 const links = computed(() => [
   {title: t('breadcrumbs.home'), link: localePath('/')},
@@ -65,31 +62,10 @@ onMounted(async () => {
   await colors.getColors()
   await colors.getMainColors()
   await colors.getFavouriteColors()
-  if(prodCol.colorForProduct) {
+  if (prodCol.colorForProduct) {
     await products.getDetailProduct(prodCol.colorForProduct);
   }
 })
-
-const addOrRemoveFavouriteColor = async (colorId) => {
-  if(token.value) {
-    if (favouriteColorIds.value.includes(colorId)) {
-      await colors.removeFromFavourites(colorId)
-    } else {
-      await colors.addToFavouriteColors(colorId)
-    }
-  } else {
-    notifications.showNotification('error', 'Необходимо авторизоваться', 'Для добавления в избранное необходимо авторизоваться')
-  }
-};
-
-const saveColor = async (color) => {
-  await savedColor.saveCookie(color)
-  if(products.detailProduct) {
-    modals.showModal('chosenColor', products.detailProduct)
-  } else {
-    modals.showModal('chosenColor', null)
-  }
-}
 
 watch(
     () => colorsList,
@@ -153,7 +129,7 @@ useHead({
               />
             </div>
           </div>
-          <NoResults v-else />
+          <NoResults v-else/>
         </div>
       </div>
       <div class="mb-8">
@@ -168,48 +144,10 @@ useHead({
           <div
               v-for="(item, index) of colorsList.data"
               :key="index"
-              class="bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer relative"
-              :class="{ 'border-2 border-mainColor' : colorCookie?.id === item.id }"
-              style="box-shadow: 0px 0px 20px 0px #0000000D;"
               :data-aos="'fade-up'"
               :data-aos-delay="index * 10"
           >
-            <div
-                @click="addOrRemoveFavouriteColor(item.id)"
-                class="absolute right-7 top-7 w-8 h-8 rounded-full bg-white flex items-center justify-center z-20">
-              <svg
-                  v-if="favouriteColorIds?.includes(item.id)"
-                  class="size-5 w-5 h-5 text-mainColor"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                <path
-                    clip-rule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                    fill-rule="evenodd"
-                />
-              </svg>
-              <svg
-                  v-else
-                  class="size-5 w-5 h-5 text-[#E8E8E5]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                <path
-                    clip-rule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                    fill-rule="evenodd"
-                />
-              </svg>
-
-            </div>
-            <div
-                :style="`background: ${item.hex}`"
-                @click="saveColor(item)"
-                class="mb-4 w-full h-[170px] rounded-2xl relative"
-            >
-            </div>
-            <p @click="saveColor(item)">{{ item.title[cur_lang] }}</p>
+            <ColorCard :id="item.id" :hex="item.hex" :title="item.title"/>
           </div>
         </div>
         <NoResults v-else/>

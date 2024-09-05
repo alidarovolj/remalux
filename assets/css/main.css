@@ -112,8 +112,6 @@ input[type="checkbox"] {
 }
 
 .product-hover:hover a {
-    background: #ad2725;
-    color: #fff;
     box-shadow: 7px 7px 6.1px 0px #195ABC0D !important;
     box-shadow: -7px 7px 6.1px 0px #195ABC0D !important;
 

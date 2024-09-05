@@ -1,27 +1,31 @@
 <script setup>
 import {useLanguagesStore} from "~/stores/languages.js";
 import {ChevronRightIcon} from "@heroicons/vue/24/outline";
+import {useProductsStore} from "~/stores/products.js";
 
 const localePath = useLocalePath();
 const props = defineProps(['productData', 'itemIndex']);
 const language = useLanguagesStore();
 const {cur_lang} = storeToRefs(language);
+const products = useProductsStore()
 </script>
 
 <template>
   <div class="mt-40 w-full relative">
-    <NuxtLink
-        :to="localePath('/store/' + productData.id)"
-        class="w-full h-full bg-white block rounded-md pb-3 text-left transition-all product-hover relative pt-24 hover:-translate-y-3"
+    <div
+        class="w-full h-full bg-white block rounded-md pb-3 text-left transition-all product-hover relative hover:bg-white pt-24 hover:-translate-y-3"
         style="box-shadow: 7px 7px 6.1px 0px #0000000D"
     >
       <img
           :src="productData.image_url"
           alt=""
           class="w-full min-w-full h-[210px] object-contain mx-auto mb-4 transition-all absolute -top-1/2 left-0">
-      <div class="absolute right-3 top-3 p-2 w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
+      <div
+          class="absolute right-3 top-3 p-2 w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center cursor-pointer">
         <svg
-            v-if="productData.is_colorable" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            v-if="productData.is_favourite"
+            @click="products.removeFromFavouriteProducts(productData.id)"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             class="size-6 text-mainColor">
           <path
               d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"/>
@@ -29,6 +33,7 @@ const {cur_lang} = storeToRefs(language);
 
         <svg
             v-else
+            @click="products.addToFavouriteProducts(productData.id)"
             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="size-6 text-mainColor">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -37,7 +42,7 @@ const {cur_lang} = storeToRefs(language);
 
 
       </div>
-      <div class="px-4 flex flex-col gap-2 relative">
+      <NuxtLink :to="localePath('/store/' + productData.id)" class="px-4 flex flex-col gap-2 relative">
         <div class="flex gap-1 items-center">
           <svg class="size-6 text-[#FFE814]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path clip-rule="evenodd"
@@ -60,7 +65,7 @@ const {cur_lang} = storeToRefs(language);
             <ChevronRightIcon class="w-8 h-8"/>
           </NuxtLink>
         </div>
-      </div>
-    </NuxtLink>
+      </NuxtLink>
+    </div>
   </div>
 </template>

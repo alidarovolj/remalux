@@ -9,6 +9,7 @@ import img3 from "assets/img/auth/slide3.jpg";
 import {useAuthStore} from "~/stores/auth.js";
 import {useUserStore} from "~/stores/user.js";
 import {useColorsStore} from "~/stores/colors.js";
+import {useProductsStore} from "~/stores/products.js";
 
 const loading = ref(false);
 const notifications = useNotificationStore()
@@ -20,6 +21,7 @@ const user = useUserStore()
 const cart = useCartStore()
 const colors = useColorsStore()
 const {t} = useI18n()
+const products = useProductsStore()
 
 const form = ref({
   phone_number: '',
@@ -68,6 +70,7 @@ const loginUser = async () => {
     await user.getProfile()
     await cart.getCart()
     await colors.getFavouriteColors()
+    await products.getFavouriteProducts()
     await router.push(localePath('/'))
   } catch (e) {
     notifications.showNotification("error", "Произошла ошибка", e);

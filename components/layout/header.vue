@@ -2,6 +2,7 @@
 import {Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
 import {
   Bars3Icon,
+  HeartIcon,
   ChevronDownIcon,
   ShoppingBagIcon,
   XMarkIcon,
@@ -13,6 +14,7 @@ import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useAuthStore} from "~/stores/auth.js";
 import {useColorsStore} from "~/stores/colors.js";
+import {useProductsStore} from "~/stores/products.js";
 
 const searchValue = ref('')
 const loading = ref(false)
@@ -27,6 +29,7 @@ auth.initCookieToken()
 const {token} = storeToRefs(auth)
 const cart = useCartStore()
 const colors = useColorsStore()
+const products = useProductsStore()
 
 const searchOpen = ref(false)
 
@@ -77,7 +80,7 @@ const handleScroll = () => {
 };
 
 const makeSearch = () => {
-  router.push({ path: localePath('/store'), query: {searchKeyword: searchValue.value}});
+  router.push({path: localePath('/store'), query: {searchKeyword: searchValue.value}});
 }
 
 onMounted(async () => {
@@ -85,6 +88,7 @@ onMounted(async () => {
   if (token.value) {
     await cart.getCart()
     await colors.getFavouriteColors()
+    await products.getFavouriteProducts()
   }
   window.addEventListener('scroll', handleScroll);
 })
@@ -158,7 +162,7 @@ onUnmounted(() => {
               class="flex items-center gap-3 !w-max">
             <div v-if="colors.favouriteColorsList">
               <NuxtLink
-                  :to="localePath('/cart')"
+                  :to="localePath('/profile/favourite-colors')"
                   class="relative">
                 <div
                     v-if="colors.favouriteColorsList.data.length > 0"
@@ -166,6 +170,18 @@ onUnmounted(() => {
                   {{ colors.favouriteColorsList.data.length }}
                 </div>
                 <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+              </NuxtLink>
+            </div>
+            <div v-if="products.favouriteProducts">
+              <NuxtLink
+                  :to="localePath('/profile/favourite-products')"
+                  class="relative">
+                <div
+                    v-if="products.favouriteProducts.data.length > 0"
+                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                  {{ products.favouriteProducts.data.length }}
+                </div>
+                <HeartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
               </NuxtLink>
             </div>
             <div v-if="cart.cartList">
@@ -285,7 +301,7 @@ onUnmounted(() => {
                     class="flex items-center gap-3">
                   <div v-if="colors.favouriteColorsList">
                     <NuxtLink
-                        :to="localePath('/cart')"
+                        :to="localePath('/profile/favourite-colors')"
                         class="relative">
                       <div
                           v-if="colors.favouriteColorsList.data.length > 0"

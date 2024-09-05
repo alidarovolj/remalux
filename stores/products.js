@@ -7,6 +7,9 @@ export const useProductsStore = defineStore("products", () => {
     const sameProducts = ref(null);
     const relatedProducts = ref(null);
     const variantsList = ref(null);
+    const favouriteProducts = ref(null);
+    const addedFavouriteProducts = ref(null);
+    const removedFavouriteProducts = ref(null);
     const savedVariant = useCookie("savedVariant", {
         sameSite: true,
         maxAge: 60 * 60 * 24,
@@ -21,6 +24,9 @@ export const useProductsStore = defineStore("products", () => {
         relatedProducts,
         variantsList,
         savedVariant,
+        favouriteProducts,
+        addedFavouriteProducts,
+        removedFavouriteProducts,
         async getProducts() {
             try {
                 const response = await api(`/api/products/paginated`, "GET", {}, route.query);
@@ -57,6 +63,37 @@ export const useProductsStore = defineStore("products", () => {
             try {
                 const response = await api(`/api/products/${id}/related-products`, "GET", {}, route.query);
                 relatedProducts.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async getFavouriteProducts() {
+            try {
+                const response = await api(`/api/favourite-products`, "GET", {}, route.query);
+                favouriteProducts.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async addToFavouriteProducts(id) {
+            try {
+                const response = await api(`/api/favourite-products`, "POST", {
+                    body: {
+                        product_id: id
+                    }
+                }, route.query);
+                addedFavouriteProducts.value = response;
+                this.getProducts()
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async removeFromFavouriteProducts(id) {
+            const query = { ...route.query, product_id: id };
+            try {
+                const response = await api(`/api/favourite-products`, "DELETE", {}, query);
+                removedFavouriteProducts.value = response;
+                this.getProducts()
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }

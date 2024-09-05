@@ -26,7 +26,8 @@ const links = computed(() => [
   {title: t('breadcrumbs.orders'), icon: ArchiveBoxIcon, link: localePath('/profile/orders')},
   {title: t('breadcrumbs.addresses'), icon: GlobeAmericasIcon, link: localePath('/profile/addresses')},
   {title: t('breadcrumbs.recipients'), icon: UsersIcon, link: localePath('/profile/recipients')},
-  {title: t('breadcrumbs.favourites'), icon: HeartIcon, link: localePath('/profile')},
+  {title: t('breadcrumbs.favourite-colors'), icon: HeartIcon, link: localePath('/profile/favourite-colors')},
+  {title: t('breadcrumbs.favourite-products'), icon: HeartIcon, link: localePath('/profile/favourite-products')},
 ]);
 
 const logoutUser = async () => {

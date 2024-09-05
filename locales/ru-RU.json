@@ -249,10 +249,12 @@
     "recipients": "Получатели",
     "orders": "Заказы",
     "favourites": "Избранное",
+    "favourite-colors": "Избранные цвета",
+    "favourite-products": "Избранные товары",
     "payment_success": "Успешная оплата",
     "contacts": "Контакты",
     "colors": "Цвета",
-    "partnership": "Партнёрство",
+    "partnership": "Партнёрство"
   },
   "shopOrCart": {
     "title": "Спасибо за ваш выбор!",
