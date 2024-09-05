@@ -25,10 +25,10 @@ const router = useRouter()
             src="~/assets/img/mainPage/paint.png">
       </div>
       <div
-          class="w-full md:w-1/2 grid grid-cols-1 gap-y-4 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8"
-          @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '20' } })">
+          class="w-full md:w-1/2 grid grid-cols-1 gap-y-4 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
         <div class="h-full flex flex-col md:flex-row gap-5">
           <div
+              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '20' } })"
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow">
             <div class="flex flex-col gap-3 w-2/3 pl-7">
               <p class="text-2xl font-medium font-montserrat">
@@ -45,7 +45,7 @@ const router = useRouter()
           </div>
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow"
-              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '14' } })">
+              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '15' } })">
             <div class="flex flex-col gap-3 w-2/3 pl-7">
               <p class="text-2xl font-medium font-montserrat">
                 {{ $t('mainPage.choose_type.varnish.title') }}
@@ -63,7 +63,7 @@ const router = useRouter()
         <div class="h-full flex flex-col md:flex-row gap-5">
           <div
               class="w-full md:w-1/2 set_shadow rounded-xl flex items-center bg-white transition-all cursor-pointer hov_element hover:shadow-hovShadow"
-              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '15' } })">
+              @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': '14' } })">
             <div class="flex flex-col gap-3 w-2/3 pl-7">
               <p class="text-2xl font-medium font-montserrat">
                 {{ $t('mainPage.choose_type.dye.title') }}

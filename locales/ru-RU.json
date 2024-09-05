@@ -1,6 +1,11 @@
 {
   "orders": {
     "title": "Мои заказы",
+    "statuses": {
+      "created": "Создан",
+      "in_process": "В обработке",
+      "ended": "Завершен"
+    },
     "order": {
       "title": "Заказ",
       "status": "Статус",

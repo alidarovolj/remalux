@@ -228,6 +228,7 @@ const removeColor = async () => {
 onMounted(async () => {
   await nextTick()
   const {searchKeyword} = route.query;
+  console.log(route.query['filters[product.category_id]'])
   if (searchKeyword) {
     searchForm.value.searchKeyword = searchKeyword;
   }

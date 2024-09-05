@@ -25,7 +25,9 @@
                     <div>
                       <p class="text-xl font-medium mb-5">{{ $t('orders.order.title') }} №{{ item.id }}</p>
                       <p class="text-sm font-medium">{{ $t('orders.order.status') }}: <span v-if="item.status === 'created'"
-                                                                   class="text-orange-500">Создан</span>
+                                                                   class="text-blue-500">{{ $t('orders.statuses.created') }}</span><span v-if="item.status === 'in_process'"
+                                                                                                              class="text-orange-500">{{ $t('orders.statuses.in_process') }}</span><span v-if="item.status === 'ended'"
+                                                                                                                                                         class="text-green-500">{{ $t('orders.statuses.ended') }}</span>
                       </p>
                     </div>
                     <div class="text-right">

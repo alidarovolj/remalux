@@ -84,6 +84,7 @@ export const useProductsStore = defineStore("products", () => {
                 }, route.query);
                 addedFavouriteProducts.value = response;
                 this.getProducts()
+                this.getVariantsList()
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }
@@ -94,6 +95,7 @@ export const useProductsStore = defineStore("products", () => {
                 const response = await api(`/api/favourite-products`, "DELETE", {}, query);
                 removedFavouriteProducts.value = response;
                 this.getProducts()
+                this.getVariantsList()
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }
