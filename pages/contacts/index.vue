@@ -13,6 +13,16 @@ const {cur_lang} = storeToRefs(languages);
 const localePath = useLocalePath();
 const {t} = useI18n();
 
+const days = computed(() => [
+  {title: t('days.monday'), value: 'monday'},
+  {title: t('days.tuesday'), value: 'tuesday'},
+  {title: t('days.wednesday'), value: 'wednesday'},
+  {title: t('days.thursday'), value: 'thursday'},
+  {title: t('days.friday'), value: 'friday'},
+  {title: t('days.saturday'), value: 'saturday'},
+  {title: t('days.sunday'), value: 'sunday'},
+]);
+
 const activeContact = ref(null);
 
 const links = computed(() => [
@@ -141,16 +151,22 @@ useHead({
               </div>
             </div>
             <div
-                class="w-full flex items-center text-sm border-b border-[#F0DFDF] pb-2"
+                class="w-full flex items-start text-sm border-b border-[#F0DFDF] pb-2"
                 data-aos="fade-up">
               <p class="w-1/4 text-mainColor">{{ $t('contacts.work_time') }}</p>
-              <div class="w-3/4 ml-2 font-semibold flex flex-col">
-                <p>{{ $t('contacts.work_info.first.from') }} {{ activeContact.work_time.weekdays[0] }}
-                  {{ $t('contacts.work_info.first.to') }}
-                  {{ activeContact.work_time.weekdays[1] }}</p>
-                <p>{{ $t('contacts.work_info.second.from') }} {{ activeContact.work_time.weekends[0] }}
-                  {{ $t('contacts.work_info.second.to') }}
-                  {{ activeContact.work_time.weekends[1] }}</p>
+              <div class="w-3/4 ml-2 font-semibold flex flex-col gap-1">
+                <div
+                    v-for="(item, index) of activeContact.work_time"
+                    :key="index"
+                    class="flex items-center"
+                >
+                  <p class="w-[150px] min-w-[150px]">
+                    {{ days[index].title }}
+                  </p>
+                  <p>
+                    {{ item.start_time }} - {{ item.end_time }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
