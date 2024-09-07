@@ -118,7 +118,7 @@ const totalArea = computed(() => {
 });
 
 const paintNeeded = computed(() => {
-  return (totalArea.value * form.value.layers) / 3.5;
+  return (totalArea.value * form.value.layers * detailProduct.value.expense) / 1000;
 });
 
 const addToCartLocal = async () => {
@@ -153,6 +153,41 @@ const addToCartLocal = async () => {
   }
 
 }
+
+const dynamicTitle = computed(() => {
+  return detailProduct.value?.title[cur_lang.value];
+});
+
+const dynamicMeta = computed(() => {
+  return [
+    {
+      property: "description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:title",
+      content: dynamicTitle.value,
+    },
+    {
+      property: "og:url",
+      content: `${t("headers.store.og_url")}/${route.params.id}`,
+    },
+  ];
+});
+
+const dynamicLink = computed(() => {
+  return [{ rel: "canonical", href: `${t("headers.store.canonical")}/${route.params.id}` }];
+});
+
+useHead({
+  title: dynamicTitle,
+  meta: dynamicMeta,
+  link: dynamicLink,
+});
 </script>
 
 <template>
@@ -439,6 +474,9 @@ const addToCartLocal = async () => {
                     </p>
                   </div>
                 </div>
+              </div>
+              <div class="mb-8">
+                <p>Норма расхода: <span class="text-mainColor">{{ detailProduct.expense }} г/м2</span></p>
               </div>
               <div v-if="calculatorActive" class="mb-8">
                 <div class="flex gap-4 items-end">

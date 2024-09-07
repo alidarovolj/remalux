@@ -262,14 +262,6 @@ watch(
     }
 );
 
-// watch(
-//     () => [route.query],
-//     async () => {
-//       await products.getVariantsList()
-//       await filtersStore.getFilters()
-//     }
-// )
-
 useHead({
   title: t("headers.store.title"),
   meta: [
@@ -539,7 +531,7 @@ useHead({
                               <DisclosureButton
                                   class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]">
                                 <span class="text-xl text-start font-medium text-gray-900 font-montserrat">
-                                  Красящиеся
+                                  {{ $t('sorting.colorable') }}
                                 </span>
                                 <span class="ml-6 flex h-7 items-center text-black">
                                   <ChevronDownIcon
