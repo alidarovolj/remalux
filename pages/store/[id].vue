@@ -1,5 +1,5 @@
 <script setup>
-import {CalculatorIcon, MinusIcon, PlusIcon} from "@heroicons/vue/24/outline";
+import {CalculatorIcon, Square3Stack3DIcon, MinusIcon, PlusIcon, SunIcon, CubeTransparentIcon, EyeDropperIcon, ClockIcon, PaintBrushIcon} from "@heroicons/vue/24/outline";
 import {useProductsStore} from "~/stores/products.js";
 import {useLanguagesStore} from "~/stores/languages.js";
 import {storeToRefs} from "pinia";
@@ -306,9 +306,19 @@ const addToCartLocal = async () => {
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                 </svg>
               </div>
-              <h1 class="text-3xl font-medium font-montserrat mb-4 w-[90%]">
-                {{ detailProduct.title[cur_lang] }}
-              </h1>
+              <div class="flex items-center gap-2 mb-4">
+                <div
+                    v-if="detailProduct.is_colorable"
+                    class="w-8 h-8 flex items-center justify-center">
+                  <img
+                      class="w-6 h-6"
+                      src="@/assets/img/rgb.png"
+                      alt="">
+                </div>
+                <h1 class="text-3xl font-medium font-montserrat w-[90%]">
+                  {{ detailProduct.title[cur_lang] }}
+                </h1>
+              </div>
               <p class="text-sm text-[#7B7B7B] mb-8">
                 {{ $t('products.details.article') }}: {{ detailProduct.article }}
               </p>
@@ -510,7 +520,13 @@ const addToCartLocal = async () => {
                   :class="{ 'border-b border-[#F0DFDF]' : index !== detailProduct.filter_data.length - 1 }"
                   class="py-4 px-6 flex items-center gap-4"
               >
-                <div v-html="item.svg" class="w-6 h-6 text-mainColor"/>
+                <EyeDropperIcon v-if="item.id === 10" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
+                <Square3Stack3DIcon v-if="item.id === 16" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
+                <PaintBrushIcon v-if="item.id === 13" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
+                <CubeTransparentIcon v-if="item.id === 11" class="w-6 h-6 min-w-6 min-h-6 text-mainColor" />
+                <ClockIcon v-if="item.id === 14" class="w-6 h-6 min-w-6 min-h-6 text-mainColor" />
+                <SunIcon v-if="item.id === 15" class="w-6 h-6 min-w-6 min-h-6 text-mainColor" />
+
                 <div>
                   <p class="font-medium font-montserrat">{{ item.title[cur_lang] }}</p>
                   <p class="text-sm text-[#7B7B7B] font-montserrat">{{ item.value[cur_lang] }}</p>

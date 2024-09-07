@@ -529,6 +529,76 @@ useHead({
                     <client-only>
                       <form v-if="filtersStore.filtersList" class="mt-4">
                         <Disclosure
+                            v-slot="{ open }"
+                            as="div"
+                            class="border-t border-[#F0DFDF]"
+                            :defaultOpen="true"
+                        >
+                          <fieldset>
+                            <legend class="w-full">
+                              <DisclosureButton
+                                  class="flex w-full items-center justify-between p-4 text-gray-400 hover:text-gray-500 border-b border-[#F0DFDF]">
+                                <span class="text-xl text-start font-medium text-gray-900 font-montserrat">
+                                  Красящиеся
+                                </span>
+                                <span class="ml-6 flex h-7 items-center text-black">
+                                  <ChevronDownIcon
+                                      :class="[open ? '-rotate-180' : 'rotate-0', 'h-7 w-7 transform']"
+                                      aria-hidden="true"
+                                  />
+                                </span>
+                              </DisclosureButton>
+                            </legend>
+
+                            <div
+                                :class="{
+                                  'transition-max-height overflow-hidden overflow-y-auto': true,
+                                  'max-h-0': !open,
+                                  'max-h-96': open
+                                }"
+                            >
+                              <DisclosurePanel>
+                                <div class="space-y-4 bg-[#F9F9F9] px-4 py-4">
+                                  <div class="flex gap-3 items-center">
+                                    <input
+                                        id="colorable"
+                                        :checked="route.query.is_colorable?.includes(1)"
+                                        name="colorable"
+                                        value="0"
+                                        class="h-4 w-4 min-w-4 min-h-4 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
+                                        type="radio"
+                                        @change="updateSorting('desc', 1)"
+                                    />
+                                    <label
+                                        for="colorable"
+                                        class="text-sm text-[#191919]"
+                                    >
+                                      {{ $t('sorting.colorable') }}
+                                    </label>
+                                  </div>
+                                  <div class="flex gap-3 items-center">
+                                    <input
+                                        id="non-colorable"
+                                        :checked="route.query.is_colorable?.includes(0)"
+                                        name="non-colorable"
+                                        value="0"
+                                        class="h-4 w-4 min-w-4 min-h-4 rounded border-gray-300 text-mainColor focus:ring-indigo-500"
+                                        type="radio"
+                                        @change="updateSorting('desc', 0)"
+                                    />
+                                    <label
+                                        for="non-colorable"
+                                        class="text-sm text-[#191919]"
+                                    >
+                                      {{ $t('sorting.non_colorable') }}
+                                    </label>
+                                  </div>
+                                </div>
+                              </DisclosurePanel>
+                            </div>
+                          </fieldset>
+                        </Disclosure>
+                        <Disclosure
                             v-for="section in filtersStore.filtersList.data"
                             :key="section.name"
                             v-slot="{ open }"
@@ -691,24 +761,6 @@ useHead({
                               class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
                               @click="updateSorting('desc')">
                             {{ $t('sorting.name_desc') }}
-                          </div>
-                        </MenuItem>
-                        <!-- Sort by Colorable Products -->
-                        <MenuItem as="div">
-                          <div
-                              :class="{ 'bg-mainColor text-white': route.query.is_colorable === '1' }"
-                              class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
-                              @click="updateSorting('desc', 1)">
-                            {{ $t('sorting.colorable') }}
-                          </div>
-                        </MenuItem>
-                        <!-- Sort by Non-Colorable Products -->
-                        <MenuItem as="div">
-                          <div
-                              :class="{ 'bg-mainColor text-white': route.query.is_colorable === '0' }"
-                              class="block px-4 py-2 text-sm cursor-pointer transition-all hover:bg-mainColor hover:text-white"
-                              @click="updateSorting('desc', 0)">
-                            {{ $t('sorting.non_colorable') }}
                           </div>
                         </MenuItem>
                       </div>

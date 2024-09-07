@@ -778,7 +778,8 @@ onMounted(async () => {
                   :class="{ '!border-red-500': v$.bin.$error }"
                   :placeholder="t('forms.bin_placeholder')"
                   class="w-full p-4 border-b border-[#F0DFDF]"
-                  type="text"
+                  type="number"
+                  @input="form.bin = form.bin.toString().slice(0, 12)"
               />
               <div class="w-full relative">
                 <input

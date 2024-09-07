@@ -30,17 +30,16 @@ const subscribeUser = async () => {
   }
 
   try {
-    const response = await api(`/api/auth/registration`, "POST", {
+    const response = await api(`/api/subscribe`, "POST", {
       body: JSON.stringify(form.value)
     }, route.query);
 
     console.log(response)
 
-    if (response.message === "Success !") {
-      notifications.showNotification("success", "Успешно", "Вы успешно зарегистрировались!");
-      loading.value = false;
-      router.push(localePath('/login'));
-    }
+    notifications.showNotification("success", "Успешно", "Вы успешно зарегистрировались на почтовую рассылку!");
+    loading.value = false;
+    form.value.email = "";
+    form.value.agreement = false;
   } catch (e) {
     notifications.showNotification("error", "Произошла ошибка", e);
   }
@@ -89,7 +88,8 @@ const subscribeUser = async () => {
                     class="w-6 h-6"
                     type="checkbox">
                 <p :class="{'outline-red-500': v$.$dirty && v$.agreement.$error}">
-                  {{ $t('newsletter.agreement.first') }} <a class="text-mainColor" href="#">{{ $t('newsletter.agreement.second') }}</a>
+                  {{ $t('newsletter.agreement.first') }} <a class="text-mainColor"
+                                                            href="#">{{ $t('newsletter.agreement.second') }}</a>
                 </p>
               </label>
             </form>

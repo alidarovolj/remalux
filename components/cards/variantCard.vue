@@ -24,7 +24,16 @@ const {cur_lang} = storeToRefs(language);
             alt=""
             class="w-full min-w-full h-[210px] object-contain mx-auto mb-4 transition-all absolute -top-1/2 left-0">
       </NuxtLink>
+      <div
+          v-if="productData.product.is_colorable"
+          class="absolute left-3 top-3 w-8 h-8 flex items-center justify-center">
+        <img
+            class="w-6 h-6"
+            src="@/assets/img/rgb.png"
+            alt="">
+      </div>
       <div class="absolute right-3 top-3 p-2 w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
+
         <svg
             v-if="productData.is_favourite"
             @click="products.removeFromFavouriteProducts(productData.product.id)"
