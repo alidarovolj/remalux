@@ -62,7 +62,7 @@
     "history_2000": "We began to use new production technologies, significantly increasing the durability and environmental friendliness of our products.",
     "history_2010": "Remalux has expanded its presence throughout the country, offering products in large retail chains and specialty stores.",
     "history_2015": "We launched an export program, entering international markets and starting cooperation with partners around the world.",
-    "history_2023": "We have opened a state-of-the-art manufacturing facility, increasing our capacity and expanding our product range to better meet our customers' needs.",
+    "history_2023": "We opened a state-of-the-art manufacturing facility, increasing our capacity and expanding our product range to better meet our customers' needs.",
     "branches_title": "Branches",
     "branches_description": "Remlux has 6 branches in all major cities of Kazakhstan with its head office in Almaty.",
     "clients_count": "8000+",
@@ -93,6 +93,12 @@
     }
   },
   "headers": {
+    "payment_delivery": {
+      "title": "Delivery and payment - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/payment-delivery",
+      "canonical": "https://remalux.kz/payment-delivery"
+    },
     "mainPage": {
       "title": "Home page - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
@@ -342,13 +348,111 @@
       "effective_date": "The new Privacy Policy comes into force from the moment it is posted on the Site, unless otherwise provided by the new edition of the Privacy Policy."
     }
   },
+  "payment_delivery": {
+    "title": "DELIVERY METHODS AND COSTS",
+    "delivery_methods": "Delivery methods",
+    "pickup": "Self-pickup – receipt of goods at the company’s office within 3 working days after the order status changes to “Available”.",
+    "payment_methods": "Payment methods for orders",
+    "cash_payment": "Cash:",
+    "cash_payment_details": [
+      "Cash payment is available at the checkout of a retail store when picking up the ordered goods.",
+      "Payment is made in the national currency “tenge”.",
+      "After receiving payment, a sales receipt is issued."
+    ],
+    "card_payment_on_receipt": "Payment by bank payment card upon receipt:",
+    "card_payment_on_receipt_details": [
+      "Payment by bank payment card is available at the checkout of a retail store when picking up the ordered goods."
+    ],
+    "card_payment_online": "Payment by bank payment card on the website when placing an order",
+    "card_payment_online_details": [
+      "The payment method requires payment by bank card. ",
+      "Attention! ",
+      "The system will automatically redirect you to the ePay electronic payment page of Halyk Bank of Kazakhstan JSC to enter card data. "
+    ]
+  },
+  "public_offer": {
+    "title": "PUBLIC OFFER AGREEMENT",
+    "subtitle": "Online store remalux.kz",
+    "intro": "This agreement between the online store remalux.kz, hereinafter referred to as the “Online store/Seller” and the user of the online store services, hereinafter referred to as the “Buyer”, defines the conditions for the purchase of goods through the online store website",
+    "terms": {
+      "title": "TERMS AND DEFINITIONS",
+      "buyer": "Buyer - any fully capable individual who orders or purchases goods by placing an Order on the website",
+      "seller": "The Seller is “K-COLOR” LLP “K-COLOR” (BIN 010440005708), an organization that sells Goods remotely, under a retail sales contract concluded on the basis of the buyer’s familiarization with what is offered on the Seller’s website at the address: remalux.kz.",
+      "store": "Online store - an Internet site owned by the Seller, where the goods offered by the Seller to its Buyers for placing Orders are presented, as well as the terms of payment and delivery of these Orders to Buyers.",
+      "site": "Website - www.remalux.kz.",
+      "product": "Goods are an object of the material world that has not been removed from civil circulation and is presented for sale on the Site and is available at the time of confirmation of shipment.",
+      "order": "Order - a duly completed request from the Buyer for delivery to the specified address of the list of Products selected on the Site.",
+      "account": "Personal Account - the Buyer’s personal page on the Site, to access which a login and password are required, and which stores information about the Buyer and his Orders.",
+      "delivery_service": "Delivery service is a third party that, under an agreement with the Seller, provides services for the delivery of Orders to Buyers."
+    },
+    "general_provisions": {
+      "title": "1. GENERAL PROVISIONS",
+      "item1": "By ordering goods through the online store, the Buyer agrees to the Terms of Sale of Goods set out below.",
+      "item2": "These Terms and information about the Product presented on the Site are a public offer in accordance with Article 395 of the Civil Code of the Republic of Kazakhstan, and if the conditions are accepted, the individual accepting this offer makes payment for the Seller’s Product in accordance with the terms of this Agreement.",
+      "item3": "The provisions of the Civil Code of the Republic of Kazakhstan, the Law of the Republic of Kazakhstan dated May 4, 2010 No. 274-IV “On the Protection of Consumer Rights” and other regulatory legal acts of the current legislation of the Republic of Kazakhstan apply to the relationship between the Buyer and the Seller.",
+      "item4": "The Seller reserves the right to make changes to these Terms, and the Buyer undertakes to regularly monitor changes in the “Public Offer Agreement” section.",
+      "item5": "The Buyer agrees to the Terms by clicking the “Place an Order” button at the last stage of placing an Order on the Site."
+    },
+    "registration": {
+      "title": "2. REGISTRATION ON THE SITE",
+      "item1": "To place an Order, the Buyer is recommended to register on the Site.",
+      "item2": "The Seller is not responsible for the accuracy and correctness of the information provided by the Buyer during registration.",
+      "item3": "The buyer undertakes not to disclose to third parties the login and password specified when registering his personal account. "
+    },
+    "order_placement": {
+      "title": "3. ORDER COMPLETION AND DATES",
+      "item1": "The Buyer's order can be placed in the following ways: accepted by telephone or placed by the Buyer independently on the Site.",
+      "item2": "When placing an Order, the Buyer must indicate the following information: Full name. ",
+      "item3": "The Seller has the right to refuse to conclude an agreement and place an Order without specifying reasons.",
+      "item4": "The order fulfillment period is from one working day, and can be negotiated individually depending on the characteristics and quantity of the Product.",
+      "item5": "Information materials on the Site are for reference purposes and may not fully convey information about the Product."
+    },
+    "delivery": {
+      "title": "4. DELIVERY",
+      "item1": "Methods of delivery of goods are agreed upon by the Buyer with the manager of the online store.",
+      "item2": "Delivery of Orders is carried out to the address specified by the Buyer, or by pickup from the store.",
+      "item3": "The Seller will make every effort to meet delivery deadlines, but delays may occur due to circumstances beyond the Seller’s control.",
+      "item4": "The risk of accidental loss or damage to the Goods passes to the Buyer from the moment the Order is transferred and signatures are received on the documents.",
+      "item5": "The delivery cost of each Order is calculated individually and is indicated at the last stage of placing the Order."
+    },
+    "price_payment": {
+      "title": "5. PRICE AND PAYMENT OF GOODS",
+      "item1": "The price of the Product in the online store is indicated in tenge.",
+      "item2": "The Seller has the right to change the price of the Product unilaterally, but the price of the paid Product cannot be changed.",
+      "item3": "The price of the Product is indicated at the last stage of placing the Order and is current at the time you click the “Place an Order” button.",
+      "item4": "Methods of payment for the Goods are indicated on the Site. "
+    },
+    "returns": {
+      "title": "6. RETURN OF GOODS AND MONEY",
+      "item1": "Return of goods of good quality is possible within 14 days from the date of receipt, provided that the presentation and documents confirming the purchase are preserved.",
+      "item2": "Returning goods of inadequate quality is possible if defects are detected, no later than 3 months before the expiration date of the product.",
+      "item3": "Refunds are made to the bank card with which the Order was paid."
+    },
+    "copyright": {
+      "title": "7. COPYRIGHT",
+      "content": "All materials presented on the Site are the property of K-COLOR LLP “K-COLOR” and are protected by copyright law. "
+    },
+    "warranty": {
+      "title": "8. WARRANTY AND LIABILITY",
+      "content": "The Seller is not responsible for damage caused to the Buyer due to improper use of the Goods. "
+    },
+    "confidentiality": {
+      "title": "9. CONFIDENTIALITY AND PROTECTION OF PERSONAL INFORMATION",
+      "content": "The Seller undertakes not to disclose the Buyer’s personal data. "
+    },
+    "footer": {
+      "content": "Detailed information can be found on the official website: remalux.kz."
+    }
+  },
   "breadcrumbs": {
+    "payment_delivery": "Delivery and payment",
     "home": "Home",
     "store": "Shop",
     "ideas": "Ideas",
     "news": "News",
     "cart": "Basket",
     "privacy": "Privacy Policy",
+    "public_offer": "Public offer agreement",
     "checkout": "Placing an order",
     "profile": "Profile",
     "addresses": "Addresses",
