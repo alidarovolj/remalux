@@ -1,6 +1,20 @@
 {
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
   "orders": {
     "title": "My orders",
+    "statuses": {
+      "created": "Created",
+      "in_process": "In processing",
+      "ended": "Completed"
+    },
     "order": {
       "title": "Order",
       "status": "Status",
@@ -48,7 +62,7 @@
     "history_2000": "We began to use new production technologies, significantly increasing the durability and environmental friendliness of our products.",
     "history_2010": "Remalux has expanded its presence throughout the country, offering products in large retail chains and specialty stores.",
     "history_2015": "We launched an export program, entering international markets and starting cooperation with partners around the world.",
-    "history_2023": "We opened a state-of-the-art manufacturing facility, increasing our capacity and expanding our product range to better meet our customers' needs.",
+    "history_2023": "We have opened a state-of-the-art manufacturing facility, increasing our capacity and expanding our product range to better meet our customers' needs.",
     "branches_title": "Branches",
     "branches_description": "Remlux has 6 branches in all major cities of Kazakhstan with its head office in Almaty.",
     "clients_count": "8000+",
@@ -82,92 +96,98 @@
     "mainPage": {
       "title": "Home page - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU",
-      "canonical": "https://globalart.ai/ru-RU"
+      "og_url": "https://remalux.kz",
+      "canonical": "https://remalux.kz"
     },
     "store": {
       "title": "Store - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/store",
-      "canonical": "https://globalart.ai/ru-RU/store"
+      "og_url": "https://remalux.kz/store",
+      "canonical": "https://remalux.kz/store"
+    },
+    "privacy": {
+      "title": "Privacy Policy - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/privacy-policy",
+      "canonical": "https://remalux.kz/privacy-policy"
     },
     "colors": {
       "title": "Paint - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/colors",
-      "canonical": "https://globalart.ai/ru-RU/colors"
+      "og_url": "https://remalux.kz/colors",
+      "canonical": "https://remalux.kz/colors"
     },
     "ideas": {
       "title": "Ideas - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/ideas",
-      "canonical": "https://globalart.ai/ru-RU/ideas"
+      "og_url": "https://remalux.kz/ideas",
+      "canonical": "https://remalux.kz/ideas"
     },
     "about": {
       "title": "About us - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/about",
-      "canonical": "https://globalart.ai/ru-RU/about"
+      "og_url": "https://remalux.kz/about",
+      "canonical": "https://remalux.kz/about"
     },
     "news": {
       "title": "News - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/news",
-      "canonical": "https://globalart.ai/ru-RU/news"
+      "og_url": "https://remalux.kz/news",
+      "canonical": "https://remalux.kz/news"
     },
     "contacts": {
       "title": "Contacts - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/contacts",
-      "canonical": "https://globalart.ai/ru-RU/contacts"
+      "og_url": "https://remalux.kz/contacts",
+      "canonical": "https://remalux.kz/contacts"
     },
     "profile": {
       "title": "Profile - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/profile",
-      "canonical": "https://globalart.ai/ru-RU/profile"
+      "og_url": "https://remalux.kz/profile",
+      "canonical": "https://remalux.kz/profile"
     },
     "addresses": {
       "title": "Profile - Addresses - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/profile",
-      "canonical": "https://globalart.ai/ru-RU/profile"
+      "og_url": "https://remalux.kz/profile",
+      "canonical": "https://remalux.kz/profile"
     },
     "recipients": {
       "title": "Profile - Recipients - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/profile",
-      "canonical": "https://globalart.ai/ru-RU/profile"
+      "og_url": "https://remalux.kz/profile",
+      "canonical": "https://remalux.kz/profile"
     },
     "login": {
       "title": "Authorization - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/login",
-      "canonical": "https://globalart.ai/ru-RU/login"
+      "og_url": "https://remalux.kz/login",
+      "canonical": "https://remalux.kz/login"
     },
     "registration": {
       "title": "Registration - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/registration",
-      "canonical": "https://globalart.ai/ru-RU/login"
+      "og_url": "https://remalux.kz/registration",
+      "canonical": "https://remalux.kz/login"
     },
     "forgot_pass": {
       "title": "Forgot your password - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/forgot-password",
-      "canonical": "https://globalart.ai/ru-RU/forgot-password"
+      "og_url": "https://remalux.kz/forgot-password",
+      "canonical": "https://remalux.kz/forgot-password"
     },
     "cart": {
       "title": "Cart - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/cart",
-      "canonical": "https://globalart.ai/ru-RU/cart"
+      "og_url": "https://remalux.kz/cart",
+      "canonical": "https://remalux.kz/cart"
     },
     "checkout": {
       "title": "Place an order - Remalux",
       "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ru-RU/cart/checkout",
-      "canonical": "https://globalart.ai/ru-RU/cart/checkout"
+      "og_url": "https://remalux.kz/cart/checkout",
+      "canonical": "https://remalux.kz/cart/checkout"
     }
   },
   "partners": {
@@ -247,12 +267,88 @@
       "description": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
     }
   },
+  "privacy_policy": {
+    "title": "Privacy Policy",
+    "intro": "The privacy policy (hereinafter - the Policy) applies to personal data that K-COLOR LLP \"K-COLOR\" (hereinafter - the LLP) can receive from the user when the latter visits the site https://remalux.kz (hereinafter - the Site) ",
+    "terms": {
+      "title": "1. DEFINITION OF TERMS",
+      "admin": "The site administration (hereinafter referred to as the Administration) is authorized employees...",
+      "personal_data": "Personal data - any information relating to a directly or indirectly identified person...",
+      "data_processing": "Processing of personal data is any action (operation) or set of actions...",
+      "confidentiality": "Confidentiality of personal data is a must...",
+      "site": "The website of the online store remalux.kz (hereinafter referred to as the Website) is a collection of interconnected web pages...",
+      "user": "Site user (hereinafter referred to as User) is a person who has access to the site...",
+      "cookies": "Cookies are a small piece of data sent by a web server and stored on the user's computer...",
+      "ip_address": "IP address is a unique network address of a node on a computer network through which the User gains access...",
+      "product": "Goods - a product that the User orders on the website and pays through payment systems."
+    },
+    "general": {
+      "title": "2. GENERAL PROVISIONS",
+      "usage": "Use of the Site Online store remalux.kz by the User means agreement with this Privacy Policy...",
+      "disagreement": "In case of disagreement with the terms of the Privacy Policy, the User must stop using the Site.",
+      "application": "This Privacy Policy applies to the website owned by K-COLOR LLP \"K-COLOR\"...",
+      "verification": "The Administration does not verify the accuracy of the personal data provided by the User."
+    },
+    "subject": {
+      "title": "3. SCOPE OF THE PRIVACY POLICY",
+      "obligations": "This Privacy Policy establishes the Administration's non-disclosure obligations...",
+      "data": "Personal data permitted for processing under this Privacy Policy...",
+      "ssl": "The online store uses a certified SSL key for data encryption when transmitted via the HTTPS protocol...",
+      "cookies": "Disabling cookies may result in the inability to access parts of the site that require authorization.",
+      "other_info": "Any other personal information not specified above is subject to secure storage and non-distribution..."
+    },
+    "purposes": {
+      "title": "4. PURPOSES OF COLLECTING USER’S PERSONAL INFORMATION",
+      "identification": "Identification of the User registered on the Site for his further authorization...",
+      "access": "Providing the User with access to personalized data from the Site.",
+      "feedback": "Establishing feedback with the User, including sending notifications...",
+      "location": "Determining the User's location to ensure security, prevent fraud..."
+    },
+    "processing": {
+      "title": "5. METHODS AND TERMS OF PROCESSING PERSONAL DATA",
+      "methods": "The processing of the User's personal data is carried out without limitation of time, in any legal way...",
+      "third_parties": "The User agrees that the Administration has the right to transfer personal data to third parties...",
+      "government": "The User's personal data may be transferred to authorized government bodies of the Republic of Kazakhstan...",
+      "loss": "In case of loss or disclosure of personal data, the Administration has the right not to inform the User...",
+      "measures": "The Administration takes the necessary organizational and technical measures to protect the User’s personal information...",
+      "cooperation": "The Administration, together with the User, takes all necessary measures to prevent losses or other negative consequences..."
+    },
+    "rights": {
+      "title": "6. RIGHTS AND OBLIGATIONS OF THE PARTIES",
+      "decision": "The user has the right to make a free decision about providing his personal data...",
+      "information": "The User has the right to receive from the Administration information regarding the processing of his personal data...",
+      "use": "The administration is obliged to use the information received exclusively for the purposes specified in clause 4 of this Policy...",
+      "confidentiality": "The Administration is obliged to ensure that confidential information is kept secret and not disclosed without the prior written permission of the User...",
+      "blocking": "The Administration is obliged to block the User’s personal data from the moment the User contacts or requests..."
+    },
+    "responsibilities": {
+      "title": "7. RESPONSIBILITY OF THE PARTIES",
+      "loss": "The administration that fails to fulfill its obligations is responsible for losses incurred by the User...",
+      "disclosure": "The administration is not responsible for the loss or disclosure of confidential information if this information...",
+      "law": "The user bears full responsibility for compliance with the requirements of the legislation of the Republic of Kazakhstan...",
+      "deletion": "The Administration is not liable to the User for any loss or damage incurred by the User as a result of the removal...",
+      "usage": "The administration is not responsible for any direct or indirect losses resulting from: use or inability to use the Site..."
+    },
+    "disputes": {
+      "title": "8. DISPUTE RESOLUTION",
+      "pre_court": "Before filing a claim in court regarding disputes arising from the relationship between the User and the Administration...",
+      "notification": "The recipient of the claim, within 20 calendar days from the date of receipt of the claim, notifies the applicant in writing or electronically...",
+      "arbitration": "If no agreement is reached, the dispute will be referred to the Arbitration Court of Almaty.",
+      "law": "The current legislation of the Republic of Kazakhstan applies to this Privacy Policy and the relationship between the User and the Administration."
+    },
+    "additional": {
+      "title": "9. ADDITIONAL TERMS",
+      "changes": "The Administration has the right to make changes to this Privacy Policy without the User’s consent.",
+      "effective_date": "The new Privacy Policy comes into force from the moment it is posted on the Site, unless otherwise provided by the new edition of the Privacy Policy."
+    }
+  },
   "breadcrumbs": {
     "home": "Home",
     "store": "Shop",
     "ideas": "Ideas",
     "news": "News",
     "cart": "Basket",
+    "privacy": "Privacy Policy",
     "checkout": "Placing an order",
     "profile": "Profile",
     "addresses": "Addresses",
@@ -575,7 +671,7 @@
       "area": "Total area",
       "on": "On",
       "layer": "layer",
-      "liters": "liters",
+      "liters": "kilograms",
       "add_to_cart": "Add to cart",
       "tabs": {
         "description": "Description",

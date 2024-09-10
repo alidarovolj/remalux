@@ -20,6 +20,41 @@ onMounted(async () => {
   await nextTick()
   await news.getDetailNews(route.params.id)
 })
+
+const dynamicTitle = computed(() => {
+  return newsDetail.value?.title[cur_lang.value] + " - Remalux";
+});
+
+const dynamicMeta = computed(() => {
+  return [
+    {
+      property: "description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:title",
+      content: dynamicTitle.value,
+    },
+    {
+      property: "og:url",
+      content: `${t("headers.store.og_url")}/${route.params.id}`,
+    },
+  ];
+});
+
+const dynamicLink = computed(() => {
+  return [{ rel: "canonical", href: `${t("headers.news.canonical")}/${route.params.id}` }];
+});
+
+useHead({
+  title: dynamicTitle,
+  meta: dynamicMeta,
+  link: dynamicLink,
+});
 </script>
 
 <template>

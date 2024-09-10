@@ -55,6 +55,41 @@ onMounted(async () => {
   await nextTick()
   await ideas.getIdeaDetail(route.params.id)
 })
+
+const dynamicTitle = computed(() => {
+  return ideaDetail.value?.title[cur_lang.value] + " - Remalux";
+});
+
+const dynamicMeta = computed(() => {
+  return [
+    {
+      property: "description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:description",
+      content: t("headers.store.description"),
+    },
+    {
+      property: "og:title",
+      content: dynamicTitle.value,
+    },
+    {
+      property: "og:url",
+      content: `${t("headers.store.og_url")}/${route.params.id}`,
+    },
+  ];
+});
+
+const dynamicLink = computed(() => {
+  return [{ rel: "canonical", href: `${t("headers.ideas.canonical")}/${route.params.id}` }];
+});
+
+useHead({
+  title: dynamicTitle,
+  meta: dynamicMeta,
+  link: dynamicLink,
+});
 </script>
 
 <template>

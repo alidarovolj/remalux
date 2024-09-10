@@ -34,6 +34,10 @@ export default defineNuxtConfig({
                     src: 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=1abcd0bf-59be-4a9a-8721-eb1c7919924b&suggest_apikey=32f1a6de-cbcd-47e3-875d-10e4c212ef50&mode=debug&load=package.full&onload=mscDistance.Ymaps.ready&ns=ymaps',
                     async: true,
                 },
+                {
+                    src: "//code.jivosite.com/widget/nEEcAaqS9s",
+                    async: true,
+                }
             ],
         },
     },
