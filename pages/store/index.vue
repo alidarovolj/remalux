@@ -354,15 +354,15 @@ useHead({
       <div class="container mx-auto px-4 lg:px-0 pb-16">
         <div
             v-if="categories.categoriesList"
-            class="flex flex-col md:flex-row gap-5">
+            class="lg:grid md:grid-cols-4 lg:gap-x-5 lg:gap-y-5 font-manrope">
           <div
               v-for="(category, index) in categories.categoriesList.data"
               :key="index"
               :class="{ 'for_gradient text-mainColor' : parseInt(route.query['filters[product.category_id]']) === category.id }"
-              class="relative w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] transition-all cursor-pointer text-[#7B7B7B] hover:shadow-hovShadow"
+              class="relative w-full set_shadow rounded-xl flex items-center bg-[#F9F9F9] transition-all cursor-pointer text-[#7B7B7B] hover:shadow-hovShadow h-[90px]"
               @click="updateCategoryFilter(category.id)">
             <div class="flex flex-col gap-5 w-2/3 pl-3">
-              <p class="font-medium text-xs font-montserrat">
+              <p class="text-xl font-montserrat">
                 {{ category.title[cur_lang] }}
               </p>
             </div>

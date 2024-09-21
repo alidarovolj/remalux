@@ -1,5 +1,16 @@
 <script setup>
-import {Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
+import {
+  Dialog,
+  DialogPanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Popover,
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel
+} from '@headlessui/vue'
 import {
   Bars3Icon,
   HeartIcon,
@@ -7,6 +18,8 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
   PaintBrushIcon,
+  PhoneIcon,
+  PlayCircleIcon,
   MagnifyingGlassIcon
 } from '@heroicons/vue/24/outline'
 import {useUserStore} from "~/stores/user.js";
@@ -15,6 +28,12 @@ import {useNotificationStore} from "~/stores/notifications.js";
 import {useAuthStore} from "~/stores/auth.js";
 import {useColorsStore} from "~/stores/colors.js";
 import {useProductsStore} from "~/stores/products.js";
+import {useCategoriesStore} from "~/stores/categories.js";
+
+const callsToAction = [
+  {name: 'Watch demo', href: '#', icon: PlayCircleIcon},
+  {name: 'Contact sales', href: '#', icon: PhoneIcon},
+]
 
 const searchValue = ref('')
 const loading = ref(false)
@@ -30,11 +49,14 @@ const {token} = storeToRefs(auth)
 const cart = useCartStore()
 const colors = useColorsStore()
 const products = useProductsStore()
+const categories = useCategoriesStore()
+const languages = useLanguagesStore()
+const {cur_lang} = storeToRefs(languages)
+const productDrop = ref(false)
 
 const searchOpen = ref(false)
 
 const navigation = computed(() => [
-  {name: t('header_links.store'), href: localePath('/store')},
   {name: t('header_links.choose_color'), href: localePath('/colors')},
   {name: t('header_links.ideas'), href: localePath('/ideas')},
   {name: t('header_links.about_us'), href: localePath('/about')},
@@ -91,6 +113,7 @@ onMounted(async () => {
     await products.getFavouriteProducts()
   }
   window.addEventListener('scroll', handleScroll);
+  await categories.getCategories()
 })
 
 onUnmounted(() => {
@@ -127,11 +150,57 @@ onUnmounted(() => {
           </button>
         </div>
         <div class="hidden lg:flex items-center lg:gap-x-5 uppercase navigation">
+          <client-only>
+            <PopoverGroup class="hidden lg:flex">
+              <Popover v-slot="{ open }" class="relative">
+                <PopoverButton
+                    @click="productDrop = !productDrop"
+                    class="flex items-center gap-x-1 uppercase text-xs font-semibold leading-6 text-gray-900">
+                  {{ t('header_links.store') }}
+                  <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
+                </PopoverButton>
+
+                <transition
+                    enter-active-class="transition ease-out duration-200"
+                    enter-from-class="opacity-0 translate-y-1"
+                    enter-to-class="opacity-100 translate-y-0"
+                    leave-active-class="transition ease-in duration-150"
+                    leave-from-class="opacity-100 translate-y-0"
+                    leave-to-class="opacity-0 translate-y-1"
+                >
+                  <PopoverPanel
+                      v-slot="{ close }"
+                      class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+                  >
+                    <div class="p-4 md:grid md:grid-cols-2 lg:gap-x-5 lg:gap-y-5 font-manrope">
+                      <div
+                          v-for="(item, index) in categories?.categoriesList?.data"
+                          :key="index"
+                          @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': item.id } }); close()"
+                          class="group relative flex gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50 cursor-pointer items-center"
+                      >
+                        <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <img class="h-full w-full" :src="item.image_url" alt="" />
+                        </div>
+                        <div class="flex-auto">
+                          <div class="block font-semibold text-gray-900">
+                            {{ item.title[cur_lang] }}
+                            <span class="absolute inset-0" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </PopoverPanel>
+                </transition>
+              </Popover>
+            </PopoverGroup>
+          </client-only>
+
           <NuxtLink
               v-for="item in navigation"
               :key="item.name"
               :to="localePath(item.href)"
-              class="text-xs font-semibold leading-6 text-gray-900"
+              class="text-xs font-semibold leading-6 text-gray-900 links"
               @click="mobileMenuOpen = false">
             {{ item.name }}
           </NuxtLink>
@@ -213,7 +282,7 @@ onUnmounted(() => {
                   leave-from-class="transform opacity-100 scale-100"
                   leave-to-class="transform opacity-0 scale-95">
                 <MenuItems
-                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                   <div class="py-1">
                     <MenuItem v-slot="{ active }">
                       <NuxtLink
@@ -341,7 +410,7 @@ onUnmounted(() => {
                         leave-from-class="transform opacity-100 scale-100"
                         leave-to-class="transform opacity-0 scale-95">
                       <MenuItems
-                          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
                           <MenuItem v-slot="{ active }">
                             <NuxtLink

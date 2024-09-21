@@ -9,6 +9,11 @@ html, body {
     color: #333333;
 }
 
+button:focus-visible {
+    border: none;
+    outline: none;
+}
+
 .custom-dashed-border {
     @apply border-2 border-dashed border-gray-500;
     border-spacing: 30px; /* Customize this value for spacing between dashes */
@@ -117,25 +122,25 @@ input[type="checkbox"] {
 
 }
 
-.navigation a {
+.navigation a.links {
     position: relative;
     transition: all 0.3s;
 }
 
-.navigation a:hover {
+.navigation a.links:hover {
     color: #ad2725;
 }
 
-.navigation a:after {
+.navigation a.links:after {
     content: '';
     transition: all 0.2s;
 }
 
-.navigation a.router-link-active {
+.navigation a.links.router-link-active {
     color: #ad2725;
 }
 
-.navigation a.router-link-active:after {
+.navigation a.links.router-link-active:after {
     content: '';
     border-bottom: 3px solid #ad2725;
     position: absolute;
@@ -144,7 +149,7 @@ input[type="checkbox"] {
     left: 0;
 }
 
-.navigation a:hover:after {
+.navigation a.links:hover:after {
     content: '';
     border-bottom: 3px solid #ad2725;
     position: absolute;

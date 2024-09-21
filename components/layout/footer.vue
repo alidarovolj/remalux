@@ -67,7 +67,7 @@ const navigation = computed(() => {
   <footer
       aria-labelledby="footer-heading"
       class="bg-white">
-    <NewsLetter />
+    <NewsLetter/>
     <div class="container mx-auto px-4 lg:px-0 pt-8">
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <div class="space-y-8">
@@ -133,6 +133,15 @@ const navigation = computed(() => {
                 {{ $t('footer_links.contacts.title') }}
               </h3>
               <div class="mt-6 space-y-3 text-sm">
+                <a
+                    href="https://2gis.kz/almaty/firm/9429940000799734?m=76.849899%2C43.241916%2F16"
+                    class="flex items-center gap-2 text-mainColor">
+                  <img
+                      class="w-8 h-8"
+                      src="@/assets/img/icons/2gis.png"
+                      alt="">
+                  <p>{{ $t('footer_links.2gis') }}</p>
+                </a>
                 <p>
                   {{ $t('footer_links.contacts.address') }}
                 </p>

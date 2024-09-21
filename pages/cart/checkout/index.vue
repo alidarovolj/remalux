@@ -1,7 +1,7 @@
 <script setup>
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import {useCartStore} from "~/stores/cart.js";
-import {MinusIcon, PlusIcon, TrashIcon} from "@heroicons/vue/24/outline/index.js";
+import {MinusIcon, PlusIcon, TrashIcon, ExclamationCircleIcon} from "@heroicons/vue/24/outline/index.js";
 import NoResults from "~/components/general/noResults.vue";
 import {useNotificationStore} from "~/stores/notifications.js";
 import {useLanguagesStore} from "~/stores/languages.js";
@@ -188,6 +188,12 @@ useHead({
                     @click="form.delivery_type_id = item.id; form.delivery_address_id = null; form.delivery_date = null">
                   <p>{{ item.title[cur_lang] }}</p>
                 </div>
+              </div>
+              <div class="bg-[#FAFAFA] rounded-lg p-3 flex items-center gap-3 mb-6">
+                <ExclamationCircleIcon class="w-8 h-8 text-red-500" />
+                <p class="text-sm">
+                  {{ $t('checkout.warning') }}
+                </p>
               </div>
               <div v-if="form.delivery_type_id === 1">
                 <label

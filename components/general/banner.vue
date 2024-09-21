@@ -25,14 +25,14 @@ const logoSrc = computed(() => {
               { '!text-white' : text_color === 'white' },
               { '!text-black' : text_color === 'black' }
             ]"
-            class="text-2xl md:text-[40px] font-medium font-montserrat">
-          <p class="mb-3">{{ title }}</p>
+            class="text-2xl md:text-[34px] font-medium font-montserrat">
+          <p class="mb-5">{{ title }}</p>
           <div class="flex items-top gap-2">
-            <p class="h-max leading-9 md:leading-3">{{ sec_title }}</p>
-            <img
-                :src="logoSrc"
-                alt=""
-                class="h-14">
+            <p class="h-max leading-9 md:leading-3">{{ sec_title }} <span>Remalux</span></p>
+<!--            <img-->
+<!--                :src="logoSrc"-->
+<!--                alt=""-->
+<!--                class="h-14">-->
           </div>
         </div>
       </div>
