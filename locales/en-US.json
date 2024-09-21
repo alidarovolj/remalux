@@ -8,6 +8,43 @@
     "saturday": "Saturday",
     "sunday": "Sunday"
   },
+  "projects": {
+    "title": "Our projects"
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Frequently Asked Questions",
+    "description": "Do you have any questions? ",
+    "quest": {
+      "title": "Question of interest",
+      "placeholder": "Write your question and we will answer it",
+      "button": "Leave a question"
+    },
+    "quest1": {
+      "title": "How to choose the right paint color?",
+      "answer": "To select a paint color, we recommend using our color palettes and online consultation. "
+    },
+    "quest2": {
+      "title": "What surfaces can be painted with Remalux paints?",
+      "answer": "Our paints are suitable for painting walls, ceilings, doors, furniture, metal and wooden surfaces."
+    },
+    "quest3": {
+      "title": "How long does it take for paint to dry completely?",
+      "answer": "The drying time of the paint depends on the temperature and humidity in the room. "
+    },
+    "quest4": {
+      "title": "Are Remalux paints environmentally friendly?",
+      "answer": "Yes, all Remalux paints are water-based and do not contain harmful substances."
+    },
+    "quest5": {
+      "title": "Can I apply the paint myself, or do I need a specialist?",
+      "answer": "Our paints are easy to apply yourself. "
+    },
+    "quest6": {
+      "title": "Where can I buy Remalux products?",
+      "answer": "You can purchase Remalux paints in our partner stores or order them on our website."
+    }
+  },
   "orders": {
     "title": "My orders",
     "statuses": {
@@ -98,6 +135,18 @@
       "description": "Remalux - high European quality at an affordable price. ",
       "og_url": "https://remalux.kz/payment-delivery",
       "canonical": "https://remalux.kz/payment-delivery"
+    },
+    "projects": {
+      "title": "Projects - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/projects",
+      "canonical": "https://remalux.kz/projects"
+    },
+    "faq": {
+      "title": "FAQ - Remalux",
+      "description": "Remalux - high European quality at an affordable price. ",
+      "og_url": "https://remalux.kz/faq",
+      "canonical": "https://remalux.kz/faq"
     },
     "mainPage": {
       "title": "Home page - Remalux",
@@ -382,7 +431,7 @@
       "site": "Website - www.remalux.kz.",
       "product": "Goods are an object of the material world that has not been removed from civil circulation and is presented for sale on the Site and is available at the time of confirmation of shipment.",
       "order": "Order - a duly completed request from the Buyer for delivery to the specified address of the list of Products selected on the Site.",
-      "account": "Personal Account - the Buyer’s personal page on the Site, to access which a login and password are required, and which stores information about the Buyer and his Orders.",
+      "account": "Personal Account - the Buyer’s personal page on the Site, to access which a login and password are required, and on which information about the Buyer and his Orders is stored.",
       "delivery_service": "Delivery service is a third party that, under an agreement with the Seller, provides services for the delivery of Orders to Buyers."
     },
     "general_provisions": {
@@ -401,7 +450,7 @@
     },
     "order_placement": {
       "title": "3. ORDER COMPLETION AND DATES",
-      "item1": "The Buyer's order can be placed in the following ways: accepted by telephone or placed by the Buyer independently on the Site.",
+      "item1": "The Buyer’s order can be placed in the following ways: accepted by telephone or placed by the Buyer independently on the Site.",
       "item2": "When placing an Order, the Buyer must indicate the following information: Full name. ",
       "item3": "The Seller has the right to refuse to conclude an agreement and place an Order without specifying reasons.",
       "item4": "The order fulfillment period is from one working day, and can be negotiated individually depending on the characteristics and quantity of the Product.",
@@ -419,7 +468,7 @@
       "title": "5. PRICE AND PAYMENT OF GOODS",
       "item1": "The price of the Product in the online store is indicated in tenge.",
       "item2": "The Seller has the right to change the price of the Product unilaterally, but the price of the paid Product cannot be changed.",
-      "item3": "The price of the Product is indicated at the last stage of placing the Order and is current at the time you click the “Place an Order” button.",
+      "item3": "The price of the Product is indicated at the last stage of placing the Order and is current at the time you click the “Place an order” button.",
       "item4": "Methods of payment for the Goods are indicated on the Site. "
     },
     "returns": {
@@ -464,11 +513,12 @@
     "payment_success": "Successful payment",
     "contacts": "Contacts",
     "colors": "Colors",
-    "partnership": "Partnership"
+    "partnership": "Partnership",
+    "projects": "Projects"
   },
   "shopOrCart": {
     "title": "Thanks for your choice!",
-    "text": "Please select one of the options below to continue shopping or proceed to cart.",
+    "text": "Please select one of the options below to continue shopping or proceed to your cart.",
     "button": "Continue shopping",
     "checkout": "Place an order"
   },
@@ -612,6 +662,7 @@
     "view_all_openings": "View all vacancies"
   },
   "checkout": {
+    "warning": "For orders over 300 kg, delivery is free.",
     "title": "Placing an order",
     "items": "Items in cart",
     "del_type": "Delivery type",
@@ -740,7 +791,8 @@
     "contacts": "Contacts",
     "login": "Login",
     "register": "Register",
-    "partners": "Become a partner"
+    "partners": "Become a partner",
+    "projects": "Projects"
   },
   "cards": {
     "more": "More details"
@@ -801,6 +853,7 @@
   },
   "footer_links": {
     "about_text": "K-TsVET LLP with the REMALUX trademark is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
+    "2gis": "We are at 2gis",
     "remalux": {
       "title": "Remalux",
       "about_us": "About Us",
