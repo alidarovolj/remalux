@@ -10,6 +10,10 @@ export const useProductsStore = defineStore("products", () => {
     const favouriteProducts = ref(null);
     const addedFavouriteProducts = ref(null);
     const removedFavouriteProducts = ref(null);
+    const productReviews = ref(null);
+    const productReviewsRating = ref(null);
+    const helpfulReview = ref(null);
+    const isReviewedOrNo = ref(null);
     const savedVariant = useCookie("savedVariant", {
         sameSite: true,
         maxAge: 60 * 60 * 24,
@@ -27,10 +31,30 @@ export const useProductsStore = defineStore("products", () => {
         favouriteProducts,
         addedFavouriteProducts,
         removedFavouriteProducts,
+        productReviews,
+        productReviewsRating,
+        helpfulReview,
+        isReviewedOrNo,
         async getProducts() {
             try {
                 const response = await api(`/api/products/paginated`, "GET", {}, route.query);
                 productsList.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async getProductReviews(id) {
+            try {
+                const response = await api(`/api/products/${id}/reviews`, "GET", {}, route.query);
+                productReviews.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async getProductReviewsRating(id) {
+            try {
+                const response = await api(`/api/products/${id}/reviews/rating`, "GET", {}, route.query);
+                productReviewsRating.value = response;
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }
@@ -47,6 +71,24 @@ export const useProductsStore = defineStore("products", () => {
             try {
                 const response = await api(`/api/products/${id}`, "GET", {}, route.query);
                 detailProduct.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async setReviewHelpful(form, id, review) {
+            try {
+                const response = await api(`/api/products/${id}/reviews/${review}/helpful`, "PATCH", {
+                    body: JSON.stringify(form)
+                }, route.query);
+                helpfulReview.value = response;
+            } catch (e) {
+                notifications.showNotification("error", "Произошла ошибка", e);
+            }
+        },
+        async isReviewed(id) {
+            try {
+                const response = await api(`/api/products/${id}/reviews/mark-exists`, "GET", {}, route.query);
+                isReviewedOrNo.value = response;
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }

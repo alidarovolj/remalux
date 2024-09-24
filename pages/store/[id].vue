@@ -1,5 +1,17 @@
 <script setup>
-import {CalculatorIcon, Square3Stack3DIcon, MinusIcon, PlusIcon, SunIcon, CubeTransparentIcon, EyeDropperIcon, ClockIcon, PaintBrushIcon} from "@heroicons/vue/24/outline";
+import {
+  CalculatorIcon,
+  Square3Stack3DIcon,
+  MinusIcon,
+  PlusIcon,
+  SunIcon,
+  CubeTransparentIcon,
+  EyeDropperIcon,
+  ClockIcon,
+  PaintBrushIcon,
+    HandThumbUpIcon,
+  HandThumbDownIcon,
+} from "@heroicons/vue/24/outline";
 import {useProductsStore} from "~/stores/products.js";
 import {useLanguagesStore} from "~/stores/languages.js";
 import {storeToRefs} from "pinia";
@@ -73,7 +85,7 @@ const breakpoints = ref({
 });
 
 const addToFav = async () => {
-  if(token.value) {
+  if (token.value) {
     await products.addToFavouriteProducts(detailProduct.value.id);
     await products.getDetailProduct(detailProduct.value.id)
   } else {
@@ -82,11 +94,25 @@ const addToFav = async () => {
 }
 
 const remFromFav = async () => {
-  if(token.value) {
+  if (token.value) {
     await products.removeFromFavouriteProducts(detailProduct.value.id);
     await products.getDetailProduct(detailProduct.value.id)
   } else {
     notifications.showNotification("error", "Ошибка", "Для добавления товара в избранное необходимо авторизоваться.");
+  }
+}
+
+const setHelpfulReview = async (form, comment) => {
+  if(token.value) {
+    if (comment.is_user_marked === false) {
+      await products.setReviewHelpful(form, detailProduct.value.id, comment.id);
+      await products.getProductReviews(detailProduct.value.id);
+      await products.getProductReviewsRating(detailProduct.value.id);
+    } else {
+      notifications.showNotification("error", "Ошибка", "Вы уже оценили данный отзыв.");
+    }
+  } else {
+    notifications.showNotification("error", "Ошибка", "Для оценки отзыва необходимо авторизоваться.");
   }
 }
 
@@ -95,13 +121,16 @@ onMounted(async () => {
   await products.getDetailProduct(route.params.id);
   await products.getSameProducts(route.params.id);
   await products.getRelatedProducts(route.params.id);
+  await products.getProductReviews(route.params.id);
+  await products.getProductReviewsRating(route.params.id);
+  // await products.isReviewed(route.params.id);
   await products.getProducts();
   if (products.savedVariant) {
     form.value.variant = products.savedVariant.id
     addToCart.value.product_variant_id = products.savedVariant.id
     prod_var.value = products.savedVariant.price;
   }
-  if(colorCookie.value) {
+  if (colorCookie.value) {
     addToCart.value.color_id = colorCookie.value.id
   }
   console.log(addToCart.value.color_id)
@@ -112,6 +141,9 @@ const links = computed(() => [
   {title: t('breadcrumbs.store'), link: localePath('/store')},
   {title: detailProduct.value?.title[cur_lang.value], link: localePath(`/store/${route.params.id}`)},
 ]);
+
+const reviews = computed(() => products.productReviews || []);
+const productReviewsRating = computed(() => products.productReviewsRating || {});
 
 const totalArea = computed(() => {
   return form.value.width * form.value.height;
@@ -180,7 +212,7 @@ const dynamicMeta = computed(() => {
 });
 
 const dynamicLink = computed(() => {
-  return [{ rel: "canonical", href: `${t("headers.store.canonical")}/${route.params.id}` }];
+  return [{rel: "canonical", href: `${t("headers.store.canonical")}/${route.params.id}`}];
 });
 
 useHead({
@@ -258,7 +290,7 @@ useHead({
               </div>
 
               <div
-                  v-else-if="!products.detailProduct.is_colorable"
+                  v-else
                   class="w-full h-full product-carousel">
                 <client-only>
                   <my-carousel-carousel
@@ -309,18 +341,6 @@ useHead({
                   </my-carousel-carousel>
                 </client-only>
               </div>
-
-              <NuxtLink
-                  v-else-if="!colorCookie && products.detailProduct.is_colorable"
-                  :to="localePath('/colors')"
-                  class="py-6 rounded flex items-center gap-4 justify-center mb-8 cursor-pointer absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div class="rounded-full flex items-center justify-center">
-                  <PlusIcon class="w-7 h-7 bg-[#F0DFDF] text-mainColor rounded-full p-1"/>
-                </div>
-                <p class="text-xl text-mainColor">
-                  {{ $t('products.details.choose_color') }}
-                </p>
-              </NuxtLink>
             </div>
             <div
                 class="w-full md:w-2/5 flex flex-col p-8 rounded-xl relative"
@@ -330,15 +350,19 @@ useHead({
                 <svg
                     v-if="detailProduct.is_favourite"
                     @click="remFromFav"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-mainColor">
-                  <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    class="size-6 text-mainColor">
+                  <path
+                      d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"/>
                 </svg>
 
                 <svg
                     v-else
                     @click="addToFav"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-mainColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6 text-mainColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
                 </svg>
               </div>
               <div class="flex items-center gap-2 mb-4">
@@ -359,7 +383,8 @@ useHead({
               </p>
               <div class="flex items-center gap-1 mb-8">
                 <div class="flex gap-1 items-center">
-                  <svg class="size-6 text-[#FFE814]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="size-6 text-[#FFE814]" fill="currentColor" viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
                     <path clip-rule="evenodd"
                           d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                           fill-rule="evenodd"/>
@@ -561,9 +586,9 @@ useHead({
                 <EyeDropperIcon v-if="item.id === 10" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
                 <Square3Stack3DIcon v-if="item.id === 16" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
                 <PaintBrushIcon v-if="item.id === 13" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
-                <CubeTransparentIcon v-if="item.id === 11" class="w-6 h-6 min-w-6 min-h-6 text-mainColor" />
-                <ClockIcon v-if="item.id === 14" class="w-6 h-6 min-w-6 min-h-6 text-mainColor" />
-                <SunIcon v-if="item.id === 15" class="w-6 h-6 min-w-6 min-h-6 text-mainColor" />
+                <CubeTransparentIcon v-if="item.id === 11" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
+                <ClockIcon v-if="item.id === 14" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
+                <SunIcon v-if="item.id === 15" class="w-6 h-6 min-w-6 min-h-6 text-mainColor"/>
 
                 <div>
                   <p class="font-medium font-montserrat">{{ item.title[cur_lang] }}</p>
@@ -611,6 +636,211 @@ useHead({
         </div>
       </div>
     </div>
+    <!-- Reviews Section -->
+    <div
+        v-if="productReviewsRating.rating && productReviewsRating.recommendation"
+        class="container mx-auto mt-10">
+      <div class="flex items-center gap-32 mb-6">
+        <div class="w-full md:w-1/3 md:min-w-1/3">
+          <h2 class="text-2xl font-bold">
+            {{ t('products.details.customer_reviews') }}
+          </h2>
+
+          <!-- Rating by Stars -->
+          <div class="mt-4">
+            <div
+                v-for="(ratingData, rating) in productReviewsRating.rating.by_rating"
+                :key="rating"
+                class="flex items-center gap-4 mb-2">
+              <div class="flex items-center gap-1">
+                <span class="font-bold">{{ rating }}</span>
+                <svg
+                    class="size-6 text-[#FFE814]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      clip-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                      fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div class="w-full bg-[#EEEEEE] h-3 rounded">
+                <div :style="{ width: ratingData.percentage + '%' }" class="bg-[#FFE814] h-3 rounded"></div>
+              </div>
+              <span>{{ ratingData.value }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-max">
+          <p class="mb-3">
+            Общая оценка
+          </p>
+          <div class="flex gap-3 mb-4">
+            <p class="text-6xl">{{ detailProduct.rating.rating }}</p>
+            <div class="flex flex-col justify-between">
+              <div class="flex gap-1">
+                <svg
+                    v-for="(item, index) of Math.round(detailProduct.rating.rating)"
+                    :key="index"
+                    class="size-6 text-[#FFE814]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      clip-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                      fill-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                    v-for="(item, index) of Math.round(5 - detailProduct.rating.rating)"
+                    :key="index"
+                    class="size-6 text-[#D6D6D6]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      clip-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                      fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <p>
+                {{ reviews.data.length }} {{ t('products.details.reviews') }}
+              </p>
+            </div>
+
+          </div>
+          <p>{{ products.productReviewsRating.recommendation.recommended }} из
+            {{ products.productReviewsRating.recommendation.total }}
+            ({{ products.productReviewsRating.recommendation.percentage }}%) рецензентов рекомендуют этот продукт</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 w-full md:w-1/3">
+        <h3 class="text-xl font-bold">Поделитесь своим отзывом</h3>
+        <p>Если вы уже пользовались этим продуктом, поделитесь своими мыслями с другими покупателями</p>
+        <p
+            @click="modals.showModal('addReview', detailProduct.id)"
+            class="w-full flex items-center justify-center border border-mainColor text-mainColor py-3 rounded-lg hover:text-white hover:bg-mainColor transition-all cursor-pointer">
+          Оставить отзыв
+        </p>
+      </div>
+    </div>
+
+    <!-- Existing Reviews Section -->
+    <div
+        v-if="products.productReviews"
+        class="container mx-auto px-4 md:px-0">
+      <div
+          v-if="reviews.data.length > 0"
+          class="mt-10">
+
+        <div class="flex items-center gap-2 mt-4 border-b pb-5">
+          <p>{{ reviews.data.length }} отзывов</p>
+        </div>
+
+        <div
+            v-for="review in reviews.data"
+            :key="review.id"
+            class="py-6 border-b border-[#F0DFDF] flex items-start"
+        >
+          <div class="flex items-center gap-4 w-full md:w-1/5">
+            <img
+                class="w-9 h-9"
+                src="@/assets/img/avatar.png" alt="">
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col">
+                <p class="text-xl font-bold mb-2">
+                  {{ review.user.name }}
+                </p>
+                <div class="flex gap-1">
+                  <svg
+                      v-for="(item, index) of review.rating"
+                      :key="index"
+                      class="size-6 text-[#FFE814]"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        clip-rule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                        fill-rule="evenodd"
+                    />
+                  </svg>
+                  <svg
+                      v-for="(item, index) of Math.round(5 - review.rating)"
+                      :key="index"
+                      class="size-6 text-[#D6D6D6]"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        clip-rule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                        fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+
+              </div>
+              <div class="flex gap-4">
+                <div class="flex gap-3 items-center">
+                  <HandThumbUpIcon @click="setHelpfulReview({
+                    is_helpful: 1
+                  }, review)" class="w-5 h-5 text-green-500 cursor-pointer" />
+                  <p class="font-bold">({{ review.helpful_data.helpful }})</p>
+                </div>
+                <div class="flex gap-3 items-center">
+                  <HandThumbDownIcon @click="setHelpfulReview({
+                  is_helpful: 0
+                  }, review)" class="w-5 h-5 text-red-500 cursor-pointer" />
+                  <p class="font-bold">({{ review.helpful_data.not_helpful }})</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-4/5 flex flex-col gap-4">
+            <p class="text-xl pb-3 border-b border-[#F0DFDF]">Отзыв:</p>
+            <p class="italic">
+              "{{ review.comment }}"
+            </p>
+            <div>
+              <div class="flex gap-4">
+                <p>Полезно?</p>
+                <div class="flex gap-3 items-center">
+                  <HandThumbUpIcon class="w-5 h-5 text-green-500" />
+                  <p class="font-bold">({{ review.helpful_data.helpful }})</p>
+                </div>
+                <div class="flex gap-3 items-center">
+                  <HandThumbDownIcon class="w-5 h-5 text-red-500" />
+                  <p class="font-bold">({{ review.helpful_data.not_helpful }})</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+          v-else
+          class="mt-10">
+
+        <div class="flex items-center gap-2 mt-4 border-b pb-5">
+          <p>0 отзывов</p>
+        </div>
+
+        <div>
+          <p class="text-center mt-12 text-2xl text-[#7B7B7B]">
+            {{ t('products.details.no_reviews') }}
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 

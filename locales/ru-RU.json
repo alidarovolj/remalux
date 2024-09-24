@@ -813,30 +813,39 @@
     "products_title": "Продукты",
     "found_products": "найдено продуктов",
     "filters": "Фильтры",
+    "create_review": {
+      "title": "Оставить свой отзыв"
+    },
     "details": {
+      "choose_color": "Выберите цвет",
       "article": "Артикул",
       "weight": "Вес",
-      "kg": "кг",
-      "choose_color": "Выберите цвет",
       "quantity": "Количество",
       "paint_calculator": "Калькулятор краски",
       "calculate": "Рассчитать",
       "width": "Ширина",
       "height": "Высота",
-      "layers": "Количество слоев",
+      "layers": "Слои",
       "area": "Общая площадь",
+      "liters": "литров",
       "on": "На",
       "layer": "слой",
-      "liters": "килограммов",
+      "kg": "кг",
       "add_to_cart": "Добавить в корзину",
-      "tabs": {
-        "description": "Описание",
-        "details": "Детали",
-        "certificates": "Сертификаты"
-      },
-      "also_bought": "С эти товаром покупают",
-      "data": "Основные характеристики",
-      "similar_products": "Похожие продукты"
+      "data": "Данные продукта",
+      "also_bought": "Покупали также",
+      "description": "Описание",
+      "colors_link": "Посмотреть доступные цвета",
+      "customer_reviews": "Отзывы покупателей",
+      "reviews": "отзывов",
+      "helpful": "Полезный",
+      "no_reviews": "Нет отзывов",
+      "yes": "Да",
+      "no": "Нет",
+      "norm_expense": "Норма расхода",
+      "recommendation": "Recommendation",
+      "recommended": "recommended",
+      "star": "star"
     }
   },
   "pagination": {

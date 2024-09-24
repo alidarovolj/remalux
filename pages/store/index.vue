@@ -679,7 +679,7 @@ useHead({
                                 }"
                             >
                               <DisclosurePanel>
-                                <PriceRange />
+                                <PriceRange/>
                               </DisclosurePanel>
                             </div>
                           </fieldset>
