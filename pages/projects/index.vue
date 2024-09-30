@@ -1,9 +1,7 @@
 <script setup>
-import {useNewsStore} from "~/stores/news.js";
 import {useLanguagesStore} from "~/stores/languages.js";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import Pagination from "~/components/general/pagination.vue";
-import Banner from "~/components/general/banner.vue";
 import AOS from 'aos';
 
 const projects = useProjectsStore();
@@ -77,7 +75,10 @@ useHead({
         <div
             v-for="(project, index) in projectsList.data"
             :key="project.id"
-            :class="{ 'flex-col md:!flex-row-reverse text-check' : index % 2 === 1 }"
+            :class="[
+                { 'flex-col md:!flex-row-reverse text-check' : index % 2 === 1 },
+                { 'border-none' : projectsList.data.length === index + 1 }
+                ]"
             class="bg-white flex flex-col md:flex-row items-center border-b border-[#F0DFDF] pb-16"
             :data-aos-duration="index * 100"
             data-aos="fade-up"
@@ -131,7 +132,7 @@ useHead({
               {{ project.title[cur_lang] }}
             </h2>
             <p
-                class="text-sm text-gray-500 mb-8"
+                class="text-lg text-gray-500 mb-8"
                 v-html="project.description[cur_lang]">
             </p>
           </div>

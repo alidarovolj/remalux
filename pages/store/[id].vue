@@ -1,16 +1,16 @@
 <script setup>
 import {
   CalculatorIcon,
-  Square3Stack3DIcon,
-  MinusIcon,
-  PlusIcon,
-  SunIcon,
+  ClockIcon,
   CubeTransparentIcon,
   EyeDropperIcon,
-  ClockIcon,
-  PaintBrushIcon,
-    HandThumbUpIcon,
   HandThumbDownIcon,
+  HandThumbUpIcon,
+  MinusIcon,
+  PaintBrushIcon,
+  PlusIcon,
+  Square3Stack3DIcon,
+  SunIcon,
 } from "@heroicons/vue/24/outline";
 import {useProductsStore} from "~/stores/products.js";
 import {useLanguagesStore} from "~/stores/languages.js";
@@ -29,6 +29,9 @@ import img5 from "~/assets/img/store/5.png";
 import {useModalsStore} from "~/stores/modals.js";
 import {useColorCookieStore} from "~/stores/colorCookie.js";
 import {useColorForProductStore} from "~/stores/colorForProduct.js";
+import ProductCard from "~/components/cards/productCard.vue";
+import ProductsPreloader from "~/components/general/productsPreloader.vue";
+import Heading from "~/components/general/heading.vue";
 
 const products = useProductsStore();
 const cart = useCartStore()
@@ -84,6 +87,17 @@ const breakpoints = ref({
   },
 });
 
+const related = ref({
+  0: {
+    itemsToShow: 1,
+    snapAlign: "center",
+  },
+  700: {
+    itemsToShow: 3,
+    snapAlign: "center",
+  },
+})
+
 const addToFav = async () => {
   if (token.value) {
     await products.addToFavouriteProducts(detailProduct.value.id);
@@ -103,7 +117,7 @@ const remFromFav = async () => {
 }
 
 const setHelpfulReview = async (form, comment) => {
-  if(token.value) {
+  if (token.value) {
     if (comment.is_user_marked === false) {
       await products.setReviewHelpful(form, detailProduct.value.id, comment.id);
       await products.getProductReviews(detailProduct.value.id);
@@ -250,7 +264,8 @@ useHead({
                   >
                     <my-carousel-slide
                         v-for="(item, index) of images"
-                        :key="index">
+                        :key="index"
+                        class="md:h-full h-[150px]">
                       <div
                           :class="[{ 'bg-white' : !products.detailProduct.is_colorable }]"
                           class="w-full h-full absolute left-0 top-0 rounded-xl"
@@ -304,7 +319,9 @@ useHead({
                   >
                     <my-carousel-slide
                         v-for="(item, index) of images"
-                        :key="index">
+                        :key="index"
+                        class="md:h-full h-[150px]"
+                    >
                       <div
                           :class="[{ 'bg-white' : !products.detailProduct.is_colorable }]"
                           class="w-full h-full absolute left-0 top-0"
@@ -314,7 +331,7 @@ useHead({
                     <template #addons="{ currentSlide, slidesCount }">
 
                       <div
-                          class="flex justify-center gap-4 w-full overflow-x-auto mt-4"
+                          class="flex items-center justify-center gap-4 w-full overflow-x-auto mt-4"
                       >
                         <div class="object-contain h-max z-20 bg-white rounded-tr-lg w-[100px] min-w-[100px]">
                           <img
@@ -333,7 +350,7 @@ useHead({
                           <img
                               :src="painting"
                               alt=""
-                              class="w-full object-contain"
+                              class="w-full h-full object-contain"
                           />
                         </div>
                       </div>
@@ -596,37 +613,6 @@ useHead({
                 </div>
               </div>
             </div>
-            <div v-if="products.relatedProducts">
-              <div
-                  v-if="products.relatedProducts.data.length > 0"
-                  class="rounded-xl border border-[#F0DFDF]"
-                  style="box-shadow: 0px 0px 20px 0px #0000000D;"
-              >
-                <div class="p-6 rounded-t-xl bg-mainColor text-white font-semibold font-montserrat">
-                  <p>{{ $t('products.details.also_bought') }}</p>
-                </div>
-                <div
-                    v-for="(item, index) of products.relatedProducts.data"
-                    :key="index"
-                    :class="{ 'border-b border-[#F0DFDF]' : index !== products.relatedProducts.data.length - 1 }"
-                    class="py-4 px-6 flex gap-6"
-                >
-                  <img
-                      :src="item.product.image_url"
-                      alt="product"
-                      class="w-[60px] h-[60px] object-contain rounded-xl"
-                  />
-                  <div class="flex flex-col gap-3">
-                    <p class="text-sm">
-                      {{ item.product.title[cur_lang] }}
-                    </p>
-                    <p class="text-sm text-[#191919]">
-                      {{ item.product.price_range }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div
               v-if="detailProduct"
@@ -639,8 +625,8 @@ useHead({
     <!-- Reviews Section -->
     <div
         v-if="productReviewsRating.rating && productReviewsRating.recommendation"
-        class="container mx-auto mt-10">
-      <div class="flex items-center gap-32 mb-6">
+        class="container mx-auto mt-10 px-4 md:px-0">
+      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-32 mb-6">
         <div class="w-full md:w-1/3 md:min-w-1/3">
           <h2 class="text-2xl font-bold">
             {{ t('products.details.customer_reviews') }}
@@ -674,11 +660,13 @@ useHead({
           </div>
         </div>
 
-        <div class="w-max">
+        <div class="w-full md:w-max">
           <p class="mb-3">
             Общая оценка
           </p>
-          <div class="flex gap-3 mb-4">
+          <div
+              v-if="detailProduct.rating"
+              class="flex gap-3 mb-4">
             <p class="text-6xl">{{ detailProduct.rating.rating }}</p>
             <div class="flex flex-col justify-between">
               <div class="flex gap-1">
@@ -697,6 +685,32 @@ useHead({
                 </svg>
                 <svg
                     v-for="(item, index) of Math.round(5 - detailProduct.rating.rating)"
+                    :key="index"
+                    class="size-6 text-[#D6D6D6]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      clip-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                      fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <p>
+                {{ reviews.data.length }} {{ t('products.details.reviews') }}
+              </p>
+            </div>
+
+          </div>
+          <div
+              v-else
+              class="flex gap-3 mb-4">
+            <p class="text-6xl">0.0</p>
+            <div class="flex flex-col justify-between">
+              <div class="flex gap-1">
+                <svg
+                    v-for="(item, index) of 5"
                     :key="index"
                     class="size-6 text-[#D6D6D6]"
                     fill="currentColor"
@@ -791,13 +805,13 @@ useHead({
                 <div class="flex gap-3 items-center">
                   <HandThumbUpIcon @click="setHelpfulReview({
                     is_helpful: 1
-                  }, review)" class="w-5 h-5 text-green-500 cursor-pointer" />
+                  }, review)" class="w-5 h-5 text-green-500 cursor-pointer"/>
                   <p class="font-bold">({{ review.helpful_data.helpful }})</p>
                 </div>
                 <div class="flex gap-3 items-center">
                   <HandThumbDownIcon @click="setHelpfulReview({
                   is_helpful: 0
-                  }, review)" class="w-5 h-5 text-red-500 cursor-pointer" />
+                  }, review)" class="w-5 h-5 text-red-500 cursor-pointer"/>
                   <p class="font-bold">({{ review.helpful_data.not_helpful }})</p>
                 </div>
               </div>
@@ -812,11 +826,11 @@ useHead({
               <div class="flex gap-4">
                 <p>Полезно?</p>
                 <div class="flex gap-3 items-center">
-                  <HandThumbUpIcon class="w-5 h-5 text-green-500" />
+                  <HandThumbUpIcon class="w-5 h-5 text-green-500"/>
                   <p class="font-bold">({{ review.helpful_data.helpful }})</p>
                 </div>
                 <div class="flex gap-3 items-center">
-                  <HandThumbDownIcon class="w-5 h-5 text-red-500" />
+                  <HandThumbDownIcon class="w-5 h-5 text-red-500"/>
                   <p class="font-bold">({{ review.helpful_data.not_helpful }})</p>
                 </div>
               </div>
@@ -840,11 +854,54 @@ useHead({
         </div>
       </div>
     </div>
-
+    <div class="container mx-auto px-4 lg:px-0 mt-10">
+      <div v-if="products.relatedProducts">
+        <div v-if="products.relatedProducts.data.length > 0">
+          <Heading
+              :linkTitle="$t('products.related.more')"
+              :title="$t('products.related.title')"
+              class="!mb-0"
+              link="/store"
+          />
+          <client-only>
+            <my-carousel-carousel
+                :breakpoints="related"
+                :mouse-drag="true"
+                :touch-drag="true"
+                :wrap-around="true"
+            >
+              <my-carousel-slide
+                  v-for="(item, index) of products.relatedProducts.data"
+                  :key="index"
+                  class="px-2">
+                <ProductCard :itemIndex="index" :product-data="item.product"/>
+              </my-carousel-slide>
+              <template #addons>
+                <my-carousel-navigation/>
+                <my-carousel-pagination/>
+              </template>
+            </my-carousel-carousel>
+          </client-only>
+        </div>
+      </div>
+      <ProductsPreloader v-else/>
+    </div>
   </div>
 </template>
 
 <style>
+.related_products .carousel__viewport,
+.related_products .carousel__track {
+  height: 400px;
+  width: 100%;
+  padding: 0 !important
+}
+
+.related_products .carousel__slide img {
+  height: 100%;
+  object-fit: cover;
+}
+
 .product-carousel .carousel__viewport,
 .product-carousel .carousel__track {
   height: 100%;

@@ -31,6 +31,7 @@ onMounted(async () => {
   background: #25d366;
   color: white;
   position: fixed;
+  z-index: 50;
   bottom: 20px;
   left: 20px;
   font-size: 40px;

@@ -114,7 +114,7 @@ export const useProductsStore = defineStore("products", () => {
                 const response = await api(`/api/favourite-products`, "GET", {}, route.query);
                 favouriteProducts.value = response;
             } catch (e) {
-                notifications.showNotification("error", "Произошла ошибка", e);
+                // notifications.showNotification("error", "Произошла ошибка", e);
             }
         },
         async addToFavouriteProducts(id) {

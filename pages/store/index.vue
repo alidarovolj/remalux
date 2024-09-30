@@ -354,7 +354,7 @@ useHead({
       <div class="container mx-auto px-4 lg:px-0 pb-16">
         <div
             v-if="categories.categoriesList"
-            class="lg:grid md:grid-cols-4 lg:gap-x-5 lg:gap-y-5 font-manrope">
+            class="lg:grid md:grid-cols-4 lg:gap-x-5 lg:gap-y-5 flex flex-col gap-2 font-manrope">
           <div
               v-for="(category, index) in categories.categoriesList.data"
               :key="index"
@@ -695,7 +695,7 @@ useHead({
                 aria-labelledby="product-heading"
                 class="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
               <div class="flex justify-between items-center mb-5 pb-3 border-b border-[#F0DFDF]">
-                <p class="text-3xl font-medium text-mainColor font-montserrat">
+                <p class="text-xl md:text-3xl font-medium text-mainColor font-montserrat">
                   <span v-if="!chosenCategory">{{ $t('products.products_title') }}</span>
                   <span v-else>{{ chosenCategory.title[cur_lang] }}</span>
                 </p>

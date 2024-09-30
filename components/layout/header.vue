@@ -109,7 +109,7 @@ const makeSearch = () => {
 
 onMounted(async () => {
   await nextTick()
-  if (token.value) {
+  if (user.userProfile) {
     await cart.getCart()
     await colors.getFavouriteColors()
     await products.getFavouriteProducts()

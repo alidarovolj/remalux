@@ -39,7 +39,7 @@ export const useColorsStore = defineStore("colors", () => {
                     const response = await api(`/api/favourite-colors`, "GET", {}, route.query);
                     favouriteColorsList.value = response;
                 } catch (e) {
-                    notifications.showNotification("error", "Произошла ошибка", e);
+                    // notifications.showNotification("error", "Произошла ошибка", e);
                 }
             } else {
                 favouriteColorsList.value = null;

@@ -45,12 +45,12 @@ export async function api(url, method, options = {}, query = {}) {
         return response.data;
     } catch (error) {
         if (error.response && error.response.status === 401) {
-            notifications.showNotification(
-                "error",
-                "Токен не получен или истек",
-                "Пожалуйста, авторизуйтесь снова"
-            );
-            localStorage.removeItem("token");
+            // notifications.showNotification(
+            //     "error",
+            //     "Токен не получен или истек",
+            //     "Пожалуйста, авторизуйтесь снова"
+            // );
+            document.cookie = "token" + '=; Max-Age=0; path=/';
         } else {
             console.error(error);
             throw new Error(error.response?.data?.message || 'Request failed');

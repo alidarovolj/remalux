@@ -31,7 +31,7 @@ export const useCartStore = defineStore("cart", () => {
                     });
                 }
             } catch (e) {
-                notifications.showNotification("error", "Произошла ошибка", e);
+                // notifications.showNotification("error", "Произошла ошибка", e);
             }
         },
         async getPaymentMethods() {
