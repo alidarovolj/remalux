@@ -102,8 +102,18 @@ useHead({
                   <div class="flex w-full items-start justify-between text-left text-gray-900">
                     <div>
                       <p class="text-xl font-medium mb-5">{{ $t('orders.order.title') }} №{{ item.id }}</p>
-                      <p class="text-sm font-medium">{{ $t('orders.order.status') }}: <span v-if="item.status === 'created'"
-                                                                                            class="text-orange-500">Создан</span>
+
+                      <p
+                          :class="[
+                              { 'bg-blue-100 text-blue-500' : item.status.title === 'В ожидании оплаты' },
+                              { 'bg-green-100 text-green-500' : item.status.title === 'Оплачен' },
+                              { 'bg-yellow-100 text-yellow-500' : item.status.title === 'В обработке' },
+                              { 'bg-yellow-100 text-yellow-500' : item.status.title === 'Доставляется' },
+                              { 'bg-green-100 text-green-500' : item.status.title === 'Доставлен' },
+                          ]"
+                          class="text-sm font-medium px-3 py-1 rounded-md">
+                        {{ $t('orders.order.status') }}:
+                        {{ item.status.title }}
                       </p>
                     </div>
                     <div class="text-right">
