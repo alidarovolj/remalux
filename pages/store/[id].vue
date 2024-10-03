@@ -11,7 +11,9 @@ import {
   PlusIcon,
   Square3Stack3DIcon,
   SunIcon,
+    ArrowDownTrayIcon
 } from "@heroicons/vue/24/outline";
+import sert from "@/assets/pdf/sert.pdf"
 import {useProductsStore} from "~/stores/products.js";
 import {useLanguagesStore} from "~/stores/languages.js";
 import {storeToRefs} from "pinia";
@@ -406,7 +408,7 @@ useHead({
                           d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
                           fill-rule="evenodd"/>
                   </svg>
-                  <p class="ml-1 text-lg">4.5 (265)</p>
+                  <p class="ml-1 text-lg">{{ detailProduct.rating.rating }} ({{ detailProduct.rating?.count }})</p>
                 </div>
               </div>
               <p
@@ -618,6 +620,24 @@ useHead({
               v-if="detailProduct"
               class="w-full md:w-4/5 flex flex-col gap-10 info_block">
             <div v-html="detailProduct.description[cur_lang]"></div>
+            <div>
+              <p class="text-mainColor text-2xl font-medium font-montserrat mb-4">Сертификаты продукции</p>
+              <div>
+                <a
+                    :href="sert"
+                    download
+                    class="flex items-center justify-between py-3 border-t border-b border-[#F0DFDF] cursor-pointer">
+                  <div class="flex gap-6">
+                    <img
+                        class="w-5 h-5 object-contain"
+                        src="@/assets/img/sert/download.png"
+                        alt="">
+                    <p>Сертификат</p>
+                  </div>
+                  <ArrowDownTrayIcon class="w-5 h-5 text-green-500" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -716,7 +736,7 @@ useHead({
                 </svg>
               </div>
               <p>
-                {{ reviews.data.length }} {{ t('products.details.reviews') }}
+                {{ detailProduct.rating?.count }} {{ t('products.details.reviews') }}
               </p>
             </div>
 
