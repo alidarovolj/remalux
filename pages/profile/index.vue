@@ -106,8 +106,8 @@ useHead({
                       <p
                           :class="[
                               { 'bg-blue-100 text-blue-500' : item.status.title === 'В ожидании оплаты' },
-                              { 'bg-green-100 text-green-500' : item.status.title === 'Оплачен' },
-                              { 'bg-yellow-100 text-yellow-500' : item.status.title === 'В обработке' },
+                              { 'bg-purple-100 text-purple-500' : item.status.title === 'Оплачен' },
+                              { 'bg-orange-100 text-orange-500' : item.status.title === 'В обработке' },
                               { 'bg-yellow-100 text-yellow-500' : item.status.title === 'Доставляется' },
                               { 'bg-green-100 text-green-500' : item.status.title === 'Доставлен' },
                           ]"

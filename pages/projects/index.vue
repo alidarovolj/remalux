@@ -8,10 +8,11 @@ const projects = useProjectsStore();
 const {projectsList} = storeToRefs(projects);
 const language = useLanguagesStore();
 const {cur_lang} = language;
-const imagesCarousel = ref(null);
 
-const {t} = useI18n()
-const localePath = useLocalePath()
+const carousels = ref([]); // Массив для всех каруселей
+
+const {t} = useI18n();
+const localePath = useLocalePath();
 
 const breakpoints = ref({
   0: {
@@ -26,7 +27,7 @@ const links = computed(() => [
 ]);
 
 onMounted(async () => {
-  await nextTick()
+  await nextTick();
   await projects.getProjects();
 });
 
@@ -37,6 +38,12 @@ watch(
       AOS.refresh();
     }
 );
+
+const slideToImage = (index, carouselIndex) => {
+  if (carousels.value[carouselIndex]) {
+    carousels.value[carouselIndex].slideTo(index); // Привязываем конкретный реф карусели
+  }
+};
 
 useHead({
   title: t("headers.projects.title"),
@@ -65,28 +72,26 @@ useHead({
 <template>
   <Breadcrumbs :links="links"/>
   <div class="py-16">
-    <div
-        v-if="projectsList"
-        class="container mx-auto px-4 lg:px-0">
+    <div v-if="projectsList" class="container mx-auto px-4 lg:px-0">
       <h1 class="text-3xl font-medium mb-5 text-mainColor font-montserrat">
         {{ t('projects.title') }}
       </h1>
       <div class="flex flex-col gap-10">
         <div
-            v-for="(project, index) in projectsList.data"
+            v-for="(project, carouselIndex) in projectsList.data"
             :key="project.id"
             :class="[
-                { 'flex-col md:!flex-row-reverse text-check' : index % 2 === 1 },
-                { 'border-none' : projectsList.data.length === index + 1 }
-                ]"
+            { 'flex-col md:!flex-row-reverse text-check': carouselIndex % 2 === 1 },
+            { 'border-none': projectsList.data.length === carouselIndex + 1 }
+          ]"
             class="bg-white flex flex-col md:flex-row items-center border-b border-[#F0DFDF] pb-16"
-            :data-aos-duration="index * 100"
+            :data-aos-duration="carouselIndex * 100"
             data-aos="fade-up"
         >
           <div class="w-full md:w-1/2 min-w-[50%] h-full product-carousel">
             <client-only>
               <my-carousel-carousel
-                  ref="imagesCarousel"
+                  :ref="el => carousels[carouselIndex] = el"
                   :autoplay="4000"
                   :breakpoints="breakpoints"
                   :mouse-drag="true"
@@ -102,18 +107,16 @@ useHead({
                   <img
                       :src="item"
                       alt=""
-                      class="w-full h-full absolute left-0 top-0 z-10 object-cover">
+                      class="w-full h-full absolute left-0 top-0 z-10 object-cover"
+                  />
                 </my-carousel-slide>
-                <template
-                    v-if="project.images.length > 1"
-                    #addons="{ currentSlide, slidesCount }">
-                  <div
-                      class="flex justify-center gap-4 w-full overflow-x-auto mt-4 h-[100px] max-h-[100px]">
+                <template v-if="project.images.length > 1" #addons="{ currentSlide, slidesCount }">
+                  <div class="flex justify-center gap-4 w-full overflow-x-auto mt-4 h-[100px] max-h-[100px]">
                     <div
                         v-for="(painting, index) of project.images"
                         :key="index"
-                        @click="imagesCarousel.slideTo(index)"
-                        :class="{ 'border-mainColor' : currentSlide === index }"
+                        @click="slideToImage(index, carouselIndex)"
+                        :class="{ 'border-mainColor': currentSlide === index }"
                         class="bg-cardBg border-2 rounded dark:bg-dElement cursor-pointer dark:text-dText"
                     >
                       <img
@@ -131,10 +134,7 @@ useHead({
             <h2 class="text-3xl font-medium text-mainColor mb-4 font-montserrat">
               {{ project.title[cur_lang] }}
             </h2>
-            <p
-                class="text-lg text-gray-500 mb-8"
-                v-html="project.description[cur_lang]">
-            </p>
+            <p class="text-lg text-gray-500 mb-8" v-html="project.description[cur_lang]"></p>
           </div>
         </div>
       </div>

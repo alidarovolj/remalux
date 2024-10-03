@@ -635,8 +635,8 @@ useHead({
           <!-- Rating by Stars -->
           <div class="mt-4">
             <div
-                v-for="(ratingData, rating) in productReviewsRating.rating.by_rating"
-                :key="rating"
+                v-for="([rating, ratingData], index) in Object.entries(productReviewsRating.rating.by_rating).reverse()"
+                :key="index"
                 class="flex items-center gap-4 mb-2">
               <div class="flex items-center gap-1">
                 <span class="font-bold">{{ rating }}</span>

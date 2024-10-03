@@ -8,7 +8,6 @@ import img2 from "assets/img/auth/slide2.jpg";
 import img3 from "assets/img/auth/slide3.jpg";
 import img4 from "assets/img/auth/slide4.jpg";
 import img5 from "assets/img/auth/slide5.jpg";
-import {useAddressesStore} from "~/stores/addresses.js";
 import {useUserStore} from "~/stores/user.js";
 
 const loading = ref(false);
@@ -16,8 +15,6 @@ const notifications = useNotificationStore()
 const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
-const addresses = useAddressesStore()
-const {citiesList} = storeToRefs(addresses)
 const user = useUserStore()
 const {t} = useI18n();
 
@@ -25,7 +22,6 @@ const form = ref({
   name: '',
   phone_number: '',
   email: '',
-  city_id: null,
   password: '',
   password_confirmation: '',
   agreement: false
@@ -35,7 +31,6 @@ const v$ = useVuelidate({
   name: {required},
   phone_number: {required, minLength: 11},
   email: {required, email},
-  city_id: {required},
   password: {required},
   password_confirmation: {required},
   agreement: {sameAs: sameAs(true)}
@@ -107,11 +102,6 @@ const registerUser = async () => {
   }
   loading.value = false;
 }
-
-onMounted(async () => {
-  await nextTick()
-  await addresses.getCities()
-})
 
 useHead({
   title: t("headers.registration.title"),
@@ -256,31 +246,6 @@ useHead({
                 </div>
 
                 <div
-                    v-if="citiesList"
-                    :class="{ '!border !border-red-500' : v$.city_id.$error }"
-                    class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                  <label
-                      class="block text-xs font-medium text-gray-900"
-                      for="city">
-                    {{ $t('addresses.create.city') }}
-                  </label>
-                  <select
-                      id="city"
-                      v-model="form.city_id"
-                      :class="{ 'border-red-500' : v$.city_id.$error }"
-                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      name="city">
-                    <option :value="null">{{ $t('addresses.create.city_placeholder') }}</option>
-                    <option
-                        v-for="(city, index) of addresses.citiesList"
-                        :key="index"
-                        :value="city.id">
-                      {{ city.title }}
-                    </option>
-                  </select>
-                </div>
-
-                <div
                     :class="{ '!border !border-red-500' : v$.password.$error }"
                     class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
                   <label class="block text-xs font-medium text-gray-900" for="password">
@@ -360,8 +325,9 @@ useHead({
                 </div>
 
                 <div>
-                  <button class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
-                          type="submit">
+                  <button
+                      class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                      type="submit">
                     {{ $t('forms.registration.button') }}
                   </button>
                 </div>
