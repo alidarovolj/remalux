@@ -8,6 +8,16 @@
     "saturday": "Суббота",
     "sunday": "Воскресенье"
   },
+  "compare": {
+    "title": "Сравнение товаров",
+    "list": "Список сравнения",
+    "add_product": "Выбрать краску для сравнения",
+    "colorable": "Красящиеся",
+    "expense": "Норма расхода",
+    "yes": "Да",
+    "no": "Нет",
+    "metrika": "гр. / m²"
+  },
   "projects": {
     "title": "Наши проекты"
   },
@@ -165,6 +175,12 @@
       "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
       "og_url": "https://remalux.kz/privacy-policy",
       "canonical": "https://remalux.kz/privacy-policy"
+    },
+    "compareProducts": {
+      "title": "Сравнение товаров - Remalux",
+      "description": "Remalux - высокое европейское качество по доступной цене. Выберите краску и цвет для вашего дома.",
+      "og_url": "https://remalux.kz/compareProducts",
+      "canonical": "https://remalux.kz/compareProducts"
     },
     "colors": {
       "title": "Краска - Remalux",
@@ -494,6 +510,7 @@
     }
   },
   "breadcrumbs": {
+    "compare": "Сравнение товаров",
     "payment_delivery": "Доставка и оплата",
     "home": "Главная",
     "store": "Магазин",
@@ -805,8 +822,8 @@
   },
   "products": {
     "related": {
-        "title": "Похожие товары",
-        "more": "Подробнее"
+      "title": "Похожие товары",
+      "more": "Подробнее"
     },
     "title": "Фирменные продукты",
     "clear_filters": "Сбросить",
@@ -821,6 +838,7 @@
       "title": "Оставить свой отзыв"
     },
     "details": {
+      "norm": "Норма расхода",
       "choose_color": "Выберите цвет",
       "article": "Артикул",
       "weight": "Вес",
@@ -831,7 +849,20 @@
       "height": "Высота",
       "layers": "Слои",
       "area": "Общая площадь",
-      "liters": "литров",
+      "liters": "кг",
+      "serts": "Сертификаты продукции",
+      "sertificate": "Сертификат",
+      "rating": "Общая оценка",
+      "out": "из",
+      "reviewsTotal": "отзывов",
+      "review": "Отзыв",
+      "worthIt": "Полезно",
+      "outOfTotal": "рецензентов рекомендуют этот продукт",
+      "share": {
+        "title": "Поделитесь своим отзывом",
+        "subtitle": "Если вы уже пользовались этим продуктом, поделитесь своими мыслями с другими покупателями",
+        "addReview": "Оставить отзыв"
+      },
       "on": "На",
       "layer": "слой",
       "kg": "кг",

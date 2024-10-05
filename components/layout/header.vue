@@ -13,14 +13,13 @@ import {
 } from '@headlessui/vue'
 import {
   Bars3Icon,
-  HeartIcon,
   ChevronDownIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
+  HeartIcon,
+  MagnifyingGlassIcon,
   PaintBrushIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-  MagnifyingGlassIcon
+  ScaleIcon,
+  ShoppingCartIcon,
+  XMarkIcon
 } from '@heroicons/vue/24/outline'
 import {useUserStore} from "~/stores/user.js";
 import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
@@ -29,11 +28,6 @@ import {useAuthStore} from "~/stores/auth.js";
 import {useColorsStore} from "~/stores/colors.js";
 import {useProductsStore} from "~/stores/products.js";
 import {useCategoriesStore} from "~/stores/categories.js";
-
-const callsToAction = [
-  {name: 'Watch demo', href: '#', icon: PlayCircleIcon},
-  {name: 'Contact sales', href: '#', icon: PhoneIcon},
-]
 
 const searchValue = ref('')
 const loading = ref(false)
@@ -109,7 +103,7 @@ const makeSearch = () => {
 
 onMounted(async () => {
   await nextTick()
-  if (user.userProfile) {
+  if (token.value) {
     await cart.getCart()
     await colors.getFavouriteColors()
     await products.getFavouriteProducts()
@@ -181,13 +175,14 @@ onUnmounted(() => {
                           @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': item.id } }); close()"
                           class="group relative flex gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50 cursor-pointer items-center"
                       >
-                        <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <img class="h-full w-full" :src="item.image_url" alt="" />
+                        <div
+                            class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <img class="h-full w-full" :src="item.image_url" alt=""/>
                         </div>
                         <div class="flex-auto">
                           <div class="block font-semibold text-gray-900">
                             {{ item.title[cur_lang] }}
-                            <span class="absolute inset-0" />
+                            <span class="absolute inset-0"/>
                           </div>
                         </div>
                       </div>
@@ -198,17 +193,22 @@ onUnmounted(() => {
             </PopoverGroup>
           </client-only>
 
-          <NuxtLink
-              v-for="item in navigation"
-              :key="item.name"
-              :to="localePath(item.href)"
-              class="text-xs font-semibold leading-6 text-gray-900 links"
-              @click="mobileMenuOpen = false">
-            {{ item.name }}
-          </NuxtLink>
+          <div class="overflow-x-auto hidden lg:flex items-center lg:gap-x-5 uppercase navigation">
+            <NuxtLink
+                v-for="item in navigation"
+                :key="item.name"
+                :to="localePath(item.href)"
+                class="text-xs font-semibold leading-6 text-gray-900 links whitespace-nowrap"
+                @click="mobileMenuOpen = false">
+              {{ item.name }}
+            </NuxtLink>
+          </div>
         </div>
         <div class="hidden lg:flex gap-3 !w-max">
-          <div class="flex items-center">
+          <div class="flex gap-3 items-center">
+            <ScaleIcon
+                @click="router.push(localePath('/compareProducts'))"
+                class="w-5 h-5 text-mainColor cursor-pointer"/>
             <MagnifyingGlassIcon
                 @click="searchOpen = !searchOpen"
                 class="w-5 h-5 text-mainColor cursor-pointer"
@@ -264,7 +264,7 @@ onUnmounted(() => {
                     class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ cart.cartList.data.length }}
                 </div>
-                <ShoppingBagIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+                <ShoppingCartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
               </NuxtLink>
             </div>
             <Menu as="div" class="relative inline-block text-left">
@@ -392,7 +392,7 @@ onUnmounted(() => {
                           class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                         {{ cart.cartList.data.length }}
                       </div>
-                      <ShoppingBagIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+                      <ShoppingCartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
                     </NuxtLink>
                   </div>
                   <Menu as="div" class="relative inline-block text-left">

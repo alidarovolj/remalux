@@ -8,76 +8,86 @@
     "saturday": "Saturday",
     "sunday": "Sunday"
   },
+  "compare": {
+    "title": "Product Comparison",
+    "list": "Comparison List",
+    "add_product": "Select Paint for Comparison",
+    "colorable": "Colorable",
+    "expense": "Consumption Rate",
+    "yes": "Yes",
+    "no": "No",
+    "metrika": "g / m²"
+  },
   "projects": {
-    "title": "Our projects"
+    "title": "Our Projects"
   },
   "faq": {
     "title": "FAQ",
     "subtitle": "Frequently Asked Questions",
-    "description": "Do you have any questions? ",
+    "description": "Still have questions? Don’t worry, we’re here to help! Read through our frequently asked questions. If your question wasn't addressed, just leave it, and we’ll get back to you as soon as possible.",
     "quest": {
-      "title": "Question of interest",
-      "placeholder": "Write your question and we will answer it",
-      "button": "Leave a question"
+      "title": "Your Question",
+      "placeholder": "Write your question and we’ll answer it",
+      "button": "Submit Question"
     },
     "quest1": {
       "title": "How to choose the right paint color?",
-      "answer": "To select a paint color, we recommend using our color palettes and online consultation. "
+      "answer": "To choose a paint color, we recommend using our color palettes and online consultation. You can also order color samples to evaluate them in the real lighting conditions of your space."
     },
     "quest2": {
       "title": "What surfaces can be painted with Remalux paints?",
-      "answer": "Our paints are suitable for painting walls, ceilings, doors, furniture, metal and wooden surfaces."
+      "answer": "Our paints are suitable for painting walls, ceilings, doors, furniture, metal, and wooden surfaces."
     },
     "quest3": {
-      "title": "How long does it take for paint to dry completely?",
-      "answer": "The drying time of the paint depends on the temperature and humidity in the room. "
+      "title": "How long does it take for the paint to dry completely?",
+      "answer": "The drying time depends on the temperature and humidity in the room. Usually, the paint dries within 2-3 hours."
     },
     "quest4": {
-      "title": "Are Remalux paints environmentally friendly?",
-      "answer": "Yes, all Remalux paints are water-based and do not contain harmful substances."
+      "title": "Are Remalux paints eco-friendly?",
+      "answer": "Yes, all Remalux paints are water-based and contain no harmful substances."
     },
     "quest5": {
       "title": "Can I apply the paint myself, or do I need a specialist?",
-      "answer": "Our paints are easy to apply yourself. "
+      "answer": "Our paints are easy to apply yourself. You’ll need a brush, roller, and painter’s tape."
     },
     "quest6": {
       "title": "Where can I buy Remalux products?",
-      "answer": "You can purchase Remalux paints in our partner stores or order them on our website."
+      "answer": "You can buy Remalux paints at our partner stores or order them on our website."
     }
   },
   "orders": {
-    "title": "My orders",
+    "title": "My Orders",
     "statuses": {
       "created": "Created",
-      "in_process": "In processing",
+      "in_process": "In Process",
       "ended": "Completed"
     },
     "order": {
       "title": "Order",
       "status": "Status",
-      "amount": "Order amount",
-      "show": "View items in order",
-      "hide": "Hide products in order"
+      "amount": "Order Amount",
+      "show": "Show Order Details",
+      "hide": "Hide Order Details"
     }
   },
   "sorting": {
-    "name_asc": "Ascending price",
-    "name_desc": "Descending price",
-    "colorable": "Painting",
-    "non_colorable": "Not dyeable"
+    "name_asc": "Price: Low to High",
+    "name_desc": "Price: High to Low",
+    "colorable": "Colorable",
+    "non_colorable": "Non-Colorable"
   },
   "newsletter": {
-    "title": "Join our newsletter",
-    "description": "Find out about decorating trends and ideas in our new monthly newsletter.",
+    "title": "Join Our Newsletter",
+    "description": "Stay updated on trends and decorating ideas in our new monthly newsletter.",
     "button": "Subscribe",
     "placeholder": "Your email",
     "agreement": {
-      "first": "I agree with",
-      "second": "site rules"
+      "first": "I agree with the",
+      "second": "website's terms"
     }
   },
   "partnership": {
-    "product_paint": "Dye",
+    "product_paint": "Paint",
     "product_paint_description": "+9 types of paint",
     "product_varnish": "Varnish",
     "product_varnish_description": "5+ types of varnish",
@@ -86,169 +96,175 @@
     "product_coating": "Coating",
     "product_coating_description": "+7 types of coatings",
     "product_enamel": "Enamel",
-    "product_enamel_description": "+8 types of enamels",
+    "product_enamel_description": "+8 types of enamel",
     "product_glue": "Glue",
     "product_glue_description": "2 types of glue",
-    "history_description": "Remalux was founded over 30 years ago with one simple mission - to offer the highest quality paints that inspire unique and long-lasting designs. ",
-    "title": "Create bright projects with Remalux",
-    "description": "Welcome to Remalux! ",
-    "apply_button": "Apply now",
-    "history_title": "Company history",
-    "history_1990": "Remalux opened its doors with the goal of creating paints that will inspire and transform the world around us.",
-    "history_1995": "We presented our first line of interior paints, immediately winning the trust of customers due to their high quality and variety of shades.",
-    "history_2000": "We began to use new production technologies, significantly increasing the durability and environmental friendliness of our products.",
-    "history_2010": "Remalux has expanded its presence throughout the country, offering products in large retail chains and specialty stores.",
-    "history_2015": "We launched an export program, entering international markets and starting cooperation with partners around the world.",
-    "history_2023": "We opened a state-of-the-art manufacturing facility, increasing our capacity and expanding our product range to better meet our customers' needs.",
+    "history_description": "Remalux was founded over 30 years ago with one simple mission – to offer the highest quality paints that inspire unique and lasting projects. Since then, we have grown from a small factory to an industry leader known for innovation and responsible production.",
+    "title": "Create Bold Projects with Remalux",
+    "description": "Welcome to Remalux! We are a leading manufacturer of high-quality paints known for their variety of shades and durability. Join our partner network and create bold and lasting finishes for the most daring projects with us.",
+    "apply_button": "Submit Application",
+    "history_title": "Company History",
+    "history_1990": "Remalux opened its doors with the goal of creating paints that would inspire and transform the world around us.",
+    "history_1995": "We introduced our first line of interior paints, quickly gaining customer trust thanks to their high quality and variety of shades.",
+    "history_2000": "We began using new production technologies, significantly increasing the durability and eco-friendliness of our products.",
+    "history_2010": "Remalux expanded nationwide, offering products in major retail chains and specialized stores.",
+    "history_2015": "We launched an export program, entering international markets and starting collaborations with partners worldwide.",
+    "history_2023": "We opened a modern production facility, increasing our capacity and expanding the product range to better meet our customers' needs.",
     "branches_title": "Branches",
-    "branches_description": "Remlux has 6 branches in all major cities of Kazakhstan with its head office in Almaty.",
+    "branches_description": "Remalux has 6 branches in all major cities of Kazakhstan, with the head office in Almaty.",
     "clients_count": "8000+",
-    "clients_label": "clients",
-    "why_choose_us_title": "Why choose us",
-    "statistics_title": "Remalux in numbers",
+    "clients_label": "Clients",
+    "why_choose_us_title": "Why Choose Us",
+    "statistics_title": "Remalux in Numbers",
     "years_in_market": "15",
-    "years_in_market_label": "years on the market",
+    "years_in_market_label": "Years in the Market",
     "employees_count": "60+",
-    "employees_label": "person on staff",
+    "employees_label": "Employees",
     "branches_count": "6",
-    "branches_count_label": "branches throughout Kazakhstan",
+    "branches_count_label": "Branches Across Kazakhstan",
     "unique_projects": "185",
-    "unique_projects_label": "unique projects",
-    "news_title": "Stay up to date with all the news",
-    "news_description": "Do you want to be the first to know about new products, promotions and inspiring projects? ",
+    "unique_projects_label": "Unique Projects",
+    "news_title": "Stay Updated",
+    "news_description": "Want to be the first to know about new products, promotions, and inspiring projects? Follow us on Instagram! Stay updated, find ideas for your projects, and keep up with all the Remalux news. Join our online family and be part of a world of vibrant paints and creative solutions!",
     "application_form_title": "Partnership Application Form",
-    "application_form_description": "Do you want to become a Remalux partner and offer our customers the best paints? ",
+    "application_form_description": "Want to become a Remalux partner and offer our clients the best paints? Fill out the application, and our manager will contact you to discuss partnership terms and answer all your questions.",
     "form": {
-      "name_placeholder": "Full name *",
-      "email_placeholder": "Email address *",
+      "name_placeholder": "Full Name *",
+      "email_placeholder": "Email Address *",
       "bin_placeholder": "BIN *",
-      "phone_placeholder": "Phone number*",
-      "city_placeholder": "Select a city",
-      "submit_button": "Apply now",
-      "agreement_text": "I agree with",
+      "phone_placeholder": "Phone Number *",
+      "city_placeholder": "Select City",
+      "submit_button": "Submit Application",
+      "agreement_text": "I agree with the",
       "agreement_link_text": "terms and conditions"
     }
   },
   "headers": {
     "payment_delivery": {
-      "title": "Delivery and payment - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/payment-delivery",
-      "canonical": "https://remalux.kz/payment-delivery"
+      "title": "Delivery and Payment - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/payment-delivery",
+      "canonical": "https://remalux.kz/en-US/payment-delivery"
     },
     "projects": {
       "title": "Projects - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/projects",
-      "canonical": "https://remalux.kz/projects"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/projects",
+      "canonical": "https://remalux.kz/en-US/projects"
     },
     "faq": {
       "title": "FAQ - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/faq",
-      "canonical": "https://remalux.kz/faq"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/faq",
+      "canonical": "https://remalux.kz/en-US/faq"
     },
     "mainPage": {
-      "title": "Home page - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
+      "title": "Home - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
       "og_url": "https://remalux.kz",
       "canonical": "https://remalux.kz"
     },
     "store": {
       "title": "Store - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/store",
-      "canonical": "https://remalux.kz/store"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/store",
+      "canonical": "https://remalux.kz/en-US/store"
     },
     "privacy": {
       "title": "Privacy Policy - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/privacy-policy",
-      "canonical": "https://remalux.kz/privacy-policy"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/privacy-policy",
+      "canonical": "https://remalux.kz/en-US/privacy-policy"
+    },
+    "compareProducts": {
+      "title": "Product Comparison - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/compareProducts",
+      "canonical": "https://remalux.kz/en-US/compareProducts"
     },
     "colors": {
       "title": "Paint - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/colors",
-      "canonical": "https://remalux.kz/colors"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/colors",
+      "canonical": "https://remalux.kz/en-US/colors"
     },
     "ideas": {
       "title": "Ideas - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/ideas",
-      "canonical": "https://remalux.kz/ideas"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/ideas",
+      "canonical": "https://remalux.kz/en-US/ideas"
     },
     "about": {
-      "title": "About us - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/about",
-      "canonical": "https://remalux.kz/about"
+      "title": "About Us - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/about",
+      "canonical": "https://remalux.kz/en-US/about"
     },
     "news": {
       "title": "News - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/news",
-      "canonical": "https://remalux.kz/news"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/news",
+      "canonical": "https://remalux.kz/en-US/news"
     },
     "contacts": {
       "title": "Contacts - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/contacts",
-      "canonical": "https://remalux.kz/contacts"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/contacts",
+      "canonical": "https://remalux.kz/en-US/contacts"
     },
     "profile": {
       "title": "Profile - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/profile",
-      "canonical": "https://remalux.kz/profile"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/profile",
+      "canonical": "https://remalux.kz/en-US/profile"
     },
     "addresses": {
       "title": "Profile - Addresses - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/profile",
-      "canonical": "https://remalux.kz/profile"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/profile",
+      "canonical": "https://remalux.kz/en-US/profile"
     },
     "recipients": {
       "title": "Profile - Recipients - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/profile",
-      "canonical": "https://remalux.kz/profile"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/profile",
+      "canonical": "https://remalux.kz/en-US/profile"
     },
     "login": {
-      "title": "Authorization - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/login",
-      "canonical": "https://remalux.kz/login"
+      "title": "Login - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/login",
+      "canonical": "https://remalux.kz/en-US/login"
     },
     "registration": {
       "title": "Registration - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/registration",
-      "canonical": "https://remalux.kz/login"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/registration",
+      "canonical": "https://remalux.kz/en-US/login"
     },
     "forgot_pass": {
-      "title": "Forgot your password - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/forgot-password",
-      "canonical": "https://remalux.kz/forgot-password"
+      "title": "Forgot Password - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/forgot-password",
+      "canonical": "https://remalux.kz/en-US/forgot-password"
     },
     "cart": {
       "title": "Cart - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/cart",
-      "canonical": "https://remalux.kz/cart"
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/cart",
+      "canonical": "https://remalux.kz/en-US/cart"
     },
     "checkout": {
-      "title": "Place an order - Remalux",
-      "description": "Remalux - high European quality at an affordable price. ",
-      "og_url": "https://remalux.kz/cart/checkout",
-      "canonical": "https://remalux.kz/cart/checkout"
+      "title": "Checkout - Remalux",
+      "description": "Remalux - High European Quality at Affordable Prices. Choose the paint and color for your home.",
+      "og_url": "https://remalux.kz/en-US/cart/checkout",
+      "canonical": "https://remalux.kz/en-US/cart/checkout"
     }
   },
   "partners": {
-    "title": "Become a partner",
-    "button": "Apply now",
-    "text": "Are you looking for a reliable partner in paint sales? ",
+    "title": "Become a Partner",
+    "button": "Submit Application",
+    "text": "Looking for a reliable partner in the paint sales industry? Join us! We offer high-quality products, advantageous collaboration terms, and support at every stage. Be part of a successful business and reach new heights with us! Contact us to discuss all partnership details.",
     "stats": {
       "first": "Branches",
       "second": "Products",
@@ -262,272 +278,273 @@
   },
   "about_page": {
     "hero_section": {
-      "title": "LLP \"K-COLOR\" \"K-COLOR\" with the trademark \"REMALUX\" - high European quality at an affordable price.",
-      "description": "LLP \"K-COLOR\" \"K-COLOR\" with the trademark \"REMALUX\" is a leader in the production of paints and varnishes, located in the Republic of Kazakhstan. "
+      "title": "LLP 'K-COLOR' with the brand 'REMALUX' – High European Quality at Affordable Prices.",
+      "description": "LLP 'K-COLOR' with the brand 'REMALUX' is a leader in the production of paint and coatings, located in the Republic of Kazakhstan. We offer consumers a wide range of high-quality paints, made under British license from raw materials by renowned French, Belgian, German, Dutch, and American manufacturers."
     },
     "why_choose_us": {
-      "title": "Why do buyers choose our products?",
-      "description": "Our paints are trusted for their high quality, innovative solutions and economical consumption. ",
+      "title": "Why Do Customers Choose Our Products?",
+      "description": "Our paints are trusted for their high quality, innovative solutions, and economical consumption. Add affordable prices and a wide range, and you’ll understand why we’re chosen again.",
       "quality": {
-        "title": "High quality",
-        "description": "Our paints undergo strict quality control to ensure superior coverage and durability on any surface."
+        "title": "High Quality",
+        "description": "Our paints undergo strict quality control, ensuring excellent coverage and durability on any surface."
       },
       "innovation": {
-        "title": "Innovative production technologies",
-        "description": "We use advanced technology to create paints that apply easily, dry quickly and deliver rich colors."
+        "title": "Innovative Production Technologies",
+        "description": "We use advanced technologies to create paints that are easy to apply, dry quickly, and provide rich colors."
       },
       "economy": {
-        "title": "Economical consumption of materials",
-        "description": "Our paints provide high hiding power, which allows you to reduce consumption and reduce costs."
+        "title": "Economical Material Consumption",
+        "description": "Our paints provide high coverage, allowing you to reduce consumption and lower costs."
       },
       "price": {
-        "title": "Competitive prices",
+        "title": "Competitive Prices",
         "description": "We offer excellent value for money so you can get a professional product at an affordable price."
       },
       "service": {
-        "title": "Professional service",
-        "description": "Professional service"
+        "title": "Professional Customer Service",
+        "description": "Professional Customer Service"
       },
       "assortment": {
-        "title": "Wide range of products",
-        "description": "In our assortment you will find paints for any need - from interior to industrial coatings, in a variety of colors and textures."
+        "title": "Wide Product Range",
+        "description": "In our range, you will find paints for any needs – from interior to industrial coatings, in a variety of colors and textures."
       }
     },
     "for_whom": {
-      "title": "Who are our company's products intended for?",
-      "description": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
+      "title": "Who Is Our Product Designed For?",
+      "description": "Our products are designed to easily meet the demands of the most discerning professionals for use in prestigious representative-level projects. Additionally, they are perfect for regular consumers looking for materials for home use and DIY cosmetic repairs."
     },
     "remalux_section": {
-      "title": "REMALUX: Everything you need for perfect results",
-      "description": "REMALUX offers high-quality paints and varnishes with modern technology and excellent service. ",
+      "title": "REMALUX: Everything You Need for a Perfect Result",
+      "description": "REMALUX offers high-quality paint materials with modern technologies and excellent service. All products are safe and meet European standards.",
       "innovation": {
-        "title": "Innovative technologies and modern production methods",
-        "description": "The production of paints and varnishes at REMALUX is based on modern technologies and achievements of chemical science, which guarantees high quality and safety of products at competitive prices."
+        "title": "Innovative Technologies and Modern Production Methods",
+        "description": "The production of paints at REMALUX is based on modern technologies and chemical science advancements, ensuring high quality and safety at competitive prices."
       },
       "service": {
-        "title": "Service",
-        "description": "We provide pre-purchase and post-purchase services to meet customer requirements through high quality products and excellent service."
+        "title": "Customer Service",
+        "description": "We provide pre-purchase and post-purchase services, meeting customer demands through high product quality and excellent service."
       },
       "assortment": {
-        "title": "Wide range of products",
-        "description": "REMALUX offers texture coatings, water-based paints, varnishes, acrylic adhesives and other materials. "
+        "title": "Wide Product Range",
+        "description": "REMALUX offers textured coatings, water-based paints, varnishes, acrylic glue, and other materials. We will help you choose the right shade and guarantee high quality at competitive prices."
       },
       "safety": {
-        "title": "Safety and comfort in use",
-        "description": "Water-based products are non-toxic and odorless, which ensures comfortable use for both professionals and home craftsmen. "
+        "title": "Safety and Comfort in Use",
+        "description": "Water-based products are non-toxic and odorless, ensuring comfortable use for both professionals and DIY enthusiasts. Our paints are safe for people and pets."
       }
     },
     "our_fleet": {
-      "title": "Our fleet: Fast and reliable delivery",
-      "description": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
+      "title": "Our Fleet: Fast and Reliable Delivery",
+      "description": "Our products are designed to easily meet the demands of the most discerning professionals for use in prestigious representative-level projects. Additionally, they are perfect for regular consumers looking for materials for home use and DIY cosmetic repairs."
     }
   },
   "privacy_policy": {
     "title": "Privacy Policy",
-    "intro": "The privacy policy (hereinafter - the Policy) applies to personal data that K-COLOR LLP \"K-COLOR\" (hereinafter - the LLP) can receive from the user when the latter visits the site https://remalux.kz (hereinafter - the Site) ",
+    "intro": "The Privacy Policy (hereinafter – the Policy) applies to personal data that LLP 'K-COLOR' (hereinafter – LLP) may receive from the user when the user visits the website https://remalux.kz (hereinafter – the Website) and uses its services, and explains how the user's personal data will be processed and protected.",
     "terms": {
-      "title": "1. DEFINITION OF TERMS",
-      "admin": "The site administration (hereinafter referred to as the Administration) is authorized employees...",
-      "personal_data": "Personal data - any information relating to a directly or indirectly identified person...",
-      "data_processing": "Processing of personal data is any action (operation) or set of actions...",
-      "confidentiality": "Confidentiality of personal data is a must...",
-      "site": "The website of the online store remalux.kz (hereinafter referred to as the Website) is a collection of interconnected web pages...",
-      "user": "Site user (hereinafter referred to as User) is a person who has access to the site...",
-      "cookies": "Cookies are a small piece of data sent by a web server and stored on the user's computer...",
-      "ip_address": "IP address is a unique network address of a node on a computer network through which the User gains access...",
-      "product": "Goods - a product that the User orders on the website and pays through payment systems."
+      "title": "1. DEFINITIONS",
+      "admin": "Website Administration (hereinafter – the Administration) – authorized employees...",
+      "personal_data": "Personal Data – any information relating to an identified or identifiable individual...",
+      "data_processing": "Processing of Personal Data – any operation or set of operations...",
+      "confidentiality": "Confidentiality of Personal Data – a mandatory requirement to ensure...",
+      "site": "Website – the website of the Remalux online store (hereinafter – the Website), a set of interconnected web pages...",
+      "user": "Website User (hereinafter – User) – a person who has access to the Website...",
+      "cookies": "Cookies – a small piece of data sent by a web server and stored on the user's computer...",
+      "ip_address": "IP Address – a unique network address of a node in a computer network through which the User accesses...",
+      "product": "Product – the item that the User orders on the website and pays for through payment systems."
     },
     "general": {
       "title": "2. GENERAL PROVISIONS",
-      "usage": "Use of the Site Online store remalux.kz by the User means agreement with this Privacy Policy...",
-      "disagreement": "In case of disagreement with the terms of the Privacy Policy, the User must stop using the Site.",
-      "application": "This Privacy Policy applies to the website owned by K-COLOR LLP \"K-COLOR\"...",
-      "verification": "The Administration does not verify the accuracy of the personal data provided by the User."
+      "usage": "Using the Remalux online store website by the User means acceptance of this Privacy Policy...",
+      "disagreement": "If the User disagrees with the terms of the Privacy Policy, the User must stop using the Website.",
+      "application": "This Privacy Policy applies to the website owned by LLP 'K-COLOR'...",
+      "verification": "The Administration does not verify the accuracy of personal data provided by the User."
     },
     "subject": {
-      "title": "3. SCOPE OF THE PRIVACY POLICY",
-      "obligations": "This Privacy Policy establishes the Administration's non-disclosure obligations...",
+      "title": "3. SUBJECT OF THE PRIVACY POLICY",
+      "obligations": "This Privacy Policy establishes the Administration's obligations regarding non-disclosure...",
       "data": "Personal data permitted for processing under this Privacy Policy...",
-      "ssl": "The online store uses a certified SSL key for data encryption when transmitted via the HTTPS protocol...",
-      "cookies": "Disabling cookies may result in the inability to access parts of the site that require authorization.",
-      "other_info": "Any other personal information not specified above is subject to secure storage and non-distribution..."
+      "ssl": "The online store uses a certified SSL encryption key for data transmission via the HTTPS protocol...",
+      "cookies": "Disabling cookies may result in the inability to access parts of the website that require authorization.",
+      "other_info": "Any other personal information not specified above is subject to secure storage and non-disclosure..."
     },
     "purposes": {
-      "title": "4. PURPOSES OF COLLECTING USER’S PERSONAL INFORMATION",
-      "identification": "Identification of the User registered on the Site for his further authorization...",
-      "access": "Providing the User with access to personalized data from the Site.",
-      "feedback": "Establishing feedback with the User, including sending notifications...",
-      "location": "Determining the User's location to ensure security, prevent fraud..."
+      "title": "4. PURPOSES OF COLLECTING USER'S PERSONAL INFORMATION",
+      "identification": "To identify the User registered on the Website for further authorization...",
+      "access": "To provide the User with access to personalized data on the Website.",
+      "feedback": "To establish feedback with the User, including sending notifications...",
+      "location": "To determine the User's location to ensure security and prevent fraud..."
     },
     "processing": {
       "title": "5. METHODS AND TERMS OF PROCESSING PERSONAL DATA",
-      "methods": "The processing of the User's personal data is carried out without limitation of time, in any legal way...",
+      "methods": "The User's personal data is processed without time limitation, by any legal method...",
       "third_parties": "The User agrees that the Administration has the right to transfer personal data to third parties...",
-      "government": "The User's personal data may be transferred to authorized government bodies of the Republic of Kazakhstan...",
-      "loss": "In case of loss or disclosure of personal data, the Administration has the right not to inform the User...",
-      "measures": "The Administration takes the necessary organizational and technical measures to protect the User’s personal information...",
-      "cooperation": "The Administration, together with the User, takes all necessary measures to prevent losses or other negative consequences..."
+      "government": "The User's personal data may be transferred to authorized government authorities of the Republic of Kazakhstan...",
+      "loss": "In the event of loss or disclosure of personal data, the Administration is not obligated to inform the User...",
+      "measures": "The Administration takes necessary organizational and technical measures to protect the User's personal information...",
+      "cooperation": "The Administration and the User take all necessary measures to prevent losses or other negative consequences..."
     },
     "rights": {
       "title": "6. RIGHTS AND OBLIGATIONS OF THE PARTIES",
-      "decision": "The user has the right to make a free decision about providing his personal data...",
-      "information": "The User has the right to receive from the Administration information regarding the processing of his personal data...",
-      "use": "The administration is obliged to use the information received exclusively for the purposes specified in clause 4 of this Policy...",
-      "confidentiality": "The Administration is obliged to ensure that confidential information is kept secret and not disclosed without the prior written permission of the User...",
-      "blocking": "The Administration is obliged to block the User’s personal data from the moment the User contacts or requests..."
+      "decision": "The User has the right to make a free decision to provide their personal data...",
+      "information": "The User has the right to obtain information from the Administration regarding the processing of their personal data...",
+      "use": "The Administration is obligated to use the received information solely for the purposes specified in section 4 of this Privacy Policy...",
+      "confidentiality": "The Administration is obligated to ensure the storage of confidential information in secrecy, not to disclose it without the prior written permission of the User...",
+      "blocking": "The Administration is obligated to block the User's personal data upon the User's request or inquiry..."
     },
     "responsibilities": {
-      "title": "7. RESPONSIBILITY OF THE PARTIES",
-      "loss": "The administration that fails to fulfill its obligations is responsible for losses incurred by the User...",
-      "disclosure": "The administration is not responsible for the loss or disclosure of confidential information if this information...",
-      "law": "The user bears full responsibility for compliance with the requirements of the legislation of the Republic of Kazakhstan...",
-      "deletion": "The Administration is not liable to the User for any loss or damage incurred by the User as a result of the removal...",
-      "usage": "The administration is not responsible for any direct or indirect losses resulting from: use or inability to use the Site..."
+      "title": "7. RESPONSIBILITIES OF THE PARTIES",
+      "loss": "The Administration, failing to fulfill its obligations, is liable for the damages incurred by the User...",
+      "disclosure": "The Administration is not responsible in the event of loss or disclosure of confidential information if such information...",
+      "law": "The User is fully responsible for compliance with the laws of the Republic of Kazakhstan...",
+      "deletion": "The Administration is not responsible to the User for any loss or damage suffered by the User as a result of deletion...",
+      "usage": "The Administration is not responsible for any direct or indirect losses arising from the use or inability to use the Website..."
     },
     "disputes": {
       "title": "8. DISPUTE RESOLUTION",
-      "pre_court": "Before filing a claim in court regarding disputes arising from the relationship between the User and the Administration...",
-      "notification": "The recipient of the claim, within 20 calendar days from the date of receipt of the claim, notifies the applicant in writing or electronically...",
+      "pre_court": "Before filing a lawsuit for disputes arising from the relationship between the User and the Administration...",
+      "notification": "The recipient of the claim shall notify the claimant in writing or electronically within 20 calendar days of receiving the claim...",
       "arbitration": "If no agreement is reached, the dispute will be referred to the Arbitration Court of Almaty.",
-      "law": "The current legislation of the Republic of Kazakhstan applies to this Privacy Policy and the relationship between the User and the Administration."
+      "law": "This Privacy Policy and the relationship between the User and the Administration are governed by the current laws of the Republic of Kazakhstan."
     },
     "additional": {
       "title": "9. ADDITIONAL TERMS",
-      "changes": "The Administration has the right to make changes to this Privacy Policy without the User’s consent.",
-      "effective_date": "The new Privacy Policy comes into force from the moment it is posted on the Site, unless otherwise provided by the new edition of the Privacy Policy."
+      "changes": "The Administration has the right to amend this Privacy Policy without the User's consent.",
+      "effective_date": "The new Privacy Policy comes into effect from the moment it is posted on the Website unless otherwise provided by the new version of the Privacy Policy."
     }
   },
   "payment_delivery": {
-    "title": "DELIVERY METHODS AND COSTS",
-    "delivery_methods": "Delivery methods",
-    "pickup": "Self-pickup – receipt of goods at the company’s office within 3 working days after the order status changes to “Available”.",
-    "payment_methods": "Payment methods for orders",
-    "cash_payment": "Cash:",
+    "title": "DELIVERY METHODS AND COST",
+    "delivery_methods": "Delivery Methods",
+    "pickup": "Pickup – collect the product at the company's office within 3 business days after the order status changes to 'Available'.",
+    "payment_methods": "Order Payment Methods",
+    "cash_payment": "Cash Payment:",
     "cash_payment_details": [
-      "Cash payment is available at the checkout of a retail store when picking up the ordered goods.",
-      "Payment is made in the national currency “tenge”.",
-      "After receiving payment, a sales receipt is issued."
+      "Cash payment is available at the retail store's checkout upon product pickup.",
+      "Payment is made in the national currency 'tenge'.",
+      "A receipt is issued after payment."
     ],
-    "card_payment_on_receipt": "Payment by bank payment card upon receipt:",
+    "card_payment_on_receipt": "Payment by Bank Card upon Receipt:",
     "card_payment_on_receipt_details": [
-      "Payment by bank payment card is available at the checkout of a retail store when picking up the ordered goods."
+      "Payment by bank card is available at the retail store's checkout upon product pickup."
     ],
-    "card_payment_online": "Payment by bank payment card on the website when placing an order",
+    "card_payment_online": "Payment by Bank Card on the Website when Placing an Order",
     "card_payment_online_details": [
-      "The payment method requires payment by bank card. ",
-      "Attention! ",
-      "The system will automatically redirect you to the ePay electronic payment page of Halyk Bank of Kazakhstan JSC to enter card data. "
+      "This payment method allows payment by bank card. Cards from almost any bank, systems like Visa and MasterCard, for which your issuing bank has permitted financial transactions on the Internet, are accepted.",
+      "Attention! Not all bank cards are initially set up for online payments. To check if your card supports online financial transactions, please consult with a representative from your issuing bank. Usually, if the card does not have this option, it can be enabled by submitting a corresponding request at your bank. This is a one-time setup. For details, please contact your bank.",
+      "The system will automatically redirect you to the ePay page of Halyk Bank of Kazakhstan JSC to enter your card details. Please follow the instructions on the page. After you verify that the card details and email address are entered correctly, click 'Pay'. A notification of the payment will be sent to the email address specified on this page. By default, the email address registered on the online store's website will be used in the 'Your email' field. You can change the email for receiving notifications. After completing the payment, you can leave this page or return to the online store by clicking the corresponding button."
     ]
   },
   "public_offer": {
     "title": "PUBLIC OFFER AGREEMENT",
-    "subtitle": "Online store remalux.kz",
-    "intro": "This agreement between the online store remalux.kz, hereinafter referred to as the “Online store/Seller” and the user of the online store services, hereinafter referred to as the “Buyer”, defines the conditions for the purchase of goods through the online store website",
+    "subtitle": "For the online store remalux.kz",
+    "intro": "This agreement between the online store remalux.kz, hereinafter referred to as the 'Online Store/Seller', and the user of the online store services, hereinafter referred to as the 'Buyer', defines the conditions for purchasing products through the online store website.",
     "terms": {
       "title": "TERMS AND DEFINITIONS",
-      "buyer": "Buyer - any fully capable individual who orders or purchases goods by placing an Order on the website",
-      "seller": "The Seller is “K-COLOR” LLP “K-COLOR” (BIN 010440005708), an organization that sells Goods remotely, under a retail sales contract concluded on the basis of the buyer’s familiarization with what is offered on the Seller’s website at the address: remalux.kz.",
-      "store": "Online store - an Internet site owned by the Seller, where the goods offered by the Seller to its Buyers for placing Orders are presented, as well as the terms of payment and delivery of these Orders to Buyers.",
-      "site": "Website - www.remalux.kz.",
-      "product": "Goods are an object of the material world that has not been removed from civil circulation and is presented for sale on the Site and is available at the time of confirmation of shipment.",
-      "order": "Order - a duly completed request from the Buyer for delivery to the specified address of the list of Products selected on the Site.",
-      "account": "Personal Account - the Buyer’s personal page on the Site, to access which a login and password are required, and on which information about the Buyer and his Orders is stored.",
-      "delivery_service": "Delivery service is a third party that, under an agreement with the Seller, provides services for the delivery of Orders to Buyers."
+      "buyer": "Buyer – any fully capable individual who orders, purchases products by placing an Order on the website",
+      "seller": "Seller – LLP 'K-COLOR' (BIN 010440005708), an organization that sells products remotely, under a retail purchase and sale agreement, concluded based on the Buyer's review of the Seller's offer on the website at remalux.kz.",
+      "store": "Online Store – a website owned by the Seller, where products offered by the Seller to its Buyers for placing Orders are displayed, along with the payment and delivery terms for those Orders.",
+      "site": "Website – www.remalux.kz.",
+      "product": "Product – a material object, not withdrawn from civil circulation, presented for sale on the Website and available at the time of shipment confirmation.",
+      "order": "Order – a properly placed request by the Buyer for the delivery to a specified address of a list of Products selected on the Website.",
+      "account": "Personal Account – the Buyer's personal page on the Website, for which a login and password are required for access, where information about the Buyer and their Orders is stored.",
+      "delivery_service": "Delivery Service – a third party providing delivery services to Buyers under a contract with the Seller."
     },
     "general_provisions": {
       "title": "1. GENERAL PROVISIONS",
-      "item1": "By ordering goods through the online store, the Buyer agrees to the Terms of Sale of Goods set out below.",
-      "item2": "These Terms and information about the Product presented on the Site are a public offer in accordance with Article 395 of the Civil Code of the Republic of Kazakhstan, and if the conditions are accepted, the individual accepting this offer makes payment for the Seller’s Product in accordance with the terms of this Agreement.",
-      "item3": "The provisions of the Civil Code of the Republic of Kazakhstan, the Law of the Republic of Kazakhstan dated May 4, 2010 No. 274-IV “On the Protection of Consumer Rights” and other regulatory legal acts of the current legislation of the Republic of Kazakhstan apply to the relationship between the Buyer and the Seller.",
-      "item4": "The Seller reserves the right to make changes to these Terms, and the Buyer undertakes to regularly monitor changes in the “Public Offer Agreement” section.",
-      "item5": "The Buyer agrees to the Terms by clicking the “Place an Order” button at the last stage of placing an Order on the Site."
+      "item1": "By ordering products through the Online Store, the Buyer agrees to the Terms of Sale of products set forth below.",
+      "item2": "These Terms and the information about the Product presented on the Website constitute a public offer in accordance with Article 395 of the Civil Code of the Republic of Kazakhstan, and by accepting these terms, the individual making the offer accepts this offer by paying for the Seller's Product under the terms of this Agreement.",
+      "item3": "The relationship between the Buyer and the Seller is governed by the provisions of the Civil Code of the Republic of Kazakhstan, the Law of the Republic of Kazakhstan dated May 4, 2010, No. 274-IV 'On Consumer Protection', and other regulatory legal acts of the current legislation of the Republic of Kazakhstan.",
+      "item4": "The Seller reserves the right to make changes to these Terms, and the Buyer agrees to regularly monitor changes in the 'Public Offer Agreement' section.",
+      "item5": "The Buyer agrees to the Terms by clicking the 'Place Order' button at the last stage of placing an Order on the Website."
     },
     "registration": {
-      "title": "2. REGISTRATION ON THE SITE",
-      "item1": "To place an Order, the Buyer is recommended to register on the Site.",
+      "title": "2. REGISTRATION ON THE WEBSITE",
+      "item1": "To place an Order, the Buyer is recommended to register on the Website.",
       "item2": "The Seller is not responsible for the accuracy and correctness of the information provided by the Buyer during registration.",
-      "item3": "The buyer undertakes not to disclose to third parties the login and password specified when registering his personal account. "
+      "item3": "The Buyer agrees not to disclose the login and password specified during the registration of the personal account to third parties. If the Buyer suspects that their login and password are compromised or may be used without authorization, the Buyer agrees to notify the Seller via the feedback form."
     },
     "order_placement": {
-      "title": "3. ORDER COMPLETION AND DATES",
-      "item1": "The Buyer’s order can be placed in the following ways: accepted by telephone or placed by the Buyer independently on the Site.",
-      "item2": "When placing an Order, the Buyer must indicate the following information: Full name. ",
-      "item3": "The Seller has the right to refuse to conclude an agreement and place an Order without specifying reasons.",
-      "item4": "The order fulfillment period is from one working day, and can be negotiated individually depending on the characteristics and quantity of the Product.",
-      "item5": "Information materials on the Site are for reference purposes and may not fully convey information about the Product."
+      "title": "3. ORDER PLACEMENT AND FULFILLMENT TIME",
+      "item1": "The Buyer's Order can be placed in the following ways: accepted by phone or placed independently by the Buyer on the Website.",
+      "item2": "When placing an Order, the Buyer must provide the following information: Full Name of the Buyer or Order Recipient, delivery address, contact email, phone, delivery method, payment method.",
+      "item3": "The Seller has the right to refuse to conclude an agreement and place an Order without stating reasons.",
+      "item4": "The order fulfillment time is from one business day and can be negotiated individually depending on the characteristics and quantity of the Product.",
+      "item5": "Information materials on the Website are for reference only and may not fully convey information about the Product."
     },
     "delivery": {
       "title": "4. DELIVERY",
-      "item1": "Methods of delivery of goods are agreed upon by the Buyer with the manager of the online store.",
-      "item2": "Delivery of Orders is carried out to the address specified by the Buyer, or by pickup from the store.",
-      "item3": "The Seller will make every effort to meet delivery deadlines, but delays may occur due to circumstances beyond the Seller’s control.",
-      "item4": "The risk of accidental loss or damage to the Goods passes to the Buyer from the moment the Order is transferred and signatures are received on the documents.",
-      "item5": "The delivery cost of each Order is calculated individually and is indicated at the last stage of placing the Order."
+      "item1": "The methods of delivering products are agreed upon by the Buyer with the online store manager.",
+      "item2": "Orders are delivered to the address specified by the Buyer or picked up from the store.",
+      "item3": "The Seller will make every effort to comply with the delivery times, but delays due to circumstances beyond the Seller's control are possible.",
+      "item4": "The risk of accidental loss or damage to the Product passes to the Buyer upon receipt of the Order and signature on the documents.",
+      "item5": "The delivery cost for each Order is calculated individually and indicated at the last stage of placing the Order."
     },
     "price_payment": {
-      "title": "5. PRICE AND PAYMENT OF GOODS",
-      "item1": "The price of the Product in the online store is indicated in tenge.",
-      "item2": "The Seller has the right to change the price of the Product unilaterally, but the price of the paid Product cannot be changed.",
-      "item3": "The price of the Product is indicated at the last stage of placing the Order and is current at the time you click the “Place an order” button.",
-      "item4": "Methods of payment for the Goods are indicated on the Site. "
+      "title": "5. PRICE AND PAYMENT OF THE PRODUCT",
+      "item1": "The Product price in the online store is indicated in tenge.",
+      "item2": "The Seller has the right to change the price of the Product unilaterally; however, the price of the paid Product is not subject to change.",
+      "item3": "The Product price is indicated at the last stage of placing the Order and is current at the time of clicking the 'Place Order' button.",
+      "item4": "The methods of payment for the Product are indicated on the Website. The Buyer can pay for the order in any available way."
     },
     "returns": {
-      "title": "6. RETURN OF GOODS AND MONEY",
-      "item1": "Return of goods of good quality is possible within 14 days from the date of receipt, provided that the presentation and documents confirming the purchase are preserved.",
-      "item2": "Returning goods of inadequate quality is possible if defects are detected, no later than 3 months before the expiration date of the product.",
-      "item3": "Refunds are made to the bank card with which the Order was paid."
+      "title": "6. PRODUCT AND FUNDS RETURN",
+      "item1": "Returning products of proper quality is possible within 14 days from the date of receipt, provided the product's appearance and purchase documents are preserved.",
+      "item2": "Returning products of improper quality is possible if defects are found, no later than 3 months before the product's expiration date.",
+      "item3": "Refunds are made to the bank card used to pay for the Order."
     },
     "copyright": {
       "title": "7. COPYRIGHT",
-      "content": "All materials presented on the Site are the property of K-COLOR LLP “K-COLOR” and are protected by copyright law. "
+      "content": "All materials presented on the Website are the property of LLP 'K-COLOR' and are protected by copyright law. The materials are intended for personal, non-commercial use and cannot be used without the Seller's written permission."
     },
     "warranty": {
-      "title": "8. WARRANTY AND LIABILITY",
-      "content": "The Seller is not responsible for damage caused to the Buyer due to improper use of the Goods. "
+      "title": "8. WARRANTIES AND LIABILITY",
+      "content": "The Seller is not responsible for any damage caused to the Buyer as a result of improper use of the Products. All disputes are resolved through negotiations or in court in accordance with the laws of the Republic of Kazakhstan."
     },
     "confidentiality": {
       "title": "9. CONFIDENTIALITY AND PROTECTION OF PERSONAL INFORMATION",
-      "content": "The Seller undertakes not to disclose the Buyer’s personal data. "
+      "content": "The Seller agrees not to disclose the Buyer's personal data. The Buyer can withdraw consent to the processing of personal data through the feedback form on the Website."
     },
     "footer": {
       "content": "Detailed information can be found on the official website: remalux.kz."
     }
   },
   "breadcrumbs": {
-    "payment_delivery": "Delivery and payment",
+    "compare": "Product Comparison",
+    "payment_delivery": "Delivery and Payment",
     "home": "Home",
-    "store": "Shop",
+    "store": "Store",
     "ideas": "Ideas",
     "news": "News",
-    "cart": "Basket",
+    "cart": "Cart",
     "privacy": "Privacy Policy",
-    "public_offer": "Public offer agreement",
-    "checkout": "Placing an order",
+    "public_offer": "Public Offer Agreement",
+    "checkout": "Checkout",
     "profile": "Profile",
     "addresses": "Addresses",
     "recipients": "Recipients",
     "orders": "Orders",
-    "favourites": "Favorites",
-    "favourite-colors": "Featured Colors",
-    "favourite-products": "Featured Products",
-    "payment_success": "Successful payment",
+    "favourites": "Favourites",
+    "favourite-colors": "Favourite Colors",
+    "favourite-products": "Favourite Products",
+    "payment_success": "Payment Successful",
     "contacts": "Contacts",
     "colors": "Colors",
     "partnership": "Partnership",
     "projects": "Projects"
   },
   "shopOrCart": {
-    "title": "Thanks for your choice!",
-    "text": "Please select one of the options below to continue shopping or proceed to your cart.",
-    "button": "Continue shopping",
-    "checkout": "Place an order"
+    "title": "Thank You for Your Choice!",
+    "text": "Please select one of the options below to continue shopping or proceed to the cart.",
+    "button": "Continue Shopping",
+    "checkout": "Checkout"
   },
   "contacts": {
-    "title": "Our branches",
+    "title": "Our Branches",
     "address": "Address",
     "contacts": "Contacts",
-    "email": "Mail",
-    "work_time": "Working hours",
+    "email": "Email",
+    "work_time": "Working Hours",
     "work_info": {
       "first": {
         "from": "Monday - Friday from",
@@ -540,45 +557,45 @@
     }
   },
   "payment_success": {
-    "title": "Your order has been successfully completed!",
-    "text": "The status of your order can be viewed on the page",
+    "title": "Your Order Has Been Successfully Placed!",
+    "text": "You can check the status of your order on the",
     "link": "Orders",
-    "button": "Return to home"
+    "button": "Return to Homepage"
   },
   "profile": {
-    "phone": "Phone number",
-    "logout": "Log out",
+    "phone": "Phone Number",
+    "logout": "Log Out",
     "profile": "Profile",
     "recipients": "Recipients",
-    "no_recipients": "Sorry, you don't have any recipients saved, please add them.",
-    "add_recipient": "Add recipient",
-    "no_addresses": "Sorry, you don't have any addresses saved, please add them.",
-    "add_address": "Add address",
-    "my_addresses": "My addresses",
-    "to_addresses": "Go to my addresses",
+    "no_recipients": "Unfortunately, you have no saved recipients, please add them.",
+    "add_recipient": "Add Recipient",
+    "no_addresses": "Unfortunately, you have no saved addresses, please add them.",
+    "add_address": "Add Address",
+    "my_addresses": "My Addresses",
+    "to_addresses": "Go to My Addresses",
     "entrance": "entrance",
     "floor": "floor",
-    "apartment": "kv"
+    "apartment": "apt"
   },
   "addresses": {
     "create": {
-      "title": "Add delivery address",
-      "no_address": "No delivery address selected",
-      "provide_address": "Please provide your address",
-      "address_placeholder": "Enter address",
+      "title": "Add Delivery Address",
+      "no_address": "Delivery Address Not Selected",
+      "provide_address": "Please provide an address",
+      "address_placeholder": "Enter Address",
       "city": "City",
-      "city_placeholder": "Select a city",
+      "city_placeholder": "Select City",
       "address": "Address",
       "entrance": "Entrance",
-      "entrance_placeholder": "Enter entrance",
+      "entrance_placeholder": "Enter Entrance",
       "floor": "Floor",
-      "floor_placeholder": "Enter floor",
+      "floor_placeholder": "Enter Floor",
       "apartment": "Apartment",
-      "apartment_placeholder": "Enter apartment",
+      "apartment_placeholder": "Enter Apartment",
       "button": "Save"
     },
     "remove": {
-      "title": "Deleting an address",
+      "title": "Remove Address",
       "confirmation": "Are you sure you want to delete the address?",
       "cancel": "Cancel",
       "delete": "Delete"
@@ -586,127 +603,127 @@
   },
   "recipients": {
     "create": {
-      "title": "Add recipient",
-      "no_recipient": "Recipient not selected",
-      "provide_recipient": "Please indicate the recipient",
+      "title": "Add Recipient",
+      "no_recipient": "Recipient Not Selected",
+      "provide_recipient": "Please provide a recipient",
       "name": "Name",
-      "name_placeholder": "Enter name",
-      "phone": "Phone number",
-      "phone_placeholder": "Enter your phone number",
+      "name_placeholder": "Enter Name",
+      "phone": "Phone Number",
+      "phone_placeholder": "Enter Phone Number",
       "button": "Save"
     },
     "remove": {
-      "title": "Removing a recipient",
+      "title": "Remove Recipient",
       "confirmation": "Are you sure you want to delete the recipient?",
       "cancel": "Cancel",
       "delete": "Delete"
     }
   },
   "no_results": {
-    "title": "Sorry, your search did not return any results.",
+    "title": "Unfortunately, Your Search Returned No Results",
     "not_required": "optional"
   },
   "about": {
-    "hero_title": "We are a group of passionate people from around the world working to create the future of e-commerce.",
-    "hero_description": "Anim aute id magna aliqua ad ad non desert sunt. ",
+    "hero_title": "We are a team of passionate people from all over the world working on building the future of e-commerce.",
+    "hero_description": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
     "timeline": [
       {
-        "name": "Founding of the company",
-        "description": "Nihil aut nam. ",
+        "name": "Company Foundation",
+        "description": "Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.",
         "date": "Aug 2021",
         "dateTime": "2021-08"
       },
       {
-        "name": "$65 million in investments raised",
-        "description": "Provident quia ut esse. ",
+        "name": "Raised $65M Investment",
+        "description": "Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.",
         "date": "Dec 2021",
         "dateTime": "2021-12"
       },
       {
-        "name": "Beta launch",
-        "description": "Sunt perspiciatis incidunt. ",
+        "name": "Beta Launch",
+        "description": "Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.",
         "date": "Feb 2022",
         "dateTime": "2022-02"
       },
       {
-        "name": "Global product launch",
-        "description": "Ut ipsa sint distinctio quod itaque nam qui. ",
+        "name": "Global Product Launch",
+        "description": "Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.",
         "date": "Dec 2022",
         "dateTime": "2022-12"
       }
     ],
-    "customers_love_us": "Our clients love us",
-    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. ",
+    "customers_love_us": "Our Customers Love Us",
+    "customers_love_us_description": "Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi adipisicing officia excepteur tempor deserunt.",
     "stats_title": "We view the workplace as something that adds value to our lives and the world.",
-    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. ",
+    "stats_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id. Integer vel nibh.",
     "stat1": {
       "value": "250k",
-      "title": "Users on the platform",
+      "title": "Users on the Platform",
       "description": "Vel labore deleniti veniam consequuntur sunt nobis."
     },
     "stat2": {
       "value": "$8.9 billion",
-      "title": "We are proud that our clients have earned more than $8 billion.",
-      "description": "Eu duis porta aliquam ornare. "
+      "title": "We’re proud that our customers have earned over $8 billion.",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas."
     },
     "stat3": {
       "value": "401,093",
-      "title": "Transactions this year",
-      "description": "Eu duis porta aliquam ornare. "
+      "title": "Transactions This Year",
+      "description": "Eu duis porta aliquam ornare. Elementum eget magna egestas. Eu duis porta aliquam ornare."
     },
-    "people_title": "Our people",
-    "people_description1": "Quasi est quaerat. ",
-    "people_description2": "Anim aute id magna aliqua ad ad non desert sunt. ",
-    "join_us_title": "We are always looking for talented people to join our team",
-    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. ",
-    "view_all_openings": "View all vacancies"
+    "people_title": "Our People",
+    "people_description1": "Quasi est quaerat. Sit molestiae et. Provident ad dolorem occaecati eos iste. Soluta rerum quidem minus ut molestiae velit error quod. Excepturi quidem expedita molestias quas.",
+    "people_description2": "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat. Quasi aperiam sit non sit neque reprehenderit.",
+    "join_us_title": "We’re Always Looking for Talented People to Join Our Team",
+    "join_us_description": "Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu. Cras purus nibh cursus sit eu in id.",
+    "view_all_openings": "View All Open Positions"
   },
   "checkout": {
-    "warning": "For orders over 300 kg, delivery is free.",
-    "title": "Placing an order",
-    "items": "Items in cart",
-    "del_type": "Delivery type",
+    "warning": "Free delivery for orders over 300 kg.",
+    "title": "Checkout",
+    "items": "Items in Cart",
+    "del_type": "Delivery Type",
     "delivery_status": {
       "pickup": "Pickup",
       "delivery": "Delivery"
     },
-    "to_pay": "Amount to be paid",
+    "to_pay": "Amount Due",
     "first": {
-      "title": "Recipient details",
-      "add": "Add recipient",
-      "text": "* To place an order, you must add and select a recipient",
-      "placeholder": "Search for recipient",
+      "title": "Recipient Information",
+      "add": "Add Recipient",
+      "text": "* To place an order, you need to add and select a recipient",
+      "placeholder": "Search Recipient",
       "physical": "Individual",
-      "legal": "Legal entity",
-      "name": "your name",
-      "phone": "Phone number"
+      "legal": "Legal Entity",
+      "name": "Your Name",
+      "phone": "Phone Number"
     },
     "second": {
-      "title": "Method of receiving an order",
+      "title": "Order Collection Method",
       "pickup": "Pickup",
       "delivery": "Delivery",
-      "address": "Delivery address",
-      "placeholder": "Address search",
-      "add": "Add delivery address",
-      "time": "Desired delivery time",
-      "text": "*To place an order, you must add and select a delivery address"
+      "address": "Delivery Address",
+      "placeholder": "Search Address",
+      "add": "Add Delivery Address",
+      "time": "Preferred Delivery Time",
+      "text": "*To place an order, you need to add and select a delivery address"
     },
     "third": {
       "title": "Payment",
-      "phys": "Payment upon receipt",
+      "phys": "Cash on Delivery",
       "agreement": {
-        "text": "I agree with ",
-        "link": "terms of return and claims"
+        "text": "I agree with the ",
+        "link": "terms and claims policy"
       },
-      "online": "Online payment",
-      "to_pay": "For payment"
+      "online": "Online Payment",
+      "to_pay": "Amount to Pay"
     }
   },
   "cart": {
-    "title": "Cart (Selected products",
-    "clear": "Empty Trash",
+    "title": "Cart (Selected items",
+    "clear": "Clear Cart",
     "table": {
-      "product": "Product name",
+      "product": "Product Name",
       "color": "Color",
       "weight": "Weight",
       "total": "Total",
@@ -714,24 +731,24 @@
       "quantity": "Quantity"
     },
     "checkout": {
-      "title": "Order information",
-      "coupon_title": "Coupons and promotional codes",
-      "coupon_text": "Enter the coupon code into your cart in the appropriate field and click \"Apply\" for the discount to be reflected in your order total.",
-      "coupon_placeholder": "Enter coupon code",
-      "coupon_button": "Apply coupon",
-      "summary": "RESULTS",
+      "title": "Order Information",
+      "coupon_title": "Coupons and Promo Codes",
+      "coupon_text": "Enter the coupon code in the cart in the appropriate field and click \"Apply\" to reflect the discount in the total order amount.",
+      "coupon_placeholder": "Enter Coupon Code",
+      "coupon_button": "Apply Coupon",
+      "summary": "SUMMARY",
       "total": "Total",
-      "checkout_button": "Place an order"
+      "checkout_button": "Checkout"
     }
   },
   "forms": {
-    "name_placeholder": "Full name *",
-    "email_placeholder": "Email address *",
+    "name_placeholder": "Full Name *",
+    "email_placeholder": "Email Address *",
     "bin_placeholder": "BIN *",
-    "phone_placeholder": "Phone number *",
+    "phone_placeholder": "Phone Number *",
     "login": {
       "title": "Welcome!",
-      "yet_account": "Don't have an account yet?",
+      "yet_account": "Don’t have an account yet?",
       "please_register": "Please register",
       "button": "Login"
     },
@@ -739,51 +756,51 @@
       "title": "Registration",
       "already_have": "Already have an account?",
       "login": "Login",
-      "button": "Registration",
+      "button": "Register",
       "phone_yes": "This phone number is already registered",
-      "phone_no": "This phone number is free",
+      "phone_no": "This phone number is available",
       "email_yes": "This email is already registered",
-      "email_no": "This email is free",
+      "email_no": "This email is available",
       "rules": {
-        "first": "The password must be at least 8 characters long.",
-        "second": "Latin capital letters.",
-        "third": "Latin small letters.",
+        "first": "Password must be at least 8 characters long.",
+        "second": "Uppercase Latin letters.",
+        "third": "Lowercase Latin letters.",
         "fourth": "Numbers 0-9."
       }
     },
     "forgot_password": {
-      "title": "Forgot your password",
-      "description": "Enter your phone number, we will send you a verification code.",
-      "button": "Send code",
+      "title": "Forgot Password",
+      "description": "Enter your phone number, and we’ll send you a confirmation code.",
+      "button": "Send Code",
       "code_button": "Confirm"
     },
     "code": {
       "title": "Code",
-      "placeholder": "Enter code"
+      "placeholder": "Enter Code"
     },
-    "forgot_pass": "Forgot your password?",
-    "remember_me": "Remember me",
+    "forgot_pass": "Forgot Password?",
+    "remember_me": "Remember Me",
     "name": {
-      "title": "First Name Last Name",
-      "placeholder": "Enter your name"
+      "title": "Name",
+      "placeholder": "Enter Your Name"
     },
     "email": {
-      "title": "E-mail",
-      "placeholder": "Enter your email"
+      "title": "Email",
+      "placeholder": "Enter Your Email"
     },
     "phone_number": {
-      "title": "Phone number"
+      "title": "Phone Number"
     },
     "password": {
       "title": "Password"
     },
     "confirm_password": {
-      "title": "Confirm your password"
+      "title": "Confirm Password"
     }
   },
   "header_links": {
-    "store": "Shop",
-    "choose_color": "Select color",
+    "store": "Store",
+    "choose_color": "Choose Color",
     "ideas": "Ideas",
     "calculator": "Calculator",
     "about_us": "About Us",
@@ -791,69 +808,96 @@
     "contacts": "Contacts",
     "login": "Login",
     "register": "Register",
-    "partners": "Become a partner",
+    "partners": "Become a Partner",
     "projects": "Projects"
   },
   "cards": {
-    "more": "More details"
+    "more": "Read More"
   },
   "colors": {
-    "title": "Choose a color for yourself",
-    "sec_title": "and your home",
-    "choose_color": "Choose your color palette",
-    "style_text": "Style chosen by millions"
+    "title": "Find the Perfect Color for You",
+    "sec_title": "and Your Home",
+    "choose_color": "Choose Your Color Palette",
+    "style_text": "A Style Chosen by Millions"
   },
   "products": {
-    "title": "Branded Products",
+    "related": {
+      "title": "Related Products",
+      "more": "Read More"
+    },
+    "title": "Signature Products",
     "clear_filters": "Reset",
     "picked_filters": "Filters",
-    "sort": "Sorting",
-    "colors_link": "Choose a different color",
-    "sec_title": "shop",
+    "sort": "Sort",
+    "colors_link": "Choose a Different Color",
+    "sec_title": "store",
     "products_title": "Products",
     "found_products": "products found",
     "filters": "Filters",
+    "create_review": {
+      "title": "Leave Your Review"
+    },
     "details": {
-      "article": "Article",
+      "norm": "Consumption Rate",
+      "choose_color": "Choose Color",
+      "article": "SKU",
       "weight": "Weight",
-      "kg": "kg",
-      "choose_color": "Select color",
       "quantity": "Quantity",
-      "paint_calculator": "Paint calculator",
+      "paint_calculator": "Paint Calculator",
       "calculate": "Calculate",
       "width": "Width",
       "height": "Height",
-      "layers": "Number of layers",
-      "area": "Total area",
+      "layers": "Layers",
+      "area": "Total Area",
+      "liters": "kg",
+      "serts": "Product Certifications",
+      "sertificate": "Certificate",
+      "rating": "Overall Rating",
+      "out": "out of",
+      "reviewsTotal": "reviews",
+      "review": "Review",
+      "worthIt": "Helpful",
+      "outOfTotal": "of reviewers recommend this product",
+      "share": {
+        "title": "Share Your Review",
+        "subtitle": "If you have already used this product, share your thoughts with other customers",
+        "addReview": "Leave a Review"
+      },
       "on": "On",
       "layer": "layer",
-      "liters": "kilograms",
-      "add_to_cart": "Add to cart",
-      "tabs": {
-        "description": "Description",
-        "details": "Details",
-        "certificates": "Certificates"
-      },
-      "also_bought": "They buy with these products",
-      "data": "Main Features",
-      "similar_products": "Similar products"
+      "kg": "kg",
+      "add_to_cart": "Add to Cart",
+      "data": "Product Data",
+      "also_bought": "Customers Also Bought",
+      "description": "Description",
+      "colors_link": "View Available Colors",
+      "customer_reviews": "Customer Reviews",
+      "reviews": "reviews",
+      "helpful": "Helpful",
+      "no_reviews": "No Reviews",
+      "yes": "Yes",
+      "no": "No",
+      "norm_expense": "Consumption Rate",
+      "recommendation": "Recommendation",
+      "recommended": "recommended",
+      "star": "star"
     }
   },
   "pagination": {
     "show_by": {
-      "text": "Show by",
+      "text": "Show",
       "items": "results"
     },
     "prev": "Previous",
     "next": "Next"
   },
   "colors_modal": {
-    "first": "Choose paint for painting",
-    "second": "Try our visualizer app"
+    "first": "Select Paint for Coloring",
+    "second": "Try Our Visualizer App"
   },
   "footer_links": {
-    "about_text": "K-TsVET LLP with the REMALUX trademark is a leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
-    "2gis": "We are at 2gis",
+    "about_text": "LLP 'K-COLOR' with the brand 'REMALUX' is the leader in the production of paints and coatings, located in the Republic of Kazakhstan.",
+    "2gis": "We are on 2GIS",
     "remalux": {
       "title": "Remalux",
       "about_us": "About Us",
@@ -862,85 +906,85 @@
       "contacts": "Contacts"
     },
     "store": {
-      "title": "Shop",
+      "title": "Store",
       "products": "Products",
-      "payment_and_delivery": "Payment and delivery",
+      "payment_and_delivery": "Payment and Delivery",
       "calculator": "Calculator",
-      "choose_color": "Select color",
-      "public_offer": "Public offer"
+      "choose_color": "Choose Color",
+      "public_offer": "Public Offer"
     },
     "contacts": {
       "title": "Contacts",
-      "address": "Almaty, st. "
+      "address": "Almaty, 300/2 Tole Bi Street"
     },
     "privacy_policy": "Privacy Policy"
   },
   "ideas": {
     "page_title": {
-      "first": "From idea to reality",
-      "second": "With"
+      "first": "From Idea to Reality",
+      "second": "with"
     },
-    "direction": "Choose the direction of your idea",
-    "select_room": "Choose a room"
+    "direction": "Select Idea Direction",
+    "select_room": "Select Room"
   },
   "news": {
     "page_title": {
-      "first": "Stay informed",
-      "second": "all news"
+      "first": "Stay Updated",
+      "second": "on All News"
     },
-    "read_more": "Read more"
+    "read_more": "Read More"
   },
   "mainPage": {
     "hero": {
-      "title": "High European quality at an affordable price",
-      "choose_paint": "Select product",
-      "choose_color": "Select color"
+      "title": "High European Quality at Affordable Prices",
+      "choose_paint": "Choose Product",
+      "choose_color": "Choose Color"
     },
     "choose_type": {
       "paint": {
-        "title": "Branded products",
-        "description": "For all types of surfaces"
+        "title": "Signature Products",
+        "description": "For All Surface Types"
       },
       "coating": {
         "title": "Primer",
-        "description": "For all types of surfaces"
+        "description": "For All Surface Types"
       },
       "dye": {
-        "title": "Dye",
-        "description": "For all types of surfaces"
+        "title": "Paint",
+        "description": "For All Surface Types"
       },
       "varnish": {
         "title": "Varnish",
-        "description": "For all types of surfaces"
+        "description": "For All Surface Types"
       },
       "putty": {
         "title": "Putty",
-        "description": "For all types of surfaces"
+        "description": "For All Surface Types"
       }
     },
     "ideas": {
-      "title": "Ready-made solutions for your home",
-      "link": "More ideas"
+      "title": "Ready Solutions for Your Home",
+      "link": "More Ideas"
     },
     "popular_products": {
       "title": "Popular Products",
-      "link": "More products"
+      "link": "More Products"
     },
     "download_remalux": {
       "title": "Remalux",
-      "description": "Visualize your idea with our application! "
+      "description": "Visualize your idea with our app! Simply point the camera at the wall and choose a color to see it come to life in real time. A great way to pick the perfect shade and imagine how your interior will look!"
     },
     "news": {
-      "title": "Current news",
-      "link": "All news"
+      "title": "Latest News",
+      "link": "All News"
     },
     "about_us": {
-      "title": "Create the perfect coating with Remalux paints!",
-      "button": "Get to know each other better",
-      "description": "K-COLOR LLP (“K-COLOR”) with the trademark “REMALUX” offers high-quality paint and varnish materials\n          ",
+      "title": "Create the Perfect Finish with Remalux Paints!",
+      "button": "Get to Know Us Better",
+      "description": "LLP 'K-COLOR' with the brand 'REMALUX' offers high-quality paint materials at European standards at affordable prices. Our company, located in the Republic of Kazakhstan, is a leading manufacturer of paints made under British license. We take pride in our wide product range made from raw materials by top suppliers from France, Belgium, Germany, the Netherlands, and the USA.",
       "park": {
-        "title": "Our fleet: Fast and reliable delivery",
-        "text": "The products we produce are designed to easily satisfy the requirements of the most stringent highly qualified professionals for use in prestigious, executive-level facilities. "
+        "title": "Our Fleet: Fast and Reliable Delivery",
+        "text": "Our products are designed to easily meet the demands of the most discerning professionals for use in prestigious representative-level projects. Additionally, they are perfect for regular consumers looking for materials for home use and DIY cosmetic repairs."
       }
     }
   }

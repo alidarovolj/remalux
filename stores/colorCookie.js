@@ -7,7 +7,6 @@ export const useColorCookieStore = defineStore("colorCookie", () => {
     });
     const notifications = useNotificationStore()
 
-    // Initialize colorCookie value
     colorCookie.value = colorCookie.value || null;
 
     return {

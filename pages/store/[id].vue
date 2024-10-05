@@ -1,5 +1,6 @@
 <script setup>
 import {
+  ArrowDownTrayIcon,
   CalculatorIcon,
   ClockIcon,
   CubeTransparentIcon,
@@ -9,9 +10,9 @@ import {
   MinusIcon,
   PaintBrushIcon,
   PlusIcon,
+  ScaleIcon,
   Square3Stack3DIcon,
-  SunIcon,
-    ArrowDownTrayIcon
+  SunIcon
 } from "@heroicons/vue/24/outline";
 import sert from "@/assets/pdf/sert.pdf"
 import {useProductsStore} from "~/stores/products.js";
@@ -57,6 +58,7 @@ const modals = useModalsStore()
 const imagesCarousel = ref(null);
 const prodColor = useColorForProductStore()
 const {colorForProduct} = storeToRefs(prodColor)
+const compareCookie = useCompareCookieStore()
 
 const images = ref([
   img1, img2, img3, img4, img5
@@ -240,6 +242,7 @@ useHead({
 
 <template>
   <div class="pb-32">
+    {{ compareCookie.compareCookie }}
     <Breadcrumbs :links="links"/>
     <div
         class="bg-white py-10 mb-10"
@@ -362,8 +365,7 @@ useHead({
               </div>
             </div>
             <div
-                class="w-full md:w-2/5 flex flex-col p-8 rounded-xl relative"
-                style="box-shadow: 0px 0px 20px 0px #0000000D;"
+                class="w-full md:w-2/5 flex flex-col p-0 md:p-8 rounded-xl relative md:shadow-md"
             >
               <div class="absolute right-8 top-8 w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
                 <svg
@@ -393,14 +395,14 @@ useHead({
                       src="@/assets/img/rgb.png"
                       alt="">
                 </div>
-                <h1 class="text-3xl font-medium font-montserrat w-[90%]">
+                <h1 class="text-2xl md:text-3xl font-medium font-montserrat w-[90%]">
                   {{ detailProduct.title[cur_lang] }}
                 </h1>
               </div>
               <p class="text-sm text-[#7B7B7B] mb-8">
                 {{ $t('products.details.article') }}: {{ detailProduct.article }}
               </p>
-              <div class="flex items-center gap-1 mb-8">
+              <div class="flex justify-between items-center gap-1 mb-8">
                 <div class="flex gap-1 items-center">
                   <svg class="size-6 text-[#FFE814]" fill="currentColor" viewBox="0 0 24 24"
                        xmlns="http://www.w3.org/2000/svg">
@@ -409,6 +411,12 @@ useHead({
                           fill-rule="evenodd"/>
                   </svg>
                   <p class="ml-1 text-lg">{{ detailProduct.rating.rating }} ({{ detailProduct.rating?.count }})</p>
+                </div>
+                <div
+                    @click="compareCookie.saveCookie(detailProduct)"
+                    class="flex gap-3 items-center cursor-pointer hover:text-mainColor transition-all">
+                  <ScaleIcon class="w-5 h-5 text-mainColor"/>
+                  <p>Сравнить товар</p>
                 </div>
               </div>
               <p
@@ -520,7 +528,9 @@ useHead({
                 </div>
               </div>
               <div class="mb-8">
-                <p>Норма расхода: <span class="text-mainColor">{{ detailProduct.expense }} г/м2</span></p>
+                <p>{{ $t('products.details.norm') }}: <span class="text-mainColor">{{
+                    detailProduct.expense
+                  }} г/м2</span></p>
               </div>
               <div v-if="calculatorActive" class="mb-8">
                 <div class="flex gap-4 items-end">
@@ -567,7 +577,7 @@ useHead({
                     />
                   </div>
                 </div>
-                <div class="flex justify-between text-xl mt-8">
+                <div class="flex justify-between text-md md:text-xl mt-8">
                   <p>{{ $t('products.details.area') }}: <span class="text-mainColor">{{ totalArea }} м²</span></p>
                   <p>{{ $t('products.details.on') }} {{ form.layers }} {{ $t('products.details.layer') }}: <span
                       class="text-mainColor">{{ paintNeeded.toFixed(2) }} {{ $t('products.details.liters') }}</span>
@@ -575,7 +585,7 @@ useHead({
                 </div>
               </div>
               <button
-                  class="bg-white border border-mainColor text-xl font-montserrat text-mainColor rounded-xl w-full py-4 transition-all hover:bg-mainColor hover:text-white"
+                  class="bg-white border border-mainColor text-md md:text-xl font-montserrat text-mainColor rounded-xl w-full py-4 transition-all hover:bg-mainColor hover:text-white"
                   @click="addToCartLocal">
                 {{ $t('products.details.add_to_cart') }}
               </button>
@@ -621,7 +631,7 @@ useHead({
               class="w-full md:w-4/5 flex flex-col gap-10 info_block">
             <div v-html="detailProduct.description[cur_lang]"></div>
             <div>
-              <p class="text-mainColor text-2xl font-medium font-montserrat mb-4">Сертификаты продукции</p>
+              <p class="text-mainColor text-2xl font-medium font-montserrat mb-4">{{ $t('products.details.serts') }}</p>
               <div>
                 <a
                     :href="sert"
@@ -632,9 +642,9 @@ useHead({
                         class="w-5 h-5 object-contain"
                         src="@/assets/img/sert/download.png"
                         alt="">
-                    <p>Сертификат</p>
+                    <p>{{ $t('products.details.sertificate') }}</p>
                   </div>
-                  <ArrowDownTrayIcon class="w-5 h-5 text-green-500" />
+                  <ArrowDownTrayIcon class="w-5 h-5 text-green-500"/>
                 </a>
               </div>
             </div>
@@ -682,7 +692,7 @@ useHead({
 
         <div class="w-full md:w-max">
           <p class="mb-3">
-            Общая оценка
+            {{ $t('products.details.rating') }}
           </p>
           <div v-if="detailProduct.rating" class="flex gap-3 mb-4">
             <p class="text-6xl" v-if="detailProduct.rating">{{ detailProduct.rating.rating }}</p>
@@ -767,18 +777,18 @@ useHead({
             </div>
 
           </div>
-          <p>{{ products.productReviewsRating.recommendation.recommended }} из
+          <p>{{ products.productReviewsRating.recommendation.recommended }} {{ $t('products.details.out') }}
             {{ products.productReviewsRating.recommendation.total }}
-            ({{ products.productReviewsRating.recommendation.percentage }}%) рецензентов рекомендуют этот продукт</p>
+            ({{ products.productReviewsRating.recommendation.percentage }}%) {{ $t('products.details.outOfTotal') }}</p>
         </div>
       </div>
       <div class="flex flex-col gap-3 w-full md:w-1/3">
-        <h3 class="text-xl font-bold">Поделитесь своим отзывом</h3>
-        <p>Если вы уже пользовались этим продуктом, поделитесь своими мыслями с другими покупателями</p>
+        <h3 class="text-xl font-bold">{{ $t('products.details.share.title') }}</h3>
+        <p>{{ $t('products.details.share.subtitle') }}</p>
         <p
             @click="modals.showModal('addReview', detailProduct.id)"
             class="w-full flex items-center justify-center border border-mainColor text-mainColor py-3 rounded-lg hover:text-white hover:bg-mainColor transition-all cursor-pointer">
-          Оставить отзыв
+          {{ $t('products.details.share.addReview') }}
         </p>
       </div>
     </div>
@@ -792,7 +802,7 @@ useHead({
           class="mt-10">
 
         <div class="flex items-center gap-2 mt-4 border-b pb-5">
-          <p>{{ reviews.data.length }} отзывов</p>
+          <p>{{ reviews.data.length }} {{ $t('products.details.reviewsTotal') }}</p>
         </div>
 
         <div
@@ -800,7 +810,7 @@ useHead({
             :key="review.id"
             class="py-6 border-b border-[#F0DFDF] flex items-start"
         >
-          <div class="flex items-center gap-4 w-full md:w-1/5">
+          <div class="block md:flex items-center gap-4 w-full md:w-1/5">
             <img
                 class="w-9 h-9"
                 src="@/assets/img/avatar.png" alt="">
@@ -856,13 +866,13 @@ useHead({
             </div>
           </div>
           <div class="w-full md:w-4/5 flex flex-col gap-4">
-            <p class="text-xl pb-3 border-b border-[#F0DFDF]">Отзыв:</p>
+            <p class="text-xl pb-3 border-b border-[#F0DFDF]">{{ $t('products.details.review') }}:</p>
             <p class="italic">
               "{{ review.comment }}"
             </p>
             <div>
               <div class="flex gap-4">
-                <p>Полезно?</p>
+                <p>{{ $t('products.details.worthIt') }}?</p>
                 <div class="flex gap-3 items-center">
                   <HandThumbUpIcon class="w-5 h-5 text-green-500"/>
                   <p class="font-bold">({{ review.helpful_data.helpful }})</p>
@@ -882,7 +892,7 @@ useHead({
           class="mt-10">
 
         <div class="flex items-center gap-2 mt-4 border-b pb-5">
-          <p>0 отзывов</p>
+          <p>0 {{ $t('products.details.reviewsTotal') }}</p>
         </div>
 
         <div>
