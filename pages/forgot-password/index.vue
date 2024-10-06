@@ -7,6 +7,7 @@ import img1 from "@/assets/img/auth/slide1.jpg"
 import img2 from "@/assets/img/auth/slide2.jpg"
 import img3 from "@/assets/img/auth/slide3.jpg"
 import {useUserStore} from "~/stores/user.js";
+import {nextTick} from "vue";
 
 const loading = ref(false);
 const code_sent = ref(false);
@@ -17,6 +18,7 @@ const localePath = useLocalePath()
 const auth = useAuthStore()
 const user = useUserStore()
 const {t} = useI18n();
+const passwordReset = ref(false)
 
 const form = ref({
   phone_number: '',
@@ -25,6 +27,12 @@ const form = ref({
 const formCode = ref({
   phone_number: '',
   code: ''
+})
+
+const newPass = ref({
+  token: '',
+  password: '',
+  password_confirmation: ''
 })
 
 const carousel = ref([
@@ -84,13 +92,45 @@ const passwordRequest = async () => {
       body: JSON.stringify(formCode.value)
     }, route.query);
     await auth.initCookieToken();
-    auth.token = response.access_token;
-    await nextTick()
-    await user.getProfile()
-    notifications.showNotification("success", "Смена пароля подтверждена", "Проверьте вашу почту, мы отправили вам новый пароль.");
-    await router.push(localePath('/'))
+    newPass.value.token = response.access_token;
+    notifications.showNotification("success", "Смена пароля подтверждена", "Пожалуйста, введите новый пароль.");
+    passwordReset.value = true
   } catch (e) {
     notifications.showNotification("error", "Произошла ошибка", e);
+  }
+
+}
+
+const setPassword = async () => {
+  loading.value = true;
+  await v$.value.$validate();
+
+  if (v$.value.$error) {
+    notifications.showNotification("error", "Данные не заполнены", "Проверьте правильность введенных данных и попробуйте снова.");
+    loading.value = false;
+    return;
+  }
+
+  if(newPass.value.password === newPass.value.password_confirmation) {
+    try {
+      const response = await api(`/api/auth/password-recovery/update-password`, "PATCH", {
+        body: JSON.stringify(newPass.value),
+        headers: {
+          'Authorization': `Bearer ${newPass.value.token}`,
+          'Content-Type': 'application/json'
+        }
+      }, route.query);
+      await auth.initCookieToken();
+      auth.token = newPass.value.token
+      await nextTick()
+      await user.getProfile()
+      notifications.showNotification("success", "Успешно", "Пароль успешно изменен.");
+      await router.push(localePath('/'))
+    } catch (e) {
+      notifications.showNotification("error", "Произошла ошибка", e);
+    }
+  } else {
+    notifications.showNotification("error", "Пароли не совпадают", "Проверьте правильность введенных данных и попробуйте снова.");
   }
 
 }
@@ -136,7 +176,7 @@ useHead({
           <div class="mt-7">
             <div>
               <form
-                  v-if="!code_sent"
+                  v-if="!code_sent && !passwordReset"
                   action=""
                   class="space-y-6"
                   @submit.prevent="codeRequest">
@@ -161,14 +201,15 @@ useHead({
                 </div>
 
                 <div>
-                  <button class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
-                          type="submit">
+                  <button
+                      class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                      type="submit">
                     {{ $t('forms.forgot_password.button') }}
                   </button>
                 </div>
               </form>
               <form
-                  v-else
+                  v-else-if="!passwordReset && code_sent"
                   class="space-y-6"
                   @submit.prevent="passwordRequest"
               >
@@ -185,6 +226,50 @@ useHead({
                       class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                       name="code"
                       type="text"
+                  />
+                </div>
+
+                <div>
+                  <button
+                      class="flex w-full justify-center rounded-md bg-mainColor px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainColor"
+                      type="submit">
+                    {{ $t('forms.forgot_password.code_button') }}
+                  </button>
+                </div>
+              </form>
+              <form
+                  v-else
+                  class="space-y-6"
+                  @submit.prevent="setPassword"
+              >
+                <div
+                    class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                  <label class="block text-xs font-medium text-gray-900" for="pass">
+                    {{ $t('forms.password.title') }}
+                  </label>
+                  <input
+                      id="pass"
+                      v-model="newPass.password"
+                      :placeholder="$t('forms.password.placeholder')"
+                      autocomplete="pass"
+                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      name="pass"
+                      type="password"
+                  />
+                </div>
+                <div
+                    class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                  <label class="block text-xs font-medium text-gray-900" for="pass">
+                    {{ $t('forms.password_confirmation.title') }}
+                  </label>
+                  <input
+                      id="pass"
+                      v-model="newPass.password_confirmation"
+                      :placeholder="$t('forms.password_confirmation.placeholder')"
+                      autocomplete="pass"
+                      class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      name="pass"
+                      type="password"
                   />
                 </div>
 

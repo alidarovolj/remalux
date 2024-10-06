@@ -18,7 +18,7 @@
     "no": "Нет",
     "metrika": "гр. / m²",
     "usage": "Область применения",
-    "coating": "Покрытие",
+    "coating": "Покрытие"
   },
   "projects": {
     "title": "Наши проекты"
@@ -776,6 +776,10 @@
       "button": "Отправить код",
       "code_button": "Подтвердить"
     },
+    "password_confirmation": {
+        "title": "Подтверждение пароля",
+        "placeholder": "Подтвердите ваш пароль",
+    },
     "code": {
       "title": "Код",
       "placeholder": "Введите код"
@@ -794,10 +798,12 @@
       "title": "Номер телефона"
     },
     "password": {
-      "title": "Пароль"
+      "title": "Пароль",
+      "placeholder": "Введите ваш пароль"
     },
     "confirm_password": {
-      "title": "Подтвердите пароль"
+      "title": "Подтвердите пароль",
+      "placeholder": "Подтвердите ваш пароль"
     }
   },
   "header_links": {
