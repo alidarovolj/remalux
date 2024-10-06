@@ -220,23 +220,23 @@ const searchByText = async () => {
 };
 
 const removeColor = async () => {
-  savedColor.removeCookie()
-  await router.push({query: {...route.query, is_colorable: 0}});
+  savedColor.removeCookie();
+  const newQuery = { ...route.query, is_colorable: 0 };
+  delete newQuery.color_id;
+  await router.push({ query: newQuery });
   await products.getVariantsList();
 };
 
 onMounted(async () => {
   await nextTick()
   const {searchKeyword} = route.query;
-  console.log(route.query['filters[product.category_id]'])
   if (searchKeyword) {
     searchForm.value.searchKeyword = searchKeyword;
   }
   if (colorCookie.value) {
-    await router.push({query: {...route.query, is_colorable: 1}});
+    await router.push({query: {...route.query, color_id: colorCookie.value.id}});
   }
   await nextTick()
-  console.log(route.query)
   await categories.getCategories()
   await products.removeVariant()
   await colors.getFavouriteColors()
@@ -245,9 +245,6 @@ onMounted(async () => {
 
   if (route.query.order_by) {
     searchForm.value.orderBy = route.query.order_by;
-  }
-  if (route.query.is_colorable) {
-    searchForm.value.isColorable = route.query.is_colorable;
   }
 
 })

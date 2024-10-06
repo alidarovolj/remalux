@@ -3,14 +3,14 @@
     <Breadcrumbs :links="links"/>
     <div class="container mx-auto px-4 md:px-0">
       <div class="my-8">
-        <!-- Заголовок -->
         <div class="flex">
           <h1 class="w-full md:w-1/4 text-2xl font-medium border-r pr-4">
             {{ t('compare.list') }}
           </h1>
-          <div
+          <router-link
               v-for="(item, index) of compareCookie.allProducts"
               :key="index"
+              :to="localePath(`/store/${item.id}`)"
               class="w-full md:w-1/4 text-center border-r px-2 relative"
           >
             <TrashIcon
@@ -45,7 +45,7 @@
                 {{ item.rating?.rating }} ({{ item.rating?.count }})
               </p>
             </div>
-          </div>
+          </router-link>
           <router-link
               :to="localePath('/store')"
               class="w-full md:w-1/4 text-center px-2 relative flex flex-col justify-center cursor-pointer">
@@ -64,17 +64,18 @@
           </router-link>
         </div>
 
-        <!-- Другие характеристики -->
-        <div v-for="(section, index) in sections" :key="index" class="flex mt-4">
-          <h1 class="w-full md:w-1/4 text-base font-semibold border-r py-3 pr-4">
-            {{ section.title }}
-          </h1>
-          <div
-              v-for="(item, idx) of compareCookie.allProducts"
-              :key="idx"
-              class="w-full md:w-1/4 text-center flex items-center justify-center border-r px-2"
-          >
-            <p class="text-xl">{{ section.getValue(item) }}</p>
+        <div v-if="compareCookie.allProducts.length > 0">
+          <div v-for="(section, index) in sections" :key="index" class="flex mt-4">
+            <h1 class="w-full md:w-1/4 text-base font-semibold border-r py-3 pr-4">
+              {{ section.title }}
+            </h1>
+            <div
+                v-for="(item, idx) of compareCookie.allProducts"
+                :key="idx"
+                class="w-full md:w-1/4 text-center flex items-center justify-center border-r px-2"
+            >
+              <p class="text-xl">{{ section.getValue(item) }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -87,7 +88,7 @@ import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 import {useCompareCookieStore} from "~/stores/compareCookie";
 import {useLanguagesStore} from "~/stores/languages";
 import {storeToRefs} from "pinia";
-import {TrashIcon, PlusIcon} from "@heroicons/vue/24/outline"
+import {PlusIcon, TrashIcon} from "@heroicons/vue/24/outline"
 
 const {t} = useI18n();
 const localePath = useLocalePath();
@@ -113,6 +114,20 @@ const sections = computed(() => [
   {
     title: t("compare.expense"),
     getValue: (item) => `${item.expense} ${t("compare.metrika")}`,
+  },
+  {
+    title: t('compare.coating'),
+    getValue: (item) => {
+      const foundItem = item.filter_data.find((data) => data.title && data.title.ru === 'Покрытие');
+      return foundItem && foundItem.value && foundItem.value.ru ? `${foundItem.value.ru}` : '';
+    },
+  },
+  {
+    title: t('compare.usage'),
+    getValue: (item) => {
+      const foundItem = item.filter_data.find((data) => data.title && data.title.ru === "Область применения");
+      return foundItem && foundItem.value && foundItem.value.ru ? `${foundItem.value.ru}` : '';
+    },
   },
 ]);
 

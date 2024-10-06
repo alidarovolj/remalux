@@ -63,7 +63,8 @@ onMounted(async () => {
   await colors.getMainColors()
   await colors.getFavouriteColors()
   if (prodCol.colorForProduct) {
-    await products.getDetailProduct(prodCol.colorForProduct);
+    await products.getDetailProduct(prodCol.colorForProduct.id);
+    await router.push({query: {...route.query, product_id: prodCol.colorForProduct.id}});
   }
 })
 

@@ -11,7 +11,13 @@ export const useColorForProductStore = defineStore("colorForProduct", () => {
     return {
         colorForProduct,
         async saveCookie(color) {
-            colorForProduct.value = color;
+            let obj = {
+                id: color.id,
+                title: color.title,
+                image_url: color.image_url,
+                hex: color.hex,
+            }
+            colorForProduct.value = obj;
             console.log(colorForProduct.value)
         },
         async removeCookie() {

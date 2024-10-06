@@ -193,7 +193,7 @@ onUnmounted(() => {
             </PopoverGroup>
           </client-only>
 
-          <div class="overflow-x-auto hidden lg:flex items-center lg:gap-x-5 uppercase navigation">
+          <div class="hidden lg:flex items-center lg:gap-x-5 uppercase navigation">
             <NuxtLink
                 v-for="item in navigation"
                 :key="item.name"
@@ -237,7 +237,7 @@ onUnmounted(() => {
                   class="relative">
                 <div
                     v-if="colors.favouriteColorsList.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                    class="bg-mainColor text-white w-5 h-5 absolute left-0 top-full translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ colors.favouriteColorsList.data.length }}
                 </div>
                 <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
@@ -249,7 +249,7 @@ onUnmounted(() => {
                   class="relative">
                 <div
                     v-if="products.favouriteProducts.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                    class="bg-mainColor text-white w-5 h-5 absolute left-0 top-full translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ products.favouriteProducts.data.length }}
                 </div>
                 <HeartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
@@ -261,7 +261,7 @@ onUnmounted(() => {
                   class="relative">
                 <div
                     v-if="cart.cartList.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                    class="bg-mainColor text-white w-5 h-5 absolute left-0 top-full translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ cart.cartList.data.length }}
                 </div>
                 <ShoppingCartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>

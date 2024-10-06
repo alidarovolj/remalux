@@ -242,7 +242,6 @@ useHead({
 
 <template>
   <div class="pb-32">
-    {{ compareCookie.compareCookie }}
     <Breadcrumbs :links="links"/>
     <div
         class="bg-white py-10 mb-10"
@@ -403,7 +402,9 @@ useHead({
                 {{ $t('products.details.article') }}: {{ detailProduct.article }}
               </p>
               <div class="flex justify-between items-center gap-1 mb-8">
-                <div class="flex gap-1 items-center">
+                <div
+                    v-if="detailProduct.rating"
+                    class="flex gap-1 items-center">
                   <svg class="size-6 text-[#FFE814]" fill="currentColor" viewBox="0 0 24 24"
                        xmlns="http://www.w3.org/2000/svg">
                     <path clip-rule="evenodd"
@@ -411,6 +412,17 @@ useHead({
                           fill-rule="evenodd"/>
                   </svg>
                   <p class="ml-1 text-lg">{{ detailProduct.rating.rating }} ({{ detailProduct.rating?.count }})</p>
+                </div>
+                <div
+                    v-else
+                    class="flex gap-1 items-center">
+                  <svg class="size-6 text-[#D6D6D6]" fill="currentColor" viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                          fill-rule="evenodd"/>
+                  </svg>
+                  <p class="ml-1 text-lg">0.0 (0)</p>
                 </div>
                 <div
                     @click="compareCookie.saveCookie(detailProduct)"
@@ -432,7 +444,7 @@ useHead({
               <NuxtLink
                   v-if="!colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
-                  @click="colorForProduct.saveCookie(detailProduct)"
+                  @click="prodColor.saveCookie(detailProduct)"
                   class="border border-[#7B7B7B40] border-dashed py-6 rounded flex items-center gap-4 justify-center mb-8 cursor-pointer">
                 <div class="rounded-full flex items-center justify-center">
                   <PlusIcon class="w-7 h-7 bg-[#F0DFDF] text-mainColor rounded-full p-1"/>
