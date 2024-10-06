@@ -247,7 +247,7 @@ useHead({
         class="bg-white py-10 mb-10"
         style="box-shadow: 0px 4px 15px 0px #0000000D;">
       <div class="container mx-auto px-4 lg:px-0">
-        <div v-if="detailProduct && sameProducts && productsList">
+        <div v-if="detailProduct && productsList">
           <div class="flex flex-col md:flex-row items-start gap-7">
             <div
                 :class="{ 'border-none' : colorCookie || !products.detailProduct.is_colorable }"
@@ -456,7 +456,7 @@ useHead({
               <NuxtLink
                   v-else-if="colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
-                  @click="prodColor.saveCookie(detailProduct.id)"
+                  @click="prodColor.saveCookie(detailProduct)"
                   :style="`background: ${colorCookie.hex}`"
                   class="border border-[#7B7B7B40] border-dashed mb-8 cursor-pointer rounded-xl p-3">
                 <div class="flex items-center gap-2 mb-3">
@@ -661,6 +661,39 @@ useHead({
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-0 mt-10">
+          <div v-if="products.relatedProducts">
+            <div v-if="products.relatedProducts.data.length > 0">
+              <Heading
+                  :linkTitle="$t('products.related.more')"
+                  :title="$t('products.related.title')"
+                  class="!mb-0"
+                  link="/store"
+              />
+              <client-only>
+                <my-carousel-carousel
+                    :breakpoints="related"
+                    :mouse-drag="true"
+                    :touch-drag="true"
+                    :wrap-around="true"
+                >
+                  <my-carousel-slide
+                      v-for="(item, index) of products.relatedProducts.data"
+                      :key="index"
+                      class="px-2">
+                    <ProductCard :itemIndex="index" :product-data="item.product"/>
+                  </my-carousel-slide>
+                  <template #addons>
+                    <my-carousel-navigation/>
+                    <my-carousel-pagination/>
+                  </template>
+                </my-carousel-carousel>
+              </client-only>
+            </div>
+          </div>
+          <ProductsPreloader v-else/>
         </div>
       </div>
     </div>
@@ -913,38 +946,6 @@ useHead({
           </p>
         </div>
       </div>
-    </div>
-    <div class="container mx-auto px-4 lg:px-0 mt-10">
-      <div v-if="products.relatedProducts">
-        <div v-if="products.relatedProducts.data.length > 0">
-          <Heading
-              :linkTitle="$t('products.related.more')"
-              :title="$t('products.related.title')"
-              class="!mb-0"
-              link="/store"
-          />
-          <client-only>
-            <my-carousel-carousel
-                :breakpoints="related"
-                :mouse-drag="true"
-                :touch-drag="true"
-                :wrap-around="true"
-            >
-              <my-carousel-slide
-                  v-for="(item, index) of products.relatedProducts.data"
-                  :key="index"
-                  class="px-2">
-                <ProductCard :itemIndex="index" :product-data="item.product"/>
-              </my-carousel-slide>
-              <template #addons>
-                <my-carousel-navigation/>
-                <my-carousel-pagination/>
-              </template>
-            </my-carousel-carousel>
-          </client-only>
-        </div>
-      </div>
-      <ProductsPreloader v-else/>
     </div>
   </div>
 </template>

@@ -22,7 +22,8 @@
     "nuxt-aos": "latest",
     "pinia": "^2.1.7",
     "vue": "latest",
-    "vue3-carousel-nuxt": "latest"
+    "vue3-carousel-nuxt": "latest",
+    "yandex-metrika-module-nuxt3": "^1.5.3"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "^8.3.1",

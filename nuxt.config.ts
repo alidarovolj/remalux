@@ -35,7 +35,7 @@ export default defineNuxtConfig({
                     async: true,
                 },
                 {
-                    src: "//code.jivosite.com/widget/nEEcAaqS9s",
+                    src: "//code.jivosite.com/widget/KqXqiJLP20",
                     async: true,
                 }
             ],
@@ -99,7 +99,24 @@ export default defineNuxtConfig({
         ],
     },
 
-    modules: ["vue3-carousel-nuxt", "@nuxtjs/i18n", "@pinia/nuxt", "nuxt-aos"],
+    runtimeConfig: {
+        // The private keys which are only available within server-side
+        apiSecret: '123',
+        // Keys within public, will be also exposed to the client-side
+        public: {
+            apiBase: import.meta.env.VITE_APP_BASE_URL,
+        }
+    },
+
+    modules: ["vue3-carousel-nuxt", "@nuxtjs/i18n", "@pinia/nuxt", "nuxt-aos",
+        [
+        "yandex-metrika-module-nuxt3",
+            {
+                id: process.env.YANDEX_METRIKA_ID,
+                webvisor: true,
+                consoleLog: false,
+            },
+        ],],
     carousel: {
         prefix: 'my-carousel',
     }

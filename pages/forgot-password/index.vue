@@ -8,6 +8,7 @@ import img2 from "@/assets/img/auth/slide2.jpg"
 import img3 from "@/assets/img/auth/slide3.jpg"
 import {useUserStore} from "~/stores/user.js";
 import {nextTick} from "vue";
+import axios from "axios";
 
 const loading = ref(false);
 const code_sent = ref(false);
@@ -19,6 +20,7 @@ const auth = useAuthStore()
 const user = useUserStore()
 const {t} = useI18n();
 const passwordReset = ref(false)
+const runtimeConfig = useRuntimeConfig()
 
 const form = ref({
   phone_number: '',
@@ -113,13 +115,13 @@ const setPassword = async () => {
 
   if(newPass.value.password === newPass.value.password_confirmation) {
     try {
-      const response = await api(`/api/auth/password-recovery/update-password`, "PATCH", {
-        body: JSON.stringify(newPass.value),
+      const response = await axios.patch(`${runtimeConfig.public.apiBase}/api/auth/password-recovery/update-password`, newPass.value, {
         headers: {
           'Authorization': `Bearer ${newPass.value.token}`,
           'Content-Type': 'application/json'
-        }
-      }, route.query);
+        },
+        params: route.query
+      });
       await auth.initCookieToken();
       auth.token = newPass.value.token
       await nextTick()
