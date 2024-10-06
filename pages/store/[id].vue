@@ -609,7 +609,7 @@ useHead({
     <div>
       <div class="container mx-auto px-4 md:px-0">
         <div class="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-32">
-          <div class="w-full md:w-1/5">
+          <div class="w-full md:w-1/4">
             <div
                 v-if="detailProduct"
                 class="rounded-xl border border-[#F0DFDF] mb-10"
@@ -637,10 +637,33 @@ useHead({
                 </div>
               </div>
             </div>
+            <div
+                v-if="detailProduct"
+                class="rounded-xl border border-[#F0DFDF] mb-10"
+                style="box-shadow: 0px 0px 20px 0px #0000000D;"
+            >
+              <div class="p-6 rounded-t-xl bg-mainColor text-white font-semibold font-montserrat">
+                <p>{{ $t('products.related.title') }}</p>
+              </div>
+              <div
+                  v-for="(item, index) of products.relatedProducts?.data"
+                  :key="index"
+                  class="py-4 px-6 flex items-center gap-4"
+              >
+                <img
+                    class="w-14 h-14 object-contain"
+                    :src="item.product.image_url"
+                    alt="">
+                <div>
+                  <p class="text-sm mb-2">{{ item.product.title[cur_lang] }}</p>
+                  <p class="text-sm">{{ item.product.price_range[0] }}₸ - {{ item.product.price_range[1] }}₸</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div
               v-if="detailProduct"
-              class="w-full md:w-4/5 flex flex-col gap-10 info_block">
+              class="w-full md:w-3/4 flex flex-col gap-10 info_block">
             <div v-html="detailProduct.description[cur_lang]"></div>
             <div>
               <p class="text-mainColor text-2xl font-medium font-montserrat mb-4">{{ $t('products.details.serts') }}</p>
@@ -664,11 +687,10 @@ useHead({
         </div>
 
         <div class="container mx-auto px-4 lg:px-0 mt-10">
-          <div v-if="products.relatedProducts">
-            <div v-if="products.relatedProducts.data.length > 0">
+          <div v-if="products.sameProducts">
+            <div v-if="products.sameProducts.data.length > 0">
               <Heading
-                  :linkTitle="$t('products.related.more')"
-                  :title="$t('products.related.title')"
+                  :title="$t('products.same.title')"
                   class="!mb-0"
                   link="/store"
               />
@@ -680,10 +702,10 @@ useHead({
                     :wrap-around="true"
                 >
                   <my-carousel-slide
-                      v-for="(item, index) of products.relatedProducts.data"
+                      v-for="(item, index) of products.sameProducts.data"
                       :key="index"
                       class="px-2">
-                    <ProductCard :itemIndex="index" :product-data="item.product"/>
+                    <ProductCard :itemIndex="index" :product-data="item"/>
                   </my-carousel-slide>
                   <template #addons>
                     <my-carousel-navigation/>

@@ -28,6 +28,7 @@ import {useAuthStore} from "~/stores/auth.js";
 import {useColorsStore} from "~/stores/colors.js";
 import {useProductsStore} from "~/stores/products.js";
 import {useCategoriesStore} from "~/stores/categories.js";
+import {useCompareCookieStore} from "~/stores/compareCookie.js";
 
 const searchValue = ref('')
 const loading = ref(false)
@@ -47,6 +48,7 @@ const categories = useCategoriesStore()
 const languages = useLanguagesStore()
 const {cur_lang} = storeToRefs(languages)
 const productDrop = ref(false)
+const compareProducts = useCompareCookieStore()
 
 const searchOpen = ref(false)
 
@@ -206,9 +208,16 @@ onUnmounted(() => {
         </div>
         <div class="hidden lg:flex gap-3 !w-max">
           <div class="flex gap-3 items-center">
-            <ScaleIcon
-                @click="router.push(localePath('/compareProducts'))"
-                class="w-5 h-5 text-mainColor cursor-pointer"/>
+            <div class="relative">
+              <ScaleIcon
+                  @click="router.push(localePath('/compareProducts'))"
+                  class="w-5 h-5 text-mainColor cursor-pointer"/>
+              <div
+                  v-if="compareProducts.compareCookie.length > 0"
+                  class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                {{ compareProducts.compareCookie.length }}
+              </div>
+            </div>
             <MagnifyingGlassIcon
                 @click="searchOpen = !searchOpen"
                 class="w-5 h-5 text-mainColor cursor-pointer"
@@ -237,7 +246,7 @@ onUnmounted(() => {
                   class="relative">
                 <div
                     v-if="colors.favouriteColorsList.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute left-0 top-full translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ colors.favouriteColorsList.data.length }}
                 </div>
                 <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
@@ -249,7 +258,7 @@ onUnmounted(() => {
                   class="relative">
                 <div
                     v-if="products.favouriteProducts.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute left-0 top-full translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ products.favouriteProducts.data.length }}
                 </div>
                 <HeartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
@@ -261,7 +270,7 @@ onUnmounted(() => {
                   class="relative">
                 <div
                     v-if="cart.cartList.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute left-0 top-full translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
                   {{ cart.cartList.data.length }}
                 </div>
                 <ShoppingCartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>

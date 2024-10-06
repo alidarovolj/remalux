@@ -2,7 +2,9 @@
   <div>
     <Breadcrumbs :links="links"/>
     <div class="container mx-auto px-4 md:px-0">
-      <div class="my-8">
+      <div
+          v-if="compareCookie.allProducts"
+          class="my-8">
         <div class="flex">
           <h1 class="w-full md:w-1/4 text-2xl font-medium border-r pr-4">
             {{ t('compare.list') }}
@@ -17,7 +19,7 @@
                 class="w-6 h-6 absolute top-0 right-2 cursor-pointer text-red-500"
                 @click="compareCookie.removeCookie(item)"
             />
-            <p class="text-base font-medium font-montserrat mb-2 whitespace-nowrap pt-7">
+            <p class="text-sm font-medium font-montserrat mb-2 whitespace-nowrap pt-7">
               {{ item.title[cur_lang] }}
             </p>
             <img
@@ -25,7 +27,7 @@
                 :src="item.image_url"
                 alt=""
             />
-            <p class="text-xl font-semibold mb-3">
+            <p class="text-lg font-semibold mb-3">
               {{ item.price_range[0] }}₸ - {{ item.price_range[1] }}₸
             </p>
             <div class="flex gap-1 items-center justify-center">
@@ -41,12 +43,13 @@
                     fill-rule="evenodd"
                 />
               </svg>
-              <p class="ml-1 text-lg">
+              <p class="ml-1">
                 {{ item.rating?.rating }} ({{ item.rating?.count }})
               </p>
             </div>
           </router-link>
           <router-link
+              v-if="compareCookie.allProducts.length < 3"
               :to="localePath('/store')"
               class="w-full md:w-1/4 text-center px-2 relative flex flex-col justify-center cursor-pointer">
             <img
@@ -74,7 +77,7 @@
                 :key="idx"
                 class="w-full md:w-1/4 text-center flex items-center justify-center border-r px-2"
             >
-              <p class="text-xl">{{ section.getValue(item) }}</p>
+              <p class="text-base">{{ section.getValue(item) }}</p>
             </div>
           </div>
         </div>

@@ -34,7 +34,6 @@ const updateQueryParams = async () => {
 // Watch for changes in per_page and reset lastPerPage if needed
 watch(() => form.value.per_page, async (newVal, oldVal) => {
   if (newVal !== oldVal) {
-    console.log(`per_page changed from ${oldVal} to ${newVal}`);
     lastPerPage = newVal; // Update last known value
     await updateQueryParams(); // Ensure that the query params are updated when per_page changes
   }
@@ -59,7 +58,6 @@ onMounted(async () => {
       if (entry.isIntersecting && !loading.value) {
         form.value.per_page = Math.min(lastPerPage + 10, maxPerPage.value); // Explicitly increase by 10 each time, respecting maxPerPage
         // Debugging output (optional)
-        console.log('New per_page:', form.value.per_page);
         await updateQueryParams(); // Fetch new data
       }
     });

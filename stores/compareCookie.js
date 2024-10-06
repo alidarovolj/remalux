@@ -17,6 +17,9 @@ export const useCompareCookieStore = defineStore("compareCookie", () => {
         compareCookie,
         allProducts,
         async saveCookie(product) {
+            if (compareCookie.value.length >= 3) {
+                compareCookie.value.shift()
+            }
             compareCookie.value.push(product.id);
             notifications.showNotification('success', 'Успешно', 'Краска добавлена в сравнение');
             await router.push(localePath('/compareProducts'));
@@ -30,8 +33,15 @@ export const useCompareCookieStore = defineStore("compareCookie", () => {
         },
         async getCompareProducts() {
             const products = useProductsStore();
-            await products.getProducts()
-            allProducts.value = products.productsList.data.filter((product) => compareCookie.value.includes(product.id));
+            allProducts.value = [];
+
+            // Проходимся по каждому productId из compareCookie.value
+            for (const productId of compareCookie.value) {
+                await products.getDetailProduct(productId);
+                allProducts.value.push(products.detailProduct);
+            }
         }
+
+
     };
 });
