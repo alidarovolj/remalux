@@ -148,7 +148,7 @@ useHead({
               :data-aos="'fade-up'"
               :data-aos-delay="index * 10"
           >
-            <ColorCard :id="item.id" :hex="item.hex" :title="item.title"/>
+            <ColorCard :id="item.id" :hex="item.hex" :title="item.title" :ral="item.ral"/>
           </div>
         </div>
         <NoResults v-else/>

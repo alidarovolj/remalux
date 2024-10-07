@@ -3,7 +3,7 @@ import {useColorCookieStore} from "~/stores/colorCookie.js";
 import {useNotificationStore} from "~/stores/notifications.js";
 
 const colors = useColorsStore()
-const props = defineProps(['id', 'hex', 'title'])
+const props = defineProps(['id', 'hex', 'title', 'ral'])
 const savedColor = useColorCookieStore()
 const { colorCookie } = storeToRefs(savedColor)
 const auth = useAuthStore()
@@ -76,6 +76,9 @@ const saveColor = async () => {
         class="mb-4 w-full h-[170px] rounded-2xl relative"
     >
     </div>
+    <p class="text-xs" @click="saveColor()">
+      RAL: {{ ral }}
+    </p>
     <p @click="saveColor()">
       {{ title[cur_lang] }}
     </p>

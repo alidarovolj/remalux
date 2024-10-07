@@ -638,16 +638,17 @@ useHead({
               </div>
             </div>
             <div
-                v-if="detailProduct"
+                v-if="detailProduct && products.relatedProducts?.data.length > 0"
                 class="rounded-xl border border-[#F0DFDF] mb-10"
                 style="box-shadow: 0px 0px 20px 0px #0000000D;"
             >
               <div class="p-6 rounded-t-xl bg-mainColor text-white font-semibold font-montserrat">
                 <p>{{ $t('products.related.title') }}</p>
               </div>
-              <div
+              <router-link
                   v-for="(item, index) of products.relatedProducts?.data"
                   :key="index"
+                  :to="localePath(`/store/${ item.product.id }`)"
                   class="py-4 px-6 flex items-center gap-4"
               >
                 <img
@@ -658,7 +659,7 @@ useHead({
                   <p class="text-sm mb-2">{{ item.product.title[cur_lang] }}</p>
                   <p class="text-sm">{{ item.product.price_range[0] }}₸ - {{ item.product.price_range[1] }}₸</p>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
           <div

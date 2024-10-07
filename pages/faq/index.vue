@@ -149,7 +149,7 @@ useHead({
               v-if="!loading"
               type="submit"
               class="border border-mainColor w-full py-3 rounded-lg text-mainColor hover:bg-mainColor hover:text-white transition-all">
-            {{ $t('faq.quest.send') }}
+            {{ $t('faq.quest.button') }}
           </button>
           <button
               v-else
