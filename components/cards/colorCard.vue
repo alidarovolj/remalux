@@ -38,6 +38,7 @@ const saveColor = async () => {
     id: props.id,
     hex: props.hex,
     title: props.title,
+    ral: props.ral
   }
   await savedColor.saveCookie(obj)
   if(products.detailProduct) {
@@ -53,7 +54,6 @@ const saveColor = async () => {
       class="bg-white rounded-2xl p-4 text-sm pb-8 hover:bg-[#F0DFDF] transition-all cursor-pointer relative"
       :class="{ 'border-2 border-mainColor' : colorCookie?.id === id }"
       style="box-shadow: 0px 0px 20px 0px #0000000D;"
-      :data-aos="'fade-up'"
   >
     <div
         @click="addOrRemoveFavouriteColor(id)"
