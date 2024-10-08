@@ -163,7 +163,7 @@ const links = computed(() => [
 const setData = (item) => {
   form.value.variant = item.id;
   addToCart.value.product_variant_id = item.id;
-  prod_var.value = item.price;
+  prod_var.value = item;
   console.log(prod_var.value)
 }
 
