@@ -263,7 +263,7 @@ useHead({
       </div>
 
       <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-5"
+        <h2 class="text-3xl font-montserrat font-bold tracking-tight text-mainColor mb-5"
             data-aos="fade-up">
           {{ $t('mainPage.about_us.park.title') }}
         </h2>
@@ -289,7 +289,7 @@ useHead({
         </div>
 
         <p
-            data-aos="fade-up" class="text-sm md:text-xl font-medium">
+            data-aos="fade-up">
           {{ $t('mainPage.about_us.park.text') }}
         </p>
       </div>

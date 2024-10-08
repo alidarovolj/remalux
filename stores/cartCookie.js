@@ -110,6 +110,7 @@ export const useCartCookieStore = defineStore("cartCookie", () => {
         clearCart() {
             cartCookie.value = [];
             updateCartTotalPrice();
+            console.log('Cart cleared.');
         }
     };
 });

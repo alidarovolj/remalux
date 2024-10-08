@@ -5,7 +5,7 @@ export const useColorForProductStore = defineStore("colorForProduct", () => {
         sameSite: 'strict', // Corrected to a string
         maxAge: 60 * 60 * 24,
     });
-
+    const notifications = useNotificationStore();
     colorForProduct.value = colorForProduct.value || null;
 
     return {
@@ -22,6 +22,7 @@ export const useColorForProductStore = defineStore("colorForProduct", () => {
         },
         async removeCookie() {
             colorForProduct.value = null;
+            notifications.showNotification('success', 'Успешно', 'Выбранная краска удалена');
         },
     };
 });

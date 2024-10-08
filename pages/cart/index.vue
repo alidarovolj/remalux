@@ -69,6 +69,7 @@ onMounted(async () => {
   await cartData.initCookieCart()
   await cart.getCart()
   await cartData.cartGetItems()
+  await cartData.clearCart()
 })
 
 useHead({

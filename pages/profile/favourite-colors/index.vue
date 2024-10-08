@@ -67,7 +67,7 @@ useHead({
                 v-for="(item, index) of favouriteColorsList.data"
                 :key="index"
                 class="w-full border border-[#F0DFDF] rounded-2xl flex items-center justify-between">
-              <ColorCard class="w-full" :id="item.color.id" :hex="item.color.hex" :title="item.color.title" />
+              <ColorCard class="w-full" :id="item.color.id" :ral="item.color.ral" :hex="item.color.hex" :title="item.color.title" />
             </div>
           </div>
           <NoResults v-else />

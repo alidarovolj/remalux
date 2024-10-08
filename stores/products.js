@@ -138,6 +138,7 @@ export const useProductsStore = defineStore("products", () => {
                 removedFavouriteProducts.value = response;
                 this.getProducts()
                 this.getVariantsList()
+                this.getFavouriteProducts()
             } catch (e) {
                 notifications.showNotification("error", "Произошла ошибка", e);
             }

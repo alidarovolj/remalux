@@ -146,7 +146,7 @@ onMounted(async () => {
   if (products.savedVariant) {
     form.value.variant = products.savedVariant.id
     addToCart.value.product_variant_id = products.savedVariant.id
-    prod_var.value = products.savedVariant.price;
+    prod_var.value = products.savedVariant;
   }
   if (colorCookie.value) {
     addToCart.value.color_id = colorCookie.value.id
@@ -210,6 +210,14 @@ const addToCartLocal = async () => {
   }
 
 }
+const colors = useColorsStore()
+const { favouriteColorsList } = storeToRefs(colors)
+
+const favouriteColorIds = computed(() => {
+  return colors.favouriteColorsList?.data?.length
+      ? colors.favouriteColorsList.data.map(fav => fav.color.id)
+      : [];
+});
 
 const dynamicTitle = computed(() => {
   return detailProduct.value?.title[cur_lang.value];
@@ -235,6 +243,18 @@ const dynamicMeta = computed(() => {
     },
   ];
 });
+
+const addOrRemoveFavouriteColor = async (colorId) => {
+  if(token.value) {
+    if (favouriteColorIds.value.includes(colorId)) {
+      await colors.removeFromFavourites(colorId)
+    } else {
+      await colors.addToFavouriteColors(colorId)
+    }
+  } else {
+    notifications.showNotification('error', 'Необходимо авторизоваться', 'Для добавления в избранное необходимо авторизоваться')
+  }
+};
 
 const dynamicLink = computed(() => {
   return [{rel: "canonical", href: `${t("headers.store.canonical")}/${route.params.id}`}];
@@ -443,11 +463,17 @@ useHead({
                   class="text-2xl mb-8">
                 {{ detailProduct.price_range[0] }}₸ - {{ detailProduct.price_range[1] }}₸
               </p>
-              <p
+              <div
                   v-else
                   class="text-2xl mb-8">
-                {{ prod_var }}₸
-              </p>
+                <div>
+                  <div class="flex items-center gap-3"><p
+                      :class="{ 'line-through' : prod_var.discount_price }"
+                      class="">{{ prod_var.price }}₸</p> <span v-if="prod_var.discount_price">{{
+                      prod_var.discount_price
+                    }}₸</span></div>
+                </div>
+              </div>
               <NuxtLink
                   v-if="!colorCookie && products.detailProduct.is_colorable"
                   :to="localePath('/colors')"
@@ -460,35 +486,44 @@ useHead({
                   {{ $t('products.details.choose_color') }}
                 </p>
               </NuxtLink>
-              <NuxtLink
+              <div
                   v-else-if="colorCookie && products.detailProduct.is_colorable"
-                  :to="localePath('/colors')"
-                  @click="prodColor.saveCookie(detailProduct)"
-                  :style="`background: ${colorCookie.hex}`"
-                  class="border border-[#7B7B7B40] border-dashed mb-8 cursor-pointer rounded-xl p-3">
-                <div class="flex items-center gap-2 mb-3">
+                  class="mb-8 cursor-pointer flex items-center gap-5">
+                <NuxtLink
+                    :to="localePath('/colors')"
+                    @click="prodColor.saveCookie(detailProduct)"
+                    class="w-1/2 h-20 rounded-md p-3"
+                    style="box-shadow: 0px 4px 4px 0px #0000001A;">
                   <div
-                      class="w-8 h-8 rounded-full bg-[#F0DFDF] flex items-center justify-center">
-                    <svg
-                        class="size-5 w-5 h-5 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                      <path
-                          clip-rule="evenodd"
-                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                          fill-rule="evenodd"
-                      />
-                    </svg>
+                      :style="`background: ${colorCookie.hex}`"
+                      class="w-full h-full">
+                  </div>
+                </NuxtLink>
+                <div class="">
+                  <div
+                      @click="addOrRemoveFavouriteColor(colorCookie.id)"
+                      class="flex items-center gap-3">
+                    <div
+                        class="w-6 h-6 p-1 rounded-full bg-[#F0DFDF] flex items-center justify-center">
+                      <svg
+                          v-if="favouriteColorIds?.includes(colorCookie.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-mainColor">
+                        <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                      </svg>
+
+                      <svg
+                          v-else
+                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-mainColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                      </svg>
+                    </div>
+                    <p class="text-2xl">{{ colorCookie.title[cur_lang] }}</p>
                   </div>
                   <div>
-                    <p class="invert">{{ colorCookie.title[cur_lang] }}</p>
+                    <p class="text-sm">RAL: {{ colorCookie.ral }}</p>
+                    <p class="text-sm text-mainColor">{{ $t('products.colors_link') }}</p>
                   </div>
                 </div>
-                <div class="flex justify-end">
-                  <p class="text-sm invert">{{ $t('products.colors_link') }}</p>
-                </div>
-              </NuxtLink>
+              </div>
               <div class="mb-8">
                 <p class="mb-4">
                   {{ $t('products.details.weight') }}
