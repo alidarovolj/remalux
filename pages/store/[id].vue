@@ -44,7 +44,7 @@ const {token} = storeToRefs(auth)
 const loading = ref(false);
 const notifications = useNotificationStore()
 const prod_var = ref(null);
-const {detailProduct, sameProducts, productsList} = storeToRefs(products);
+const {detailProduct, productsList} = storeToRefs(products);
 const route = useRoute();
 const router = useRouter()
 const language = useLanguagesStore();
@@ -159,6 +159,13 @@ const links = computed(() => [
   {title: t('breadcrumbs.store'), link: localePath('/store')},
   {title: detailProduct.value?.title[cur_lang.value], link: localePath(`/store/${route.params.id}`)},
 ]);
+
+const setData = (item) => {
+  form.value.variant = item.id;
+  addToCart.value.product_variant_id = item.id;
+  prod_var.value = item.price;
+  console.log(prod_var.value)
+}
 
 const reviews = computed(() => products.productReviews || []);
 const productReviewsRating = computed(() => products.productReviewsRating || {});
@@ -492,7 +499,7 @@ useHead({
                       :key="index"
                       :class="[{ 'bg-mainColor text-white': form.variant === item.id }, { '!border !border-red-500': v$.product_variant_id.$error }]"
                       class="transition-all px-6 w-max text-center text-xl border border-[#7B7B7B] border-opacity-25 py-2 text-[#7B7B7B] rounded-lg"
-                      @click="form.variant = item.id; prod_var = item.price; addToCart.product_variant_id = item.id"
+                      @click="setData(item)"
                   >
                     {{ item.value }}{{ $t('products.details.kg') }}
                   </button>
