@@ -35,7 +35,7 @@ useHead({
 </script>
 
 <template>
-  <div class="flex flex-col gap-36 pb-16">
+  <div class="flex flex-col gap-20 md:gap-36 pb-16">
     <HeroNew/>
     <ChooseType/>
     <Ideas/>

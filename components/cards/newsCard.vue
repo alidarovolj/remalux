@@ -13,15 +13,15 @@ const localePath = useLocalePath()
   <div
       v-if="postData"
       :data-aos-duration="itemIndex * 300"
-      class="w-full h-[420px] relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 pt-80 sm:pt-48 lg:pt-80 text-start news-card"
+      class="w-full h-[343px] md:h-[420px] relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 pt-80 sm:pt-48 lg:pt-80 text-start news-card"
       data-aos="fade-up">
     <div>
       <img :src="postData.image_url" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover transition-all"/>
 
       <div class="bg-white bg-opacity-15 set-backdrop py-4 px-6 text-white hover:py-5 transition-all">
         <div class="flex items-center gap-2">
-          <NewspaperIcon class="w-8 h-8 min-w-8 min-h-8 text-white"/>
-          <h3 class="text-lg font-semibold truncate">
+          <NewspaperIcon class="w-6 md:w-8 h-6 md:h-8 min-w-6 md:min-w-8 min-h-6 md:min-h-8 text-white"/>
+          <h3 class="text-[15px] md:text-lg font-semibold truncate">
             <NuxtLink :to="localePath(`/news/${postData.id}`)">
               <span class="absolute inset-0"/>
               {{ postData.title[cur_lang] }}
@@ -29,7 +29,7 @@ const localePath = useLocalePath()
           </h3>
         </div>
         <p
-            class="text-sm font-light truncate-2-lines"
+            class="text-[10px] md:text-sm font-light truncate-2-lines"
             v-html="postData.description[cur_lang]"></p>
       </div>
     </div>

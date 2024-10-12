@@ -1,25 +1,28 @@
 <script setup>
-import {useLanguagesStore} from "~/stores/languages.js";
+import { useLanguagesStore } from "~/stores/languages.js";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
 
-const news = useNewsStore()
-const {newsDetail} = storeToRefs(news)
-const route = useRoute()
-const language = useLanguagesStore()
-const {cur_lang} = storeToRefs(language)
-const localePath = useLocalePath()
-const {t} = useI18n()
+const news = useNewsStore();
+const { newsDetail } = storeToRefs(news);
+const route = useRoute();
+const language = useLanguagesStore();
+const { cur_lang } = storeToRefs(language);
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const links = computed(() => [
-  {title: t('breadcrumbs.home'), link: localePath('/')},
-  {title: t('breadcrumbs.news'), link: localePath('/news')},
-  {title: newsDetail.value.title[cur_lang.value], to: localePath(`/news/${route.params.id}`)},
-])
+  { title: t("breadcrumbs.home"), link: localePath("/") },
+  { title: t("breadcrumbs.news"), link: localePath("/news") },
+  {
+    title: newsDetail.value.title[cur_lang.value],
+    to: localePath(`/news/${route.params.id}`),
+  },
+]);
 
 onMounted(async () => {
-  await nextTick()
-  await news.getDetailNews(route.params.id)
-})
+  await nextTick();
+  await news.getDetailNews(route.params.id);
+});
 
 const dynamicTitle = computed(() => {
   return newsDetail.value?.title[cur_lang.value] + " - Remalux";
@@ -47,7 +50,12 @@ const dynamicMeta = computed(() => {
 });
 
 const dynamicLink = computed(() => {
-  return [{ rel: "canonical", href: `${t("headers.news.canonical")}/${route.params.id}` }];
+  return [
+    {
+      rel: "canonical",
+      href: `${t("headers.news.canonical")}/${route.params.id}`,
+    },
+  ];
 });
 
 useHead({
@@ -58,20 +66,25 @@ useHead({
 </script>
 
 <template>
-  <div
-      v-if="newsDetail"
-      class="pb-32">
-    <Breadcrumbs :links="links"/>
+  <div v-if="newsDetail" class="pb-32">
+    <Breadcrumbs :links="links" />
     <div class="container mx-auto px-4 lg:px-0">
       <img
-          :src="newsDetail.image_url"
-          alt=""
-          class="w-full h-[440px] object-contain mb-12">
-      <h1 class="text-3xl font-semibold mb-6 font-montserrat">
+        :src="newsDetail.image_url"
+        alt=""
+        class="w-full h-[200px] md:h-[440px] object-contain mb-12"
+      />
+      <h1 class="text-lg md:text-3xl font-semibold mb-6 font-montserrat">
         {{ newsDetail.title[cur_lang] }}
       </h1>
-      <p class="text-xl mb-12" v-html="newsDetail.description[cur_lang]"></p>
-      <div v-html="newsDetail.content[cur_lang]"></div>
+      <p
+        class="text-sm md:text-xl mb-12"
+        v-html="newsDetail.description[cur_lang]"
+      ></p>
+      <div
+        class="text-sm md:text-base"
+        v-html="newsDetail.content[cur_lang]"
+      ></div>
     </div>
   </div>
 </template>

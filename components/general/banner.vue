@@ -17,7 +17,7 @@ const logoSrc = computed(() => {
 
 <template>
   <client-only>
-    <div class="relative py-16 bg-white mb-10">
+    <div class="hidden md:block relative py-16 bg-white mb-10">
       <div class="container mx-auto relative z-10 px-4 md:px-0">
         <div
             :class="[

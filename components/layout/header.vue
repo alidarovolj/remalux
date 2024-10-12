@@ -9,8 +9,8 @@ import {
   Popover,
   PopoverButton,
   PopoverGroup,
-  PopoverPanel
-} from '@headlessui/vue'
+  PopoverPanel,
+} from "@headlessui/vue";
 import {
   Bars3Icon,
   ChevronDownIcon,
@@ -18,50 +18,51 @@ import {
   MagnifyingGlassIcon,
   PaintBrushIcon,
   ScaleIcon,
+  UserIcon,
   ShoppingCartIcon,
-  XMarkIcon
-} from '@heroicons/vue/24/outline'
-import {useUserStore} from "~/stores/user.js";
+  XMarkIcon,
+} from "@heroicons/vue/24/outline";
+import { useUserStore } from "~/stores/user.js";
 import LocaleSwitcher from "~/components/general/localeSwitcher.vue";
-import {useNotificationStore} from "~/stores/notifications.js";
-import {useAuthStore} from "~/stores/auth.js";
-import {useColorsStore} from "~/stores/colors.js";
-import {useProductsStore} from "~/stores/products.js";
-import {useCategoriesStore} from "~/stores/categories.js";
-import {useCompareCookieStore} from "~/stores/compareCookie.js";
+import { useNotificationStore } from "~/stores/notifications.js";
+import { useAuthStore } from "~/stores/auth.js";
+import { useColorsStore } from "~/stores/colors.js";
+import { useProductsStore } from "~/stores/products.js";
+import { useCategoriesStore } from "~/stores/categories.js";
+import { useCompareCookieStore } from "~/stores/compareCookie.js";
 
-const searchValue = ref('')
-const loading = ref(false)
-const {t} = useI18n()
-const localePath = useLocalePath()
-const user = useUserStore()
-const notifications = useNotificationStore()
-const router = useRouter()
-const route = useRoute()
-const auth = useAuthStore()
-auth.initCookieToken()
-const {token} = storeToRefs(auth)
-const cart = useCartStore()
-const colors = useColorsStore()
-const products = useProductsStore()
-const categories = useCategoriesStore()
-const languages = useLanguagesStore()
-const {cur_lang} = storeToRefs(languages)
-const productDrop = ref(false)
-const compareProducts = useCompareCookieStore()
+const searchValue = ref("");
+const loading = ref(false);
+const { t } = useI18n();
+const localePath = useLocalePath();
+const user = useUserStore();
+const notifications = useNotificationStore();
+const router = useRouter();
+const route = useRoute();
+const auth = useAuthStore();
+auth.initCookieToken();
+const { token } = storeToRefs(auth);
+const cart = useCartStore();
+const colors = useColorsStore();
+const products = useProductsStore();
+const categories = useCategoriesStore();
+const languages = useLanguagesStore();
+const { cur_lang } = storeToRefs(languages);
+const productDrop = ref(false);
+const compareProducts = useCompareCookieStore();
 
-const searchOpen = ref(false)
+const searchOpen = ref(false);
 
 const navigation = computed(() => [
-  {name: t('header_links.choose_color'), href: localePath('/colors')},
-  {name: t('header_links.ideas'), href: localePath('/ideas')},
-  {name: t('header_links.about_us'), href: localePath('/about')},
-  {name: t('header_links.news'), href: localePath('/news')},
-  {name: t('header_links.contacts'), href: localePath('/contacts')},
-  {name: t('header_links.partners'), href: localePath('/partnership')},
-  {name: "FAQ", href: localePath('/faq')},
-  {name: t('header_links.projects'), href: localePath('/projects')},
-])
+  { name: t("header_links.choose_color"), href: localePath("/colors") },
+  { name: t("header_links.ideas"), href: localePath("/ideas") },
+  { name: t("header_links.about_us"), href: localePath("/about") },
+  { name: t("header_links.news"), href: localePath("/news") },
+  { name: t("header_links.contacts"), href: localePath("/contacts") },
+  { name: t("header_links.partners"), href: localePath("/partnership") },
+  { name: "FAQ", href: localePath("/faq") },
+  { name: t("header_links.projects"), href: localePath("/projects") },
+]);
 
 const logoutUser = async () => {
   loading.value = true;
@@ -72,119 +73,152 @@ const logoutUser = async () => {
     auth.token = null;
     await nextTick();
     user.userProfile = false;
-    notifications.showNotification("success", "Успешно", "Вы успешно вышли из аккаунта");
+    notifications.showNotification(
+      "success",
+      "Успешно",
+      "Вы успешно вышли из аккаунта"
+    );
     loading.value = false;
     if (token.value) {
-      await user.getProfile()
+      await user.getProfile();
     }
-    await router.push(localePath('/'));
+    await router.push(localePath("/"));
   } catch (e) {
-    console.log(e)
+    console.log(e);
     if (e.response) {
       notifications.showNotification("error", "Произошла ошибка", e);
     }
   }
   loading.value = false;
-}
+};
 
-const mobileMenuOpen = ref(false)
+const mobileMenuOpen = ref(false);
 
 const navRef = ref(null);
 
 const handleScroll = () => {
   if (window.scrollY > 0) {
-    navRef.value.classList.add('!py-2');
+    navRef.value.classList.add("!py-2");
   } else {
-    navRef.value.classList.remove('!py-2');
+    navRef.value.classList.remove("!py-2");
   }
 };
 
 const makeSearch = () => {
-  router.push({path: localePath('/store'), query: {searchKeyword: searchValue.value}});
-}
+  router.push({
+    path: localePath("/store"),
+    query: { searchKeyword: searchValue.value },
+  });
+};
 
 onMounted(async () => {
-  await nextTick()
+  await nextTick();
   if (token.value) {
-    await cart.getCart()
-    await colors.getFavouriteColors()
-    await products.getFavouriteProducts()
+    await cart.getCart();
+    await colors.getFavouriteColors();
+    await products.getFavouriteProducts();
   }
-  window.addEventListener('scroll', handleScroll);
-  await categories.getCategories()
-})
+  window.addEventListener("scroll", handleScroll);
+  await categories.getCategories();
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
 <template>
   <header
-      class="bg-white fixed top-0 z-[100000] w-full"
-      style="box-shadow: 0px 0px 10px 0px #00000026;">
+    class="bg-white fixed top-0 z-[100000] w-full"
+    style="box-shadow: 0px 0px 10px 0px #00000026"
+  >
     <div class="container mx-auto px-4 md:px-0">
       <nav
-          ref="navRef"
-          aria-label="Global"
-          class="flex justify-between py-5 transition-all">
-        <div class="flex gap-6 items-center">
-          <NuxtLink
-              :to="localePath('/')"
-              class="-m-1.5 p-1.5">
+        ref="navRef"
+        aria-label="Global"
+        class="flex justify-between py-5 transition-all"
+      >
+        <div class="flex gap-4 md:gap-6 items-center">
+          <div class="flex lg:hidden">
+            <button
+              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              type="button"
+              @click="mobileMenuOpen = !mobileMenuOpen"
+            >
+              <Bars3Icon aria-hidden="true" class="h-6 w-6" />
+            </button>
+          </div>
+          <NuxtLink :to="localePath('/')" class="-m-1.5 p-1.5">
             <img
-                alt=""
-                class="h-10 w-auto"
-                src="~/assets/img/logos/mainLogo.svg"
+              alt=""
+              class="hidden md:block h-10 w-auto"
+              src="~/assets/img/logos/mainLogo.svg"
+            />
+            <img
+              alt=""
+              class="block md:hidden h-9 w-auto"
+              src="~/assets/img/logos/mob.svg"
             />
           </NuxtLink>
         </div>
-        <div class="flex lg:hidden">
-          <button
-              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              type="button"
-              @click="mobileMenuOpen = true">
-            <Bars3Icon aria-hidden="true" class="h-6 w-6"/>
-          </button>
-        </div>
-        <div class="hidden lg:flex items-center lg:gap-x-5 uppercase navigation">
+        <div
+          class="hidden lg:flex items-center lg:gap-x-5 uppercase navigation"
+        >
           <client-only>
             <PopoverGroup class="hidden lg:flex">
               <Popover v-slot="{ open }" class="relative">
                 <PopoverButton
-                    @click="productDrop = !productDrop"
-                    class="flex items-center gap-x-1 uppercase text-xs font-semibold leading-6 text-gray-900">
-                  {{ t('header_links.store') }}
-                  <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
+                  @click="productDrop = !productDrop"
+                  class="flex items-center gap-x-1 uppercase text-xs font-semibold leading-6 text-gray-900"
+                >
+                  {{ t("header_links.store") }}
+                  <ChevronDownIcon
+                    class="h-5 w-5 flex-none text-gray-400"
+                    aria-hidden="true"
+                  />
                 </PopoverButton>
 
                 <transition
-                    enter-active-class="transition ease-out duration-200"
-                    enter-from-class="opacity-0 translate-y-1"
-                    enter-to-class="opacity-100 translate-y-0"
-                    leave-active-class="transition ease-in duration-150"
-                    leave-from-class="opacity-100 translate-y-0"
-                    leave-to-class="opacity-0 translate-y-1"
+                  enter-active-class="transition ease-out duration-200"
+                  enter-from-class="opacity-0 translate-y-1"
+                  enter-to-class="opacity-100 translate-y-0"
+                  leave-active-class="transition ease-in duration-150"
+                  leave-from-class="opacity-100 translate-y-0"
+                  leave-to-class="opacity-0 translate-y-1"
                 >
                   <PopoverPanel
-                      v-slot="{ close }"
-                      class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+                    v-slot="{ close }"
+                    class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
                   >
-                    <div class="p-4 md:grid md:grid-cols-2 lg:gap-x-5 lg:gap-y-5 font-manrope">
+                    <div
+                      class="p-4 md:grid md:grid-cols-2 lg:gap-x-5 lg:gap-y-5 font-manrope"
+                    >
                       <div
-                          v-for="(item, index) in categories?.categoriesList?.data"
-                          :key="index"
-                          @click="router.push({ path: localePath('/store'), query: { 'filters[product.category_id]': item.id } }); close()"
-                          class="group relative flex gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50 cursor-pointer items-center"
+                        v-for="(item, index) in categories?.categoriesList
+                          ?.data"
+                        :key="index"
+                        @click="
+                          router.push({
+                            path: localePath('/store'),
+                            query: { 'filters[product.category_id]': item.id },
+                          });
+                          close();
+                        "
+                        class="group relative flex gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50 cursor-pointer items-center"
                       >
                         <div
-                            class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <img class="h-full w-full" :src="item.image_url" alt=""/>
+                          class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white"
+                        >
+                          <img
+                            class="h-full w-full"
+                            :src="item.image_url"
+                            alt=""
+                          />
                         </div>
                         <div class="flex-auto">
                           <div class="block font-semibold text-gray-900">
                             {{ item.title[cur_lang] }}
-                            <span class="absolute inset-0"/>
+                            <span class="absolute inset-0" />
                           </div>
                         </div>
                       </div>
@@ -195,119 +229,172 @@ onUnmounted(() => {
             </PopoverGroup>
           </client-only>
 
-          <div class="hidden lg:flex items-center lg:gap-x-5 uppercase navigation">
+          <div
+            class="hidden lg:flex items-center lg:gap-x-5 uppercase navigation"
+          >
             <NuxtLink
-                v-for="item in navigation"
-                :key="item.name"
-                :to="localePath(item.href)"
-                class="text-xs font-semibold leading-6 text-gray-900 links whitespace-nowrap"
-                @click="mobileMenuOpen = false">
+              v-for="item in navigation"
+              :key="item.name"
+              :to="localePath(item.href)"
+              class="text-xs font-semibold leading-6 text-gray-900 links whitespace-nowrap"
+              @click="mobileMenuOpen = false"
+            >
               {{ item.name }}
             </NuxtLink>
           </div>
         </div>
-        <div class="hidden lg:flex gap-3 !w-max">
+        <div class="flex gap-3 !w-max">
           <div class="flex gap-3 items-center">
             <div class="relative">
               <ScaleIcon
-                  @click="router.push(localePath('/compareProducts'))"
-                  class="w-5 h-5 text-mainColor cursor-pointer"/>
+                @click="router.push(localePath('/compareProducts'))"
+                class="w-5 h-5 text-mainColor cursor-pointer"
+              />
               <div
-                  v-if="compareProducts.compareCookie.length > 0"
-                  class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                v-if="compareProducts.compareCookie.length > 0"
+                class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs"
+              >
                 {{ compareProducts.compareCookie.length }}
               </div>
             </div>
             <MagnifyingGlassIcon
-                @click="searchOpen = !searchOpen"
-                class="w-5 h-5 text-mainColor cursor-pointer"
+              @click="searchOpen = !searchOpen"
+              class="w-5 h-5 text-mainColor cursor-pointer"
             />
           </div>
-          <div
-              v-if="user.userProfile === false"
-              class="flex items-center gap-4 text-sm !w-max">
-            <NuxtLink
+          <div v-if="user.userProfile === false">
+            <div
+              class="hidden md:flex items-center gap-4 text-sm !w-max h-full"
+            >
+              <NuxtLink
                 :to="localePath('/login')"
-                class="block rounded-lg text-mainColor text-sm font-semibold">
-              {{ $t('header_links.login') }}
-            </NuxtLink>
-            <NuxtLink
+                class="block rounded-lg text-mainColor text-sm font-semibold"
+              >
+                {{ $t("header_links.login") }}
+              </NuxtLink>
+              <NuxtLink
                 :to="localePath('/registration')"
-                class="text-white bg-mainColor rounded-lg px-4 h-full flex items-center font-semibold">
-              {{ $t('header_links.register') }}
-            </NuxtLink>
+                class="text-white bg-mainColor rounded-lg px-4 h-full flex items-center font-semibold"
+              >
+                {{ $t("header_links.register") }}
+              </NuxtLink>
+            </div>
+            <div
+              class="flex md:hidden items-center gap-4 text-sm !w-max h-full"
+            >
+              <NuxtLink
+                :to="localePath('/login')"
+                class="block rounded-lg text-mainColor text-sm font-semibold"
+              >
+                <UserIcon class="w-5 h-5 cursor-pointer text-mainColor" />
+              </NuxtLink>
+            </div>
           </div>
           <div
-              v-else-if="user.userProfile"
-              class="flex items-center gap-3 !w-max">
+            v-else-if="user.userProfile"
+            class="flex items-center gap-3 !w-max"
+          >
             <div v-if="colors.favouriteColorsList">
               <NuxtLink
-                  :to="localePath('/profile/favourite-colors')"
-                  class="relative">
+                :to="localePath('/profile/favourite-colors')"
+                class="relative"
+              >
                 <div
-                    v-if="colors.favouriteColorsList.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                  v-if="colors.favouriteColorsList.data.length > 0"
+                  class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs"
+                >
                   {{ colors.favouriteColorsList.data.length }}
                 </div>
-                <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+                <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor" />
               </NuxtLink>
             </div>
             <div v-if="products.favouriteProducts">
               <NuxtLink
-                  :to="localePath('/profile/favourite-products')"
-                  class="relative">
+                :to="localePath('/profile/favourite-products')"
+                class="relative"
+              >
                 <div
-                    v-if="products.favouriteProducts.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                  v-if="products.favouriteProducts.data.length > 0"
+                  class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs"
+                >
                   {{ products.favouriteProducts.data.length }}
                 </div>
-                <HeartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+                <HeartIcon class="w-5 h-5 cursor-pointer text-mainColor" />
               </NuxtLink>
             </div>
             <div v-if="cart.cartList">
-              <NuxtLink
-                  :to="localePath('/cart')"
-                  class="relative">
+              <NuxtLink :to="localePath('/cart')" class="relative">
                 <div
-                    v-if="cart.cartList.data.length > 0"
-                    class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
+                  v-if="cart.cartList.data.length > 0"
+                  class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs"
+                >
                   {{ cart.cartList.data.length }}
                 </div>
-                <ShoppingCartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
+                <ShoppingCartIcon
+                  class="w-5 h-5 cursor-pointer text-mainColor"
+                />
               </NuxtLink>
             </div>
-            <Menu as="div" class="relative inline-block text-left">
+            <div
+              class="flex md:hidden items-center gap-4 text-sm !w-max h-full"
+            >
+              <NuxtLink
+                :to="localePath('/profile')"
+                class="block rounded-lg text-mainColor text-sm font-semibold"
+              >
+                <UserIcon class="w-5 h-5 cursor-pointer text-mainColor" />
+              </NuxtLink>
+            </div>
+            <Menu as="div" class="hidden relative md:inline-block text-left">
               <div>
                 <MenuButton
-                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-mainColor hover:bg-gray-50">
+                  class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-mainColor hover:bg-gray-50"
+                >
                   {{ user.userProfile.name }}
-                  <ChevronDownIcon aria-hidden="true" class="-mr-1 h-5 w-5 text-gray-400"/>
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    class="-mr-1 h-5 w-5 text-gray-400"
+                  />
                 </MenuButton>
               </div>
 
               <transition
-                  enter-active-class="transition ease-out duration-100"
-                  enter-from-class="transform opacity-0 scale-95"
-                  enter-to-class="transform opacity-100 scale-100"
-                  leave-active-class="transition ease-in duration-75"
-                  leave-from-class="transform opacity-100 scale-100"
-                  leave-to-class="transform opacity-0 scale-95">
+                enter-active-class="transition ease-out duration-100"
+                enter-from-class="transform opacity-0 scale-95"
+                enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75"
+                leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95"
+              >
                 <MenuItems
-                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+                >
                   <div class="py-1">
                     <MenuItem v-slot="{ active }">
                       <NuxtLink
-                          :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
-                          :to="localePath('/profile')">
-                        {{ $t('profile.profile') }}
+                        :class="[
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm',
+                        ]"
+                        :to="localePath('/profile')"
+                      >
+                        {{ $t("profile.profile") }}
                       </NuxtLink>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
                       <div
-                          :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']"
-                          class="text-red-500"
-                          @click="logoutUser">
-                        {{ $t('profile.logout') }}
+                        :class="[
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block w-full px-4 py-2 text-left text-sm',
+                        ]"
+                        class="text-red-500"
+                        @click="logoutUser"
+                      >
+                        {{ $t("profile.logout") }}
                       </div>
                     </MenuItem>
                   </div>
@@ -316,135 +403,31 @@ onUnmounted(() => {
             </Menu>
           </div>
           <div v-else class="spinner"></div>
-          <LocaleSwitcher/>
+          <LocaleSwitcher />
         </div>
       </nav>
       <Dialog
-          :open="mobileMenuOpen"
-          class="lg:hidden"
-          @close="mobileMenuOpen = false">
-        <div class="fixed inset-0 z-10"/>
+        :open="mobileMenuOpen"
+        class="lg:hidden"
+        @close="mobileMenuOpen = false"
+      >
+        <div class="fixed inset-0 z-10" />
         <DialogPanel
-            class="fixed inset-y-0 right-0 z-[50000] w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div class="flex items-center justify-between">
-            <NuxtLink
-                :to="localePath('/')"
-                class="-m-1.5 p-1.5">
-              <img
-                  alt=""
-                  class="h-10 w-auto"
-                  src="~/assets/img/logos/mainLogo.svg"
-              />
-            </NuxtLink>
-            <button
-                class="-m-2.5 rounded-md p-2.5 text-gray-700"
-                type="button"
-                @click="mobileMenuOpen = false">
-              <XMarkIcon
-                  aria-hidden="true"
-                  class="h-6 w-6"
-              />
-            </button>
-          </div>
-          <div class="mt-6 flow-root">
+          class="fixed inset-y-0 right-0 z-[50000] w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+        >
+          <div class="mt-20 flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
                 <NuxtLink
-                    v-for="item in navigation"
-                    :key="item.name"
-                    :class="{ 'text-mainColor': $route.path === item.href }"
-                    :to="localePath(item.href)"
-                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    @click="mobileMenuOpen = false">
+                  v-for="item in navigation"
+                  :key="item.name"
+                  :class="{ 'text-mainColor': $route.path === item.href }"
+                  :to="localePath(item.href)"
+                  class="-mx-3 block px-4 py-2 text-sm font-semibold leading-5 text-gray-900 hover:bg-gray-50 border-b border-[#F0DFDF]"
+                  @click="mobileMenuOpen = false"
+                >
                   {{ item.name }}
                 </NuxtLink>
-              </div>
-              <div class="flex justify-between py-6 gap-3">
-                <div
-                    v-if="user.userProfile === false"
-                    class="flex items-center gap-3">
-                  <NuxtLink
-                      :to="localePath('/login')"
-                      class="block rounded-lg px-3 py-2.5 text-mainColor text-sm font-semibold leading-7"
-                      @click="mobileMenuOpen = false">
-                    {{ $t('header_links.login') }}
-                  </NuxtLink>
-                  <NuxtLink
-                      :to="localePath('/registration')"
-                      class="block text-white bg-mainColor rounded-lg px-3 py-2.5 text-base font-semibold leading-7"
-                      @click="mobileMenuOpen = false">
-                    {{ $t('header_links.register') }}
-                  </NuxtLink>
-                </div>
-                <div
-                    v-else-if="user.userProfile"
-                    class="flex items-center gap-3">
-                  <div v-if="colors.favouriteColorsList">
-                    <NuxtLink
-                        :to="localePath('/profile/favourite-colors')"
-                        class="relative">
-                      <div
-                          v-if="colors.favouriteColorsList.data.length > 0"
-                          class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
-                        {{ colors.colorsList.data.length }}
-                      </div>
-                      <PaintBrushIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
-                    </NuxtLink>
-                  </div>
-                  <div v-if="cart.cartList">
-                    <NuxtLink
-                        :to="localePath('/cart')"
-                        class="relative"
-                        @click="mobileMenuOpen = false">
-                      <div
-                          v-if="cart.cartList.data.length > 0"
-                          class="bg-mainColor text-white w-5 h-5 absolute right-0 top-0 translate-x-1/2 -translate-y-2/3 flex items-center justify-center rounded-full text-xs">
-                        {{ cart.cartList.data.length }}
-                      </div>
-                      <ShoppingCartIcon class="w-5 h-5 cursor-pointer text-mainColor"/>
-                    </NuxtLink>
-                  </div>
-                  <Menu as="div" class="relative inline-block text-left">
-                    <div>
-                      <MenuButton
-                          class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-mainColor hover:bg-gray-50">
-                        {{ user.userProfile.name }}
-                        <ChevronDownIcon aria-hidden="true" class="-mr-1 h-5 w-5 text-gray-400"/>
-                      </MenuButton>
-                    </div>
-
-                    <transition
-                        enter-active-class="transition ease-out duration-100"
-                        enter-from-class="transform opacity-0 scale-95"
-                        enter-to-class="transform opacity-100 scale-100"
-                        leave-active-class="transition ease-in duration-75"
-                        leave-from-class="transform opacity-100 scale-100"
-                        leave-to-class="transform opacity-0 scale-95">
-                      <MenuItems
-                          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                        <div class="py-1">
-                          <MenuItem v-slot="{ active }">
-                            <NuxtLink
-                                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']"
-                                :to="localePath('/profile')">
-                              {{ $t('profile.profile') }}
-                            </NuxtLink>
-                          </MenuItem>
-                          <MenuItem v-slot="{ active }">
-                            <div
-                                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full px-4 py-2 text-left text-sm']"
-                                class="text-red-500"
-                                @click="logoutUser">
-                              {{ $t('profile.logout') }}
-                            </div>
-                          </MenuItem>
-                        </div>
-                      </MenuItems>
-                    </transition>
-                  </Menu>
-                </div>
-                <div v-else class="spinner"></div>
-                <LocaleSwitcher/>
               </div>
             </div>
           </div>
@@ -452,20 +435,21 @@ onUnmounted(() => {
       </Dialog>
       <client-only>
         <div
-            :class="{ '!pb-3 !h-max !max-h-max' : searchOpen }"
-            class="overflow-hidden w-full pb-0 h-0 max-h-0 transition-all">
-          <form
-              @submit.prevent="makeSearch"
-              class="w-full flex gap-2">
+          :class="{ '!pb-3 !h-max !max-h-max': searchOpen }"
+          class="overflow-hidden w-full pb-0 h-0 max-h-0 transition-all"
+        >
+          <form @submit.prevent="makeSearch" class="w-full flex gap-2">
             <input
-                v-model="searchValue"
-                type="text"
-                class="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                :placeholder="$t('search.title')">
+              v-model="searchValue"
+              type="text"
+              class="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              :placeholder="$t('search.title')"
+            />
             <button
-                type="submit"
-                class="bg-mainColor text-white px-5 rounded-lg text-sm font-semibold">
-              {{ $t('search.placeholder') }}
+              type="submit"
+              class="bg-mainColor text-white px-5 rounded-lg text-sm font-semibold"
+            >
+              {{ $t("search.placeholder") }}
             </button>
           </form>
         </div>

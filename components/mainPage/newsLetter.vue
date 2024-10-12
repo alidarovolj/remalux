@@ -61,24 +61,24 @@ const subscribeUser = async () => {
           <div
               data-aos="fade-left"
               class="flex flex-col gap-5">
-            <h3 class="text-2xl font-medium font-montserrat leading-9">
+            <h3 class="text-center md:text-start text-lg md:text-2xl font-medium font-montserrat leading-5 md:leading-9">
               {{ $t('newsletter.title') }}
             </h3>
-            <p class="font-light">
+            <p class="text-center md:text-start text-sm md:text-base font-light">
               {{ $t('newsletter.description') }}
             </p>
             <form
                 @submit.prevent="subscribeUser"
                 class="flex flex-col gap-3">
-              <div class="w-full flex gap-5">
+              <div class="w-full block md:flex gap-5">
                 <input
                     v-model="form.email"
                     :class="{'border-red-500': v$.$dirty && v$.email.$error}"
                     :placeholder="$t('newsletter.placeholder')"
-                    class="w-full bg-white rounded py-2 px-4 border border-[#F0DFDF]" type="text">
+                    class="w-full bg-white rounded py-2 px-4 border border-[#F0DFDF] mb-3 md:mb-0" type="text">
                 <button
                     type="submit"
-                    class="bg-mainColor text-sm md:text-base w-max whitespace-nowrap px-4 md:px-12 text-white rounded">
+                    class="bg-mainColor text-sm md:text-base w-full md:w-max whitespace-nowrap px-4 md:px-12 text-white rounded py-2 md:py-0">
                   {{ $t('newsletter.button') }}
                 </button>
               </div>
@@ -87,7 +87,7 @@ const subscribeUser = async () => {
                     v-model="form.agreement"
                     class="w-6 h-6"
                     type="checkbox">
-                <p :class="{'outline-red-500': v$.$dirty && v$.agreement.$error}">
+                <p :class="{'outline-red-500': v$.$dirty && v$.agreement.$error}" class="text-sm md:text-base">
                   {{ $t('newsletter.agreement.first') }} <a class="text-mainColor"
                                                             href="#">{{ $t('newsletter.agreement.second') }}</a>
                 </p>

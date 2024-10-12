@@ -42,7 +42,8 @@ input[type="checkbox"] {
     overflow: hidden;
 }
 
-.for_gradient:after {
+.for_gradient:after,
+.new_grad::after {
     content: '';
     position: absolute;
     width: 81.48px;

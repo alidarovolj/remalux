@@ -10,25 +10,25 @@ const localePath = useLocalePath()
         src="@/assets/img/hero/1.png">
     <div
         class="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 relative">
-      <div class="w-full md:w-1/2 h-full md:h-auto mt-10 md:mt-0 px-4 md:px-0">
+      <div class="w-full md:w-1/2 h-full md:h-auto mt-24 md:mt-0 px-4 md:px-0">
         <div class="relative z-20 flex flex-col gap-7">
           <h2
               data-aos="fade-right"
-              class="text-xl md:text-[40px] font-medium leading-8 md:leading-[60px] text-white font-montserrat">
+              class="text-2xl md:text-[40px] font-medium leading-8 md:leading-[60px] text-white font-montserrat text-center md:text-start">
             {{ $t('mainPage.hero.title') }}
           </h2>
-          <div class="flex gap-6 font-montserrat">
+          <div class="flex flex-col md:flex-row gap-6 font-montserrat">
             <NuxtLink
                 :to="localePath('/store')"
                 data-aos="fade-right"
-                class="w-full md:w-max px-0 md:px-9 bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-4 text-center text-base md:text-xl font-semibold border-2 border-white"
+                class="w-full md:w-max px-0 md:px-9 bg-white md:bg-opacity-0 hover:text-mainColor hover:bg-white transition-all text-mainColor md:text-white rounded-xl py-2 md:py-4 text-center text-sm md:text-xl font-semibold border-2 border-white"
             >
               {{ $t('mainPage.hero.choose_paint') }}
             </NuxtLink>
             <NuxtLink
                 :to="localePath('/colors')"
                 data-aos="fade-right"
-                class="w-full md:w-max px-0 md:px-9 bg-none hover:text-mainColor hover:bg-white transition-all text-white rounded-xl py-4 text-center text-base md:text-xl font-semibold border-2 border-white"
+                class="w-full md:w-max px-0 md:px-9 bg-white md:bg-opacity-0 hover:text-mainColor hover:bg-white transition-all text-mainColor md:text-white rounded-xl py-2 md:py-4 text-center text-sm md:text-xl font-semibold border-2 border-white"
             >
               {{ $t('mainPage.hero.choose_color') }}
             </NuxtLink>
@@ -39,9 +39,9 @@ const localePath = useLocalePath()
       <div class="w-full relative h-full block md:hidden z-20">
         <img
             alt=""
-            class="w-1/2 mx-auto absolute -top-14 left-1/2 -translate-x-1/2"
+            class="w-1/4 md:w-1/2 mx-auto absolute -top-4 md:-top-14 left-1/2 -translate-x-1/2"
             src="~/assets/img/hero/pinpng.com-wall-art-png-2436294%203.png">
-        <div class="w-full translate-y-2/3">
+        <div class="w-full translate-y-1/3 md:translate-y-2/3">
           <div class="flex items-end">
             <div class="w-[70%]">
               <img

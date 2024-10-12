@@ -1,30 +1,33 @@
 <script setup>
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
-import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
-import {ChevronDownIcon} from "@heroicons/vue/24/outline";
-import {useVuelidate} from "@vuelidate/core";
-import {required} from "@vuelidate/validators";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { ChevronDownIcon } from "@heroicons/vue/24/outline";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 
 const localePath = useLocalePath();
-const {t} = useI18n();
-const user = useUserStore()
-const notifications = useNotificationStore()
-const router = useRouter()
-const route = useRoute()
+const { t } = useI18n();
+const user = useUserStore();
+const notifications = useNotificationStore();
+const router = useRouter();
+const route = useRoute();
 const loading = ref(false);
 
 const links = computed(() => [
-  {title: t("breadcrumbs.home"), link: localePath("/")},
-  {title: "FAQ", link: localePath("/faq")},
+  { title: t("breadcrumbs.home"), link: localePath("/") },
+  { title: "FAQ", link: localePath("/faq") },
 ]);
 
 const form = ref({
-  question: '',
-})
+  question: "",
+});
 
-const v$ = useVuelidate({
-  question: {required}
-}, form);
+const v$ = useVuelidate(
+  {
+    question: { required },
+  },
+  form
+);
 
 // Sample FAQ data
 const faqs = computed(() => [
@@ -60,37 +63,53 @@ const faqs = computed(() => [
   },
 ]);
 
-
 const sendMessage = async () => {
   loading.value = true;
   await v$.value.$validate();
 
   if (v$.value.$error) {
-    notifications.showNotification("error", "Данные не заполнены", "Проверьте правильность введенных данных и попробуйте снова.");
+    notifications.showNotification(
+      "error",
+      "Данные не заполнены",
+      "Проверьте правильность введенных данных и попробуйте снова."
+    );
     loading.value = false;
     return;
   }
 
-  if(user.userProfile) {
+  if (user.userProfile) {
     try {
-      const response = await api(`/api/questions`, "POST", {
-        body: JSON.stringify(form.value)
-      }, route.query);
+      const response = await api(
+        `/api/questions`,
+        "POST",
+        {
+          body: JSON.stringify(form.value),
+        },
+        route.query
+      );
 
-      await nextTick()
-      form.value.question = '';
-      notifications.showNotification("success", "Успешно", "Вы успешно отправили вопрос, мы ответим вам как можно скорее");
+      await nextTick();
+      form.value.question = "";
+      notifications.showNotification(
+        "success",
+        "Успешно",
+        "Вы успешно отправили вопрос, мы ответим вам как можно скорее"
+      );
       v$.value.$reset();
     } catch (e) {
       notifications.showNotification("error", "Произошла ошибка", e);
     }
   } else {
-    notifications.showNotification("error", "Ошибка", "Для отправки вопроса необходимо авторизоваться");
-    await router.push(localePath('/login'))
+    notifications.showNotification(
+      "error",
+      "Ошибка",
+      "Для отправки вопроса необходимо авторизоваться"
+    );
+    await router.push(localePath("/login"));
   }
 
   loading.value = false;
-}
+};
 
 useHead({
   title: t("headers.faq.title"),
@@ -112,72 +131,81 @@ useHead({
       content: t("headers.faq.og_url"),
     },
   ],
-  link: [{rel: "canonical", href: t("headers.faq.canonical")}],
+  link: [{ rel: "canonical", href: t("headers.faq.canonical") }],
 });
 </script>
 
-
 <template>
-  <Breadcrumbs :links="links"/>
-  <div class="pt-16 pb-32">
+  <Breadcrumbs :links="links" />
+  <div class="pt-0 md:pt-16 pb-32">
     <div class="container mx-auto px-4 md:px-0">
-      <div class="flex items-start gap-5">
+      <div class="flex flex-col md:flex-row items-start gap-5">
         <form
-            @submit.prevent="sendMessage"
-            class="w-full md:w-[45%] flex flex-col gap-6">
+          @submit.prevent="sendMessage"
+          class="w-full md:w-[45%] flex flex-col gap-6"
+        >
           <div class="flex items-end gap-3">
-            <h1 class="text-4xl font-medium font-montserrat text-mainColor">
-              {{ $t('faq.title') }}
+            <h1
+              class="text-xl md:text-4xl font-medium font-montserrat text-mainColor"
+            >
+              {{ $t("faq.title") }}
             </h1>
-            <p class="text-[#7B7B7B]">
-              {{ $t('faq.subtitle') }}
+            <p class="text-[#7B7B7B] text-xs md:text-base">
+              {{ $t("faq.subtitle") }}
             </p>
           </div>
           <p class="text-sm">
-            {{ $t('faq.description') }}
+            {{ $t("faq.description") }}
           </p>
           <div>
-            <p class="mb-2 text-xs text-[#7B7B7B]">{{ $t('faq.quest.title') }}</p>
+            <p class="mb-2 text-xs text-[#7B7B7B]">
+              {{ $t("faq.quest.title") }}
+            </p>
             <textarea
-                v-model="form.question"
-                :class="{ 'border-red-500' : v$.question.$error }"
-                class="w-full h-32 border border-[#E5E5E5] rounded-lg p-4 text-sm"
-                :placeholder="$t('faq.quest.placeholder')"
+              v-model="form.question"
+              :class="{ 'border-red-500': v$.question.$error }"
+              class="w-full h-32 border border-[#E5E5E5] rounded-lg p-3 md:p-4 text-xs md:text-sm"
+              :placeholder="$t('faq.quest.placeholder')"
             ></textarea>
           </div>
           <button
-              v-if="!loading"
-              type="submit"
-              class="border border-mainColor w-full py-3 rounded-lg text-mainColor hover:bg-mainColor hover:text-white transition-all">
-            {{ $t('faq.quest.button') }}
+            v-if="!loading"
+            type="submit"
+            class="text-sm md:text-base border border-mainColor w-full py-3 rounded-lg text-mainColor hover:bg-mainColor hover:text-white transition-all"
+          >
+            {{ $t("faq.quest.button") }}
           </button>
           <button
-              v-else
-              type="button"
-              class="border border-mainColor w-full py-3 rounded-lg text-mainColor hover:bg-mainColor hover:text-white transition-all">
+            v-else
+            type="button"
+            class="text-sm md:text-base border border-mainColor w-full py-3 rounded-lg text-mainColor hover:bg-mainColor hover:text-white transition-all"
+          >
             <span class="spinner"></span>
           </button>
         </form>
         <div class="w-full md:w-[55%]">
           <div class="space-y-4">
             <Disclosure
-                v-for="faq in faqs"
-                :key="faq.id"
-                as="div"
-                v-slot="{ open }"
-                class="border-b border-[#F0DFDF] py-3 px-4">
+              v-for="faq in faqs"
+              :key="faq.id"
+              as="div"
+              v-slot="{ open }"
+              class="border-b border-[#F0DFDF] py-3 px-4"
+            >
               <DisclosureButton
-                  class="flex w-full justify-between text-gray-900 hover:text-mainColor transition-all"
+                class="flex w-full justify-between text-gray-900 hover:text-mainColor transition-all text-start text-sm md:text-base"
               >
                 <span
-                    :class="{ 'font-bold text-black' : open}"
-                    class="font-medium text-[#7B7B7B] transition-all">{{ faq.question }}</span>
+                  :class="{ 'font-bold text-black': open }"
+                  class="font-medium text-[#7B7B7B] transition-all"
+                  >{{ faq.question }}</span
+                >
                 <ChevronDownIcon
-                    :class="{ 'rotate-180': open }"
-                    class="h-5 w-5 transform transition-transform duration-300 text-mainColor"
+                  :class="{ 'rotate-180': open }"
+                  class="h-5 w-5 transform transition-transform duration-300 text-mainColor"
                 />
               </DisclosureButton>
-              <DisclosurePanel class="mt-2 text-sm transition-all">
+              <DisclosurePanel class="mt-2 text-xs md:text-sm transition-all">
                 {{ faq.answer }}
               </DisclosurePanel>
             </Disclosure>

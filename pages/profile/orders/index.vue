@@ -1,126 +1,181 @@
 <template>
   <div>
-    <Breadcrumbs :links="links"/>
+    <Breadcrumbs :links="links" />
     <NuxtLayout name="profile">
       <div class="flex flex-col gap-4">
         <div
-            v-if="orders.ordersList"
-            class="bg-white p-6 rounded-2xl set_shadow">
+          v-if="orders.ordersList"
+          class="bg-white p-4 md:p-6 rounded-2xl set_shadow"
+        >
           <div class="flex justify-between items-center mb-4">
             <div class="flex gap-3 items-center">
-              <CubeIcon class="text-mainColor w-8 h-8"/>
-              <p class="text-xl font-medium">{{ $t('orders.title') }}</p>
+              <CubeIcon class="text-mainColor w-8 h-8" />
+              <p class="text-lg md:text-xl font-medium">
+                {{ $t("orders.title") }}
+              </p>
             </div>
           </div>
           <div class="flex flex-col gap-5">
             <Disclosure
-                as="div"
-                v-for="(item, index) in orders.ordersList.data"
-                :key="index"
-                class="px-4 py-3 border border-[#F0DFDF] rounded-xl w-full"
-                v-slot="{ open }">
+              as="div"
+              v-for="(item, index) in orders.ordersList.data"
+              :key="index"
+              class="px-4 py-3 border border-[#F0DFDF] rounded-xl w-full"
+              v-slot="{ open }"
+            >
               <dt class="w-full">
                 <DisclosureButton class="w-full">
-                  <div class="flex w-full items-start justify-between text-left text-gray-900">
+                  <div
+                    class="flex w-full items-start justify-between text-left text-gray-900"
+                  >
                     <div>
-                      <p class="text-xl font-medium mb-5">{{ $t('orders.order.title') }} №{{ item.id }}</p>
+                      <p class="text-lg md:text-xl font-medium mb-5">
+                        {{ $t("orders.order.title") }} №{{ item.id }}
+                      </p>
+
                       <p
                         :class="[
-                              { 'bg-blue-100 text-blue-500' : item.status.title === 'В ожидании оплаты' },
-                              { 'bg-purple-100 text-purple-500' : item.status.title === 'Оплачен' },
-                              { 'bg-orange-100 text-orange-500' : item.status.title === 'В обработке' },
-                              { 'bg-yellow-100 text-yellow-500' : item.status.title === 'Доставляется' },
-                              { 'bg-green-100 text-green-500' : item.status.title === 'Доставлен' },
-                          ]"
-                        class="text-sm font-medium px-3 py-1 rounded-md">
-                      {{ $t('orders.order.status') }}:
-                      {{ item.status.title }}
-                    </p>
+                          {
+                            'bg-red-100 text-red-500':
+                              item.status.title === 'Отменен',
+                          },
+                          {
+                            'bg-blue-100 text-blue-500':
+                              item.status.title === 'В ожидании оплаты',
+                          },
+                          {
+                            'bg-purple-100 text-purple-500':
+                              item.status.title === 'Оплачен',
+                          },
+                          {
+                            'bg-orange-100 text-orange-500':
+                              item.status.title === 'В обработке',
+                          },
+                          {
+                            'bg-yellow-100 text-yellow-500':
+                              item.status.title === 'Доставляется',
+                          },
+                          {
+                            'bg-green-100 text-green-500':
+                              item.status.title === 'Доставлен',
+                          },
+                        ]"
+                        class="text-xs md:text-sm font-medium px-3 py-1 rounded-md"
+                      >
+                        {{ $t("orders.order.status") }}:
+                        {{ item.status.title }}
+                      </p>
                     </div>
-                    <div class="text-right">
-                      <p class="font-light mb-5">{{ formatDate(item.created_at) }}</p>
-                      <p class="font-semibold">{{ $t('orders.order.amount') }}: {{ item.total_amount }} ₸</p>
+                    <div
+                      class="text-sm md:text-base text-right flex flex-col justify-between h-full"
+                    >
+                      <p class="font-light mb-5">
+                        {{ formatDate(item.created_at) }}
+                      </p>
+                      <p class="text-xs md:text-base font-semibold">
+                        {{ $t("orders.order.amount") }}:
+                        {{ item.total_amount }} ₸
+                      </p>
                     </div>
                   </div>
                   <div
-                      v-if="!open"
-                      class="text-xs text-[#2157E2] flex items-center justify-center gap-2">
-                    <p>{{ $t('orders.order.show') }}</p>
+                    v-if="!open"
+                    class="text-xs text-[#2157E2] flex items-center justify-center gap-2 mt-5 md:mt-0"
+                  >
+                    <p>{{ $t("orders.order.show") }}</p>
                     <ChevronDownIcon class="w-5 h-5" />
                   </div>
                   <div
-                      v-else
-                      class="text-xs text-[#2157E2] flex items-center justify-center gap-2">
-                    <p>{{ $t('orders.order.hide') }}</p>
+                    v-else
+                    class="text-xs text-[#2157E2] flex items-center justify-center gap-2"
+                  >
+                    <p>{{ $t("orders.order.hide") }}</p>
                     <ChevronUpIcon class="w-5 h-5" />
                   </div>
                 </DisclosureButton>
               </dt>
-              <DisclosurePanel as="dd" class="mt-2">
+              <DisclosurePanel as="dd" class="mt-2 text-xs md:text-base">
                 <table
-                    class="min-w-full divide-y divide-gray-300">
+                  class="min-w-full divide-y divide-gray-300 overflow-auto"
+                >
                   <thead class="bg-[#FAFAFA]">
-                  <tr class="px-4">
-                    <th class="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900" scope="col">
-                      {{ t('cart.table.product') }}
-                    </th>
-                    <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
-                      {{ t('cart.table.color') }}
-                    </th>
-                    <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
-                      {{ t('cart.table.quantity') }}
-                    </th>
-                    <th class="px-3 py-3.5 text-left  font-semibold text-gray-900" scope="col">
-                      {{ t('cart.table.price') }}
-                    </th>
-                  </tr>
+                    <tr class="px-4">
+                      <th
+                        class="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900"
+                        scope="col"
+                      >
+                        {{ t("cart.table.product") }}
+                      </th>
+                      <th
+                        class="px-3 py-3.5 text-left font-semibold text-gray-900"
+                        scope="col"
+                      >
+                        {{ t("cart.table.color") }}
+                      </th>
+                      <th
+                        class="px-3 py-3.5 text-left font-semibold text-gray-900"
+                        scope="col"
+                      >
+                        {{ t("cart.table.quantity") }}
+                      </th>
+                      <th
+                        class="px-3 py-3.5 text-left font-semibold text-gray-900"
+                        scope="col"
+                      >
+                        {{ t("cart.table.price") }}
+                      </th>
+                    </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-200 bg-white">
-                  <tr
+                    <tr
                       v-for="(it, ind) in item.order_items"
                       :key="ind"
                       class="border-b news-card cursor-pointer"
-                  >
-                    <td class="whitespace-nowrap py-5 pl-4 pr-3  sm:pl-0">
-                      <div class="flex items-center">
-                        <div class="h-24 w-24 flex-shrink-0">
-                          <img
+                    >
+                      <td class="whitespace-nowrap py-5 pl-4 pr-3 sm:pl-0">
+                        <div class="flex items-center">
+                          <div class="h-24 w-24 flex-shrink-0">
+                            <img
                               :src="it.product_image"
                               alt=""
                               class="h-24 w-24 rounded-full object-cover transition-all"
-                          />
-                        </div>
-                        <div class="ml-4">
-                          <div class="font-medium text-gray-900">{{ it.product_name[cur_lang] }}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="whitespace-nowrap px-3 py-5  ">
-                      <div>
-                        <div v-if="it.color_id" class="relative show_on_hover">
-                          <div
-                              class="text-gray-900 w-8 h-8 rounded-md shadow"
-                              :style="`background: ${it.color_id.hex}`"
-                          >
+                            />
+                          </div>
+                          <div class="ml-4">
+                            <div class="font-medium text-gray-900">
+                              {{ it.product_name[cur_lang] }}
+                            </div>
                           </div>
                         </div>
-                        <div v-else class="w-12 h-12 rounded-lg bg-white shadow-lg flex items-center justify-center text-sm font-semibold"><p class="">N/A</p></div>
-                      </div>
-
-                    </td>
-                    <td class="whitespace-nowrap px-3 py-5  ">
-                      <div class="text-mainColor flex items-center gap-5">
-                        <p class=" text-sm">
-                          {{ it.quantity }} шт.
-                        </p>
-                      </div>
-                    </td>
-                    <td class="whitespace-nowrap px-3 py-5  ">
-                      <div class="text-gray-900">
-                        {{ it.price }}₸
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-5">
+                        <div>
+                          <div
+                            v-if="it.color_id"
+                            class="relative show_on_hover"
+                          >
+                            <div
+                              class="text-gray-900 w-8 h-8 rounded-md shadow"
+                              :style="`background: ${it.color_id.hex}`"
+                            ></div>
+                          </div>
+                          <div
+                            v-else
+                            class="w-12 h-12 rounded-lg bg-white shadow-lg flex items-center justify-center text-sm font-semibold"
+                          >
+                            <p class="">N/A</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-5">
+                        <div class="text-mainColor flex items-center gap-5">
+                          <p class="text-sm">{{ it.quantity }} шт.</p>
+                        </div>
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-5">
+                        <div class="text-gray-900">{{ it.price }}₸</div>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </DisclosurePanel>
@@ -133,29 +188,33 @@
 </template>
 
 <script setup lang="ts">
-import {formatDate} from "~/utils/formatDate";
-import {CubeIcon, ChevronUpIcon, ChevronDownIcon} from "@heroicons/vue/24/outline";
-import {useOrdersStore} from "~/stores/orders";
+import { formatDate } from "~/utils/formatDate";
+import {
+  CubeIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+} from "@heroicons/vue/24/outline";
+import { useOrdersStore } from "~/stores/orders";
 import Breadcrumbs from "~/components/general/breadcrumbs.vue";
-import {useLocalePath} from "#i18n";
-import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/vue'
-import {useLanguagesStore} from "~/stores/languages";
-import {storeToRefs} from "pinia";
+import { useLocalePath } from "#i18n";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { useLanguagesStore } from "~/stores/languages";
+import { storeToRefs } from "pinia";
 
-const orders = useOrdersStore()
-const localePath = useLocalePath()
-const {t} = useI18n()
-const language = useLanguagesStore()
-const {cur_lang} = storeToRefs(language)
+const orders = useOrdersStore();
+const localePath = useLocalePath();
+const { t } = useI18n();
+const language = useLanguagesStore();
+const { cur_lang } = storeToRefs(language);
 
 const links = computed(() => [
-  {title: t('breadcrumbs.home'), link: localePath('/')},
-  {title: t('breadcrumbs.profile'), link: localePath('/profile')},
-  {title: t('breadcrumbs.orders'), link: localePath('/profile/orders')}
+  { title: t("breadcrumbs.home"), link: localePath("/") },
+  { title: t("breadcrumbs.profile"), link: localePath("/profile") },
+  { title: t("breadcrumbs.orders"), link: localePath("/profile/orders") },
 ]);
 
 onMounted(async () => {
-  await nextTick()
-  await orders.getOrders()
-})
+  await nextTick();
+  await orders.getOrders();
+});
 </script>
