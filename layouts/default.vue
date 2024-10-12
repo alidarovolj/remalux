@@ -2,27 +2,27 @@
 import Header from "~/components/layout/header.vue";
 import Footer from "~/components/layout/footer.vue";
 
-const user = useUserStore()
-const auth = useAuthStore()
-auth.initCookieToken()
-const {token} = storeToRefs(auth)
+const user = useUserStore();
+const auth = useAuthStore();
+auth.initCookieToken();
+const { token } = storeToRefs(auth);
 
 onMounted(async () => {
-  await nextTick()
+  await nextTick();
   if (token.value) {
-    await user.getProfile()
+    await user.getProfile();
   } else {
-    user.userProfile = false
+    user.userProfile = false;
   }
-})
+});
 </script>
 
 <template>
   <div>
-    <Header/>
-    <div class="pt-[80px]">
-      <NuxtPage/>
+    <Header />
+    <div class="pt-[75px] md:pt-[80px]">
+      <NuxtPage />
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>

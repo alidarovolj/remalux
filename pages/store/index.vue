@@ -822,7 +822,7 @@ useHead({
               </div>
               <div
                 v-if="categories.categoriesList"
-                class="flex md:hidden gap-2 font-manrope overflow-x-auto"
+                class="flex md:hidden gap-2 font-manrope overflow-x-auto overflow-y-hidden h-full"
               >
                 <div
                   v-for="(category, index) in categories.categoriesList.data"

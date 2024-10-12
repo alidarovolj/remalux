@@ -1,13 +1,11 @@
 <template>
-  <span
-      data-aos="fade-up"
-      class="counter">
+  <span data-aos="fade-up" class="counter">
     {{ displayValue }}
   </span>
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const props = defineProps({
   endValue: {
@@ -16,28 +14,13 @@ const props = defineProps({
   },
   duration: {
     type: Number,
-    default: 2000, // Время анимации в миллисекундах
+    default: 2000, // Animation duration in milliseconds
   },
 });
 
 const displayValue = ref(0);
 const isAnimating = ref(false);
 let observer;
-
-onMounted(() => {
-  const element = document.querySelector('.counter');
-
-  // Создаем Intersection Observer для отслеживания появления элемента на экране
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !isAnimating.value) {
-        startCounting();
-      }
-    });
-  });
-
-  observer.observe(element);
-});
 
 const startCounting = () => {
   const startValue = 0;
@@ -50,16 +33,49 @@ const startCounting = () => {
   const animate = (currentTime) => {
     if (!startTime) startTime = currentTime;
     const progress = Math.min((currentTime - startTime) / duration, 1);
-    displayValue.value = Math.floor(progress * (endValue - startValue) + startValue);
+    displayValue.value = Math.floor(
+      progress * (endValue - startValue) + startValue
+    );
     if (progress < 1) {
       requestAnimationFrame(animate);
     } else {
-      // Устанавливаем флаг анимации в false, чтобы при следующем появлении элемент анимировался заново
-      isAnimating.value = false;
+      isAnimating.value = false; // Reset animation flag after counting finishes
     }
   };
 
   requestAnimationFrame(animate);
 };
-</script>
 
+onMounted(() => {
+  const element = document.querySelector(".counter");
+
+  if (element) {
+    // Add IntersectionObserver with a fallback for mobile
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAnimating.value) {
+            startCounting();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(element);
+
+    // Fallback in case the observer doesn't trigger on mobile
+    setTimeout(() => {
+      if (!isAnimating.value) {
+        startCounting();
+      }
+    }, 500); // A short delay to allow for viewport detection
+  }
+});
+
+onBeforeUnmount(() => {
+  if (observer && observer.disconnect) {
+    observer.disconnect();
+  }
+});
+</script>

@@ -64,6 +64,10 @@ const navigation = computed(() => [
   { name: t("header_links.projects"), href: localePath("/projects") },
 ]);
 
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
+
 const logoutUser = async () => {
   loading.value = true;
 
@@ -143,7 +147,7 @@ onUnmounted(() => {
             <button
               class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
               type="button"
-              @click="mobileMenuOpen = !mobileMenuOpen"
+              @click="toggleMobileMenu"
             >
               <Bars3Icon aria-hidden="true" class="h-6 w-6" />
             </button>
@@ -413,11 +417,21 @@ onUnmounted(() => {
       >
         <div class="fixed inset-0 z-10" />
         <DialogPanel
-          class="fixed inset-y-0 right-0 z-[50000] w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+          class="fixed top-16 inset-y-0 right-0 z-[50000] w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
         >
-          <div class="mt-20 flow-root">
+          <div class="mt-5 flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
+                <NuxtLink
+                  :class="{
+                    'text-mainColor': $route.path === localePath('/store'),
+                  }"
+                  :to="localePath('/store')"
+                  class="-mx-3 block px-4 py-2 text-sm font-semibold leading-5 text-gray-900 hover:bg-gray-50 border-b border-[#F0DFDF]"
+                  @click="mobileMenuOpen = false"
+                >
+                  {{ $t("header_links.store") }}
+                </NuxtLink>
                 <NuxtLink
                   v-for="item in navigation"
                   :key="item.name"
